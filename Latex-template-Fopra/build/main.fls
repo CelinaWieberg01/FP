@@ -1,4 +1,4 @@
-PWD /Users/celinawieberg/Desktop/Praktikum/Latex-template-Fopra
+PWD /Users/celinawieberg/Documents/Praktikum/FP/Latex-template-Fopra
 INPUT /usr/local/texlive/2021/texmf-var/web2c/luahbtex/lualatex.fmt
 INPUT ./main.tex
 OUTPUT build/main.log
