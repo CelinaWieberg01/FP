@@ -1,0 +1,26 @@
+@article{name,
+author = "",
+title = "",
+year = ""
+}
+
+@book{name,
+author = "",
+title = "",
+publisher = "",
+year = ""
+}
+
+@manual{name,
+title = "",
+author = "",
+organization = "",
+year = ""
+}
+
+@online{name,
+author = "",
+title = "",
+url = {},
+urldate = {}
+}
