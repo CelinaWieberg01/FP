@@ -29,15 +29,135 @@ Man definiert das Boyle-Mariottesche Gesetz:
 \begin{equation}
     \frac{p_1}{p_2}=  \frac{V_2}{V_1} 
 \end{equation}
+
+
+\subsection{Druckbereiche und Strömungsarten}
+
+
 Beim Evakuierungsvorgang in ein Vakuum sinkt der Druck über die Zeit, der normale Atmosphärendruck beträgt auf der Erdoberfläche
 ein bar. Die Druckbereiche des Vakuums liegen bei folgenden Werten :
-Grobvakuum bei 1 bar bis $10^-3$ bar, Feinvakuum von $10^-3$ bar bis $10^-7$ bar, Hochvakuum von $10^-7$ bar bis $10^-9$ bar und
-das Hochvakuum liegt bei Werten unter $10^-9$ bar.
+Grobvakuum bei 1 bar bis $10^{-3}$ bar, Feinvakuum von $10^{-3}$ bar bis $10^{-7}$ bar, Hochvakuum von $10^{-7}$ bar bis $10^{-9}$ bar und
+das Hochvakuum liegt bei Werten unter $10^{-9}$ bar.
 Bei niedrigen Druckbereich dominiert die Molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
 da sie nur selten kollidieren und ihre mittlere freie Weglänge groß ist. Bei größeren Druckbereichen kollidieren die Teilchen oft 
 und bewegen sich in geordneten Bahnen, dass nennt man Laminare Ströumg, im Vakuum tritt diese allerdings praktisch nicht auf.
 Im folgenden betrachten wir ein Gemisch aus Gasen, der Gesamtdruck ist dabei die Summe aller Partialdrücke. Also aller
 Drücke aller Komponenten.
+
+
+
+\subsection{Oberflächenphänomene und Gasdynamik}
+
+
+Um das Verhalten von Gasen in Vakuumexperimenten zu verstehen muss man sich einige Phänomene klarmachen.
+Die Moleküle haben alle
+eine kinetische Energie, dadurch können sie im Vakuum von einem Bereich hoher Konzentration zu einem Bereich niedriger Konzentration 
+gelangen. Diese so genannte Diffusion gewährleistet die Homogenität des Vakuums, kann aber durch Temperaturveränderung und Materialeigenschaften
+beeinflusst werden. Haften Gas oder Flüssigkeitsmoleküle an der Oberfläche eines Feststoffes, dringen aber nicht in ihn ein, so spricht man 
+von Adsorption. Die Ursache von Adsorption sind oft Van-der-Wals Kräfte, die zu beschriebener anreicherung von Gasen nahe der Oberfläche führen.
+Dringen die Moleküle tatsächlich in den Feststoff ein, so handelt es sich um Absorption. Die Moleküle können dort chenisch gebunden oder 
+gelöst werden. Im Vakuum tritt Absorption seltener auf als Adsorption. Beide Phänomene können zu einer Druckänderung des Systems führen,
+da die Prozesse reversibel sind, die Moleküle können also wieder freigesetzt werden. Diesen Prozess bezeichnet man als Desorption. Die
+Reversibilität der ersten Prozesse ist wichtig, für die Aufrechterhaltung eines stabilen Vakuums, führt aber automatisch zu einem Druckanstieg. 
+Werden Gase langsam aus Materialien freigesetzt entstehen virtuelle Lecks im Vakuum. Ihr Ursprung liegt immer in interner Gasfreisetzung, 
+sie entstehen nicht durch externe Quellen. Treten virtuelle Lecks auf, so können sie den Evakuierungsvorgang verlangsamen.
+
+
+\subsection{Leistung und Effizienz von Vakuumpumpen}
+
+
+Die Kenngrößen einer Vakuumpumpe sind wichtig um ihre Effizienz und ihre Arbeitsweise zu analysieren.
+Der Gasstrom in einer Pumpe beschreibt die Menge an Gas, die pro Zeiteinheit durch ein System bewegt wird. Die Saugleistung einer Pumpe ist ihre 
+Fähigkeit Gas aus einem System zu entfernen, beides wird typischerweise in Liter pro Sekunde angegeben. Die Saugleistung lässt sich berechnen mit:
+
+\begin{equation}
+    Q=\frac{dV}{dt}
+\end{equation}
+
+Dabei ist \( V \) das Volumen und \( t \) die Zeit.
+Das Saugvermögen ist definiert als die maximale Gasmenge, die die Pumpe bei einem bestimmten Druck abpumpen kann. Das Saugvermögen lässt sich 
+mit der Evakuierungskurve berechnen und hängt von dem Betriebsdruck ab.
+\begin{equation}
+    S=\frac{dpV}{dt}
+\end{equation} 
+
+In der Praxis treten Leistungsverluste in einer Pumpe auf, Gründe dafür sind Thermische Effekte wie Temperaturänderung des Gases,
+Viskosität, Rauhe Innenflächen von Rohren und Kollisionsverluste bei hohen Drücken. Es macht daher Sinn, ein effektives Saugvermögen zu definieren:
+
+\begin{equation}
+    \frac{1}{Q_{eff}}=\frac{1}{Q}+\frac{1}{C}
+\end{equation}   
+
+Der Leitwert \( C \) eines Rohres beschreibt, wie effizient Gas durch das Rohr transportiertt wird, er kann definiert werden über 
+den Strömungswiederstand \( R \) welcher beschreibt, wie stark der Gasfluss durch das Rohr behindert wird 
+und die Druckdifferenz \( increment p\), die zwischen der Messonde und der Pumpe herrscht. 
+
+\begin{equation}
+    C=\frac{1}{R}
+\end{equation}
+
+Mit der Formel für den Gasfluss \( Q \) in Abhängigkeit von dem Strömungswiederstand und der Druckdifferenz:
+
+\begin{equation}
+    Q=\frac{\increment p}{R}
+\end{equation}
+
+Kann man den Leitwert ausdrücken durch:
+\begin{equation}
+    C=\frac{Q}{\increment p}
+\end{equation} 
+
+
+\subsection{Evakuierungskurve}
+Die Evakuierungskurve beschreibt, wie der Druck während des Evakuierungsvorgangs durch eine Vakuumpumpe 
+mit der Zeit fällt. Mithilfe der Kurve kann man Effizienz und Leistung der Pumpe analysieren.
+Man kann eine Differentialgleichung unter einigen Annahmen herleiten:
+\begin{itemize}
+\item Die Temperatur \(T \) ist konstant. 
+\item Das Gas lässt sich mit den Gesetzen der idealen Gasgleichung beschreiben.
+\item Das System ist abgeschlossen.
+\end{itemize}
+
+Die Zustandsgleichung für ein ideales Gas lautet:
+
+\begin{equation}
+    p \cdot V=NK_bT 
+\end{equation}
+
+Da N\cdot R\cdot T konstant gilt:  p\cdot V= konstant
+Betrachtet man ein System welches mit einer Pumpe Evakuiert wird, ändert sich der Druck über die Zeit, 
+Diese Änderung wird durch folgende Differentialgleichung beschrieben:
+
+\begin{equation}
+    \frac{dp}{dt}=\frac{S}{V}\cdot p
+\end{equation}
+Dies ist eine lineare Differentialgleichung 1.n Ordnung die durch Trennung der Variablen gelöst wird
+Man trennt \(p \) und \(t \), integiert beide Seiten und erhält nach anwenden der Exponentialfunktion eine
+Gleichung die beschreibt wie der Druck \(p(t)\)im Laufe der Zeit \(t \) abnimmt
+\begin{equation}
+p(t)=p_0\cdot e^{-\frac{S}{V}\cdot t}
+\end{equation}
+Dabei ist \(p_0\) der Anfangsdruck. Unter berücksichtigung des Enddrucks modifiziert sich die Lösung zu:
+\begin{equation}
+    p(t)=p_{end}+(p_0-p_{end})\cdot e^{-\frac{S}{V}\cdot t}
+\end{equation}
+
+\subsection{Messgeräte}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
