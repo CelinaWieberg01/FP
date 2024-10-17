@@ -35,8 +35,8 @@ Bei konstanter Temperatur ist der Druck eines Gases umgekehrt proportional zum V
 
 Beim Evakuierungsvorgang fällt der Druck über die Zeit. Der normale Atmosphärendruck beträgt auf der Erdoberfläche $\SI{1}{\bar}$.
 Die Druckbereiche des Vakuums liegen bei folgenden Werten:
-Grobvakuum bei $\SI{1}{\bar}$ bis $\SI{10^{-3}}{\bar}$, Feinvakuum von $\SI{10^{-3}}{\bar}$ bis $\SI{10^{-7}}{\bar}$, Hochvakuum von $\SI{10^{-7}}{\bar}$ bis $\SI{10^{-9}}{\bar}$ und
-das Hochvakuum liegt bei Werten unter $\SI{10^{-9}}{\bar}$.
+Grobvakuum bei $\SI{1}{\bar}$ bis $\SI{1E-3}{\bar}$, Feinvakuum von $\SI{1E-3}{\bar}$ bis $\SI{1E-7}{\bar}$, Hochvakuum von $\SI{1E-7}{\bar}$ bis $\SI{1E-9}{\bar}$ und
+das Hochvakuum liegt bei Werten unter $\SI{1E-9}{\bar}$.
 Im niedrigen Druckbereich dominiert die molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
 da sie nur selten kollidieren und ihre mittlere freie Weglänge größer ist als die Ausmaße des Behälters.
 In größeren Druckbereichen kollidieren die Teilchen oft 
@@ -124,7 +124,7 @@ Die Zustandsgleichung für ein ideales Gas lautet:
     p \cdot V=NK_bT 
 \end{equation}
 
-Da N\cdot R\cdot T konstant gilt:  p\cdot V= konstant
+Da $N\cdot R\cdot T$ konstant gilt:  $p\cdot V= konstant$
 Betrachtet man ein System welches mit einer Pumpe Evakuiert wird, ändert sich der Druck über die Zeit, 
 Diese Änderung wird durch folgende Differentialgleichung beschrieben:
 
@@ -135,17 +135,19 @@ Dies ist eine lineare Differentialgleichung 1.n Ordnung die durch Trennung der V
 Man trennt \(p \) und \(t \), integiert beide Seiten und erhält nach anwenden der Exponentialfunktion eine
 Gleichung die beschreibt wie der Druck \(p(t)\)im Laufe der Zeit \(t \) abnimmt
 \begin{equation}
-p(t)=p_0\cdot e^{-\frac{S}{V}\cdot t}
+p(t)=p_0\cdot \exp{-\frac{S}{V}\cdot t}
 \end{equation}
 Dabei ist \(p_0\) der Anfangsdruck. Unter berücksichtigung des Enddrucks modifiziert sich die Lösung zu:
 \begin{equation}
-    p(t)=p_{end}+(p_0-p_{end})\cdot e^{-\frac{S}{V}\cdot t}
+    p(t)=p_{end}+(p_0-p_{end})\cdot \exp{-\frac{S}{V}\cdot t}
 \end{equation}
 
 \subsection{Messgeräte}
 
 
-
+%%% Tipp: Wenn du indizes machst, die Text sein sollen (z.B. "end"), dann schreib statt nur $_end$ lieber $_\text{end}$
+%%% Ansonsten sind die Indizes kursiv und das wollen die niciht
+%%% Du kannst auch statt immer \(t \) einfach $t$ schreiben, dann sind die auch kursiv im Text!
 
 
 
