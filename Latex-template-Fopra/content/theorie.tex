@@ -10,56 +10,56 @@ von Drehschieber- und Turbomolekularpumpen analysiert und ihre Leckraten bestimm
 \section{Theorie}
 \label{sec:Theorie}
 
-Das Vakuum ist ein Zustand geringer Gasdichte, also ein Raum welcher Nahezu leer von Materie ist.
-Da dieser Raum nur wenig Teilchen enthält, ist der Druck in einem Vakuum deutlich geringer als der Atmosphärendruck.
-Druck ist definiert als die Kraft pro Fläche die von Gasmolekülen ausgeübt wird, wenn sie auf
-eine Oberfläche stoßen.Die mittlere freie Weglänge, also die Strecke welche ein Teilchen im Mittel zurücklegt bevor es
-mit einem anderen kollidiert ist folglich sehr hoch. Ein perfektes Vakuum ist in der Praxis nicht zu realisieren, zur mathematischen 
+Das Vakuum ist ein Zustand geringer Gasdichte, also ein Raum, welcher Nahezu leer von Materie ist.
+Da dieser Raum nur wenige Teilchen enthält, ist der Druck in einem Vakuum deutlich geringer als der Atmosphärendruck.
+Druck ist definiert als die Kraft pro Fläche, die von Gasmolekülen ausgeübt wird, wenn sie auf
+eine Oberfläche stoßen. Die mittlere freie Weglänge, also die Strecke, welche ein Teilchen im Mittel zurücklegt, bevor es
+mit einem anderen kollidiert, ist folglich sehr hoch. Ein perfektes Vakuum ist in der Praxis nicht zu realisieren, zur mathematischen 
 beschreibung des Vakuums verwendet man die Zustandsgleichungen des idealen Gases, einem theoretischen Modell für ein 
-Gas in welchem die Teilchen keine Wechselwirkungen außer elastischen Stößen erfahren. Außerdem ist ihr Volumen Vernachlässigbar 
+Gas, in welchem die Teilchen keine Wechselwirkungen außer elastischen Stößen erfahren. Außerdem ist ihr Volumen Vernachlässigbar 
 und sie werden als Punktförmige Teilchen angenommen.
-Die Thermische Zustandsgleichung des idealen Gases ist gegeben durch:
+Die thermische Zustandsgleichung des idealen Gases ist gegeben durch
 \begin{equation}
-     p \cdot V=NK_bT 
+     p \cdot V=NK_bT .
 \end{equation}  
 Dabei ist \( p \) der Druck, \( V \) das Volumen, \( N \) die Teilchenanzahl, \( k_B \) die Boltzmann-Konstante
  und \( T \) die Temperatur.
-Bei konstanter Temperatur ist der Druck eines Gases umgekehrt proportional zu zum Volumen. 
-Man definiert das Boyle-Mariottesche Gesetz:
+Bei konstanter Temperatur ist der Druck eines Gases umgekehrt proportional zum Volumen, das ist das Boyle-Mariottesche Gesetz,
 \begin{equation}
-    \frac{p_1}{p_2}=  \frac{V_2}{V_1} 
+    \frac{p_1}{p_2}=  \frac{V_2}{V_1}.
 \end{equation}
 
 
 \subsection{Druckbereiche und Strömungsarten}
 
 
-Beim Evakuierungsvorgang in ein Vakuum sinkt der Druck über die Zeit, der normale Atmosphärendruck beträgt auf der Erdoberfläche
-ein bar. Die Druckbereiche des Vakuums liegen bei folgenden Werten :
-Grobvakuum bei 1 bar bis $10^{-3}$ bar, Feinvakuum von $10^{-3}$ bar bis $10^{-7}$ bar, Hochvakuum von $10^{-7}$ bar bis $10^{-9}$ bar und
-das Hochvakuum liegt bei Werten unter $10^{-9}$ bar.
-Bei niedrigen Druckbereich dominiert die Molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
-da sie nur selten kollidieren und ihre mittlere freie Weglänge groß ist. Bei größeren Druckbereichen kollidieren die Teilchen oft 
-und bewegen sich in geordneten Bahnen, dass nennt man Laminare Ströumg, im Vakuum tritt diese allerdings praktisch nicht auf.
-Im folgenden betrachten wir ein Gemisch aus Gasen, der Gesamtdruck ist dabei die Summe aller Partialdrücke. Also aller
-Drücke aller Komponenten.
+Beim Evakuierungsvorgang fällt der Druck über die Zeit. Der normale Atmosphärendruck beträgt auf der Erdoberfläche $\SI{1}{\bar}$.
+Die Druckbereiche des Vakuums liegen bei folgenden Werten:
+Grobvakuum bei $\SI{1}{\bar}$ bis $\SI{10^{-3}}{\bar}$, Feinvakuum von $\SI{10^{-3}}{\bar}$ bis $\SI{10^{-7}}{\bar}$, Hochvakuum von $\SI{10^{-7}}{\bar}$ bis $\SI{10^{-9}}{\bar}$ und
+das Hochvakuum liegt bei Werten unter $\SI{10^{-9}}{\bar}$.
+Im niedrigen Druckbereich dominiert die molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
+da sie nur selten kollidieren und ihre mittlere freie Weglänge größer ist als die Ausmaße des Behälters.
+In größeren Druckbereichen kollidieren die Teilchen oft 
+und bewegen sich in geordneten Bahnen, das nennt man Laminare Strömug.
+Im folgenden betrachten wir ein Gemisch aus Gasen, der Gesamtdruck ist dabei die Summe aller Partialdrücke. Der Partialdruck eines Gases in einem Gasgemisch
+ist der Druck, den das Gas in dem Behälter alleine hätte.
 
 
 
 \subsection{Oberflächenphänomene und Gasdynamik}
 
 
-Um das Verhalten von Gasen in Vakuumexperimenten zu verstehen muss man sich einige Phänomene klarmachen.
+Um das Verhalten von Gasen in Vakuumexperimenten zu verstehen, muss man sich einige Phänomene klarmachen.
 Die Moleküle haben alle
 eine kinetische Energie, dadurch können sie im Vakuum von einem Bereich hoher Konzentration zu einem Bereich niedriger Konzentration 
 gelangen. Diese so genannte Diffusion gewährleistet die Homogenität des Vakuums, kann aber durch Temperaturveränderung und Materialeigenschaften
 beeinflusst werden. Haften Gas oder Flüssigkeitsmoleküle an der Oberfläche eines Feststoffes, dringen aber nicht in ihn ein, so spricht man 
-von Adsorption. Die Ursache von Adsorption sind oft Van-der-Wals Kräfte, die zu beschriebener anreicherung von Gasen nahe der Oberfläche führen.
-Dringen die Moleküle tatsächlich in den Feststoff ein, so handelt es sich um Absorption. Die Moleküle können dort chenisch gebunden oder 
+von Adsorption. Die Ursache von Adsorption sind oft Van-der-Wals Kräfte, die zur beschriebenen Anreicherung von Gasen nahe der Oberfläche führen.
+Dringen die Moleküle tatsächlich in den Feststoff ein, so handelt es sich um Absorption. Die Moleküle können dort chemisch gebunden oder 
 gelöst werden. Im Vakuum tritt Absorption seltener auf als Adsorption. Beide Phänomene können zu einer Druckänderung des Systems führen,
 da die Prozesse reversibel sind, die Moleküle können also wieder freigesetzt werden. Diesen Prozess bezeichnet man als Desorption. Die
-Reversibilität der ersten Prozesse ist wichtig, für die Aufrechterhaltung eines stabilen Vakuums, führt aber automatisch zu einem Druckanstieg. 
-Werden Gase langsam aus Materialien freigesetzt entstehen virtuelle Lecks im Vakuum. Ihr Ursprung liegt immer in interner Gasfreisetzung, 
+Reversibilität der ersten Prozesse ist wichtig für die Aufrechterhaltung eines stabilen Vakuums, führt aber automatisch zu einem Druckanstieg. 
+Werden Gase langsam aus Materialien freigesetzt, entstehen virtuelle Lecks im Vakuum. Ihr Ursprung liegt immer in interner Gasfreisetzung, 
 sie entstehen nicht durch externe Quellen. Treten virtuelle Lecks auf, so können sie den Evakuierungsvorgang verlangsamen.
 
 
@@ -68,21 +68,21 @@ sie entstehen nicht durch externe Quellen. Treten virtuelle Lecks auf, so könne
 
 Die Kenngrößen einer Vakuumpumpe sind wichtig um ihre Effizienz und ihre Arbeitsweise zu analysieren.
 Der Gasstrom in einer Pumpe beschreibt die Menge an Gas, die pro Zeiteinheit durch ein System bewegt wird. Die Saugleistung einer Pumpe ist ihre 
-Fähigkeit Gas aus einem System zu entfernen, beides wird typischerweise in Liter pro Sekunde angegeben. Die Saugleistung lässt sich berechnen mit:
+Fähigkeit, Gas aus einem System zu entfernen. Beides wird typischerweise in Liter pro Sekunde angegeben. Die Saugleistung lässt sich berechnen mit
 
 \begin{equation}
     Q=\frac{dV}{dt}
 \end{equation}
 
 Dabei ist \( V \) das Volumen und \( t \) die Zeit.
-Das Saugvermögen ist definiert als die maximale Gasmenge, die die Pumpe bei einem bestimmten Druck abpumpen kann. Das Saugvermögen lässt sich 
-mit der Evakuierungskurve berechnen und hängt von dem Betriebsdruck ab.
+Das Saugvermögen $S$ ist definiert als die maximale Gasmenge, die die Pumpe bei einem bestimmten Druck abpumpen kann. Das Saugvermögen lässt sich 
+mit der Evakuierungskurve berechnen und hängt von dem Betriebsdruck ab,
 \begin{equation}
     S=\frac{dpV}{dt}
 \end{equation} 
 
-In der Praxis treten Leistungsverluste in einer Pumpe auf, Gründe dafür sind Thermische Effekte wie Temperaturänderung des Gases,
-Viskosität, Rauhe Innenflächen von Rohren und Kollisionsverluste bei hohen Drücken. Es macht daher Sinn, ein effektives Saugvermögen zu definieren:
+In der Praxis treten Leistungsverluste in einer Pumpe auf, Gründe dafür sind thermische Effekte wie Temperaturänderung des Gases,
+Viskosität, raue Innenflächen von Rohren und Kollisionsverluste bei hohen Drücken. Es macht daher Sinn, ein effektives Saugvermögen zu definieren,
 
 \begin{equation}
     \frac{1}{Q_{eff}}=\frac{1}{Q}+\frac{1}{C}
@@ -90,19 +90,19 @@ Viskosität, Rauhe Innenflächen von Rohren und Kollisionsverluste bei hohen Dr�
 
 Der Leitwert \( C \) eines Rohres beschreibt, wie effizient Gas durch das Rohr transportiertt wird, er kann definiert werden über 
 den Strömungswiederstand \( R \) welcher beschreibt, wie stark der Gasfluss durch das Rohr behindert wird 
-und die Druckdifferenz \( increment p\), die zwischen der Messonde und der Pumpe herrscht. 
+und die Druckdifferenz \( increment p\), die zwischen der Messsonde und der Pumpe herrscht. 
 
 \begin{equation}
     C=\frac{1}{R}
 \end{equation}
 
-Mit der Formel für den Gasfluss \( Q \) in Abhängigkeit von dem Strömungswiederstand und der Druckdifferenz:
+Mit der Formel für den Gasfluss \( Q \) in Abhängigkeit von dem Strömungswiederstand und der Druckdifferenz
 
 \begin{equation}
     Q=\frac{\increment p}{R}
 \end{equation}
 
-Kann man den Leitwert ausdrücken durch:
+kann man den Leitwert ausdrücken durch
 \begin{equation}
     C=\frac{Q}{\increment p}
 \end{equation} 
@@ -111,7 +111,7 @@ Kann man den Leitwert ausdrücken durch:
 \subsection{Evakuierungskurve}
 Die Evakuierungskurve beschreibt, wie der Druck während des Evakuierungsvorgangs durch eine Vakuumpumpe 
 mit der Zeit fällt. Mithilfe der Kurve kann man Effizienz und Leistung der Pumpe analysieren.
-Man kann eine Differentialgleichung unter einigen Annahmen herleiten:
+Man kann eine Differentialgleichung unter folgenden Annahmen herleiten:
 \begin{itemize}
 \item Die Temperatur \(T \) ist konstant. 
 \item Das Gas lässt sich mit den Gesetzen der idealen Gasgleichung beschreiben.
