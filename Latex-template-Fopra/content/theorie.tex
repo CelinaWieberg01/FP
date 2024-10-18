@@ -35,8 +35,8 @@ Bei konstanter Temperatur ist der Druck eines Gases umgekehrt proportional zum V
 
 Beim Evakuierungsvorgang fällt der Druck über die Zeit. Der normale Atmosphärendruck beträgt auf der Erdoberfläche 1 bar.
 Die Druckbereiche des Vakuums liegen bei folgenden Werten:
-Grobvakuum bei 1 bar bis $1^{-3}$ bar  Feinvakuum von $1^{-3}$ bar bis $1^{-7}$ bar Hochvakuum von $1^{-7}$ bis $1^{-9}$ bar und
-das Hochvakuum liegt bei Werten unter $1^{-9}$ bar.
+Grobvakuum bei 1 bar bis $10^{-3}$ bar  Feinvakuum von $10^{-3}$ bar bis $10^{-7}$ bar Hochvakuum von $10^{-7}$ bis $10^{-9}$ bar und
+das Hochvakuum liegt bei Werten unter $10^{-9}$ bar.
 Im niedrigen Druckbereich dominiert die molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
 da sie nur selten kollidieren und ihre mittlere freie Weglänge größer ist als die Ausmaße des Behälters.
 In größeren Druckbereichen kollidieren die Teilchen oft 
@@ -163,11 +163,39 @@ und verkleinert, wodurch ein Druckgradient entsteht, der das Gas durch die Pumpe
 Die Turbomolekularpumpe ist eine mechanische Vakuumpumpe, welche das Prinzip der molekularen Strömung nutzt.
 Die Pumpe besteht aus einem Rotor und einigen Statorscheiben. Der Rotor ist scheibenförmig und besitzt Schaufeln, die wie bei einer Turbine angeordnet sind.
 Zwischen den Schaufeln befinden sich Spalten, die als Transportkanäle für das Gas dienen.
-Durch die Ansaugstutz wird das Gas in die Pumpe geleitet und gelangt dort in die Spalten zwischen den rotierenden Statorschaufeln. Durch die hohe Geschwindigkeit 
-des Rotors bekommen die Gasmoleküle Impulse übertragen, wodurch sie wiederholt mit den Schaufeln kollidieren können und so durch die Pumpe transportiert werden.
-Die Moleküle werden in Richtung des Auslasses beschleunigt und bei erreichen des Auslassstutzen aus der Pumpe geleitet.
+Durch die Ansaugstutz wird das Gas in die Pumpe geleitet und gelangt dort in die Spalten zwischen den rotierenden Statorschaufeln. Durch die
+hohe Geschwindigkeit des Rotors bekommen die Gasmoleküle Impulse übertragen, wodurch sie wiederholt mit den Schaufeln kollidieren können und so durch
+die Pumpe transportiert werden. Die Moleküle werden in Richtung des Auslasses beschleunigt und bei erreichen des Auslassstutzen aus der Pumpe geleitet.
 Dadurch wird der Druck in der Kammer verringert, was ein Vakuum erzeugt.
 Die pumpe basiert also auf der kinetischen Energie der Gasmoleküle. Die Pumpen sind besonders effektiv im Hochvakuum Bereich.
+
+
+\subsection{Vakuummessgeräte und Effizienzbereiche}
+\subsubsection{Ionisations-Vakuummeter}
+Die Ionisations-Vakuummeter sind in der Lage sehr niedrige Drücke präzise zu messen, sie werden also in Druckbereichen die dem Hochvakuum 
+und dem Ultrahochvakuumentsprechen verwendet. In dem Gerät befindet sich ein Elektronenemitter, welcher Elektronen erzeugt. Diese
+werden durch ein elektrisches Feld beschleunigt und Ionisieren die Gasmoleküle sobald sie aufeinander treffen. Die entstandenen Ionen werden durch eine 
+weiteres Elektrisches Feld zu einer Sammelelktrode hin beschleunigt. Dieser Ionenstrom ist proportional zu der Anzahl der ionisierten Moleküle im Vakuum und 
+wird von einem Amperemeter gemessen. Da der Strom proportionalzu der Gasdichte und damit zu dem Druck im Vakuum ist, kann der gemessene Strom einfach in einen 
+Druckwert umgerechnet werden. Die Druckveränderungen entstehen also durch den Ionisationsprozess.
+
+
+\subsubsection{Pirani-Vakuummeter}
+Das Pirani-Vakuummeter ist ideal um mittlere Drücke im Bereich von $10^{-7}$ bar bis 0,01 bar zu messen.
+Ein konstanter Strom erhitzt einen Draht aus Platin oder Wolfram, welcher sich in einem Gehäuse durch das Gas
+strömen kann. Die Temperatur des Drahtes ist dabei abhängig von dem Druck des umgebenden Gases. Ist der Druck gering, so ist der Draht heiß.
+Das liegt daran, dass das Gas bei wenig Druck und damit geringer Gasdichte ein schlechter Wärmeleiter ist und nur wenig Wärme vom 
+Draht abführen kann. Mit der selben Argumentation ist der Draht bei hohem Druck kühler. Die Temperaturveränderung führt zu einer Veränderung
+des elektrischen Wiederstandes des Drahtes. Diese Veränderung wird m it einer Brückenschaltung gemessen und daraus kann dann der Druck bestimmt werden.
+
+
+\subsubsection{Piezo-Vakuummeter}
+Das Piezo-Vakuummeter arbeitet effizient bei Drtuckbereichen von einem bar, also bei Atmosphärendruck.
+In dem Vakuummeter befindet sich eine Membran, welche von einem Gas umgeben ist. Der Druck des Gases übt eine Kraft auf die Membran aus,
+wodurch diese sich verformt. Ist der Druck höher, so ist auch das Ausmaß der Verformung größer. Ein piezoelektrisches Material, welches sich direkt
+an der Membran befindet kann die Verformung der Membran in ein elektrisches Signal übersetzen. Das liegt daran, dass Piezoelektrische Materialien
+eine elektrische Spannung erzeugen wenn man sie verformt. Diese Spannung kann gemessen werden und aus ihr wird der Druck bestimmt. Druck und Spannung 
+sind proportionalzueinander und zun der Verformung der Membran 
 
 
 
