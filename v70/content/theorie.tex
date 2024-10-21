@@ -33,16 +33,16 @@ Bei konstanter Temperatur ist der Druck eines Gases umgekehrt proportional zum V
 \subsection{Druckbereiche und Strömungsarten}
 
 
-Beim Evakuierungsvorgang fällt der Druck über die Zeit. Der normale Atmosphärendruck beträgt auf der Erdoberfläche $\SI{1}{\bar}$.
+Beim Evakuierungsvorgang fällt der Druck über die Zeit. Der normale Atmosphärendruck beträgt auf der Erdoberfläche 1 bar.
 Die Druckbereiche des Vakuums liegen bei folgenden Werten:
-Grobvakuum bei $\SI{1}{\milli\mbar}$ bis $\SI{1E-3}{\milli\bar}$, Feinvakuum von $\SI{1E-3}{\milli\bar}$ bis $\SI{1E-7}{\milli\bar}$, Hochvakuum von $\SI{1E-7}{\milli\bar}$ bis $\SI{1E-9}{\milli\bar}$ und
-das Hochvakuum liegt bei Werten unter $\SI{1E-9}{\milli\bar}$.
-Im niedrigen Druckbereich dominiert die molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
-da sie nur selten kollidieren und ihre mittlere freie Weglänge größer ist als die Ausmaße des Behälters.
+Grobvakuum bei 1 bar bis $10^{-3}$ bar,  Feinvakuum von $10^{-3}$ bar bis $10^{-7}$ bar, Hochvakuum von $10^{-7}$ bis $10^{-9}$ bar und
+das Hochvakuum liegt bei Werten unter $10^{-9}$ bar.
+In niedrigen Druckbereichen, also im Vakuum, dominiert die molekulare Strömung, hier bewegen sich die Moleküle fast unabhängig voneinander,
+da sie nur selten kollidieren und ihre mittlere freie Weglänge größer ist als die Abmessunge des Behälters.
 In größeren Druckbereichen kollidieren die Teilchen oft 
 und bewegen sich in geordneten Bahnen, das nennt man Laminare Strömug.
-Im folgenden betrachten wir ein Gemisch aus Gasen, der Gesamtdruck ist dabei die Summe aller Partialdrücke. Der Partialdruck eines Gases in einem Gasgemisch
-ist der Druck, den das Gas in dem Behälter alleine hätte.
+Im folgenden betrachten wir ein Gemisch aus Gasen, der Gesamtdruck ist dabei die Summe aller Partialdrücke. Der Partialdruck eines Gases in
+einem Gasgemisch ist der Druck, den dieses einzelne Gas ausüben würde, wenn es alleine das gesamte Volumen des Gemisches ausfüllen würde.
 
 
 
@@ -54,7 +54,7 @@ Die Moleküle haben alle
 eine kinetische Energie, dadurch können sie im Vakuum von einem Bereich hoher Konzentration zu einem Bereich niedriger Konzentration 
 gelangen. Diese so genannte Diffusion gewährleistet die Homogenität des Vakuums, kann aber durch Temperaturveränderung und Materialeigenschaften
 beeinflusst werden. Haften Gas oder Flüssigkeitsmoleküle an der Oberfläche eines Feststoffes, dringen aber nicht in ihn ein, so spricht man 
-von Adsorption. Die Ursache von Adsorption sind oft Van-der-Wals Kräfte, die zur beschriebenen Anreicherung von Gasen nahe der Oberfläche führen.
+von Adsorption. Die Ursache von Adsorption sind oft Van-der-Waals-Kräfte, die zur beschriebenen Anreicherung von Gasen nahe der Oberfläche führen.
 Dringen die Moleküle tatsächlich in den Feststoff ein, so handelt es sich um Absorption. Die Moleküle können dort chemisch gebunden oder 
 gelöst werden. Im Vakuum tritt Absorption seltener auf als Adsorption. Beide Phänomene können zu einer Druckänderung des Systems führen,
 da die Prozesse reversibel sind, die Moleküle können also wieder freigesetzt werden. Diesen Prozess bezeichnet man als Desorption. Die
@@ -76,21 +76,21 @@ Fähigkeit, Gas aus einem System zu entfernen. Beides wird typischerweise in Lit
 
 Dabei ist \( V \) das Volumen und \( t \) die Zeit.
 Das Saugvermögen $S$ ist definiert als die maximale Gasmenge, die die Pumpe bei einem bestimmten Druck abpumpen kann. Das Saugvermögen lässt sich 
-mit der Evakuierungskurve berechnen und hängt von dem Betriebsdruck ab,
+mit der Evakuierungskurve berechnen und hängt von dem Betriebsdruck ab:
 \begin{equation}
     S=\frac{dpV}{dt}
 \end{equation} 
 
 In der Praxis treten Leistungsverluste in einer Pumpe auf, Gründe dafür sind thermische Effekte wie Temperaturänderung des Gases,
-Viskosität, raue Innenflächen von Rohren und Kollisionsverluste bei hohen Drücken. Es macht daher Sinn, ein effektives Saugvermögen zu definieren,
+Viskosität, raue Innenflächen von Rohren und Kollisionsverluste bei hohen Drücken. Es macht daher Sinn, ein effektives Saugvermögen zu definieren
 
 \begin{equation}
     \frac{1}{Q_{eff}}=\frac{1}{Q}+\frac{1}{C}
 \end{equation}   
 
-Der Leitwert \( C \) eines Rohres beschreibt, wie effizient Gas durch das Rohr transportiertt wird, er kann definiert werden über 
-den Strömungswiederstand \( R \) welcher beschreibt, wie stark der Gasfluss durch das Rohr behindert wird 
-und die Druckdifferenz \( increment p\), die zwischen der Messsonde und der Pumpe herrscht. 
+Der Leitwert \( C \) eines Rohres beschreibt, wie effizient Gas durch das Rohr transportiert wird, er kann definiert werden über 
+den Strömungswiederstand \( R \), welcher beschreibt wie stark der Gasfluss durch das Rohr behindert wird 
+und die Druckdifferenz \(\increment p\), die zwischen der Messsonde und der Pumpe herrscht
 
 \begin{equation}
     C=\frac{1}{R}
@@ -124,42 +124,85 @@ Die Zustandsgleichung für ein ideales Gas lautet:
     p \cdot V=NK_bT 
 \end{equation}
 
-Da $N\cdot R\cdot T$ konstant gilt:  $p\cdot V= konstant$
+Da N\cdot R\cdot T konstant gilt:  p\cdot V= konstant
 Betrachtet man ein System welches mit einer Pumpe Evakuiert wird, ändert sich der Druck über die Zeit, 
-Diese Änderung wird durch folgende Differentialgleichung beschrieben:
+diese Änderung wird durch folgende Differentialgleichung beschrieben:
 
 \begin{equation}
     \frac{dp}{dt}=\frac{S}{V}\cdot p
 \end{equation}
-Dies ist eine lineare Differentialgleichung 1.n Ordnung die durch Trennung der Variablen gelöst wird
+Dies ist eine lineare Differentialgleichung 1. Ordnung, die durch Trennung der Variablen gelöst wird.
 Man trennt \(p \) und \(t \), integiert beide Seiten und erhält nach anwenden der Exponentialfunktion eine
 Gleichung die beschreibt wie der Druck \(p(t)\)im Laufe der Zeit \(t \) abnimmt
 \begin{equation}
-p(t)=p_0\cdot \exp{-\frac{S}{V}\cdot t}
+p(t)=p_0\cdot e^{-\frac{S}{V}\cdot t}
 \end{equation}
 Dabei ist \(p_0\) der Anfangsdruck. Unter berücksichtigung des Enddrucks modifiziert sich die Lösung zu:
 \begin{equation}
-    p(t)=p_{end}+(p_0-p_{end})\cdot \exp{-\frac{S}{V}\cdot t}
+    p(t)=p_{end}+(p_0-p_{end})\cdot e^{-\frac{S}{V}\cdot t}
 \end{equation}
 
-\subsection{Messgeräte}
+
+\subsection{Pumpen}
+\subsubsection{Drehschieberpumpe}
 
 
-%%% Tipp: Wenn du indizes machst, die Text sein sollen (z.B. "end"), dann schreib statt nur $_end$ lieber $_\text{end}$
-%%% Ansonsten sind die Indizes kursiv und das wollen die niciht
-%%% Du kannst auch statt immer \(t \) einfach $t$ schreiben, dann sind die auch kursiv im Text!
+Die Drehschieberpumpe ist eine Verdrängungspumpe, die für die Vakuumerzeugung genutzt werden kann.
+Sie besteht aus dem Stator, einem festen Gehäuse und einem Rotor in Form eines rotierenden
+Zylinder welcher exentrisch im Gehäuse gelagert ist. Der Rotor besteht aus mehreren Schiebern, welche durch Zentrifugalkräfte 
+oder Federn an die Innenwand des Gehäuses gepresst werden. Die Vakuuerzeugung läuft folgendermaßen ab:
+Sobald der Rotor sich dreht, entsteht ein vergrößerter Schöpfraum, welcher mithilfe der Ansaugstutzen das Gas
+einsaugt. Mit der Zeit erreicht der Schöpfraum sein maximales Volumen, sobald dies geschehen ist, beginnt er sich wieder zu 
+verkleiner, wodurch das angesaugte Gas komprimiert wird. Dadurch erhöht sich der Druck. Schließlich wird das Gas durch den Auslassstutzen 
+aus der Pumpe gedrückt und in das Abgassystem geleitet. Das Prinzip basiert darauf, dass durch die Rotation ein Volumen entsteht welches sich vergrößert 
+und verkleinert, wodurch ein Druckgradient entsteht, der das Gas durch die Pumpe transportiert.
+
+\begin{figure}
+    \includegraphics[width=\textwidth]{bilder/pumpe.jpeg}
+    \caption{Schematischer Aufbau einer Drehschieberpumpe}
+\end{figure}
 
 
+\subsubsection{Turbomolekularpumpe}
+
+Die Turbomolekularpumpe ist eine mechanische Vakuumpumpe, die das Prinzip der molekularen Strömung nutzt.
+Die Pumpe besteht aus einem Rotor und mehreren Statorscheiben. Der Rotor ist scheibenförmig und besitzt Schaufeln, die wie bei einer Turbine angeordnet sind.
+Zwischen den Schaufeln befinden sich Spalten, die als Transportkanäle für das Gas dienen.
+Durch den Ansaugstutzen wird das Gas in die Pumpe geleitet und gelangt dort in die Spalten zwischen den rotierenden Schaufeln. Durch die
+hohe Geschwindigkeit des Rotors bekommen die Gasmoleküle Impulse übertragen, wodurch sie wiederholt mit den Schaufeln kollidieren können und so durch
+die Pumpe transportiert werden. Die Moleküle werden in Richtung des Auslasses beschleunigt und bei erreichen des Auslassstutzen aus der Pumpe geleitet.
+Dadurch wird der Druck in der Kammer verringert, was ein Vakuum erzeugt.
+Die Pumpe basiert also auf der kinetischen Energie der Gasmoleküle. Die Pumpen sind besonders effektiv im Hochvakuumbereich.
 
 
+\subsection{Vakuummessgeräte und Effizienzbereiche}
+\subsubsection{Ionisations-Vakuummeter}
+Die Ionisations-Vakuummeter sind in der Lage sehr niedrige Drücke präzise zu messen, sie werden also in Druckbereichen die dem Hochvakuum 
+und dem Ultrahochvakuum entsprechen verwendet. In dem Gerät befindet sich ein Elektronenemitter, welcher Elektronen erzeugt. Diese
+werden durch ein elektrisches Feld beschleunigt und ionisieren die Gasmoleküle sobald sie aufeinander treffen. Die entstandenen Ionen werden durch eine 
+weiteres Elektrisches Feld zu einer Sammelelktrode hin beschleunigt. Dieser Ionenstrom ist proportional zu der Anzahl der ionisierten Moleküle im Vakuum und 
+wird von einem Amperemeter gemessen. Da der Strom proportionalzu der Gasdichte und damit zu dem Druck im Vakuum ist, kann der gemessene Strom einfach in einen 
+Druckwert umgerechnet werden. Die Druckveränderungen entstehen also durch den Ionisationsprozess.
 
 
+\subsubsection{Pirani-Vakuummeter}
+Das Pirani-Vakuummeter ist ideal um mittlere Drücke im Bereich von $10^{-3}$ bar bis 0,01 bar zu messen.
+Ein konstanter Strom erhitzt einen Draht aus Platin oder Wolfram, welcher sich in einem Gehäuse befindet, durch das Gas strömen kann.
+Die Temperatur des Drahtes ist dabei abhängig von dem Druck des umgebenden Gases. Ist der Druck gering, so ist der Draht heiß.
+Das liegt daran, dass das Gas bei wenig Druck und damit geringer Gasdichte ein schlechter Wärmeleiter ist und nur wenig Wärme vom 
+Draht abführen kann. Mit der gleichen Argumentation ist der Draht bei hohem Druck kühler. Die Temperaturveränderung führt zu einer Veränderung
+des elektrischen Widerstandes des Drahtes. Diese Veränderung wird mit einer Brückenschaltung gemessen und daraus kann dann der Druck bestimmt werden.
 
 
-
-
-
-
+\subsubsection{Piezo-Vakuummeter}
+Das Piezo-Vakuummeter arbeitet effizient bei Druckbereichen von einem bar, also bei Atmosphärendruck.
+In dem Vakuummeter befindet sich eine Membran, die von einem Gas umgeben ist. Der Druck des Gases übt eine Kraft auf die Membran aus,
+wodurch diese sich verformt. Ist der Druck höher, so ist auch das Ausmaß der Verformung größer. Ein piezoelektrisches Material, welches sich direkt
+an der Membran befindet kann die Verformung der Membran in ein elektrisches Signal übersetzen. Diesen Effekt nennt man den Piezoelektrischen Effekt, 
+die Spannung entsteht durch die Verschiebung von elektrischen Ladungen innerhalb des Materials. Das Material muss dafür eine asymmetrische Kristallstruktur 
+besitzen, sodass die positiven und negativen Ladungen im Kristall nicht symmetrisch verteilt sind. Der mechanische Druck auf das Material verschiebt die 
+Atome innerhalb des Kristallgitters und damit die Verteilung der Ladungen im Material. Das daraus resultierende Dipolmoment erzeugt eine messbare elektrische
+Spannung. Aus dieser Spannung kann der Druck bestimmt werden. Druck und Spannung sind proportional zueinander und zu der Verformung der Membran. 
 
 
 
