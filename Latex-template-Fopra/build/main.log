@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (format=lualatex 2021.9.22)  18 OCT 2024 12:01
+This is LuaHBTeX, Version 1.13.2 (TeX Live 2021)  (format=lualatex 2021.9.22)  21 OCT 2024 11:37
  restricted system commands enabled.
 **main.tex
 (./main.tex
@@ -280,12 +280,12 @@ braces):
 >  {german/localnumeral}  =>  {polyglossia@C@localnumeral}
 >  {german/Localnumeral}  =>  {polyglossia@C@localnumeral}.
 Module polyglossia Info: Language data for german
-(polyglossia)            lefthyphenmin	2
+(polyglossia)            righthyphenmin	2
 (polyglossia)            loader	loadhyph-de-1901.tex
-(polyglossia)            synonyms	
-(polyglossia)            patterns	hyph-de-1901.pat.txt
 (polyglossia)            hyphenation	
-(polyglossia)            righthyphenmin	2 on input line 10
+(polyglossia)            patterns	hyph-de-1901.pat.txt
+(polyglossia)            lefthyphenmin	2
+(polyglossia)            synonyms	 on input line 10
 Module polyglossia Info: Language german was not yet loaded; created with id 2 on input line 10
 Package polyglossia Info: Option: German, spelling=new.
 Package polyglossia Info: Option: German, script=latin.
@@ -1177,12 +1177,12 @@ LaTeX Info: Redefining \rmfamily on input line 26.
 LaTeX Info: Redefining \sffamily on input line 26.
 LaTeX Info: Redefining \ttfamily on input line 26.
 Module polyglossia Info: Language data for ngerman
-(polyglossia)            lefthyphenmin	2
+(polyglossia)            righthyphenmin	2
 (polyglossia)            loader	loadhyph-de-1996.tex
-(polyglossia)            synonyms	
-(polyglossia)            patterns	hyph-de-1996.pat.txt
 (polyglossia)            hyphenation	
-(polyglossia)            righthyphenmin	2 on input line 26
+(polyglossia)            patterns	hyph-de-1996.pat.txt
+(polyglossia)            lefthyphenmin	2
+(polyglossia)            synonyms	 on input line 26
 Module polyglossia Info: Language ngerman was not yet loaded; created with id 4 on input line 26
 )
 \openout1 = main.aux
@@ -1374,13 +1374,19 @@ LaTeX Info: Redefining \ttfamily on input line 3.
 Missing character: There is no ⋅ (U+22C5) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ⋅ (U+22C5) in font [lmroman10-regular]:+tlig;!
 Missing character: There is no ⋅ (U+22C5) in font [lmroman10-regular]:+tlig;!
-] [6]) (./content/durchfuehrung.tex) (./content/auswertung.tex
-<plot.pdf, id=88, 417.7206pt x 258.0049pt>
+]
+<bilder/pumpe.jpeg, id=83, 803.0pt x 335.2525pt>
+File: bilder/pumpe.jpeg Graphic file (type jpg)
+<use bilder/pumpe.jpeg>
+Package luatex.def Info: bilder/pumpe.jpeg  used on input line 161.
+(luatex.def)             Requested size: 418.25555pt x 174.62389pt.
+ [6<./bilder/pumpe.jpeg>] [7]) (./content/durchfuehrung.tex) (./content/auswertung.tex
+<plot.pdf, id=95, 417.7206pt x 258.0049pt>
 File: plot.pdf Graphic file (type pdf)
 <use plot.pdf>
 Package luatex.def Info: plot.pdf  used on input line 6.
 (luatex.def)             Requested size: 417.71957pt x 258.00426pt.
-) (./content/diskussion.tex [7])
+) (./content/diskussion.tex)
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -1421,28 +1427,28 @@ LaTeX Info: Redefining \sffamily on input line 26.
 LaTeX Info: Redefining \ttfamily on input line 26.
 )
 Package rerunfilecheck Info: File `main.aux' has not changed.
-(rerunfilecheck)             Checksum: A057DEC261C191CABA5F9661F8714517;11285.
+(rerunfilecheck)             Checksum: 48D409AFD9CE6B7C9A0262A09F14BF77;11507.
 Package rerunfilecheck Info: File `main.toc' has not changed.
-(rerunfilecheck)             Checksum: E390F80661545AF9320DBDA4DC82ACB0;2297.
+(rerunfilecheck)             Checksum: 3265A5199F7B1E82F9F89C891018822B;2297.
 Package logreq Info: Writing requests to 'main.run.xml'.
 
 \openout1 = main.run.xml
 )
 
 Here is how much of LuaTeX's memory you used:
- 37347 strings out of 478112
+ 37360 strings out of 478112
  100000,1977958 words of node,token memory allocated
  714 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 31 attribute, 78 glue_spec, 31 attribute_list, 1 write nodes
    avail lists: 1:2,2:613,3:249,4:106,5:536,6:53,7:7675,8:47,9:371,10:27,11:899
- 56535 multiletter control sequences out of 65536+600000
- 92 fonts using 34662735 bytes
+ 56541 multiletter control sequences out of 65536+600000
+ 92 fonts using 34663023 bytes
  113i,7n,118p,10617b,2933s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman10-italic.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman10-bold.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm-math/latinmodern-math.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman10-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman12-regular.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf></usr/local/texlive/2021/texmf-dist/fonts/opentype/public/lm/lmroman12-bold.otf>
-Output written on main.pdf (8 pages, 68471 bytes).
+Output written on main.pdf (8 pages, 146037 bytes).
 
-PDF statistics: 233 PDF objects out of 1000 (max. 8388607)
- 187 compressed objects within 2 object streams
- 42 named destinations out of 1000 (max. 131072)
+PDF statistics: 235 PDF objects out of 1000 (max. 8388607)
+ 188 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 131072)
  137 words of extra memory for PDF output out of 10000 (max. 100000000)
 
