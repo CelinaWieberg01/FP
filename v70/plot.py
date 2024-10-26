@@ -27,7 +27,7 @@ D0_err = np.concatenate((D0[D0>=10]*0.003, D0[D0<10]*0.1)) # D0_err für Plots (
 
 ### Allgemeiner Plot 
 
-plt.errorbar(t, D0, yerr=D0_err, errorevery=(10), ecolor="pink", label="Messung")
+plt.errorbar(t, D0, yerr=D0_err, errorevery=(10), fmt=".", ecolor="pink", label="Messung")
 
 # Zeiten für LinFit: 0 - 150, 150 - 250, 250 - Ende 
 # 0 - 150
