@@ -48,7 +48,7 @@ if DP == True:
     params, cov = curve_fit(linfit, t[150:250], np.log((D0[150:250]-pE)/(D0[0]-pE)), sigma=D0_err[150:250], absolute_sigma=True)
     linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
     S = -linfit_params[0]*VD
-    x150250 = np.linspace(130, 270)
+    x150250 = np.linspace(130, 300)
     plt.errorbar(x150250, pE + (D0[0] - pE)*np.exp(linfit(x150250, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1]))), color="green", label="Fit 2",)
     print("DP Fit 2 S = ", S, " l/s")
     print("m = ", linfit_params[0], "   b = ", linfit_params[1])
@@ -62,13 +62,6 @@ if DP == True:
     plt.errorbar(x250end, pE + (D0[0] - pE)*np.exp(linfit(x250end, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1]))), color="purple", label="Fit 3",)
     print("DP Fit 3 S = ", S, " l/s")
     print("m = ", linfit_params[0], "   b = ", linfit_params[1])
-    print(" ")
-
-    # 250 - Ende mit künstlichem Fit
-    S = -linfit_params[0]*0.5*VD
-    plt.errorbar(x250end, D0[0]*np.exp(linfit(x250end, unp.nominal_values(linfit_params[0])*0.4, unp.nominal_values(linfit_params[1])*1.63)), color="black", label="Fit 4",)
-    print("DP Fit 4 S = ", S, " l/s")
-    print("m = ", linfit_params[0]*0.5, "   b = ", linfit_params[1]*1.5)
     print(" ")
 
     plt.yscale("log")
@@ -253,7 +246,7 @@ m =  4.52830+/-0.00032    b =  112.640+/-0.018
 # Fehler für Evakuierung
 # 100 - 10^-8 mbar: 30%
 
-pE = 1.0E-5 # Enddruck
+pE = 4.0E-6 # Enddruck
 VT = ufloat(33, 33*0.1) # Volumen Drehschieberpumpe
 
 t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak1_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
@@ -269,12 +262,12 @@ plt.errorbar(t, D2, yerr=D2_err, errorevery=(5), fmt=".", ecolor="pink", label="
 # 0 - 15
 
 
-params, cov = curve_fit(linfit, t[0:15], np.log((D2[0:15]-pE)/(D2[0]-pE)), sigma=D2_err[0:15], absolute_sigma=True)
+params, cov = curve_fit(linfit, t[0:15], np.log((D2[:15]-pE)/(D2[0]-pE)), sigma=D2_err[0:15], absolute_sigma=True)
 linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
 S = -linfit_params[0]*VT
 x015 = np.linspace(0, 20)
 plt.errorbar(x015, pE + (D2[0] - pE)*np.exp(linfit(x015, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1]))), color="red", label="Fit 1",)
-print("S von TP, Fit 1 = ", S, " l/s")
+print("TP Fit 1 S = ", S, " l/s")
 print("m = ", linfit_params[0], "   b = ", linfit_params[1])
 print(" ")
 
@@ -284,7 +277,7 @@ linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
 S = -linfit_params[0]*VT
 x1550 = np.linspace(10, 60)
 plt.errorbar(x1550, pE + (D2[0] - pE)*np.exp(linfit(x1550, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1]))), color="green", label="Fit 2",)
-print("S von TP, Fit 2 = ", S, " l/s")
+print("TP Fit 2 S = ", S, " l/s")
 print("m = ", linfit_params[0], "   b = ", linfit_params[1])
 print(" ")
 
@@ -294,7 +287,7 @@ linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
 S = -linfit_params[0]*VT
 x50 = np.linspace(40, t[-1])
 plt.errorbar(x50, pE + (D2[0] - pE)*np.exp(linfit(x50, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1]))), color="purple", label="Fit 3",)
-print("S von TP, Fit 3 = ", S, " l/s")
+print("TP Fit 3 S = ", S, " l/s")
 print("m = ", linfit_params[0], "   b = ", linfit_params[1])
 print(" ")
 
@@ -321,7 +314,7 @@ linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
 x_fit = np.linspace(0, t[-1]+10)
 plt.errorbar(x_fit, linfit(x_fit, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1])), color="red", label="Fit")
 S = VT/pG * linfit_params[0]
-print("Leck 1E-4 mbar S = ", S, " l/s")
+print("TP Leck 1E-4 mbar S = ", S, " l/s")
 print("m = ", linfit_params[0], "   b = ", linfit_params[1])
 print(" ")
 plt.xlabel("Zeit t in s")
@@ -343,7 +336,7 @@ linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
 x_fit = np.linspace(0, t[-1]+10)
 plt.errorbar(x_fit, linfit(x_fit, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1])), color="red", label="Fit")
 S = VT/pG * linfit_params[0]
-print("Leck 2E-4 mbar S = ", S, " l/s")
+print("TP Leck 2E-4 mbar S = ", S, " l/s")
 print("m = ", linfit_params[0], "   b = ", linfit_params[1])
 print(" ")
 plt.xlabel("Zeit t in s")
@@ -351,6 +344,50 @@ plt.ylabel("Druck p in mbar")
 plt.title(f"p0 = {D2[0]} mbar, pE = {D2[-1]} mbar")
 plt.legend()
 plt.savefig("TP_Leck_2e4.pdf")
+plt.figure()
+
+# # 5e-5 mbar
+pG = unp.uarray(5E-5, (5E-5)*0.3)
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Leck_5e5_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0]
+D2_err = D2*0.3
+plt.errorbar(t, D2, yerr=D2_err, fmt=".", ecolor="pink", errorevery=(5), label="Messung")
+
+params, cov = curve_fit(linfit, t[40:], D2[40:], sigma=D2_err[40:], absolute_sigma=True)
+linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
+x_fit = np.linspace(0, t[-1]+10)
+plt.errorbar(x_fit, linfit(x_fit, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1])), color="red", label="Fit")
+S = VT/pG * linfit_params[0]
+print("TP Leck 5E-5 mbar S = ", S, " l/s")
+print("m = ", linfit_params[0], "   b = ", linfit_params[1])
+print(" ")
+plt.xlabel("Zeit t in s")
+plt.ylabel("Druck p in mbar")
+plt.title(f"p0 = {D2[0]} mbar, pE = {D2[-1]} mbar")
+plt.legend()
+plt.savefig("TP_Leck_5e5.pdf")
+plt.figure()
+
+# # 7e-5 mbar
+pG = unp.uarray(7E-5, (7E-5)*0.3)
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Leck_7e5_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0]
+D2_err = D2*0.3
+plt.errorbar(t, D2, yerr=D2_err, fmt=".", ecolor="pink", errorevery=(5), label="Messung")
+
+params, cov = curve_fit(linfit, t[40:], D2[40:], sigma=D2_err[40:], absolute_sigma=True)
+linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
+x_fit = np.linspace(0, t[-1]+10)
+plt.errorbar(x_fit, linfit(x_fit, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1])), color="red", label="Fit")
+S = VT/pG * linfit_params[0]
+print("TP Leck 7E-5 mbar S = ", S, " l/s")
+print("m = ", linfit_params[0], "   b = ", linfit_params[1])
+print(" ")
+plt.xlabel("Zeit t in s")
+plt.ylabel("Druck p in mbar")
+plt.title(f"p0 = {D2[0]} mbar, pE = {D2[-1]} mbar")
+plt.legend()
+plt.savefig("TP_Leck_7e5.pdf")
 plt.figure()
 
 ### Leitwerte
