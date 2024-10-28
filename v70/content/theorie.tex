@@ -20,13 +20,15 @@ Gas, in welchem die Teilchen keine Wechselwirkungen außer elastischen Stößen 
 und sie werden als Punktförmige Teilchen angenommen.
 Die thermische Zustandsgleichung des idealen Gases ist gegeben durch
 \begin{equation}
-     p \cdot V=NK_bT .
+     p V=N k_\text{B} T .
+    \label{eq:idealgaslaw}
 \end{equation}  
 Dabei ist \( p \) der Druck, \( V \) das Volumen, \( N \) die Teilchenanzahl, \( k_B \) die Boltzmann-Konstante
  und \( T \) die Temperatur.
 Bei konstanter Temperatur ist der Druck eines Gases umgekehrt proportional zum Volumen, das ist das Boyle-Mariottesche Gesetz,
 \begin{equation}
     \frac{p_1}{p_2}=  \frac{V_2}{V_1}.
+    \label{eq:boylemariotte}
 \end{equation}
 
 
@@ -72,6 +74,7 @@ Fähigkeit, Gas aus einem System zu entfernen. Beides wird typischerweise in Lit
 
 \begin{equation}
     Q=\frac{dpV}{dt}
+    \label{eq:saugleistung}
 \end{equation}
 
 Dabei ist \( V \) das Volumen und \( t \) die Zeit.
@@ -79,6 +82,7 @@ Das Saugvermögen $S$ ist definiert als die maximale Gasmenge, die die Pumpe bei
 mit der Evakuierungskurve berechnen und hängt von dem Betriebsdruck ab:
 \begin{equation}
     S=\frac{dV}{dt}
+    \label{eq:saugvermögen}
 \end{equation} 
 
 In der Praxis treten Leistungsverluste in einer Pumpe auf, Gründe dafür sind thermische Effekte wie Temperaturänderung des Gases,
@@ -86,6 +90,7 @@ Viskosität, raue Innenflächen von Rohren und Kollisionsverluste bei hohen Drü
 
 \begin{equation}
     \frac{1}{Q_{eff}}=\frac{1}{Q}+\frac{1}{C}
+    \label{eq:effektives_saugvermögen}
 \end{equation}   
 
 Der Leitwert \( C \) eines Rohres beschreibt, wie effizient Gas durch das Rohr transportiert wird, er kann definiert werden über 
@@ -94,17 +99,20 @@ und die Druckdifferenz \(\increment p\), die zwischen der Messsonde und der Pump
 
 \begin{equation}
     C=\frac{1}{R}
+    \label{eq:leitwert1}
 \end{equation}
 
 Mit der Formel für den Gasfluss \( Q \) in Abhängigkeit von dem Strömungswiederstand und der Druckdifferenz
 
 \begin{equation}
     Q=\frac{\increment p}{R}
+    \label{eq:strömungswiderstand1}
 \end{equation}
 
 kann man den Leitwert ausdrücken durch
 \begin{equation}
     C=\frac{Q}{\increment p}
+    \label{eq:leitwert2}
 \end{equation} 
 
 

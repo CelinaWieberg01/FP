@@ -25,6 +25,7 @@ if DP == True:
     t, D0 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/DP_Evak_D0.csv", delimiter=",", skip_header=1, usecols=(2,3), dtype=None, encoding=None, unpack=True) # Unpack Data
     t = t - t[0] # Verschieb Zeit 
     D0_err = np.concatenate((D0[D0>=10]*0.003, D0[D0<10]*0.1)) # D0_err für Plots (nicht nützlich weil kaum erkennbar)
+    print(D0_err)
 
 
     ### Allgemeiner Plot 
@@ -288,6 +289,9 @@ print("m = ", linfit_params[0], "   b = ", linfit_params[1])
 print(" ")
 
 plt.yscale("log")
+plt.xlabel("Zeit t in s")
+plt.ylabel("Druck p in mbar")
+plt.title(f"p0 = {D2[0]} mbar, pE = {D2[-1]} mbar")
 plt.legend()
 plt.savefig("TP_Evakuierungskurve.pdf")
 plt.figure()
@@ -314,9 +318,30 @@ plt.xlabel("Zeit t in s")
 plt.ylabel("Druck p in mbar")
 plt.title(f"p0 = {D2[0]} mbar, pE = {D2[-1]} mbar")
 plt.legend()
-plt.savefig("TP_Leck_10mbar.pdf")
+plt.savefig("TP_Leck_1e4.pdf")
 plt.figure()
-plt.show()
+
+# # 2e-4 mbar
+pG = unp.uarray(2E-4, (2E-4)*0.3)
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Leck_2e4_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0]
+D2_err = D2*0.3
+plt.errorbar(t, D2, yerr=D2_err, fmt=".", ecolor="pink", errorevery=(5), label="Messung")
+
+params, cov = curve_fit(linfit, t[40:], D2[40:], sigma=D2_err[40:], absolute_sigma=True)
+linfit_params = unp.uarray(params, np.sqrt(np.diag(cov)))
+x_fit = np.linspace(0, t[-1]+10)
+plt.errorbar(x_fit, linfit(x_fit, unp.nominal_values(linfit_params[0]), unp.nominal_values(linfit_params[1])), color="red", label="Fit")
+S = VT/pG * linfit_params[0]
+print("Leck 2E-4 mbar S = ", S, " l/s")
+print("m = ", linfit_params[0], "   b = ", linfit_params[1])
+print(" ")
+plt.xlabel("Zeit t in s")
+plt.ylabel("Druck p in mbar")
+plt.title(f"p0 = {D2[0]} mbar, pE = {D2[-1]} mbar")
+plt.legend()
+plt.savefig("TP_Leck_2e4.pdf")
+plt.figure()
 
 ### Leitwerte
 # t, D1, D2 = usecols(2, 4, 5)
@@ -324,3 +349,48 @@ plt.show()
 # Fehler für Evakuierung:
 # 100 - 10^-8 mbar: 30%
 
+pE = 1.35E-5 # Enddruck
+VT = ufloat(33, 33*0.1) # Volumen Drehschieberpumpe
+
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak1_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0] # Verschieb Zeit 
+D2_err = D2*0.3
+
+plt.errorbar(t, D2, yerr=D2_err, errorevery=(5), fmt=".", ecolor="pink", label="Messung", color="blue")
+
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak2_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0] # Verschieb Zeit 
+D2_err = D2*0.3
+
+plt.errorbar(t, D2, yerr=D2_err, errorevery=(5), fmt=".", ecolor="pink", label="Messung", color="red")
+
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak3_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0] # Verschieb Zeit 
+D2_err = D2*0.3
+
+plt.errorbar(t, D2, yerr=D2_err, errorevery=(5), fmt=".", ecolor="pink", label="Messung", color="green")
+
+plt.yscale("log")
+plt.savefig("TP_alle_evaks.pdf")
+###
+plt.figure()
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak1_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0] # Verschieb Zeit 
+D2_err = D2*0.3
+
+plt.scatter(t, D2, s=1, label="Messung", color="blue")
+
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak2_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0] # Verschieb Zeit 
+D2_err = D2*0.3
+
+plt.scatter(t, D2, s=1, label="Messung", color="red")
+
+t, D2 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/TP_Evak3_D2.csv", delimiter=",", skip_header=1, usecols=(2,5), dtype=None, encoding=None, unpack=True) # Unpack Data
+t = t - t[0] # Verschieb Zeit 
+D2_err = D2*0.3
+
+plt.scatter(t, D2, s=1, label="Messung", color="green")
+
+plt.yscale("log")
+plt.savefig("TP_alle_evaks_scatter.pdf")
