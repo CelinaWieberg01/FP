@@ -21,7 +21,7 @@ if DP == True:
     # Fehler für Evakuierung
     # 1000 - 10 mbar: 0.3%
     # 10 - 2*10^-3:    10%
-    pE = 3.83E-3 # Enddruck
+    pE = ufloat(3.83E-3, 3.83E-3 * 0.1) # Enddruck
     VD = ufloat(34, 34*0.1) # Volumen Drehschieberpumpe
 
     t, D0 = np.genfromtxt("Gruppe_Wieberg_Schink/FP_V70_Celina_Aaron/DP_Evak_D0.csv", delimiter=",", skip_header=1, usecols=(2,3), dtype=None, encoding=None, unpack=True) # Unpack Data
