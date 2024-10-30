@@ -1,2 +1,46 @@
 \section{Diskussion}
 \label{sec:Diskussion}
+
+\subsection{Saugvermögen}
+
+Für die Drehschieberpumpe werden folgende Saugvermögen bestimmt.
+\begin{align}
+    S_1 &= (\num{1.39} \pm \num{0.14}) \si{\liter\per\second} \\
+    S_2 &= (\num{0.49} \pm \num{0.05}) \si{\liter\per\second} \\
+    S_3 &= (\num{0.41} \pm \num{0.04}) \si{\liter\per\second} \\
+    S_{100} &= (\num{1.54} \pm \num{0.16}) \si{\liter\per\second} \\
+    S_{50} &= (\num{1.64} \pm \num{0.17}) \si{\liter\per\second} \\
+    S_{10} &= (\num{1.60} \pm \num{0.17}) \si{\liter\per\second} \\
+    S_{\num{0.5}} &= (\num{1.02} \pm \num{0.15}) \si{\liter\per\second}.
+\end{align}
+
+Der Verlust im Saugvermögen bei der Evakuierung, also bei $S_1$, $S_2$ und $S_3$, ist damit zu erklären, dass das Saugvermögen selber druckabhängig ist.
+Das vom Hersteller angegebene Saugvermögen beläuft sich auf $\SI{4.6}{\meter\cubed\per\hour}$, was aungefähr $\SI{1.28}{\liter\per\second}$ entspricht.
+Die Abweichung des Mittelwertes der errechneten Saugvermögen,  inklusive der schwachen Saugvermögen der Evakuierungskurve beläuft sich auf ungefähr $\num{9.7}\%$.
+Die Abweichung ohne diese Saugvermögen beträgt ungefähr $\num{12.3}\%$. \\
+
+
+Für die Turbomolekularpumpe werden folgende Saugvermögen bestimmt.
+\begin{align}
+    S_1 &= (\num{7.5} \pm \num{0.8}) \si{\liter\per\second} \\
+    S_2 &= (\num{0.78} \pm \num{0.08}) \si{\liter\per\second} \\
+    S_3 &= (\num{0.192} \pm \num{0.019}) \si{\liter\per\second} \\
+    S_{10^{-4}} &= (\num{15} \pm \num{5}) \si{\liter\per\second} \\
+    S_{2 \cdot 10^{-4}} &= (\num{23} \pm \num{8}) \si{\liter\per\second} \\
+    S_{5 \cdot 10^{-5}} &= (\num{7.5} \pm \num{2.4}) \si{\liter\per\second}\\
+    S_{7 \cdot 10^{-5}} &= (\num{10} \pm \num{3.2}) \si{\liter\per\second}.
+\end{align}
+
+Auch hier ist der Verlust des Saugvermögen der Evakuierungskurve mit der Druckabhängigkeit des Saugvermögens selber zu erklären.
+Das vom Hersteller angegebene Saugvermögen beläuft sich auf $\SI{77}{\liter\per\second}$.
+Die Abweichung des Mittelwertes der errechneten Saugvermögens beläuft sich auf $\num{88}\%$. \\
+
+Diese Unterschiede sind damit zu erklären, dass der Hersteller diese unter Idealbedingungen ermittelt und sie, zumindest im Falle der Turbomolekularpumpe,
+für ein bestimmtes Gas, hier Stickstoff, angegeben werden. Diese Idealbedingungen sind unter anderem ein angepasstes, zu evakuierendes Volumen, Temperaturkontrolle und Stoffkontrolle.
+
+\subsection{Leitwert}
+
+Fügt man zwischen den zwei Messgeräten ein weiteres Rohr ein, ändert also die Geometrie des zu evakuierenden Volumens,
+messen diese beiden unterschiedliche Drücke, wie man in \ref{fig:Leitparam_2e4} und \ref{fig:Leitparam_5e5} sehen kann.
+Der Leitwert des Rohres spielt allerdings nur bei den niedrigeren Drücken eine Wirkung, sobald es zur molekularen Strömung kommt,
+da die Teilchen anders als bei der laminaren Strömung im höheren Druckbereich nicht störungsfrei das Rohr durchfließen können. \\

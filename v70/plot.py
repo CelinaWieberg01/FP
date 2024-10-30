@@ -872,3 +872,8 @@ m =  (1.61+/-0.06)e-05    b =  0.00011+/-0.00004
 Leitwertmessung bei 7E-5 mbar D2 S =  2.4+/-0.8  l/s
 m =  (1.44+/-0.06)e-05    b =  (-4+/-4)e-05
 '''
+#S = ufloat(2.7, 0.8)
+#S_eff = ufloat(2.4, 0.8)
+#L_inv = 1/S_eff - 1/S
+#L = 1/L_inv
+#print(L)

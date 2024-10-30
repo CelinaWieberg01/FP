@@ -49,7 +49,7 @@ Für die Evakuierungskurve ergibt sich folgender Plot.
     \label{fig:DP_evak}
 \end{figure}
 
-Nach \eqref{eq:S_evak} finde man
+Nach \eqref{eq:S_evak} findet man
 \begin{align}
     S_1 &= (\num{1.39} \pm \num{0.14}) \si{\liter\per\second} \\
     S_2 &= (\num{0.49} \pm \num{0.05}) \si{\liter\per\second} \\
@@ -66,7 +66,7 @@ Es können folgende Messungen für $\SI{100}{\milli\bar}$ dargestellt werden.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=8cm]{plots/DP_Leck_100mbar_alle.pdf}
+    \includegraphics[width=\textwidth]{plots/DP_Leck_100mbar_alle.pdf}
     \caption{Alle drei Leckratenmessungen.}
     \label{fig:DP_leck_100mbar_alle}
 \end{figure}
@@ -75,7 +75,7 @@ Für den Mittelwert ergibt sich folgende Grafik.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=8cm]{plots/DP_Leck1_100mbar_mittelwert.pdf}
+    \includegraphics[width=\textwidth]{plots/DP_Leck1_100mbar_mittelwert.pdf}
     \caption{Mittelwerte der drei Messreihen. Fit: $m = \num{4.5283} \pm \num{0.0003}$, $b = \num{112.640} \pm \num{0.018}$.}
     \label{fig:DP_Leck_100mbar_mittelwert}
 \end{figure}
@@ -89,7 +89,7 @@ Für $p_\text{G} = \SI{50}{\milli\bar}$ ergibt sich folgende Grafik.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=8cm]{plots/DP_Leck_50mbar.pdf}
+    \includegraphics[width=\textwidth]{plots/DP_Leck_50mbar.pdf}
     \caption{Mittelwerte der drei Messreihen. Fit: $m = \num{2.419} \pm \num{0.001}$, $b = \num{59.78} \pm \num{0.07}$.}
     \label{fig:DP_Leck_50mbar_mittelwert}
 \end{figure}
@@ -103,7 +103,7 @@ Für $p_\text{G} = \SI{10}{\milli\bar}$ ergibt sich folgende Grafik.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=8cm]{plots/DP_Leck_10mbar.pdf}
+    \includegraphics[width=\textwidth]{plots/DP_Leck_10mbar.pdf}
     \caption{Mittelwerte der drei Messreihen. Fit: $m = \num{0.47184} \pm \num{0.00022}$, $b = \num{14.886} \pm \num{0.016}$.}
     \label{fig:DP_Leck_10mbar_mittelwert}
 \end{figure}
@@ -117,7 +117,7 @@ Für $p_\text{G} = \SI{0.5}{\milli\bar}$ ergibt sich folgende Grafik.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=8cm]{plots/DP_Leck_50mbar.pdf}
+    \includegraphics[width=\textwidth]{plots/DP_Leck_50mbar.pdf}
     \caption{Mittelwerte der drei Messreihen. Fit: $m = \num{0.0150} \pm \num{0.0004}$, $b = \num{1.63} \pm \num{0.04}$.}
     \label{fig:DP_Leck_05mbar_mittelwert}
 \end{figure}
@@ -135,11 +135,11 @@ Der für die Turbomolekularpumpe gemessene Enddruck beträgt
 \end{equation}
 Das Volumen wird der Versuchsanleitung entnommen und beträgt
 \begin{equation}
-    V_\text{Drehschieberpumpe} = (\num{33} \pm \num{3.3}) \, \si{\liter}.
+    V_\text{Turbomolekularpumpe} = (\num{33} \pm \num{3.3}) \, \si{\liter}.
 \end{equation}
 
 \subsubsection{Evakuierungskurve}
-Für die Evakuierungskurve werden drei Messreihen aufgenommen, bei der der Rezipient von einem Startdruck von ungefähr $p_0 = \num{5} \dot 10^{-5} \, \si{\milli\bar}$ evakuiert wird.
+Für die Evakuierungskurve werden drei Messreihen aufgenommen, bei der der Rezipient von einem Startdruck von ungefähr $p_0 = \num{5} \cdot 10^{-3} \, \si{\milli\bar}$ evakuiert wird.
 Diese sehen wie folgt aus.
 
 \begin{figure}[H]
@@ -159,4 +159,110 @@ Es ergibt sich folgende Grafik.
     \caption{Es werden Fits gemacht. Fit 1: $m = \num{-0.2304202} \pm \num{0.0000004}$, $b = \num{2.030883} \pm \num{0.000005}$. Fit 2: $m = \num{-0.023777365} \pm \num{0.000000013}$, $b = \num{-5.2276858} \pm \num{0.0000005}$. Fit 3: $m = \num{0.0058313180} \pm \num{0.0000000027}$, $b = \num{-6.12055098} \pm \num{0.00000026}$.}
     \label{fig:TP_evak}
 \end{figure}
+
+
+Nach \eqref{eq:S_evak} findet man
+\begin{align}
+    S_1 &= (\num{7.5} \pm \num{0.8}) \si{\liter\per\second} \\
+    S_2 &= (\num{0.78} \pm \num{0.08}) \si{\liter\per\second} \\
+    S_3 &= (\num{0.192} \pm \num{0.019}) \si{\liter\per\second} 
+\end{align}
+
+$S_1$ hat dabei einen Gültigkeitsbereich bis ungefähr $\num{2}\cdot 10^{-4} \, \si{\milli\bar}$, $S_2$ von $\num{2}\cdot 10^{-5} \, \si{\milli\bar}$ bis $10^-{-5} \si{\milli\bar}$ und $S_3$ darunter.
+
+\subsubsection{Leckratenmessungen für bestimmte Gleichgewichtsdrücke $p_\text{G}$}
+
+Für $p_\text{G} = 10^{-4} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/TP_Leck_1e4.pdf}
+    \caption{Fit: $m = (\num{4.40} \pm \num{0.32}) \cdot 10^{-5}$, $b = (\num{9.7} \pm \num{2.1}) \cdot 10^{-4}$.}
+    \label{fig:TP_Leck_1e4}
+\end{figure}
+
+Es ergibt sich ein Saugvermögen von
+\begin{equation}
+    S_{10^{-4}} = (\num{15} \pm \num{5}) \si{\liter\per\second}.
+\end{equation}
+
+Für $p_\text{G} = 2 \cdot 10^{-4} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/TP_Leck_2e4.pdf}
+    \caption{Fit: $m = (\num{13.9} \pm \num{1.2}) \cdot 10^{-5}$, $b = (\num{9.7} \pm \num{2.1}) \cdot 10^{-4}$.}
+    \label{fig:TP_Leck_2e4}
+\end{figure}
+
+Es ergibt sich ein Saugvermögen von
+\begin{equation}
+    S_{2 \cdot 10^{-4}} = (\num{23} \pm \num{8}) \si{\liter\per\second}.
+\end{equation}
+
+Für $p_\text{G} = 5 \cdot 10^{-5} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/TP_Leck_5e5.pdf}
+    \caption{Fit: $m = (\num{1.14} \pm \num{0.08}) \cdot 10^{-5}$, $b = (\num{1.9} \pm \num{0.6}) \cdot 10^{-4}$.}
+    \label{fig:TP_Leck_5e5}
+\end{figure}
+
+Es ergibt sich ein Saugvermögen von
+\begin{equation}
+    S_{5 \cdot 10^{-5}} = (\num{7.5} \pm \num{2.4}) \si{\liter\per\second}.
+\end{equation}
+
+Für $p_\text{G} = 7 \cdot 10^{-5} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/TP_Leck_7e5.pdf}
+    \caption{Fit: $m = (\num{2.12} \pm \num{0.14}) \cdot 10^{-5}$, $b = (\num{4.5} \pm \num{1}) \cdot 10^{-4}$.}
+    \label{fig:TP_Leck_7e5}
+\end{figure}
+
+Es ergibt sich ein Saugvermögen von
+\begin{equation}
+    S_{7 \cdot 10^{-5}} = (\num{10} \pm \num{3.2}) \si{\liter\per\second}.
+\end{equation}
+
+\subsection{Leitwertbestimmung eines kurzen Rohres}
+
+Es werden zwei Leckratenmessungen für den Aufbaue mit einem kurzen Verbindungsrohr bei zwei verschiedenen Drücken gemacht.
+Die zwei Messgeräte D1 und D2 werden ausgelesen und ihre Messwerte miteinander verglichen.
+
+Für $p_\text{G} = 2 \cdot 10^{-4} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/Leitparam_2e4.pdf}
+    \caption{Fit: $m = (\num{1.61} \pm \num{0.06}) \cdot 10^{-5}$, $b = (\num{1.1} \pm \num{0.4}) \cdot 10^{-4}$.}
+    \label{fig:Leitparam_2e4}
+\end{figure}
+
+Für $p_\text{G} = 5 \cdot 10^{-5} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/Leitparam_5e5.pdf}
+    \caption{Fit 1: $m = (\num{1.61} \pm \num{0.06}) \cdot 10^{-5}$, $b = (\num{1.1} \pm \num{0.4}) \cdot 10^{-4}$. Fit 2: $m = (\num{1.44} \pm \num{0.06}) \cdot 10^{-5}$, $b = (\num{-4} \pm \num{4}) \cdot 10^{-5}$.}
+    \label{fig:Leitparam_5e5}
+\end{figure}
+
+Es ergeben sich Saugvermögen von
+\begin{align}
+    S_{\text{Leitwert, D1}} &= (\num{2.7} \pm \num{0.8}) \si{\liter\per\second} \\
+    S_{\text{Leitwert, D2}} &= (\num{2.4} \pm \num{0.8}) \si{\liter\per\second}.
+\end{align}
+
+Wird $S_{\text{Leitwert, D2}}$ als das effektive Saugvermögen $S_\text{eff}$ und $S_{\text{Leitwert, D1}}$ als der "tatsächliche" Saugvermögen angenommen, erhält man über 
+\begin{equation}
+    \frac{1}{S_\text{eff}} = \frac{1}{S} + \frac{1}{L}
+\end{equation}
+eine Abschätzung für den Leitwert $L$, hier
+\begin{equation}
+    L = (20 \pm 80) \, \si{\liter\per\second}
+\end{equation}
 
