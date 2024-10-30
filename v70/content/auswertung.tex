@@ -3,7 +3,7 @@
 
 Für die Auswertung wird die Python-Bibliothek \texttt{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize}.
 Die Fehlerrechnung wird mit \texttt{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot}. \\
-Vor den Messreihen der beiden Pumpen wird der Rezipient lang genug evakuiert, sodass man einen angenäherten Enddruck $p_\text{E}$ messen kann. \\
+Vor den Messreihen der beiden Pumpen wird der Rezipient lang genug evakuiert, sodass ein angenäherter Enddruck $p_\text{E}$ gemessen werden kann. \\
 Die Evakuierungskurven werden mit mehreren linearen Fits der Form
 \begin{equation}
     y = m \cdot x + b
@@ -49,7 +49,7 @@ Für die Evakuierungskurve ergibt sich folgender Plot.
     \label{fig:DP_evak}
 \end{figure}
 
-Nach \eqref{eq:S_evak} findet man
+Nach \eqref{eq:S_evak} erigbt sich
 \begin{align}
     S_1 &= (\num{1.39} \pm \num{0.14}) \si{\liter\per\second} \\
     S_2 &= (\num{0.49} \pm \num{0.05}) \si{\liter\per\second} \\
@@ -162,7 +162,7 @@ Es ergibt sich folgende Grafik.
 
 <<<<<<< HEAD
 
-Nach \eqref{eq:S_evak} findet man
+Nach \eqref{eq:S_evak} ergibt sich
 \begin{align}
     S_1 &= (\num{7.5} \pm \num{0.8}) \si{\liter\per\second} \\
     S_2 &= (\num{0.78} \pm \num{0.08}) \si{\liter\per\second} \\
@@ -258,7 +258,7 @@ Es ergeben sich Saugvermögen von
     S_{\text{Leitwert, D2}} &= (\num{2.4} \pm \num{0.8}) \si{\liter\per\second}.
 \end{align}
 
-Wird $S_{\text{Leitwert, D2}}$ als das effektive Saugvermögen $S_\text{eff}$ und $S_{\text{Leitwert, D1}}$ als der "tatsächliche" Saugvermögen angenommen, erhält man über 
+Wird $S_{\text{Leitwert, D2}}$ als das effektive Saugvermögen $S_\text{eff}$ und $S_{\text{Leitwert, D1}}$ als der "tatsächliche" Saugvermögen angenommen, ist 
 \begin{equation}
     \frac{1}{S_\text{eff}} = \frac{1}{S} + \frac{1}{L}
 \end{equation}
