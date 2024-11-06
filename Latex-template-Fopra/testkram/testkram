@@ -43,7 +43,3 @@ plt.errorbar(unp.nominal_values(U),unp.nominal_values(P), yerr=unp.std_devs(P),f
 plt.savefig("Fehlerplot.pdf")
 plt.figure()
 
-
-
-
-
