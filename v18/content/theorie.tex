@@ -3,10 +3,95 @@
 Ziel des Versuchs ist es, die Energiekalibration des Detektors durchzuführen, sowie 
 die Vollenergienachweiswahrscheinlichkeit in Abhängigkeit der Energie zu messen. Auf Basis der kalibrierten Daten sollen 
 anschließend Spektren bekannter und unbekannter Strahler hinsichtlich ihrer Energie und Aktivität ausgewertet werden.
-Aufgrund ihres hohen Energieauflösungsvermögens haben Germaniumdetektoren eine geoße Bedeutung in der Gamma-Spektroskopie.
-
+Aufgrund ihres hohen Energieauflösungsvermögens haben Germaniumdetektoren eine große Bedeutung in der Gamma-Spektroskopie.
+Die Funktionsweise eines solchen Detektors zu verstehen ist ein weiterer Bestandteil der Aufgabe. 
 
 \section{Theorie}
 \label{sec:Theorie}
+\subsection{Wechselwirkungsprozesse von Gammaquanten}
+Gammastrahlung ist eine Form hochenergetischer, elektromagnetischer Strahlung. Typischerweise entsteht sie wenn nach einem 
+Alpha- oder Betazerfall der zurückbleibende Kern in einem angeregten Zustand ist. Beim Übergang in einen energetisch niedrigeren 
+Zustand wird ein Photon abgestrahlt, diesen Übergang bezeichnet man als Gammazerfall. Dringen die Photonen in Materie ein können sie 
+je nach Energie verschiedenen Wechselwirkungsprozesse mit den Atomen durchführen. Bei niedrigen Energien unter 50 KeV ist die
+dominierende Wechselwirkung die Rayleigh-Streuung. Dabei werden Photonen ohne Energieverlust an den Elektronen eines Atoms gestreut,
+Das Photon ändert lediglich seine Richtung. Werden die niederenergetischen Photonen an freien Elektronen gestreut, spricht man von der 
+Thomson-Streuung. Im Gegesatz zur Rayleigh-Streuung ist die Intensität der Thomson-Streeung unabhängig von der Wellenlänge des Lichts.
+Bei Photonen Energien bis 500 keV kommt es zum Photoeffekt, bei Energien von 500 KeV bis 5 Mev tritt der Compton-Effekt auf. Bei diesen 
+Energien arbeitet auch der Germaniumdetektor. Im Bereich oberhalb von 3 MeV kann es zur 
+Paarbildung kommen, dabei wird ein photon in der Nähe eines Atomkerns vollständig absorbiert und erzeugt ein Elektron und Positron.
+In Halbleitersensoren treten Photoeffekt, Compton-Effekt und die Paarbildung auf, da Energien bei denen es zur Paarbildung kommt in dem Versuch
+nicht erreicht werden, wird dieser Prozess nicht ausführlicher erläutert.
+\cite{Gammastrahlung}
 
-\cite{sample}
+
+\subsubsection{Photoeffekt}
+Der Photoeffekt tritt auf, wenn ein Photon mit einem Atom Wechselwirkt und dabei seine Energie auf ein Hüllen-Elektron in diesem Atom 
+überträgt. Ein Photon mit der Energie 
+\begin{equation}
+     E_{\gamma} = \hbar \cdot \nu 
+\end{equation} 
+trifft auf ein Atom und wird absorbiert von einem Elektron auf einer der inneren Schalen.
+Dabei ist \( h \) das Planksche Wirkungsquantum und \(nu \)die Frequenz des Photons.
+Das Photon überträgt seine gesamte Energie auf das Elektron, ist diese Energie größer als die Bindungsenergie des Elektrons $E_b$, so springt das 
+Elektron aus seinem ursprünglich gebundenen Zustand in einen freien Zustand .Das Elektron wird mit der kinetischen Energie 
+\begin{equation}
+    E_k=E_{\gamma}-E_b 
+\end{equation} 
+aus dem Atom geschleudert. Der frei gewordene Platz auf der Schale wird durch ein Elektron einer höheren Schale aufgefüllt. Bei diesem Prozess wird Energie frei, 
+welche durch Emission eines Gamma-Quants abgegeben wird. Sowohl die Gamma-Quanten als auch die frei gewordenen Elektronen verlassen den Detektor in aller Regel nicht,
+somit ist die gesamte Energie welche das ursprüngliche Photon deponiert hat im Detektor zu messen.
+
+\cite{Strahlung_Arten}
+\subsubsection{Compton-Effekt}
+Beim Compton-Effekt trifft ein Photon mit $E_{\gamma}$ auf ein freies oder locker gebundenes Elektron. Beim Zusammenstoß überträgt es einen Teil seiner Energie auf das 
+Elektron. Nach der Kollision gewinnt das Elektron an kinetischer Energie und wird in eine bestimmte Richtung beschleunigt. Das Photon wird in eine andere Richtung gestreut 
+und besitzt nun im Gegensatz dem Elektron welches an Energie gewonnen hat eine geringere Energie $E'_{\gamma}$. Die Wellenlänge des 
+gestreuten Photons ist größer als die des ursprünglich einfallenden. Die genaue Änderung dieser Wellenlänge $\increment\lambda$ ist abhängig von dem Streuwinkel $\theta$ des
+Photons. Sie wird durch die Compton-Gleichung beschrieben:
+\begin{equation}
+    \increment\lambda= \lambda'-\lambda=\frac{h}{m_ec}\cdot(1-cos(\theta)) 
+\end{equation}
+Dabei ist $\frac{h}{m_ec}$ die Compton-Wellenlänge des Elektrons, \(m_e\) die Elektronenmasse und \(c\) die Lichtgeschwindigkeit.
+Die Wahrscheinlichkeit dass eine Wechselwirkung stattfindet ist gegeben durch den Wirkungsquerschnitt:
+\begin{equation}
+    {equation} \frac{d\sigma}{dE} = \frac{3}{8}\sigma_{Th}\frac{1}{m_0c^2\epsilon^2}\left(2 + \left(\frac{E}{E_{\gamma}-E}\right)^2 \left(\frac{1}{\epsilon^2} + \frac{E_{\gamma}-E}{E_{\gamma}} - \frac{2}{\epsilon}\left(\frac{E_{\gamma}-E}{E}\right)\right)\right)
+\end{equation}
+Das Verhältnis der Energie des Gamma-Quants zu der Ruheenergie des Elektrons ist dabei
+\begin{equation}
+    \epsilon=\frac{E_{\gamma}}{m_0c^2}
+\end{equation}    
+Die Energie des gestreuten Gammaquants $E'_{\gamma}$ und des gestoßenen Elektrons $E_e$ berechnen sich dabei wie folgt:
+\begin{equation}
+    E'_{\gamma}=E_{\gamma}\frac{1}{1+\epsilon(1-cos(\theta))}
+\end{equation}
+
+\begin{equation}
+    E_e=E_{\gamma}\frac{\epsilon(1-cos(\theta))}{1+\epsilon(1-cos(\theta))}
+\end{equation}
+Wie viel Energie bei dem Zusammenstoß tatsächlich übertragen wird hängt als von dem Streuwinkel ab und man erhält ein kontinuierliches 
+Energiespektrum von möglichen Energieüberträgen. Bei $\theta= 180^°$ kommt es zum maximalen Energieübertrag.
+\cite{Compton_theorie}
+
+
+\subsection{Spektrum eines Monochromatischen Gammastrahlers}
+In der Gamma-Spektroskopie gibt es drei wichtige Merkmale im Spektrum eines Monochromatischen Gammastrahlers: Der Photopeak,
+die Compton-kante und Backscattering-Effekte. Diese Merkmale ermöglichen eine detaillierte Analyse der Strahlung und des Detektionsprozesses.
+Der Photopeak oder Full energy Peak ist das Hauptmaximum im Spektrum und entspricht der vollständigen Energie
+des Strahlers, der vollständig im Detektor absorbiert wird. Dieser scharfe Peak spiegelt die Energie des Gammastrahlers direkt wieder.
+Die Halbwertsbreite des Photopeaks ist ein Maß für die Energieauflösung des Detektors, ein schmaler Photopeak bedeutet eine
+hohe Auflösung, ein breiter Peak zeigt eine gerine Energieauflösung an.
+Die Compton-Kante ist ein Abschnitt im Spektrum, welcher entsteht, wenn gammastrahlen mit Elektronen im Detektor Wechselwirken und nur
+einen Teil ihrer Energie abgeben. Da diese Energie vom Streuwinkel abhängt entsteht ein kontinuierlicher Bereich im 
+Spektrum. Die Compton-Kante ist der Energiereichste Teil dieses Spektrums und entspricht einem Struwinkel von $180^°$.
+Diese Energie $E_{max}$ ist gegeben durch:
+\begin{equation}
+    E_{max}=E_{\gamma}\frac{2\epsilon}{1+2\epsilon}
+\end{equation}    
+Backscattering-Effekte treten auf, wenn Gammastrahlen nach der ersten Wechselwirkung mit einem Elektron erneut gestreut werden 
+und so in den Detektor zurückkehren. Diese Effekte sind durch flache Peaks im Spektrum gekennzeichnet, welche deutlich kleiner als
+der Photopeak sind. Die Photonen haben bei detektierung eine geringere Energie als ursprünglich. Die Rückstreuung kann an der Rückwand
+des Präparats oder des Detektors entstehen.
+
+
+
+ 
