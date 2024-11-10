@@ -1,3 +1,4 @@
+
 \section{Zielsetzung}
 \label{sec:Zielsetzung}
 Ziel des Versuchs ist es, die Energiekalibration des Detektors durchzuführen, sowie 
@@ -20,7 +21,11 @@ Bei Photonen Energien bis 500 keV kommt es zum Photoeffekt, bei Energien von 500
 Energien arbeitet auch der Germaniumdetektor. Im Bereich oberhalb von 3 MeV kann es zur 
 Paarbildung kommen, dabei wird ein photon in der Nähe eines Atomkerns vollständig absorbiert und erzeugt ein Elektron und Positron.
 In Halbleitersensoren treten Photoeffekt, Compton-Effekt und die Paarbildung auf, da Energien bei denen es zur Paarbildung kommt in dem Versuch
-nicht erreicht werden, wird dieser Prozess nicht ausführlicher erläutert.
+nicht erreicht werden, wird dieser Prozess nicht ausführlicher erläutert. Wie viel Licht in Folge der Wechselwirkungsprozesse absorbiert oder 
+gestreut wird wird mit dem Extinktionskoeffizienten $\mu$ beschrieben. Er ist ein Maß dafür, wie stark die Photonen im Material abgeschwächt werden. Bei
+Photonen mit geringer Energie, wo die Rayleigh-Streuung dominiert ist dieser Koeffizient groß, da viel Licht gestreut wird. Bei Photonen die sehr 
+viel Energie besitzen dominiert der Photoeffekt bei welchem das Licht absorbiert wird, auch hier ist der Koeffizient groß. Betrachtet man Photonen die 
+in Energiebereichen des Compton-Effekts liegen ist dieser Koeffizient klein.
 \cite{Gammastrahlung}
 
 
@@ -40,8 +45,8 @@ Elektron aus seinem ursprünglich gebundenen Zustand in einen freien Zustand .Da
 aus dem Atom geschleudert. Der frei gewordene Platz auf der Schale wird durch ein Elektron einer höheren Schale aufgefüllt. Bei diesem Prozess wird Energie frei, 
 welche durch Emission eines Gamma-Quants abgegeben wird. Sowohl die Gamma-Quanten als auch die frei gewordenen Elektronen verlassen den Detektor in aller Regel nicht,
 somit ist die gesamte Energie welche das ursprüngliche Photon deponiert hat im Detektor zu messen.
-
 \cite{Strahlung_Arten}
+
 \subsubsection{Compton-Effekt}
 Beim Compton-Effekt trifft ein Photon mit $E_{\gamma}$ auf ein freies oder locker gebundenes Elektron. Beim Zusammenstoß überträgt es einen Teil seiner Energie auf das 
 Elektron. Nach der Kollision gewinnt das Elektron an kinetischer Energie und wird in eine bestimmte Richtung beschleunigt. Das Photon wird in eine andere Richtung gestreut 
@@ -54,7 +59,7 @@ Photons. Sie wird durch die Compton-Gleichung beschrieben:
 Dabei ist $\frac{h}{m_ec}$ die Compton-Wellenlänge des Elektrons, \(m_e\) die Elektronenmasse und \(c\) die Lichtgeschwindigkeit.
 Die Wahrscheinlichkeit dass eine Wechselwirkung stattfindet ist gegeben durch den Wirkungsquerschnitt:
 \begin{equation}
-    {equation} \frac{d\sigma}{dE} = \frac{3}{8}\sigma_{Th}\frac{1}{m_0c^2\epsilon^2}\left(2 + \left(\frac{E}{E_{\gamma}-E}\right)^2 \left(\frac{1}{\epsilon^2} + \frac{E_{\gamma}-E}{E_{\gamma}} - \frac{2}{\epsilon}\left(\frac{E_{\gamma}-E}{E}\right)\right)\right)
+frac{d\sigma}{dE} = \frac{3}{8}\sigma_{Th}\frac{1}{m_0c^2\epsilon^2}\left(2 + \left(\frac{E}{E_{\gamma}-E}\right)^2 \left(\frac{1}{\epsilon^2} + \frac{E_{\gamma}-E}{E_{\gamma}} - \frac{2}{\epsilon}\left(\frac{E_{\gamma}-E}{E}\right)\right)\right)
 \end{equation}
 Das Verhältnis der Energie des Gamma-Quants zu der Ruheenergie des Elektrons ist dabei
 \begin{equation}
@@ -68,9 +73,10 @@ Die Energie des gestreuten Gammaquants $E'_{\gamma}$ und des gestoßenen Elektro
 \begin{equation}
     E_e=E_{\gamma}\frac{\epsilon(1-cos(\theta))}{1+\epsilon(1-cos(\theta))}
 \end{equation}
+
 Wie viel Energie bei dem Zusammenstoß tatsächlich übertragen wird hängt als von dem Streuwinkel ab und man erhält ein kontinuierliches 
 Energiespektrum von möglichen Energieüberträgen. Bei $\theta= 180^°$ kommt es zum maximalen Energieübertrag.
-\cite{Compton_theorie}
+\cite{Compton}
 
 
 \subsection{Spektrum eines Monochromatischen Gammastrahlers}
@@ -109,6 +115,30 @@ Halbleitermaterialien sind durch ihre Bandstruktur ausgezeichnet, sie besitzen e
 Das Valenzband ist das höchste Energieband, das bei niedrigen Temperaturen vollständig besetzt ist. Die Elektronen in diesem Band sind fest
 gebunden und tragen nicht zur elektrischen Leitfähigkeit bei. Das Leitungsband liegt energetisch über dem Valenzband und ist bei niedrigen Temperaturen 
 normalerweise leer. Wenn Elektronen genügend Energie haben, können sie in dieses Band gelangen und zur Leitfähigkeit beitragen.
+
+
+\subsubsection{Technische Eigenschaften}
+Um die Funktion und Leistungsfähigkeit eines Germaniumdetektors in der Gammaspektroskopie vollständig zu verstehen, ist es wichtig, die folgenden Aspekte zu betrachten: 
+die verschiedenen Störfaktoren und deren Reduzierung, die Bedeutung der Halbwertsbreite der Impulshöhenverteilung sowie die Effizienz der Detektion in Abhängigkeit von der Energie
+der einfallenden Gammastrahlung.
+Ein Germaniumdetektor kann durch verschiedene Störfaktoren beeinflusst werden, die die Genauigkeit und Effizienz der Messungen beeinträchtigen können.
+Dazu gehören thermisches Rauschen, elektronisches Rauschen und Raumladungseffekte. Durch Kühlung des Detektors mit flüssigem Stickstoff kann das thermische
+Rauschen signifikant reduziert werden. das elektronische Rauschen kann unterdrückt werden indem man gut konzipierte Verstärkerschaltungen einbaut. Durch das 
+anlegen einer geeigneten Spannung, um ein starkes und gleichmäßiges elektrisches Feld zu gewährleisten, das die schnelle Trennung und Abführung der Elektron-Loch-Paare
+unterstützt, kann man Raumladungseffekte verhindern welche zu Signalverzerrung führren.Die Halbwertsbreite der Impulshöhenverteilung ist ein Maß für die Breite eines Peaks 
+in einem Detektorspektrum bei halber Höhe des Maximums. Sie ist entscheidend für das energetische Auflösungsvermögen eines Germaniumdetektors, da sie die Fähigkeit des Detektors
+beschreibt, verschiedene Energiepeaks voneinander zu unterscheiden. Eine kleinere Halbwertsbreite bedeutet eine bessere Energieauflösung und ermöglicht eine präzisere
+Identifikation der Energien der einfallenden Gammastrahlen.
+Die Breite der Impulshöhenverteilung kann aus der Zahl der erzeugten Elektron-Loch-Paare bestimmt werden. Diese Paare entstehen, wenn Gammastrahlen auf den Detektor
+treffen und ihre Energie auf die Elektronen im Valenzband übertragen, die dann in das Leitungsband gehoben werden. Die Anzahl der Elektron-Loch-Paare ist proportional 
+zur Energie der einfallenden Strahlung, und die Variation in der erzeugten Anzahl trägt zur Breite der Impulshöhenverteilung bei.
+Eine weitere wichtige Eigenschaft ist die Absorptionswahrscheinlichkeit. Da der Extinktionskoeffizienten geringer wird, wenn der Photoeffekt bei höheren Energien stattfindet,
+wird die Absorptionswahrscheinlichkeit geringer nach:
+\begin{equation}
+    P(d)=1-e^{-\mu d}
+\end{equation}    
+Diese beeinflusst die Effizienz des Detektors, welche beschreibt wie die Nachweiswahrscheinlichkeit von der Energie abhängt.
+
 \subsubsection{Detektionsprozess}
 Wenn Gammastrahlung auf den Kristall trifft, übetragen die Photonen ihre Energie auf die Elektronen im Valenzband, durch die hinzugeführte Energie 
 können sie in das Leitungsband gehoben werden. Dabei entstehen Elektron-Loch-Paare im Kristall. An den Detektor ist ein äußeres
@@ -119,7 +149,6 @@ und Löcher sofort getrennt und beschleunigt werden. Die Löcher wandern zur P-d
 Durch die Bewegung der Elektronen und Löcher in der Verarmungszone entsteht ein messbarer Strom. Die Größe des Stroms ist direkt proportional
 zu der Energie der einfallenden Gammastrahlung. Die resultierenden Stromimpulse werden zu einem Spektrum zusammengefasst, dass die Energien der detektierten 
 Gammastrahlen zeigt. 
-\cite{germaniumdetektor}
 
 
 
