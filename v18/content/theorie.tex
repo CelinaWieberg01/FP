@@ -59,7 +59,8 @@ Photons. Sie wird durch die Compton-Gleichung beschrieben:
 Dabei ist $\frac{h}{m_ec}$ die Compton-Wellenlänge des Elektrons, \(m_e\) die Elektronenmasse und \(c\) die Lichtgeschwindigkeit.
 Die Wahrscheinlichkeit dass eine Wechselwirkung stattfindet ist gegeben durch den Wirkungsquerschnitt:
 \begin{equation}
-frac{d\sigma}{dE} = \frac{3}{8}\sigma_{Th}\frac{1}{m_0c^2\epsilon^2}\left(2 + \left(\frac{E}{E_{\gamma}-E}\right)^2 \left(\frac{1}{\epsilon^2} + \frac{E_{\gamma}-E}{E_{\gamma}} - \frac{2}{\epsilon}\left(\frac{E_{\gamma}-E}{E}\right)\right)\right)
+    \frac{d\sigma}{dE} = \frac{3}{8}\sigma_{Th}\frac{1}{m_0c^2\epsilon^2}\left(2 + \left(\frac{E}{E_{\gamma}-E}\right)^2 \left(\frac{1}{\epsilon^2} + \frac{E_{\gamma}-E}{E_{\gamma}} - \frac{2}{\epsilon}\left(\frac{E_{\gamma}-E}{E}\right)\right)\right)
+    \label{eq:querschnitt}
 \end{equation}
 Das Verhältnis der Energie des Gamma-Quants zu der Ruheenergie des Elektrons ist dabei
 \begin{equation}
@@ -68,10 +69,12 @@ Das Verhältnis der Energie des Gamma-Quants zu der Ruheenergie des Elektrons is
 Die Energie des gestreuten Gammaquants $E'_{\gamma}$ und des gestoßenen Elektrons $E_e$ berechnen sich dabei wie folgt:
 \begin{equation}
     E'_{\gamma}=E_{\gamma}\frac{1}{1+\epsilon(1-cos(\theta))}
+    \label{eq:estrich}
 \end{equation}
 
 \begin{equation}
     E_e=E_{\gamma}\frac{\epsilon(1-cos(\theta))}{1+\epsilon(1-cos(\theta))}
+    \label{eq:energie_e}
 \end{equation}
 
 Wie viel Energie bei dem Zusammenstoß tatsächlich übertragen wird hängt als von dem Streuwinkel ab und man erhält ein kontinuierliches 
@@ -92,6 +95,7 @@ Spektrum. Die Compton-Kante ist der Energiereichste Teil dieses Spektrums und en
 Diese Energie $E_{max}$ ist gegeben durch:
 \begin{equation}
     E_{max}=E_{\gamma}\frac{2\epsilon}{1+2\epsilon}
+    \label{eq:E_max}
 \end{equation}    
 Backscattering-Effekte treten auf, wenn Gammastrahlen nach der ersten Wechselwirkung mit einem Elektron erneut gestreut werden 
 und so in den Detektor zurückkehren. Diese Effekte sind durch flache Peaks im Spektrum gekennzeichnet, welche deutlich kleiner als
@@ -136,6 +140,7 @@ Eine weitere wichtige Eigenschaft ist die Absorptionswahrscheinlichkeit. Da der 
 wird die Absorptionswahrscheinlichkeit geringer nach:
 \begin{equation}
     P(d)=1-e^{-\mu d}
+    \label{eq:Absorptionswahrscheinlichkeit}
 \end{equation}    
 Diese beeinflusst die Effizienz des Detektors, welche beschreibt wie die Nachweiswahrscheinlichkeit von der Energie abhängt.
 

@@ -1,2 +1,62 @@
 \section{Diskussion}
 \label{sec:Diskussion}
+
+Die Auswertung ist insbesondere dadurch eingeschränkt, dass die Peaks händisch gesucht werden mussten. Aus diesem Grund sind sehr kleine Peaks vernachlässigt
+und nur eindeutig erkennbare Energien mit genügend großen Wahrscheinlichkeiten berücksichtig worden. Der Einfluss dieser Tatsache ist aber gering und würde lediglich Mittelwerten und Fits kleinere Unsicherheiten geben.
+
+\subsection{Europium-152}
+
+Die Kalibrierungsfunktion \eqref{eq:kanalenergie}
+\begin{equation}
+    E(K) = (0,103304 \pm 0,000044) \si{\kilo\electronvolt} \, \cdot K - (0,903881 \pm 0,188430) \, \si{\kilo\electronvolt}
+\end{equation}
+
+weist in ihrer Steigung eine sehr kleine Unsicherheit auf, der $y$-Achsenabschnitt ist jedoch mit ungefähr $20 \%$ vergleichsweise hoch.
+Zu erwarten wäre ein $y$-Achsenabschnitt von $0$, da der Kanal $0$ keine Energie beschreiben würde. Alternativ wäre ein positiver Achsenabschnitt
+für die Berücksichtigung von Untergrund denkbar. Da der Detektor allerdings eine untere Nachweisgrenze von $\qty{50}{\kilo\electronvolt}$ hat, spielt dieser Einfluss kleine Rolle.\\
+
+Die berechnete Aktivität von $A = \qty{1202(17)}{\becquerel}$ ist im Hinblick auf die Ursprungsaktivität plausibel.\\
+
+Die berechneten Vollenergienachweiswahrscheinlichkeiten in \ref{tab:europiumeffizienz} sind im Vergleich zu Altprotokollen sehr klein, diese liegen meist in der Größenordnung von $\num{1e-2}$ bis $\num{1e-1}$. Entsprechend sind die Parameter
+der Fitfunktion
+\begin{equation}
+    Q(E) = \num{0.3290(307)} (\frac{E}{\si{\kilo\electronvolt}})^{\num{-0.8472(169)}}.
+\end{equation}
+sehr klein. Das Verhalten der Nachweiswahrscheinlichkeit entspricht der Erwartung, da niederenergetische Photonen unwahrscheinlicher sind, den Detektor ohne Wechselwirkungen zu durchdringen.\\
+
+\subsection{Cäsium-137}
+
+Die Bestimmung des Photopeaks, des Comptonpeaks und des Rückstreupeaks funktioniert händisch ziemlich leicht, allerdings
+ist die Computer unterstützte Auswertung in diesem Punkt nicht möglich gewesen. Dies ist ein Punkt, der eventuell in der Korrektur behebt werden wird.
+Entsprechend ist eine Diskussion der Absorptionswahrscheinlichkeiten schwierig, da zu erwarten ist, dass die Linieninhalte des Comptonkontinuums und des Photopeaks proportional zu den Wahrscheinlichkeiten sind.\\
+
+Die Gaußfunktion mit den Parametern
+\begin{align}
+    a &= \num{12233.183(110637)} \\
+    \mu &= \num{6415.685(89)} \\
+    \sigma &= \num{9.764(63)},
+\end{align}
+die eine Fehler von maximal ein paar Prozenten aufweisen, beschreiben den Peak augenscheinlich sehr gut. \\
+
+Das Verhältnis von Zehntel- zu Halbwertsbreite,
+\begin{equation}
+    \frac{41.841}{22,922} \approx 1.825,
+\end{equation}
+ist akzeptabel, da es nur um ungefähr $0,1 \%$ vom Soll-Wert von $1,823$ abweicht.
+
+\subsection{Barium-133}
+
+Die mittlere Aktivität der Barium-Probe hat mit
+\begin{equation}
+    \bar{A}_\text{Ba} = \num{801(10)}
+\end{equation}
+eine kleine Unsicherheit, da fünf Peaks zur Bestimmung genutzt werden konnten.\\
+
+\subsection{Unbekanntes Erz}
+
+Insbesondere hier kommt die Schwierigkeit der Peaksuche zum Tragen. Viele mögliche Peaks mussten
+wegen ihrer Uneindeutigkeit oder geringen Ausprägung vernachlässigt werden.\\
+
+Eine mittlere Aktivitätsbestimmung der verschiedenen Isotope wird für zwecklos gehalten, da dasselbe Isotop, z.B. Blei, mit 
+einer Aktivität von $\qty{3289(70)}{\becquerel}$ in einem Kanal und $\qty{6710(323)}{\becquerel}$ in einem anderen Kanal einen zu großen Unterschied aufweist.\\
+
