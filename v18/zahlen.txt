@@ -36,14 +36,13 @@ Peak-Kanal bei 6415 für Caesium.pdf
 Cs_peak_inhalt =  (1.176+/-0.011)e+04
 
 Gemessene Peaks für Caesium.pdf
-E_FEP_Cs =  662+/-8
+E_FEP_Cs =  661.6925076296267
 E_Compton_Cs =  457+/-7
 E_Back_Cs =  191+/-4
 
-Theoretische Peaks
-Theorie_Compton_Kante =  662+/-8
-Theorie_Back =  (4.2231+/-0.0022)e-15
-# Komische Zahlen
+Theorie_Compton_Kante =  477.36649723046736
+Theorie_Back =  184.32601039915934
+Inhalt Compton-Fit = 12125.292632108118
 
 Gauß-Fit vom Peak für CsPeak.pdf
 a = 12233.18358505073 +- 110.63744277561693, my = 6415.985582417949 +- 0.08947257593154681, sigma = 9.764919544935347 +- 0.06341548350152967

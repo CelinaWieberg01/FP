@@ -4,7 +4,7 @@ from uncertainties import ufloat        # zahl = ufloat(nominal_value, std_devs)
 import uncertainties.unumpy as unp      # wie ufloat nur mit arrays
 from scipy.optimize import curve_fit    # params, cov = curve_fit(fitfunktion, x-wert, y-wert, cov=True)
 import scipy.constants as constants         # z.B. h = constants.h für planckzahl
-from scipy.signal import find_peaks
+
 
 def impulserror(impulse):
     error = np.sqrt(impulse)
@@ -57,7 +57,7 @@ plt.plot(signalkanal, signalimpuls - unp.nominal_values(untergrund_mittel), "x",
 plt.xlabel("Kanal")
 plt.ylabel("Impulse")
 plt.legend()
-plt.title("Eu-Peak bei 121.78 keV")
+plt.title(r"Eu-Peak bei $\qty{121.78}{\kilo\electronvolt}$")
 plt.savefig("plots/EuPeakUntergrund.pdf")
 plt.figure()
 
@@ -78,7 +78,7 @@ plt.plot(xx, params_linfit[0]*xx + params_linfit[1], c="green")
 Fit mit m = 0.10330462983489719 +- 4.407553331752846e-05, b = -0.9033881314038474 +- 0.18842996495320607
 """
 plt.xlabel("Kanal")
-plt.ylabel("Energie")
+plt.ylabel(r"Energie in $\si{\kilo\electronvolt}$")
 plt.title("Kalibrierungskurve")
 plt.legend()
 plt.savefig("plots/EuKalibrierung.pdf")
@@ -125,12 +125,12 @@ def effizienz(E, alpha, beta):
 params_eff, cov_eff = curve_fit(effizienz, peaks_Energie, unp.nominal_values(Q), sigma=unp.std_devs(Q), absolute_sigma=True)
 #print(f"alpha = {params[0]} +- {np.sqrt(np.diag(cov))[0]}, beta = {params[1]} +- {np.sqrt(np.diag(cov))[1]}")
 xx = np.linspace(100, 800, 1000)
-plt.plot(xx, effizienz(xx, params_eff[0], params_eff[1]), c="red", label="fit")
+plt.plot(xx, effizienz(xx, params_eff[0], params_eff[1]), c="red", label="Fit")
 """
 alpha = 0.32903965480974107 +- 0.03072936509917969, beta = -0.8572976119270979 +- 0.0169677843756542
 """
 plt.errorbar(peaks_Energie, unp.nominal_values(Q), yerr=unp.std_devs(Q), fmt="x", label="Effizienz")
-plt.xlabel("Energie E in keV")
+plt.xlabel(r"Energie $E$ in $\si{\kilo\electronvolt}$")
 plt.ylabel("Effizienz Q")
 plt.title("Effizienzkurve")
 plt.legend()
@@ -215,7 +215,7 @@ Checking for plausability. E10 / E2 =  2.33+/-0.33
 
 plt.xlabel("Kanal")
 plt.ylabel("Impulse")
-plt.title("Cs-Peak bei 662 keV")
+plt.title(r"Cs-Peak bei $\qty{662}{\kilo\electronvolt}$")
 plt.legend()
 plt.savefig("plots/CsPeak.pdf")
 plt.figure()
@@ -307,7 +307,7 @@ def Aktivitaet(Q, W, Z):
 A_Ba = np.mean(Aktivitaet(Effizienz, Wahrscheinlichkeiten, Linieninhalte))
 #print(A_Ba)
 
-plt.plot(channels, Ba, label="Barium-133")
+plt.plot(channels, Ba, label="Messung 133-Ba")
 plt.plot(Ba_peaks, Ba[Ba_peaks], "x", color="red", label="Peaks")
 
 plt.xlabel("Kanal")
@@ -325,7 +325,7 @@ H = np.genfromtxt("Hauistdumm.Spe", unpack=True)
 H_err = impulserror(H)
 channels=np.arange(len(H))
 
-plt.plot(channels, H, label="Mineral")
+plt.plot(channels, H, label="Erz")
 
 H_peaks = np.array((755, 903, 1808, 2351, 2867, 3417, 5913, 6455, 7442, 7626, 7818))
 plt.plot(H_peaks, H[H_peaks], "x", color="red", label="Peaks")

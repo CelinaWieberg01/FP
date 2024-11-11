@@ -117,11 +117,32 @@ Für Cäsium-137 wird folgendes Spektrum aufgenommen.
     \label{fig:Cäsium}
 \end{figure}
 
-Der Full Energy Peak befindet sich in Kanal $6415$, was einer Energie von $\qty{662(8)}{\kilo\electronvolt}$ entspricht.
-Die Compton-Kante liegt bei einer Energie von $\qty{457(7)}{\kilo\electronvolt}$, der Rückstreupeak bei einer Energie von $\qty{191(4)}{\kilo\electronvolt}$.
-Mit \eqref{eq:estrich} lassen sich diese Werte theoretisch überprüfen. Für den Compton-Peak findet sich eine Energie von $\qty{662(8)}{\kilo\electronvolt}$, für den Rückstreupeak ist keine genaue Energie berechenbar. \\
+Der Photopeak, die Comptonkante und der Rückstreupeak können abgelesen werden. Mit \eqref{eq:E_max} können die letzten beiden Werte auch berechnet werden.
+Der Inhalt des Comptonkontinuums, also der Inhalt der Comptonkante in \ref{tab:fit}, kann über einen Fit des differentiellen Wirkungsquerschnittes \eqref{eq:querschnitt} berechnet werden.
 
-Ein Fit des differentiellen Wirkungsquerschnitts \eqref{eq:querschnitt} konnte nicht gemacht werden. Entsprechend ist eine sinnvolle Zählung des Inhalts des Comptonkontinuums auch nicht möglich. \\
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/querschnitt.pdf}
+    \caption{Fit des differentiellen Wirkungsquerschnittes. Der Vorfaktor des Fittes berechnet sich zu $\num{6.6185(50)}$.}
+    \label{fig:querschnitt}
+\end{figure}
+
+
+\begin{table}[H]
+    \centering
+    \caption{}
+    \label{tab:fit}
+    \begin{tabular}{c c c c c}
+        \toprule
+        {Name} & {Kanalnr.} & {Energie ($\si{\kilo\electronvolt}$)} & Theoretische Energie ($\si{\kilo\electronvolt}$) & Inhalt \\
+        \midrule
+        {Photopeak} & 6415 & 661.69 & 661.65 & \num{1176(11)e4} \\
+        {Comptonkante} & 4430 & \num{457(7)} & 477 & 12125 \\
+        {Rückstreupeak} & 1856 & \num{191(4)} & 184 & {-} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 
 Für den Photopeak des Cäsium-Spektrum lassen sich für einen Gauß-Fit der Form
 \begin{equation}

@@ -26,9 +26,33 @@ sehr klein. Das Verhalten der Nachweiswahrscheinlichkeit entspricht der Erwartun
 
 \subsection{Cäsium-137}
 
-Die Bestimmung des Photopeaks, des Comptonpeaks und des Rückstreupeaks funktioniert händisch ziemlich leicht, allerdings
-ist die Computer unterstützte Auswertung in diesem Punkt nicht möglich gewesen. Dies ist ein Punkt, der eventuell in der Korrektur behebt werden wird.
-Entsprechend ist eine Diskussion der Absorptionswahrscheinlichkeiten schwierig, da zu erwarten ist, dass die Linieninhalte des Comptonkontinuums und des Photopeaks proportional zu den Wahrscheinlichkeiten sind.\\
+Für die Energien und Inhalte der signifikanten Stellen findet sich
+\begin{table}[H]
+    \centering
+    \caption{}
+    \label{tab:fit}
+    \begin{tabular}{c c c c}
+        \toprule
+        {Name} & {Energie ($\si{\kilo\electronvolt}$)} & Theoretische Energie ($\si{\kilo\electronvolt}$) & Inhalt \\
+        \midrule
+        {Photopeak} & 661,69 & 661,65 & \num{1,176(11)e4} \\
+        {Comptonkante} & \num{457(7)} & 477 & 12125 \\
+        {Rückstreupeak} & \num{191(4)} & 184 & {-} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Die Abweichungen der Photopeaks ist weit unter $0,1 \%$. Der Unterschied der Comptonkante beträgt ungefähr $4 \%$, was in Anbetracht der Auflösung und des relativen Fehlers akzeptabel ist.
+Die Abweichung im Rückstreupeak beträgt ungefähr $3 \%$. 
+
+Die Inhalte der Photopeaks entsprechen nicht den Erwartungen in Anbetracht der Absorptionswahrscheinlichkeiten. Die Wahrscheinlichkeit für die Photoabsorption und für die Comptonstreuung,
+\begin{align}
+    P_\text{Photo} &= 2,693 \% \\
+    P_\text{Compton} &= 76,37 \%
+\end{align}
+deuten auf einen ungefähr 25 mal größeren Linieninhalt des Comptonkontinuums an, da dieser 25 mal wahrscheinlicher ist.
+Das Verhältnis von $\frac{\text{Linieninhalt(Compton)}}{\text{Linieninhalt(Photo)}} \approx 1,03$.
+
 
 Die Gaußfunktion mit den Parametern
 \begin{align}
