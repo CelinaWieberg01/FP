@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 # Read the CSV file
 #data = np.genfromtxt('daten.csv', delimiter=',', skip_header=1)
-Magnetfeld = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Magnetfeld.csv', delimiter=',', skip_header=1)
+Magnetfeld = np.genfromtxt('Magnetfeld.csv', delimiter=',', skip_header=1)
 
 
 # Extract columns
@@ -36,12 +36,12 @@ plt.grid(True)
 # Save the plot as an image file 
 #plt.savefig('/Users/celinawieberg/Documents/Praktikum/FP/v46/plot.png')
 plt.clf()
-Probe1Winkel1 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Probe1Winkel1.csv', delimiter=',', skip_header=1)
-Probe1Winkel2 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Probe1Winkel2.csv', delimiter=',', skip_header=1)
-Probe2Winkel1 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Probe2Winkel1.csv', delimiter=',', skip_header=1)
-Probe2Winkel2 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Probe2Winkel2.csv', delimiter=',', skip_header=1)
-Probe3Winkel1 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Probe3Winkel1.csv', delimiter=',', skip_header=1)
-Probe3Winkel2 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/Probe3Winkel2.csv', delimiter=',', skip_header=1)
+Probe1Winkel1 = np.genfromtxt('Probe1Winkel1.csv', delimiter=',', skip_header=1)
+Probe1Winkel2 = np.genfromtxt('Probe1Winkel2.csv', delimiter=',', skip_header=1)
+Probe2Winkel1 = np.genfromtxt('Probe2Winkel1.csv', delimiter=',', skip_header=1)
+Probe2Winkel2 = np.genfromtxt('Probe2Winkel2.csv', delimiter=',', skip_header=1)
+Probe3Winkel1 = np.genfromtxt('Probe3Winkel1.csv', delimiter=',', skip_header=1)
+Probe3Winkel2 = np.genfromtxt('Probe3Winkel2.csv', delimiter=',', skip_header=1)
 
 
 theta1_1 = Probe1Winkel1[:, 0] * 0.0174533 #Translate deg to rad
@@ -117,6 +117,7 @@ slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,t
 # Steigung (Slope) ist m
 m_1 = slope
 print(f"Proportionalitätsfaktor m_1: {m_1}")
+print(std_err)
 
 #Lineare Regression Probe 1:
 slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,thetadiff2)
