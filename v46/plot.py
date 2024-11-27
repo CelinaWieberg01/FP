@@ -112,14 +112,13 @@ plt.grid(True)
 plt.show()
 plt.clf()
 
-#Lineare Regression Probe 1:
-slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,thetadiff1)
+# Lineare Regression für Probe 1
+slope1, intercept1, r_value1, p_value1, std_err1 = linregress(Wellenlaenge_squared, thetadiff1)
 # Steigung (Slope) ist m
-m_1 = slope
-print(f"Proportionalitätsfaktor m_1: {m_1}")
-
-#Lineare Regression Probe 1:
-slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,thetadiff2)
+m_1 = slope1
+print(f"Proportionalitätsfaktor m_1: {m_1}") 
+# Lineare Regression für Probe 2 
+slope2, intercept2, r_value2, p_value2, std_err2 = linregress(Wellenlaenge_squared, thetadiff2) 
 # Steigung (Slope) ist m
-m_2 = slope
+m_2 = slope2
 print(f"Proportionalitätsfaktor m_2: {m_2}")
