@@ -47,15 +47,15 @@ Probe3Winkel2 = np.genfromtxt('/Users/celinawieberg/Documents/Praktikum/FP/v46/P
 theta1_1 = Probe1Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 theta2_1 = Probe1Winkel2[:, 0] * 0.0174533
 Wellenlaenge = Probe1Winkel1[:, 1]
-thetafrei1= np.abs(theta1_1-theta2_1)/(1.36 *2)
+thetafrei1= np.abs(theta1_1-theta2_1)/(2)
 
 theta1_2 = Probe2Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 theta2_2 = Probe2Winkel2[:, 0] * 0.0174533
-thetafrei2= np.abs(theta1_2-theta2_2)/(1.296 *2)
+thetafrei2= np.abs(theta1_2-theta2_2)/(2)
 
 theta1_3 = Probe3Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 theta2_3 = Probe3Winkel2[:, 0] * 0.0174533
-thetafrei3= np.abs(theta1_3-theta2_3)/(5.11 *2)
+thetafrei3= np.abs(theta1_3-theta2_3)/(2)
 
 
 
@@ -65,7 +65,7 @@ plt.plot(Wellenlaenge, thetafrei1, "*", color="purple", label="Probe 1")
 plt.plot(Wellenlaenge, thetafrei2, "*", color="green", label="Probe 2")
 plt.plot(Wellenlaenge, thetafrei3, "*", color="blue", label="Probe 3")
 plt.xlabel(r'$\lambda / \mu$m')
-plt.ylabel(r'$\theta$ /rad')
+plt.ylabel(r'$\theta$ /rad/m')
 plt.legend(loc="best")
 plt.grid(True)
 plt.show()
@@ -79,7 +79,7 @@ thetadiff2 = np.abs(thetafrei2-thetafrei3)
 plt.plot(Wellenlaenge, thetadiff1, "*", color ="purple", label = "Farady Rotation der ersten Probe")
 plt.plot(Wellenlaenge, thetadiff2, "*", color= "green", label = "Faraday Rotation der zweiten Probe")
 plt.xlabel(r'$\lambda / \mu$m')
-plt.ylabel(r'$\theta_{dot}-\theta_{undot}$') 
+plt.ylabel(r'$\theta_{dot}-\theta_{undot}$/m') 
 plt.legend(loc="best")
 plt.grid(True)
 plt.show()
@@ -88,20 +88,38 @@ plt.clf()
 
 
 from scipy.stats import linregress
-# Lineare Regression für thetadiff1
-slope1, intercept1, r_value1, p_value1, std_err1 = linregress(Wellenlaenge*Wellenlaenge, thetadiff1)
-line1 = slope1 * np.array(Wellenlaenge*Wellenlaenge) + intercept1
+# Square of the Wellenlaenge 
+Wellenlaenge_squared = Wellenlaenge ** 2 
+#Linear Regression for thetadiff1 
+slope1, intercept1, r_value1, p_value1, std_err1 = linregress(Wellenlaenge_squared, thetadiff1) 
 
-# Lineare Regression für thetadiff2
-slope2, intercept2, r_value2, p_value2, std_err2 = linregress(Wellenlaenge*Wellenlaenge, thetadiff2)
-line2 = slope2 * np.array(Wellenlaenge*Wellenlaenge) + intercept2
+# Linear Regression for thetadiff2 
+slope2, intercept2, r_value2, p_value2, std_err2 = linregress(Wellenlaenge_squared, thetadiff2) 
 
-plt.plot(Wellenlaenge*Wellenlaenge, thetadiff1, "*", color ="purple", label = "Farady Rotation der ersten Probe")
-plt.plot(Wellenlaenge*Wellenlaenge, thetadiff2, "*", color= "green", label = "Faraday Rotation der zweiten Probe")
-plt.plot(line1, "-", color="purple", label=f"Lineare Regression Probe 1 (R²={r_value1**2:.2f})") 
-plt.plot(line2, "-", color="green", label=f"Lineare Regression Probe 2 (R²={r_value2**2:.2f})")
+# Extend the regression lines over the entire range of data 
+x_fit = np.linspace(min(Wellenlaenge_squared), max(Wellenlaenge_squared), 200)
+line1 = slope1 * x_fit + intercept1 
+line2 = slope2 * x_fit + intercept2
+
+plt.plot(Wellenlaenge_squared, thetadiff1, "*", color ="purple", label = "Farady Rotation der ersten Probe")
+plt.plot(Wellenlaenge_squared, thetadiff2, "*", color= "green", label = "Faraday Rotation der zweiten Probe")
+plt.plot(x_fit,line1, "-", color="purple") 
+plt.plot(x_fit,line2, "-", color="green")
 plt.xlabel(r'$(\lambda)^2 / (\mu m^2)$')
-plt.ylabel(r'$\theta_{dot}-\theta_{undot}$') 
+plt.ylabel(r'$\theta_{dot}-\theta_{undot}$/m') 
 plt.legend(loc="best")
 plt.grid(True)
 plt.show()
+plt.clf()
+
+#Lineare Regression Probe 1:
+slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,thetadiff1)
+# Steigung (Slope) ist m
+m_1 = slope
+print(f"Proportionalitätsfaktor m_1: {m_1}")
+
+#Lineare Regression Probe 1:
+slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,thetadiff2)
+# Steigung (Slope) ist m
+m_2 = slope
+print(f"Proportionalitätsfaktor m_2: {m_2}")
