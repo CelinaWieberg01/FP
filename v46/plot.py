@@ -19,7 +19,6 @@ z_nom, Magnetfeld_nom = np.genfromtxt('Magnetfeld.csv', delimiter=',', skip_head
 Magnetfeldfehler = np.ones(len(Magnetfeld_nom))*0.5
 Magnetfeld= unp.uarray(Magnetfeld_nom, Magnetfeldfehler)
 
-
 # Plot the results
 #plt.figure(figsize=(10, 6))
 plt.errorbar(z_nom, Magnetfeld_nom, yerr=Magnetfeldfehler, fmt= "*", color="purple", label= "Messwerte")
@@ -124,6 +123,14 @@ plt.clf()
 
 
 # Steigung (Slope) ist m
+
+m_1 = slope
+print(f"Proportionalitätsfaktor m_1: {m_1}")
+print(std_err)
+
+#Lineare Regression Probe 1:
+slope, intercept, r_value, p_value, std_err = linregress(Wellenlaenge_squared ,thetadiff2)
+
 m_1 = slope1
 m1 = ufloat(slope1, std_err1)
 print(f"Proportionalitätsfaktor m_1: {m1}") 
@@ -131,6 +138,7 @@ print(f"Proportionalitätsfaktor m_1: {m1}")
 K1 = 2.39977*10**-63
 m_eff1 = unp.sqrt(K1 / m1)
 print(f"Effektive Masse m_eff1: {m_eff1}")
+
 
 # Steigung (Slope) ist m
 m_2 = slope2

@@ -11,7 +11,7 @@ Die Evakuierungskurven werden mit linearen Regressionen (Least Square Fits) der 
 \end{equation}
 genährt, wobei die Messwerte Werte gemäß \eqref{eq:druckkurve} als
 \begin{equation}
-    \ln{\frac{p(t) - p_\text{E}}{p_0 - p_\text{E}}} = -\frac{S}{V} \cdot t
+    f(t) = \ln{\frac{p(t) - p_\text{E}}{p_0 - p_\text{E}}} = -\frac{S}{V} \cdot t
     \label{eq:linfit}
 \end{equation}
 zu fittende Werte benutzt werden, sodass die verschiedenen Saugvermögen in den unterschiedlichen Druckbereichen mit
@@ -29,9 +29,58 @@ $S$ ist hierbei gegeben durch
 
 \subsection{Fehler}
 
-%%% FEHLERBEREICHE DER MESSGERÄTE NENNEN
+Die PKR-360-Geräte besitzen einen Messbereich von $\qty{1e-9}{\hecto\pascal}$ bis $\qty{1000}{\hecto\pascal}$,
+das TPG-202 einen von $\qty{1200}{\hecto\pascal}$ bis $\qty{5e-4}{\hecto\pascal}$.\\
+Die Genauigkeit der PKR-360 liegen bei $30 \%$ des Messwertes für Messungen zwischen $\qty{1e-8}{\hecto\pascal}$ und $\qty{100}{\hecto\pascal}$
+und bei $50 \%$ für Messungen darüber bis zu $\qty{1000}{\hecto\pascal}$.
+Die Genauigkeit des TPG-202 liegt bei einem Faktor $2$ für Messungen unter $\qty{2e-3}{\hecto\pascal}$, bei $10 \%$ für Messungen bis zu $\qty{10}{\hecto\pascal}$
+und bei $0,3 \%$ für Messungen bis zu $\qty{1200}{\hecto\pascal}$. \cite{delta_tu_dortmund}
 
-%%% FEHLERRECHNUNG DER FORMELN EINMAL AUFZEIGEN UND FÜR EINEN WERT NACHRECHNEN
+
+Die Fehler der gemessenen Werte werden mit einer Fehlerfortpflanzung berücksichtigt. 
+
+Der Mittelwert $\bar{x}$ von $N$ gemessenen Werten $a$ bestimmt sich über
+\begin{equation}
+    \bar{x} = \frac{1}{N} \sum^N_{i=1} a_i,
+    \label{eq:mittelwerte}
+\end{equation}
+
+der Fehler des Mittelwertes über
+\begin{equation}
+    \Delta x = \sqrt{\frac{1}{N \cdot (N-1)} \sum^N_{i=1}(a_i - \bar{x})}.
+    \label{eq:mittelwerte_fehler}
+\end{equation}
+
+Die Gaußsche Fehlerfortpflanzung für eine berechnete Größe $f$ lautet
+\begin{equation}
+    \Delta f = \sqrt{ \sum^N_{i=1} \left( \frac{delta f}{\delta x_i}\right)^2 \cdot (\Delta x_i)^2}.
+\end{equation}
+
+Die Fehlerfortpflanzung für \eqref{eq:linfit} ergibt
+\begin{equation}
+    \Delta f(t) = \sqrt{ \left(\frac{1}{p(t) - p_\text{E}} \cdot \Delta p(t)\right)^2 + \left(\frac{1}{p_0 - p_\text{E}} \cdot \Delta p_0\right)^2 + \left(\frac{1}{p_0 - p_\text{E}} - \frac{1}{p(t) - p_\text{E}} \cdot \Delta p(t)\right)^2  },
+    \label{eq:fehler_f}
+\end{equation}
+
+der Fehler für da Saugvermögen aus der Steigung nach \eqref{eq:S_evak}
+\begin{equation}
+    \Delta S = \sqrt{ (V \cdot \Delta m)^2 + (m \cdot \Delta V)^2},
+    \label{eq:fehler_S_evak}
+\end{equation}
+
+der Fehler für das Saugvermögen für die Leckratenmessung nach \eqref{eq:S_leck}
+\begin{equation}
+    \Delta S = \sqrt{ \left( \frac{V}{p_\text{G}} \cdot \Delta m \right)^2 + \left( \frac{m}{p_\text{G}} \cdot \Delta V \right)^2 + \left( \frac{V \cdot m}{p_\text{G}^2} \cdot \Delta p_\text{G} \right)^2 }
+    \label{eq:fehler_S_leck}
+\end{equation}
+
+Zur Überprüfung der Richtigkeit von \texttt{uncertainties} werden Ergebnisse vorweggenommen und mit einer händischen Rechnung verglichen.\\
+Für $S_3$ in Abbildung \ref{fig:TP_evak} lautet der Fehler in $\Delta S = \qty{0.019}{\liter\per\second}$, was bis zur dritten Nachkommastelle mit einem händischen Ergebnis mit
+$m = \qty{-0.0058313180(130)}{\milli\bar\per\second}$ und einem Volumen von $V = \qty{33(3.3)}{\liter}$ übereinstimmt. Ebenso findet sich eine Übereinstimmung
+der Leckratenmessung für ein Gleichgewichtsdruck von $\qty{2e-4}{\milli\bar} \pm \qty{6e-5}{\milli\bar}$ mit der Steigung $m = \qty{0.000139(12)}{\milli\bar\per\second}$ im Volumen $\qty{33(3.3)}{\liter}$ bei Aufrundung des händischen Ergebnisses.
+
+Die Sicherheit von \texttt{uncertainties} wird im Folgenden akzeptiert und für die Fehlerrechnung genutzt.
+
 
 \subsection{Drehschieberpumpe}
 
@@ -63,10 +112,7 @@ Die berechneten Fitparameter bestimmen sich zu
     m_3 = \qty[separate-uncertainty=false]{-0.005970(4)}{\milli\bar\per\second}, & b_3 = \qty[separate-uncertainty=false]{-6.174(6)}{\milli\bar}.
 \end{align}
 
-Die für die Geraden benutzten Intervalle der Daten lauten dabei
-\begin{align}
-    %%%%%%%%%% HIER INTERVALLE EINFÜGEN
-\end{align}
+Für die erste Gerade werden die ersten 150 Datenpunkte ausgewertet, für die zweite die nächsten 100 und für die dritte alle nachfolgenden Punkte.
 
 Nach \eqref{eq:S_evak} ergibt sich
 \begin{align}
@@ -103,7 +149,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{4.5283(3)}{\milli\bar\per\second}, \. b = \qty{112.640(18)}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Messwerte zwischen dem 10. und 150. Messwert
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -124,7 +170,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{2.419(1)}{\milli\bar\per\second}, \. b = \qty{59.78(7)}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach der 10. Messung
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -145,7 +191,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{0.47184(22)}{\milli\bar\per\second}, \. b = \qty{14.886(16)}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach der 10. Messung
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -166,7 +212,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{0.0150(4)}{\milli\bar\per\second}, \. b = \qty{1.63(4)}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach der 10. Messung
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -216,10 +262,7 @@ Die berechneten Fitparameter bestimmen sich zu
     m_3 = \qty[separate-uncertainty=false]{-0.0058313180(27)}{\milli\bar\per\second}, & b_3 = \qty[separate-uncertainty=false]{-6.12055098(26)}{\milli\bar}.
 \end{align}
 
-Die für die Geraden benutzten Intervalle der Daten lauten dabei
-\begin{align}
-    %%%%%%%%%% HIER INTERVALLE EINFÜGEN
-\end{align}
+Für die erste Gerade werden die ersten 15 Messpunkte verwendet, für die zweite Gerade die nächsten 35 und für die dritte Gerade die restlichen Punkte.
 
 Nach \eqref{eq:S_evak} ergibt sich
 \begin{align}
@@ -245,7 +288,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{4.40(32)}{\milli\bar\per\second}, b = \qty{-9.7(21)e-4}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach dem 40. Messpunkt
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -266,7 +309,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{13.9(12)e-5}{\milli\bar\per\second}, b = \qty{1.2(8)e-4}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach dem 40. Messpunkt
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -287,7 +330,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{1.14(8)e-5}{\milli\bar\per\second}, b = \qty{-1.9(6)e-4}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach dem 40. Messpunkt
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -308,7 +351,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{2.12(14)e-5}{\milli\bar\per\second}, b = \qty{-4.5(10)e-4}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach dem 40. Messpunkt
 für die Regression benutzt werden.
 
 Es ergibt sich ein Saugvermögen von
@@ -336,7 +379,7 @@ Die Parameter des Fits lauten
 \begin{equation}
     m = \qty{1.61(6)}{\milli\bar\per\second}, \. b = \qty{1.1(4)e-4}{\milli\bar},
 \end{equation}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach dem 20. Messpunkt
 für die Regression benutzt werden.
 
 Für $p_\text{G} = 5 \cdot 10^{-5} \, \si{\milli\bar}$ ergibt sich folgende Grafik.
@@ -353,7 +396,7 @@ Die Parameter des Fits lauten
     m_1 = \qty{1.61(6)e-5}{\milli\bar\per\second}, & \. b_1 = \qty{1.1(4)e-4}{\milli\bar} \\
     m_2 = \qty{1.44(6)e-5}{\milli\bar\per\second}, & \. b_2 = \qty{-4(4)e-5}{\milli\bar}.
 \end{align}
-wobei nur die Werte für die Zeiten von %%%%%%%%%%% HIER ZEITEN NACHSCHLAGEN
+wobei nur die Werte nach dem 20. Messpunkt
 für die Regression benutzt werden.
 
 Es ergeben sich Saugvermögen von
