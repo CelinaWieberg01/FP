@@ -96,7 +96,7 @@ Energie (keV)   Wahrschl (%) Kanalnummer Linieninhalt
 443.96   3.1   4308  488 +- 22
 778.90   12.9  7550  841 +- 29
 """
-W_Eu = [28.6, 7.6, 26.5, 2.2, 3.1, 12.9]
+W_Eu = [0.286, 0.076, 0.265, 0.022, 0.031, 0.129]
 # Aktivität
 t_h_152Eu = 13 + 196/365
 t_datum = 24.11
@@ -111,6 +111,7 @@ Omega = 0.20826 +- 0.00023
 """
 t_mess = 3553
 Q = np.array(linieninhalte_Eu)*4*np.pi/(np.array(W_Eu) * A_heute * t_mess * Omega)
+#print(Q)
 """
 Q = [0.005126487218972472+/-9.007010076499762e-05
  0.003542249881436617+/-9.617962610705257e-05
@@ -123,7 +124,7 @@ def effizienz(E, alpha, beta):
     return alpha*E**(beta)
 
 params_eff, cov_eff = curve_fit(effizienz, peaks_Energie, unp.nominal_values(Q), sigma=unp.std_devs(Q), absolute_sigma=True)
-#print(f"alpha = {params[0]} +- {np.sqrt(np.diag(cov))[0]}, beta = {params[1]} +- {np.sqrt(np.diag(cov))[1]}")
+print(f"alpha = {params_eff[0]} +- {np.sqrt(np.diag(cov_eff))[0]}, beta = {params_eff[1]} +- {np.sqrt(np.diag(cov_eff))[1]}")
 xx = np.linspace(100, 800, 1000)
 plt.plot(xx, effizienz(xx, params_eff[0], params_eff[1]), c="red", label="Fit")
 """

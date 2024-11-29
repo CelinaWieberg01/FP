@@ -1,9 +1,27 @@
 \section{Auswertung}
 \label{sec:Auswertung}
 
-Für die Auswertung wird die Python-Bibliothek \texttt{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize}.
+Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize}.
 Die Fehlerrechnung wird mit \texttt{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot}. \\
-
+Der Mittelwert $\bar{x}$ von $N$ gemessenen Werten $a$ bestimmt sich über
+\begin{equation}
+    \bar{x} = \frac{1}{N} \sum^N_{i=1} a_i,
+    \label{eq:mittelwerte}
+\end{equation}
+der Fehler des Mittelwertes über
+\begin{equation}
+    \Delta x = \sqrt{\frac{1}{N \cdot (N-1)} \sum^N_{i=1}(a_i - \bar{x})}.
+    \label{eq:mittelwerte_fehler}
+\end{equation}
+Die Gaußsche Fehlerfortpflanzung für eine berechnete Größe $f$ lautet
+\begin{equation}
+    \Delta f = \sqrt{ \sum^N_{i=1} \left( \frac{delta f}{\delta x_i}\right)^2 \cdot (\Delta x_i)^2}.
+\end{equation}
+Prozentuale Abweichungen werden mit
+\begin{equation}
+    \Delta x = \left|\frac{x - a}{a}\right|
+\end{equation}
+berechnet, wobei $a$ ein Vergleichswert und $x$ der erhaltene Wert ist.
 \subsection{Europium-152}
 
 Die Messung von Europium ergibt folgendes Spektrum.
@@ -15,16 +33,17 @@ Die Messung von Europium ergibt folgendes Spektrum.
     \label{fig:Europium}
 \end{figure}
 
-Die Kanäle können anhand ihrer relativen Lage und ihrer Impulsmenge bestimmten bekannten Energien zugeordnet werden.
+Die Kanäle können anhand ihrer relativen Lage und ihrer Impulsmenge bestimmten bekannten Energien zugeordnet werden. Die Linieninhalte, also die Menge an Impulsen, wird hier lediglich als eine Summe über alle beitragenden Kanäle berechnet.
+Eine genauere Alternative wäre ein numerisches Integral.
 %%%%%% CITE LNHB
 
 \begin{table}[H]
     \centering
-    \caption{Europium-Peaks.}
+    \caption{Europium-Peaks, vgl. \autoref{tab:LNHB_Eu152}}
     \label{tab:europiumpeaks}
     \begin{tabular}{c c c c}
         \toprule
-        {Energie ($\si{\kilo\electronvolt}$)} & {Wahrscheinlichkeit} & {Kanalnr.} & {Linieninhalt} \\
+        {Energie ($\si{\kilo\electronvolt}$)} & {Wahrscheinlichkeit in $\%$} & {Kanalnr.} & {Linieninhalt} \\
         \midrule
         121,78 &  28,6 & 1188 & 10375 \pm \, 101\\
         244,70 &  7,6  & 2380 & 1905  \pm \, 43\\
@@ -47,25 +66,23 @@ Das Verhältnis von Kanälen zu Energien kann linear beschrieben werden und gibt
 
 Die Fitfunktion lautet
 \begin{equation}
-    E(K) = (0,103304 \pm 0,000044) \si{\kilo\electronvolt} \, \cdot K - (0,903881 \pm 0,188430) \, \si{\kilo\electronvolt}
+    E(K) = (0,103304 \pm 0,000044) \, \si{\kilo\electronvolt} \, \cdot K - (0,903881 \pm 0,188430) \, \si{\kilo\electronvolt}
     \label{eq:kanalenergie}
 \end{equation}
 
-Die Anfangsaktivität $A_0$ am 1. Oktober 2000 beträgt $A_0 = (4130 \pm 60) \, \si{\becquerel}$. Europium-152 hat eine Halbwertszeit von ungefähr $13,53$ Jahren.
-Die Durchführung fand ungefähr $24,11$ Jahre später statt.
+Die Anfangsaktivität $A_0$ am 1. Oktober 2000 beträgt $A_0 = (4130 \pm 60) \, \si{\becquerel}$. Europium-152 hat eine Halbwertszeit von ungefähr $\num{13,53}$ Jahren.
+Die Durchführung fand ungefähr $\num{24,11}$ Jahre später statt.
 Die daraus errechnete Aktivität beträgt
 \begin{equation}
     A = (1202 \pm 17) \, \si{\becquerel}.
     \label{eq:aktivitätEu}
 \end{equation}
-
 Der vorliegende Raumwinkel lässt sich geometrisch mit
 \begin{equation}
-    \Omega = 2 \pi (1 - \frac{a}{\sqrt{a^2 + r^2}}) = 0,20826 \pm 0,00023
+    \Omega = 2 \pi \left(1 - \frac{a}{\sqrt{a^2 + r^2}}\right) = 0,20826 \pm 0,00023
 \end{equation}
 berechnen, wobei $a = (70,20 \pm 0,05) \, \si{\milli\meter} + \SI{15}{\milli\meter}$ der Abstand zwischen Probe und Hülle sowie Hülle und Detektor ist und $r = \SI{22,5}{\milli\meter}$ der Radius des Detektors ist.
- 
-Mit der Messdauer, $t = \SI{3553}{\minute}$, den Linieninhalten, den Wahrscheinlichkeiten und den Energien aus \ref{tab:europiumpeaks} können
+Mit der Messdauer, $t = \SI{3553}{\second}$, den Linieninhalten, den Wahrscheinlichkeiten und den Energien aus \autoref{tab:europiumpeaks} können
 die Effizienzen gemäß
 \begin{equation}
     Q = \frac{4 \pi Z}{A W t \Omega}
@@ -81,12 +98,12 @@ berechnet werden, wobei $A$ die Aktivität, $W$ die Wahrscheinlichkeit zur Energ
         \toprule
         {Energie ($\si{\kilo\electronvolt}$)} & {Q} \\
         \midrule
-        121,78 & $\num{5.126(90)e-5}$ \\
-        244,70 & $\num{3.542(96)e-5}$ \\
-        344,30 & $\num{2.176(46)e-5}$ \\
-        411,12 & $\num{2.607(134)e-5}$ \\
-        443,96 & $\num{2.224(105)e-5}$ \\
-        778,90 & $\num{0.921(344)e-5}$ \\
+        121,78 & $\num{0.512(9)}$ \\
+        244,70 & $\num{0.354(9)}$ \\
+        344,30 & $\num{0.217(4)}$ \\
+        411,12 & $\num{0.260(13)}$ \\
+        443,96 & $\num{0.222(10)}$ \\
+        778,90 & $\num{0.092(3)}$ \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -102,7 +119,7 @@ Die Effizienz in Abhängigkeit von der Energie kann als Potenzfunktion gefittet 
 
 Der Fit ist gegeben durch
 \begin{equation}
-    Q(E) = \num{0.3290(307)} (\frac{E}{\si{\kilo\electronvolt}})^{\num{-0.8472(169)}}.
+    Q(E) = \left(\num{32.9(3.0)}\right)\left({\frac{E}{\si{\kilo\electronvolt}}}\right)^{\num{-0.857(16)}}.
     \label{eq:fiteffizienz}
 \end{equation}
 
@@ -113,12 +130,13 @@ Für Cäsium-137 wird folgendes Spektrum aufgenommen.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{plots/Caesium.pdf}
-    \caption{Die Messung für Cäsium mit ausgewählten, markierten Peaks.}
+    \caption{Die Messung für Cäsium mit ausgewählten, markierten Peaks, vgl. \autoref{tab:LNHB_Cs137}}
     \label{fig:Cäsium}
 \end{figure}
 
-Der Photopeak, die Comptonkante und der Rückstreupeak können abgelesen werden. Mit \eqref{eq:E_max} können die letzten beiden Werte auch berechnet werden.
-Der Inhalt des Comptonkontinuums, also der Inhalt der Comptonkante in \ref{tab:fit}, kann über einen Fit des differentiellen Wirkungsquerschnittes \eqref{eq:querschnitt} berechnet werden.
+Der Photopeak, die Comptonkante und der Rückstreupeak können abgelesen werden. Mit \autoref{eq:E_max} können die letzten beiden Werte auch berechnet werden.
+Der Inhalt des Comptonkontinuums, also der Inhalt der Comptonkante in \autoref{tab:fit}, kann über einen Fit des differentiellen Wirkungsquerschnittes \eqref{eq:querschnitt} berechnet werden, zu sehen in \autoref{fig:querschnitt}.
+Für die lineare Regression werden die Kanäle 2000 bis 4000 benutzt.
 
 \begin{figure}[H]
     \centering
@@ -127,16 +145,20 @@ Der Inhalt des Comptonkontinuums, also der Inhalt der Comptonkante in \ref{tab:f
     \label{fig:querschnitt}
 \end{figure}
 
+Der Vorfaktor $k = \frac{3}{8} \sigma_\text{Th} \frac{1}{m_0 c^2 \epsilon^2}$ berechnet sich hier zu
+\begin{equation}
+    k = \qty{6.618(5)}{\barn}
+\end{equation}
 
 \begin{table}[H]
     \centering
-    \caption{}
+    \caption{Photopeak, Comptonkante, Rückstreupeak}
     \label{tab:fit}
     \begin{tabular}{c c c c c}
         \toprule
         {Name} & {Kanalnr.} & {Energie ($\si{\kilo\electronvolt}$)} & Theoretische Energie ($\si{\kilo\electronvolt}$) & Inhalt \\
         \midrule
-        {Photopeak} & 6415 & 661.69 & 661.65 & \num{1176(11)e4} \\
+        {Photopeak} & 6415 & \num{661(8)} & 661.65 & \num{1176(11)e4} \\
         {Comptonkante} & 4430 & \num{457(7)} & 477 & 12125 \\
         {Rückstreupeak} & 1856 & \num{191(4)} & 184 & {-} \\
         \bottomrule
@@ -153,9 +175,9 @@ Für den Photopeak des Cäsium-Spektrum lassen sich für einen Gauß-Fit der For
 folgende Parameter bestimmen.
 
 \begin{align}
-    a &= \num{12233.183(110637)} \\
-    \mu &= \num{6415.685(89)} \\
-    \sigma &= \num{9.764(63)}
+    a &= \qty{12233.183(110637)}{\text{Impulse}} \\
+    \mu &= \qty{6415.685(89)}{\text{Kanal}} \\
+    \sigma &= \qty{9.764(63)}{\text{Kanal}}
 \end{align}
 
 \begin{figure}[H]
@@ -187,7 +209,7 @@ Das Verhältnis von Zehntel- zu Halbwertsbreite $\frac{E_\text{Zehntel}}{E_\text
 \end{align}
 
 Die Absorptionswahrscheinlichkeiten lassen sich mit Hilfe der Extinktionskoeffizienten % HIER REF ZU BILD
-und \eqref{eq:Absorptionswahrscheinlichkeit} berechnen.
+und \eqref{eq:Absorptionswahrscheinlichkeit} berechnen. Die $\mu$ werden dabei dem Altprotokoll \cite{Altprotokoll} entnommen. Die Einschätzung eines sinnvollen Fehlers war nicht möglich.
 \begin{align}
     \mu_\text{Photo} &= 0,007 \\
     P_\text{Photo} &= 2,693 \% \\
@@ -207,15 +229,15 @@ Für Barium lässt sich folgendes Spektrum aufzeichnen.
     \label{fig:barium}
 \end{figure}
 
-Die Kanäle, entsprechenden Energien, Wahrscheinlichkeiten und Effizienzen können \ref{fig:barium} entnommen werden.
+Die Kanäle, entsprechenden Energien, Wahrscheinlichkeiten und Effizienzen können \autoref{fig:barium} entnommen werden.
 
 \begin{table}[H]
     \centering
-    \caption{Kanäle, Energien, Linieninhalte, Wahrscheinlichkeiten und Effizienzen von Barium-133.}
+    \caption{Kanäle, Energien, Linieninhalte, Wahrscheinlichkeiten und Effizienzen von Barium-133., vgl. \autoref{tab:LNHB_Ba133}}
     \label{tab:barium}
     \begin{tabular}{c c c c c}
         \toprule
-        {Kanalnr.} & {Energie ($\si{\kilo\electronvolt})$} & {Inhalt} & {Wahrscheinlichkeit (\%)} & {Effizienz ($\num{1e-3}$)} \\
+        {Kanalnr.} & {Energie ($\si{\kilo\electronvolt})$} & {Inhalt} & {Wahrscheinlichkeit (\%)} & {Q ($\num{1e-3}$)} \\
         \midrule
         793  & \num{81.02(19)}  & \num{6879(33)} & \num{33.31(3)}  & \num{7.60(1)} \\
         2684 & \num{276.37(22)} & \num{1095(33)} & \num{7.13(6)}   & \num{2.65(1)} \\
@@ -229,7 +251,7 @@ Die Kanäle, entsprechenden Energien, Wahrscheinlichkeiten und Effizienzen könn
 Die Effizienzen werden dabei mit \eqref{eq:fiteffizienz} berechnet. Mit \eqref{eq:effizienz} 
 können Aktivitäten berechnet werden, wobei die Messzeit hier $\qty{3461}{\second}$ lautet. Die mittlere Aktivität ermittelt sich zu
 \begin{equation}
-    \bar{A}_\text{Ba} = \num{801(10)}
+    \bar{A}_\text{Ba} = \qty{801(10)}{\becquerel}
 \end{equation}
 
 \subsection{Unbekanntes Erz}
