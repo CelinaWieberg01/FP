@@ -2,31 +2,31 @@
 \label{sec:Diskussion}
 
 \subsection{Messung der Feldstärke}
-Die Messreihe zur Bestimmung der maximalen Feldstärke lief Problemlos ab. Die Sonde war fest 
+Die Messreihe zur Bestimmung der maximalen Feldstärke verlief Problemlos. Die Sonde war fest 
 justiert und ließ sich einfach und genau in den Magneten hinein und hinaus bewegen. Die Werte waren 
-an einem digiutalen Messgerät präzise abzulesen und je nach Stärke das Feldes ließ sich die range des 
-Gerätes anpassen. Wie man in \ref{fig: Abbildung 1} sehen kann, spiegeln die Messwerte alle erfahrungen wieder.
-Das Maximum ist klar abzulesen.
+an einem Teslameter präzise abzulesen und je nach Stärke das Feldes ließ sich die Range des 
+Gerätes anpassen. Eine Verbesserung der Messung wäre machbar, indem die genaue Position der Proben präziser vermessen werden.
 
 \subsection{Bestimmung der Drehwinkel}
 Bei der Bestimmung der Drehwinkel gibt es einige Werte die Stark von den anderen abweichen. Ein möglicher 
-Grund dafür ist, dass es nicht immer möglich war das Minimun auf dem Oszilloskop genau abzulesen. Das Signal 
-hat Teilweise geflackert oder war nicht scharf in dem Bereich der Minimalen Amplitude, so dass man gezwungen war die Werte 
-zu nehmen die stabil angezeigt wurden. Die Werte die deutlich von der Kurve abweichen, beeinflussen die lineare Regression,
-so ist bei Probe zwei quasi keine Steigung zu sehen.
+Grund dafür ist, dass es nicht immer möglich war das Minimum auf dem Oszilloskop genau abzulesen. Das Signal 
+hat Teilweise geflackert oder war nicht scharf in dem Bereich der minimalen Amplitude, sodass zwangszweise die Werte 
+zu nehmen sind, die stabil angezeigt werden. Die Werte die deutlich von der Kurve abweichen, beeinflussen die lineare Regression,
+so sieht man in \autoref{fig:regression1} und \autoref{fig:regression2}, dass die Fits unter Auslassen des vierten Messwertes möglicherweise näher an den Messwerten
+liegen könnten.
 
 \subsection{Bestimmung der Effektiven Masse}
-Der theoretische Wert der effektiven masse in Galliumarsenid beträgt 0.067 $m_e$. Vergleicht man diesen Wert mit den
-experimentell bestimmten Massen, ist eine signifikante Abweichung zu sehen. Die Prozentuale Abweichungg berechnet sich nach:
-\begin{equation} 
-    \text{diff} = \frac{(m_{\text{literatur}} - m_{\text{exp}})}{m_{\text{exp}}} \cdot 100 
-\end{equation}
-Die erste Masse hat einen Wert von 0.3073$m_e$, was einer Abweichung von 358\% entspricht.
-Die zweite Masse hat einen Wert von 0.7941$m_e$, was einer Abweichung von 1063\% entspricht.
-Grund für diese Ungenauigkeiten können Schwierigkeiten beim genauen Ablesen gewesen sein, sowie 
-eine nicht optimale Justierung. Trotz der deutlichen Abweichung von dem Literaturwert, ist
-in \ref{fig:regression } eine lineare, positive Steigung zu erkennen, was den Erwartungen entspricht.
+Der theoretische Wert der effektiven masse in Galliumarsenid lautet 0.067$cdot m_\text{e}$. Die Abweichungen gemäß \autoref{eq:abweichungen} betragen
 
-
-
+\begin{align*}
+    \Delta(\text{Probe 1, konst. n}) &= 375 \, \% \\
+    \Delta(\text{Probe 2, konst. n}) &= 538 \, \% \\
+    \Delta(\text{Probe 1, var. n})   &= 162 \, \% \\
+    \Delta(\text{Probe 2, var. n})   &= 260 \, \% 
+\end{align*}
+Die Abweichungen sind unvernachlässigbar groß. Mögliche Gründe dafür sind Probleme in der Bestimmung der Minima des Differenzenverstärkers, wie oben beschrieben.
+Des Weiteren ist zu beachten, dass die effektive Masse laut \autoref{eq:effektive_masse} nicht konstant sein muss. Der hier referenzierte Wert
+ist die effektive Masse im Energieminimum, sodass nicht abwägig ist, davon auszugehen, dass betrachteten Elektronen diese effektive Masse haben sollten. Da der Versuch allerdings ungekühlt stattfindet und das Magnetfeld
+die Proben merklich erhitzt, ist es denkbar, dass auch andere Symmetriepunkte beteiligt sind, die eine viel höhere effektive Masse besitzen. Eine Verbesserung wäre also mit einer Kühlung umsetzbar.\\
+Anhang der Abweichungen sieht man, dass die Berücksichtigung der variablen Brechungsindizes genauere Berechnungen möglich sind.
 
