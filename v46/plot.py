@@ -34,16 +34,31 @@ Probe2Winkel2 = np.genfromtxt('Probe2Winkel2.csv', delimiter=',', skip_header=1)
 Probe3Winkel1 = np.genfromtxt('Probe3Winkel1.csv', delimiter=',', skip_header=1)
 Probe3Winkel2 = np.genfromtxt('Probe3Winkel2.csv', delimiter=',', skip_header=1)
 
+L1 = 1.36*10**(-3) # m
+L2 = 1.295*10**(-3)
+L3 = 5.11*10**(-3)
+
 Wellenlaenge = Probe1Winkel1[:, 1]
 
 theta1_1 = Probe1Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 thetafehler= np.ones(len(theta1_1))*0.005*0.0174533
 
+theta1_3 = Probe3Winkel1[:, 0] * 0.0174533 #Translate deg to rad
+theta1_3fehler=unp.uarray(theta1_3,thetafehler) 
+theta2_3 = Probe3Winkel2[:, 0] * 0.0174533
+theta2_3fehler=unp.uarray(theta2_3,thetafehler) 
+theta3= (theta1_3fehler-theta2_3fehler)/(2)
+theta3 = unp.uarray(np.abs(unp.nominal_values(theta3)), unp.std_devs(theta3))
+thetafrei3 = theta3/L3
+
+
+
 theta1_1fehler=unp.uarray(theta1_1,thetafehler) 
 theta2_1 = Probe1Winkel2[:, 0] * 0.0174533
 theta2_1fehler=unp.uarray(theta2_1,thetafehler) 
-thetafrei1= (theta1_1fehler-theta2_1fehler)/(2)
-thetafrei1 = unp.uarray(np.abs(unp.nominal_values(thetafrei1)),unp.std_devs(thetafrei1))
+theta1= (theta1_1fehler-theta2_1fehler)/(2)
+theta1 = unp.uarray(np.abs(unp.nominal_values(theta1)),unp.std_devs(theta1))
+thetafrei1 = theta1/L1
 
 
 
@@ -51,23 +66,19 @@ theta1_2 = Probe2Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 theta1_2fehler=unp.uarray(theta1_2,thetafehler) 
 theta2_2 = Probe2Winkel2[:, 0] * 0.0174533
 theta2_2fehler=unp.uarray(theta2_2,thetafehler) 
-thetafrei2= (theta1_2fehler-theta2_2fehler)/(2)
-thetafrei2 = unp.uarray(np.abs(unp.nominal_values(thetafrei2)),unp.std_devs(thetafrei2))
-
-theta1_3 = Probe3Winkel1[:, 0] * 0.0174533 #Translate deg to rad
-theta1_3fehler=unp.uarray(theta1_3,thetafehler) 
-theta2_3 = Probe3Winkel2[:, 0] * 0.0174533
-theta2_3fehler=unp.uarray(theta2_3,thetafehler) 
-thetafrei3= (theta1_3fehler-theta2_3fehler)/(2)
-thetafrei3 = unp.uarray(np.abs(unp.nominal_values(thetafrei3)),unp.std_devs(thetafrei3))
+theta2= (theta1_2fehler-theta2_2fehler)/(2)
+theta2 = unp.uarray(np.abs(unp.nominal_values(theta2)),unp.std_devs(theta2))
+thetafrei2 = theta2/L2
 
 
 
 
 
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei1), yerr=unp.std_devs(thetafrei1), fmt="*", color="purple", label="Probe 1")
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei2), yerr=unp.std_devs(thetafrei2), fmt="*", color="green", label="Probe 2")
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei3), yerr=unp.std_devs(thetafrei3), fmt="*", color="blue", label="Probe 3")
+
+
+plt.errorbar(Wellenlaenge, unp.nominal_values(theta1), yerr=unp.std_devs(theta1), fmt="*", color="purple", label="Probe 1")
+plt.errorbar(Wellenlaenge, unp.nominal_values(theta2), yerr=unp.std_devs(theta2), fmt="*", color="green", label="Probe 2")
+plt.errorbar(Wellenlaenge, unp.nominal_values(theta3), yerr=unp.std_devs(theta3), fmt="*", color="blue", label="Probe 3")
 plt.xlabel(r'$\lambda$ in $\si{\micro\meter}$')
 plt.ylabel(r'$\theta$ in $\si{\radian}$')
 plt.legend(loc="best")
@@ -260,9 +271,40 @@ k2 =  7.700882622886497e-32
 Effektive Masse m_eff2: (2.2+/-0.4)e-31
 """
 
+"""
+KORREKTUR MIT LINFIT DER INTERCEPT HAT
+
+slope1 = 5.480407351580117 +- 3.4385492215926026, intercept1 = 4.755816647218399 +- 15.012209403338295
+slope1 = 12.46978863971618 +- 3.523013675007811, intercept1 = 5.367915692563358 +- 15.380969010978966
+Proportionalitätsfaktor m_1: 5.5+/-3.4
+k1 =  5.04141107676392e-32
+m_eff_aaron = (2.2+/-0.7)e-32
+Proportionalitätsfaktor m_2: 12.5+/-3.5
+k2 =  7.700882622886497e-32
+Effektive Masse m_eff2: (2.18+/-0.31)e-32
+m1 mit n beachtet =  18+/-11
+b1 mit n beachtet =  5+/-15
+m2 mit n beachtet =  41+/-12
+b2 mit n beachtet =  6+/-15
+k1 =  5.04141107676392e-32
+m_eff_aaron = (1.2+/-0.4)e-32
+k2 =  7.700882622886497e-32
+Effektive Masse m_eff2: (1.20+/-0.17)e-32
+
+"""
+
 me = constants.electron_mass
 m_lit = 0.067*me
-m_ex = np.array([2.9e-31, 3.9e-31, 1.6e-31, 2.2e-31])
+m_ex = np.array([2.2e-32, 2.18e-32, 1.2e-32, 1.2e-32])
 
 for m in m_ex:
     print(abs(m - me)/me)
+
+
+print("")
+print("Thetafrei 1:")
+print(thetafrei1)
+print("Thetafrei 2:")
+print(thetafrei2)
+print("Thetafrei 3:")
+print(thetafrei3)
