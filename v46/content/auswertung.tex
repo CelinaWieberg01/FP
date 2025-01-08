@@ -21,6 +21,7 @@ Die Gaußsche Fehlerfortpflanzung für eine berechnete Größe $f$ lautet
 Prozentuale Abweichungen werden mit
 \begin{equation}
     \Delta x = \left|\frac{x - a}{a}\right|
+    \label{eq:abweichung}
 \end{equation}
 berechnet, wobei $a$ ein Vergleichswert und $x$ der erhaltene Wert ist.
 
@@ -64,9 +65,9 @@ gemessen. Das Magnetfeld wird von einem Elektromagneten erzeugt. Die gemessenen 
 
 
 
-\begin{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{plots/magnetfeld.pdf}
+    \includegraphics[width=0.8\textwidth]{plots/magnetfeld.pdf}
     \caption{Die Kraftflussdichte $B$ in $\si{\milli\tesla}$ über den Ort $z$ in $\si{\milli\meter}$ in der Spule.}
     \label{fig:magnetfeld}
 \end{figure}
@@ -75,22 +76,45 @@ Die maximal gemessene Kraftflussdichte beträgt
     B_\text{max} = \qty{421.0(5)}{\milli\tesla}.
 \end{equation*}
 
+%%%%%%%%%%%%%
+%%%%%%%%%%%%%
+% HIER NOCH DIE FEHLER UNTEN ÄNDERN!!!!!!!!!!
+%%%%%%%%%%%%%
+%%%%%%%%%%%%
+
 \subsection{Drehwinkel der Faraday-Rotation}
-Der gesamte Drehwinkel, um den rotiert wird, lautet in $\si{\radian}$
-\begin{equation*}
-    \theta_\text{frei} = \frac{\theta_1-\theta_2}{2} \cdot \frac{\pi}{\qty{180}{\degree}},
-\end{equation*} 
-wobie $\theta_1$ und $\theta_2$ die vermessenen Winkel für die beiden Polungen des Magnetfeldes in $\si{\degree}$ sind.\\
-Die folgenden drei Tabellen beinhalten die gemessenen Winkel, die normierten Winkel, sowie die Wellenlänge. Die Dotierung und die Dicke der Probe werden jeweils angegeben.
+Die folgenden drei Tabellen beinhalten die Wellenlänge des benutzten Lichtes, die gemessenen Winkel sowie die Länge normierten Winkel $\theta_\text{frei}$ nach \autoref{eq:theta} und \autoref{eq:thetafrei}, sowie die Wellenlänge. Die Dotierung und die Dicke der Probe werden jeweils angegeben.
 Der Fehler in der Messung für $\theta_{1,2}$ beträgt ca. $\Delta \theta_{1,2} = \qty{0.005}{\degree}$ und die Fehlerfortpflanzung zu $\theta_\text{frei}$ gibt $\Delta \theta = \qty{0.00006}{\radian}$.
 Die Wellenlänge ist ohne Fehler auf den Filtern angegeben.
+
+\begin{table}[H]
+    \centering
+    \caption{Gemessene Polarisationswinkel für Probe 3 mit $N = \num{0}$ und Dicke $d = \qty{5.11}{\milli\meter}$.}
+    \label{tab:probe3}
+    \begin{tabular}{c c c}
+        \toprule
+        {$\lambda$ in $\si{\micro\meter}$} & {$\theta_1$ in $\si{\degree}$} & {$\theta_2$ in $\si{\degree}$} \\
+        \midrule
+        1,06  & 66,28 & 89,33 \\
+        1,29  & 70,40 & 85,00 \\
+        1,45  & 73,25 & 84,70 \\
+        1,72  & 41,00 & 80,76 \\
+        1,96  & 68,83 & 76,30 \\
+        2,156 & 65,91 & 70,35 \\
+        2,34  & 42,71 & 46,38 \\
+        2,51  & 29,71 & 32,25 \\
+        2,65  & 59,33 & 65,18 \\   
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 \begin{table}[H]
     \centering
     \caption{Gemessene Polarisationswinkel für Probe 1 mit $N = \qty{1.2e18}{\per\cubic\centi\meter}$ und Dicke $d = \qty{1.36}{\milli\meter}$.}
     \label{tab:probe1}
     \begin{tabular}{c c c c}
         \toprule
-        {$\lambda$ in $\si{\micro\meter}$} & {$\theta_1$ in $\si{\degree}$} & {$\theta_2$ in $\si{\degree}$} & {$\theta_\text{frei}$ in $\si{\radian}$} \\
+        {$\lambda$ in $\si{\micro\meter}$} & {$\theta_1$ in $\si{\degree}$} & {$\theta_2$ in $\si{\degree}$} & {$\theta_\text{frei}$ in $\si{\radian\per\meter}$} \\
         \midrule
         1,06 & 72,91 & 82,66 & 0,170 \\
         1,29 & 73,11 & 80,83 & 0,134 \\
@@ -111,7 +135,7 @@ Die Wellenlänge ist ohne Fehler auf den Filtern angegeben.
     \label{tab:probe2}
     \begin{tabular}{c c c c}
         \toprule
-        {$\lambda$ in $\si{\micro\meter}$} & {$\theta_1$ in $\si{\degree}$} & {$\theta_2$ in $\si{\degree}$} & {$\theta_\text{frei}$ in $\si{\radian}$} \\
+        {$\lambda$ in $\si{\micro\meter}$} & {$\theta_1$ in $\si{\degree}$} & {$\theta_2$ in $\si{\degree}$} & {$\theta_\text{frei}$ in $\si{\radian\per\meter}$} \\
         \midrule
         1,06 & 71,76 & 82,83 & 0,0966 \\
         1,29 & 72,71 & 80,75 & 0,0702 \\
@@ -126,49 +150,21 @@ Die Wellenlänge ist ohne Fehler auf den Filtern angegeben.
     \end{tabular}
 \end{table}
 
-\begin{table}[H]
-    \centering
-    \caption{Gemessene Polarisationswinkel für Probe 3 mit $N = \qty{0}{\per\cubic\centi\meter}$ und Dicke $d = \qty{5.11}{\milli\meter}$.}
-    \label{tab:probe3}
-    \begin{tabular}{c c c c}
-        \toprule
-        {$\lambda$ in $\si{\micro\meter}$} & {$\theta_1$ in $\si{\degree}$} & {$\theta_2$ in $\si{\degree}$} & {$\theta_\text{frei}$ in $\si{\radian}$} \\
-        \midrule
-        1,06  & 66,28 & 89,33 & 0,2012 \\
-        1,29  & 70,40 & 85,00 & 0,1274 \\
-        1,45  & 73,25 & 84,70 & 0,0999 \\
-        1,72  & 41,00 & 80,76 & 0,3468 \\
-        1,96  & 68,83 & 76,30 & 0,0652 \\
-        2,156 & 65,91 & 70,35 & 0,0387  \\
-        2,34  & 42,71 & 46,38 & 0,0320 \\
-        2,51  & 29,71 & 32,25 & 0,0222 \\
-        2,65  & 59,33 & 65,18 & 0,0510 \\   
-        \bottomrule
-    \end{tabular}
-\end{table}
-Zur veranschaulichung der Messergebnisse werden die normierten Winkel in \autoref{fig:rawdata} gegen die Wellenlänge geplottet.
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{plots/raw_data.pdf}
-    \caption{$\theta$ in Abhängigkeit von der Wellenlänge $\lambda$.}
-    \label{fig:rawdata}
-\end{figure}
-
 
 \subsection{Bestimmung der Effektiven Masse}
 Um die effektive Masse zu bestimmen, wird gemäß \autoref{eq:theta_frei} eine lineare Regression von $\theta_\text{frei}$ in $\lambda^2$ der Form,
 \begin{equation}
-f(x)=m \cdot x+b,
+f(x)=m \cdot x,
 \label{eq:lineareform}
 \end{equation}
 durchgeführt. Aus der errechneten Steigung $m$ kann die effektive Masse bestimmt werden.\\
 Dabei ist zu beachten, dass der Brechungsindex $n$ abhängig von der Wellenlänge ist. Die Regressionen werden einmal mit konstantem $n = \num{3,5}$
 und einmal mit variablem $n$ gemäß der Sellmeier-Gleichung,
 \begin{equation}
-    n(\lambda^2) = \sqrt{8.950 + \frac{2.054}{1 - 0.390 \cdot \lambda^2}}
+    n(\lambda^2) = \sqrt{\num{8,950} + \frac{\num{2,054}}{1 - \num{0,390} \cdot \lambda^2}}
     \label{eq:sellmeier}
 \end{equation}
-durchgeführt, wobei $\lambda$ in $\si{\micro\meter}$ sein muss.
+durchgeführt, wobei $\lambda$ in $\si{\micro\meter}$ sein muss \cite{sellmeier}.
 
 \subsubsection{Konstanter Brechungsindex}
 Die effektive Masse berechnet sich nach \autoref{eq:theta_frei} mit konstantem $n = \num{3,5}$ über
@@ -178,7 +174,7 @@ Die effektive Masse berechnet sich nach \autoref{eq:theta_frei} mit konstantem $
 \end{equation}
 Dabei ist $e_0 = \qty{1.603e-19}{\coulomb}$ die Elementarladung, $\epsilon = \num{12.4} \cdot \epsilon_0 = \num{12.4} \cdot \qty{8.85e-12}{\farad\per\meter} = \qty{1.0974e-10}{\farad\per\meter}$ die Dielektrizitätskonstante des Materials,
 $c= \qty{3e8}{\meter\per\second}$ die Lichtgeschwindigkeitund $B= \qty{412.0}{\milli\tesla}$ die maximale Kraftflussdichte. $N$ ist die Dotierungskonzentration. $m$ ist die Steigung der linearen Fits.\\
-In \autoref{fig:regression1} ist $\theta_\text{frei}$ gegen $\lambda^2$ mit dem entstandenen Fit dargestellt.
+In \autoref{fig:regression1} ist $\theta_\text{frei, dot} - \theta_\text{frei, undot}$ gegen $\lambda^2$ mit dem entstandenen Fit dargestellt.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{plots/fits_ohne_n.pdf}
@@ -186,23 +182,21 @@ In \autoref{fig:regression1} ist $\theta_\text{frei}$ gegen $\lambda^2$ mit dem 
     \label{fig:regression1}
 \end{figure}
 Die Fitparameter für \autoref{fig:regression1} lauten
-\begin{align*}
-    m &= \qty{0.0296(156)}{\radian\per\square\micro\meter} \\
-    b &= \qty{-0.1600(679)}{\radian}.
-\end{align*}
-für $N = \qty{1.2e18}{\cubic\centi\meter}$, was einer effektiven Masse von
 \begin{equation*}
-    m^* = \qty{2.9(8)e-31}{\kilo\gram}
+    m_{1, \text{n konst.}} = \qty{6.4519(35)e18}{\radian\per\meter\cubed} 
+\end{equation*}
+für $N = \qty{1.2e18}{\cubic\centi\meter}$, was einer effektiven Masse von 
+\begin{equation*}
+    m^*_{1, \text{n konst.}} = \qty{1.9848(6)e-32}{\kilo\gram}
 \end{equation*}
 entspricht, und
-\begin{align*}
-    m &= \qty{0.0386(156)}{\radian\per\square\micro\meter} \\
-    b &= \qty{-0.1623(682)}{\radian}.
-\end{align*}
-für $N = \qty{2.8e18}{\cubic\centi\meter}$, was einer effektiven Masse von
 \begin{equation*}
-    m^* = \qty{3.9(8)e-31}{\kilo\gram}
-\end{equation*} 
+    m_{2, \text{n konst.}} = \qty{13.5534(37)e18}{\radian\per\meter\cubed} 
+\end{equation*}
+für $N = \qty{1.2e18}{\cubic\centi\meter}$, was einer effektiven Masse von 
+\begin{equation*}
+    m^*_{2, \text{n konst.}} = \qty{2.0917(3)e-32}{\kilo\gram}
+\end{equation*}
 entspricht.
 
 
@@ -214,9 +208,9 @@ Gemäß der Sellmeier-Gleichung \ref{eq:sellmeier} finden sich die Brechungsindi
     \label{tab:sellmeyer}
     \begin{tabular}{c c c c c c c c c c}
         \toprule
-        {$\lambda$} & 1.06 & 1.29 & 1.45 & 1.72 & 1.96 & 2.156 & 2.32 & 2.51 & 2.65 \\
+        {$\lambda$} & 1,06 & 1,29 & 1,45 & 1,72 & 1,96 & 2,156 & 2,32 & 2,51 & 2,65 \\
         \midrule
-        {$n$} & 3.478 & 3.410 & 3.387 & 3.364 & 3.352 & 3.345 & 3.341 & 3.338 & 3.335 \\
+        {$n$} & 3,478 & 3,410 & 3,387 & 3,364 & 3,352 & 3,345 & 3,341 & 3,338 & 3,335 \\
         \bottomrule
     \end{tabular}
 \end{table}
@@ -226,29 +220,28 @@ Die effektive Masse berechnet sich nach \autoref{eq:theta_frei} über
 \label{eq:masse}
 \end{equation}
 Die Brechungsindizes $n$ aus \autoref{tab:sellmeyer} sind nun nicht mehr in der Gleichung, da diese in $m$ berücksichtigt sind.\\
-In \autoref{fig:regression2} ist $\theta_\text{frei}$ gegen $\frac{\lambda^2}{n}$ mit dem entstandenen Fit dargestellt.
+In \autoref{fig:regression2} ist $\theta_\text{frei, dot} - \theta_\text{frei, undot}$ gegen $\frac{\lambda^2}{n}$ mit dem entstandenen Fit dargestellt.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{plots/fits_mit_n.pdf}
     \caption{Lineare Regression über $\theta_\text{frei}$ gegen $\frac{\lambda^2}{n}$ mit variablen $n$.}
     \label{fig:regression2}
 \end{figure}
+
 Die Fitparameter für \autoref{fig:regression2} lauten
-\begin{align*}
-    m &= \qty{0.10(5)}{\radian\per\square\micro\meter} \\
-    b &= \qty{-0.16(7)}{\radian}.
-\end{align*}
-für $N = \qty{1.2e18}{\cubic\centi\meter}$, was einer effektiven Masse von
 \begin{equation*}
-    m^* = \qty{1.6(4)e-31}{\kilo\gram}
+    m_{1, \text{n var.}} = \qty{21.567(12)e18}{\radian\per\meter\cubed} 
+\end{equation*}
+für $N = \qty{1.2e18}{\cubic\centi\meter}$, was einer effektiven Masse von 
+\begin{equation*}
+    m^*_{1, \text{n var.}} = \qty{1.0855(3)e-32}{\kilo\gram}
 \end{equation*}
 entspricht, und
-\begin{align*}
-    m &= \qty{0.13(5)}{\radian\per\square\micro\meter} \\
-    b &= \qty{-0.16(7)}{\radian}.
-\end{align*}
-für $N = \qty{2.8e18}{\cubic\centi\meter}$, was einer effektiven Masse von
 \begin{equation*}
-    m^* = \qty{2.2(4)e-31}{\kilo\gram}
-\end{equation*} 
+    m_{2, \text{n var.}} = \qty{45.316(13)e18}{\radian\per\meter\cubed} 
+\end{equation*}
+für $N = \qty{1.2e18}{\cubic\centi\meter}$, was einer effektiven Masse von 
+\begin{equation*}
+    m^*_{2, \text{n var.}} = \qty{1.1439(2)e-32}{\kilo\gram}
+\end{equation*}
 entspricht.

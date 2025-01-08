@@ -41,33 +41,31 @@ thetafehler= np.ones(len(theta1_1))*0.005*0.0174533
 
 theta1_1fehler=unp.uarray(theta1_1,thetafehler) 
 theta2_1 = Probe1Winkel2[:, 0] * 0.0174533
-theta2_1fehler=unp.uarray(theta2_1,thetafehler) 
-thetafrei1= (theta1_1fehler-theta2_1fehler)/(2)
-thetafrei1 = unp.uarray(np.abs(unp.nominal_values(thetafrei1)),unp.std_devs(thetafrei1))
-
-
+theta2_1fehler=unp.uarray(theta2_1,thetafehler)
+theta1= (theta1_1fehler-theta2_1fehler)/(2)
+plt.errorbar(Wellenlaenge, unp.nominal_values(theta1), yerr=unp.std_devs(theta1), fmt="*", color="purple", label="Probe 1")
+L1 = 1.36*10**(-3)
+theta1 = unp.uarray(np.abs(unp.nominal_values(theta1)),unp.std_devs(theta1))/L1
 
 theta1_2 = Probe2Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 theta1_2fehler=unp.uarray(theta1_2,thetafehler) 
 theta2_2 = Probe2Winkel2[:, 0] * 0.0174533
 theta2_2fehler=unp.uarray(theta2_2,thetafehler) 
-thetafrei2= (theta1_2fehler-theta2_2fehler)/(2)
-thetafrei2 = unp.uarray(np.abs(unp.nominal_values(thetafrei2)),unp.std_devs(thetafrei2))
+theta2= (theta1_2fehler-theta2_2fehler)/(2)
+plt.errorbar(Wellenlaenge, unp.nominal_values(theta2), yerr=unp.std_devs(theta2), fmt="*", color="green", label="Probe 2")
+L2 = 1.296*10**(-3)
+theta2 = unp.uarray(np.abs(unp.nominal_values(theta2)),unp.std_devs(theta2))/L2
 
 theta1_3 = Probe3Winkel1[:, 0] * 0.0174533 #Translate deg to rad
 theta1_3fehler=unp.uarray(theta1_3,thetafehler) 
 theta2_3 = Probe3Winkel2[:, 0] * 0.0174533
 theta2_3fehler=unp.uarray(theta2_3,thetafehler) 
-thetafrei3= (theta1_3fehler-theta2_3fehler)/(2)
-thetafrei3 = unp.uarray(np.abs(unp.nominal_values(thetafrei3)),unp.std_devs(thetafrei3))
+theta3= (theta1_3fehler-theta2_3fehler)/(2)
+plt.errorbar(Wellenlaenge, unp.nominal_values(theta3), yerr=unp.std_devs(theta3), fmt="*", color="blue", label="Probe 3")
+L3 = 5.11*10**(-3)
+theta3 = unp.uarray(np.abs(unp.nominal_values(theta3)),unp.std_devs(theta3))/L3
 
 
-
-
-
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei1), yerr=unp.std_devs(thetafrei1), fmt="*", color="purple", label="Probe 1")
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei2), yerr=unp.std_devs(thetafrei2), fmt="*", color="green", label="Probe 2")
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei3), yerr=unp.std_devs(thetafrei3), fmt="*", color="blue", label="Probe 3")
 plt.xlabel(r'$\lambda$ in $\si{\micro\meter}$')
 plt.ylabel(r'$\theta$ in $\si{\radian}$')
 plt.legend(loc="best")
@@ -77,13 +75,13 @@ plt.figure()
 
 #differenzen der dotierten und undotierten probe
 
-thetadiff1 = (thetafrei1-thetafrei3)
-thetadiff2 = (thetafrei2-thetafrei3)
+thetafrei1 = theta1 - theta3
+thetafrei2 = theta2 - theta3
 
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetadiff1),yerr=unp.std_devs(thetadiff1), fmt= "*", color ="purple", label = "Probe 1")
-plt.errorbar(Wellenlaenge, unp.nominal_values(thetadiff2),yerr=unp.std_devs(thetadiff2),fmt= "*", color= "green", label = "Probe 2")
+plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei1),yerr=unp.std_devs(thetafrei1), fmt= "*", color ="purple", label = "Probe 1")
+plt.errorbar(Wellenlaenge, unp.nominal_values(thetafrei2),yerr=unp.std_devs(thetafrei2),fmt= "*", color= "green", label = "Probe 2")
 plt.xlabel(r'$\lambda$ in $\si{\micro\meter}$')
-plt.ylabel(r'$\theta_\text{dot}-\theta_\text{undot}$ in $\si{\radian}$') 
+plt.ylabel(r'$\theta_\text{frei} in \si{radian}$') 
 plt.legend(loc="best")
 plt.grid(True)
 #plt.show()
@@ -91,32 +89,35 @@ plt.clf()
 plt.figure()
 
 
-
 from scipy.stats import linregress
+
+def fit(x, steigung):
+    return steigung*x
+
 # Square of the Wellenlaenge 
 Wellenlaenge_squared = Wellenlaenge ** 2
-x_fit = np.linspace(min(Wellenlaenge_squared), max(Wellenlaenge_squared), 200)
+x_fit = np.linspace(0, max(Wellenlaenge_squared)+0.25, 200)
 
 #Linear Regression for thetadiff1 
-res1 = linregress(Wellenlaenge_squared, unp.nominal_values(thetadiff1)) 
-print(f"slope1 = {res1.slope} +- {res1.stderr}, intercept1 = {res1.intercept} +- {res1.intercept_stderr}")
-line1 = res1.slope * x_fit + res1.intercept 
+params1, cov1 = curve_fit(fit, Wellenlaenge_squared, unp.nominal_values(thetafrei1), absolute_sigma=True, sigma=unp.std_devs(thetafrei1)) 
+print(f"m1 = {params1} +- {np.sqrt(cov1)}")
+line1 = params1 * x_fit
 
 
 # Linear Regression for thetadiff2 
-res2 = linregress(Wellenlaenge_squared, unp.nominal_values(thetadiff2)) 
-print(f"slope1 = {res2.slope} +- {res2.stderr}, intercept1 = {res2.intercept} +- {res2.intercept_stderr}")
-line2 = res2.slope * x_fit + res2.intercept
+params2, cov2 = curve_fit(fit, Wellenlaenge_squared, unp.nominal_values(thetafrei2), absolute_sigma=True, sigma=unp.std_devs(thetafrei2)) 
+print(f"m2 = {params2} +- {np.sqrt(cov2)}")
+line2 = params2 * x_fit
 
 
 
 
-plt.errorbar(Wellenlaenge_squared ,unp.nominal_values(thetadiff1),yerr=unp.std_devs(thetadiff1), fmt= "*", color ="purple", label = "Probe 1")
-plt.errorbar(Wellenlaenge_squared, unp.nominal_values(thetadiff2),yerr=unp.std_devs(thetadiff2),fmt= "*", color= "green", label = "Probe 2")
+plt.errorbar(Wellenlaenge_squared ,unp.nominal_values(thetafrei1),yerr=unp.std_devs(thetafrei1), fmt= "*", color ="purple", label = "Probe 1")
+plt.errorbar(Wellenlaenge_squared, unp.nominal_values(thetafrei2),yerr=unp.std_devs(thetafrei2),fmt= "*", color= "green", label = "Probe 2")
 plt.plot(x_fit,line1, "-", color="purple", label="Fit Probe 1") 
 plt.plot(x_fit,line2, "-", color="green", label="Fit Probe 2")
-plt.xlabel(r'$\lambda^2$ in $\si{\square\micro\meter}$')
-plt.ylabel(r'$\theta_\text{dot}-\theta_\text{undot}$ in $\si{\radian}$') 
+plt.xlabel(r'$\lambda^2$ in $10^{-12} \cdot \si{\square\meter}$')
+plt.ylabel(r'$\theta_\text{frei, dot}-\theta_\text{frei, undot}$ in $\si{\radian\per\meter}$') 
 
 plt.legend(loc="best")
 plt.grid(True)
@@ -136,27 +137,23 @@ def faktor_festes_n(N):
     return k
 
 #Lineare Regression Probe 1:
-m1 = ufloat(res1.slope, res1.stderr)
-print(f"Proportionalitätsfaktor m_1: {m1}") 
+m1 = ufloat(params1, np.sqrt(cov1))
 
 N1 = 1.2e12
 k1 = faktor_festes_n(N1)
-print("k1 = ", k1)
-m_eff_aaron = k1 / unp.sqrt(m1)
-print(f"m_eff_aaron = {m_eff_aaron}")
+m_eff1 = k1 / unp.sqrt(m1)
+print(f"m_eff1 = {m_eff1}")
 
 
 
 
 # Steigung (Slope) ist m
-m2=ufloat(res2.slope, res2.stderr)
-print(f"Proportionalitätsfaktor m_2: {m2}")
+m2=ufloat(params2, np.sqrt(cov2))
 
 N2 = 2.8e12
 k2 = faktor_festes_n(N2)
-print("k2 = ", k2)
 m_eff2 = k2 / unp.sqrt(m2)
-print(f"Effektive Masse m_eff2: {m_eff2}")
+print(f"m_eff2: {m_eff2}")
 
 
 
@@ -175,6 +172,9 @@ def sellmeyer(welle_squared):
     n = np.sqrt(8.950 + 2.054/(1 - 0.390 / welle_squared))
     return n
 
+def fit(x, steigung):
+    return steigung*x
+
 from scipy.stats import linregress
 # Square of the Wellenlaenge 
 Wellenlaenge_squared = Wellenlaenge**2 
@@ -182,33 +182,30 @@ n_array = sellmeyer(Wellenlaenge_squared)
 
 Wellenlaenge_squared_n = Wellenlaenge_squared / n_array
 
-xx = np.linspace(Wellenlaenge_squared_n[0], Wellenlaenge_squared_n[-1], 100)
-plt.errorbar(Wellenlaenge_squared_n,unp.nominal_values(thetadiff1),yerr=unp.std_devs(thetadiff1), fmt= "*", color ="purple", label = "Probe 1")
-plt.errorbar(Wellenlaenge_squared_n, unp.nominal_values(thetadiff2),yerr=unp.std_devs(thetadiff2),fmt= "*", color= "green", label = "Probe 2")
+xx = np.linspace(0, Wellenlaenge_squared_n[-1]+0.25, 100)
+plt.errorbar(Wellenlaenge_squared_n,unp.nominal_values(thetafrei1),yerr=unp.std_devs(thetafrei1), fmt= "*", color ="purple", label = "Probe 1")
+plt.errorbar(Wellenlaenge_squared_n, unp.nominal_values(thetafrei2),yerr=unp.std_devs(thetafrei2),fmt= "*", color= "green", label = "Probe 2")
 
 #Linear Regression for thetadiff1 
-res1n = linregress(Wellenlaenge_squared_n, unp.nominal_values(thetadiff1)) 
-m1n = ufloat(res1n.slope, res1n.stderr)
-b1n = ufloat(res1n.intercept, res1n.intercept_stderr)
-print("m1 mit n beachtet = ", m1n)
-print("b1 mit n beachtet = ", b1n)
+params_n1, cov_n1 = curve_fit(fit, Wellenlaenge_squared_n, unp.nominal_values(thetafrei1), absolute_sigma=True, sigma=unp.std_devs(thetafrei1)) 
+m_n1 = ufloat(params_n1, np.sqrt(cov_n1))
+print("m_n1 = ", m_n1)
 
-fit1 = res1n.slope * xx + res1n.intercept
+
+fit1 = params_n1*xx
 plt.plot(xx, fit1, color="purple", label="Fit Probe 1")
 
 #Linear Regression for thetadiff1 
-res2n = linregress(Wellenlaenge_squared_n, unp.nominal_values(thetadiff2)) 
-m2n = ufloat(res2n.slope, res2n.stderr)
-b2n = ufloat(res2n.intercept, res2n.intercept_stderr)
-print("m2 mit n beachtet = ", m2n)
-print("b2 mit n beachtet = ", b2n)
+params_n2, cov_n2 = curve_fit(fit, Wellenlaenge_squared_n, unp.nominal_values(thetafrei2), absolute_sigma=True, sigma=unp.std_devs(thetafrei2)) 
+m_n2 = ufloat(params_n2, np.sqrt(cov_n2))
+print("m_n2 = ", m_n2)
 
-fit2 = res2n.slope * xx + res2n.intercept
+fit2 = params_n2*xx
 plt.plot(xx, fit2, color="green", label="Fit Probe 2")
 
 
-plt.xlabel(r'$\frac{\lambda^2}{n}$ in $\si{\square\micro\meter}$')
-plt.ylabel(r'$\theta_\text{dot}-\theta_\text{undot}$ in $\si{\radian}$') 
+plt.xlabel(r'$\frac{\lambda^2}{n}$ in $10^{-12} \cdot \si{\square\meter}$')
+plt.ylabel(r'$\theta_\text{frei, dot}-\theta_\text{frei, undot}$ in $\si{\radian\per\meter}$') 
 
 plt.legend(loc="best")
 plt.grid(True)
@@ -219,9 +216,8 @@ plt.figure()
 #Lineare Regression Probe 1:
 N1 = 1.2e12
 k1 = faktor_festes_n(N1)
-print("k1 = ", k1)
-m_eff_aaron = k1 / unp.sqrt(m1n)
-print(f"m_eff_aaron = {m_eff_aaron}")
+m_n_eff1 = k1 / unp.sqrt(m_n1)
+print(f"m_n_eff1 = {m_n_eff1}")
 
 
 
@@ -229,40 +225,64 @@ print(f"m_eff_aaron = {m_eff_aaron}")
 # Steigung (Slope) ist m
 N2 = 2.8e12
 k2 = faktor_festes_n(N2)
-print("k2 = ", k2)
-m_eff2 = k2 / unp.sqrt(m2n)
-print(f"Effektive Masse m_eff2: {m_eff2}")
+m_n_eff2 = k2 / unp.sqrt(m_n2)
+print(f"m_n_eff2: {m_n_eff2}")
 
-
-
-"""
-slope1 = 0.02958028375759921 +- 0.01557348533312387, intercept1 = -0.1599743298610714 +- 0.0679915882816386
-k1 =  5.04141107676392e-32
-m_eff_aaron = (2.9+/-0.8)e-31
-
-slope1 = 0.03865883949704651 +- 0.015621923091931628, intercept1 = -0.16237578851477455 +- 0.06820306054258059
-k2 =  7.700882622886497e-32
-Effektive Masse m_eff2: (3.9+/-0.8)e-31
-
-
-n_array =  [3.4779243  3.41067826 3.38700048 3.36391003 3.3520268  3.34546196
- 3.34132547 3.33759507 3.33538273]
-
-m1 mit n beachtet =  0.10+/-0.05
-b1 mit n beachtet =  -0.16+/-0.07
-k1 =  5.04141107676392e-32
-m_eff_aaron = (1.6+/-0.4)e-31
-
-
-m2 mit n beachtet =  0.13+/-0.05
-b2 mit n beachtet =  -0.16+/-0.07
-k2 =  7.700882622886497e-32
-Effektive Masse m_eff2: (2.2+/-0.4)e-31
-"""
 
 me = constants.electron_mass
+
 m_lit = 0.067*me
-m_ex = np.array([2.9e-31, 3.9e-31, 1.6e-31, 2.2e-31])
+print("effektive Elektronenmasse = ", m_lit)
+m_ex = np.array([m_eff1, m_eff2, m_n_eff1, m_n_eff2])
 
 for m in m_ex:
-    print(abs(m - me)/me)
+    print(abs(m - m_lit)/m_lit)
+
+
+"""
+slope1 = 5.480407351580117 +- 3.4385492215926026, intercept1 = 4.755816647218399 +- 15.012209403338295
+slope1 = 12.46471975542822 +- 3.5223613173511623, intercept1 = 5.329526407717992 +- 15.3781209116451
+Proportionalitätsfaktor m_1: 5.5+/-3.4
+k1 =  5.04141107676392e-32
+m_eff_aaron = (2.2+/-0.7)e-32
+Proportionalitätsfaktor m_2: 12.5+/-3.5
+k2 =  7.700882622886497e-32
+Effektive Masse m_eff2: (2.18+/-0.31)e-32
+m1 mit n beachtet =  18+/-11
+b1 mit n beachtet =  5+/-15
+m2 mit n beachtet =  41+/-12
+b2 mit n beachtet =  6+/-15
+k1 =  5.04141107676392e-32
+m_eff_aaron = (1.2+/-0.4)e-32
+k2 =  7.700882622886497e-32
+Effektive Masse m_eff2: (1.20+/-0.17)e-32
+
+abweichungen:
+0.6816469593302487
+0.5718700487544723
+0.8243569430787578
+0.758490796733292
+"""
+
+### LINEARER FIT OHNE ACHSENABSCHNITT
+
+"""
+
+m1 = [6.45192752] +- [[0.00358479]]
+m2 = [13.55343748] +- [[0.00375037]]
+m_eff1 = (1.9848+/-0.0006)e-32
+m_eff2: (2.09178+/-0.00029)e-32
+
+m_n1 =  21.567+/-0.012
+m_n_eff1 = (1.08558+/-0.00030)e-32
+
+m_n2 =  45.316+/-0.013
+m_n_eff2: (1.14396+/-0.00016)e-32
+
+effektive Elektronenmasse =  6.103287080005001e-32
+0.67481+/-0.00009
+0.65727+/-0.00005
+0.82213+/-0.00005
+0.812566+/-0.000026
+
+"""
