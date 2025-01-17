@@ -61,28 +61,6 @@ halfwidth =  -0.04154154154154155  -  0.04654654654654655
 
 
 
-#######################################
-
-# REFLEKTIVITÄTSSCAN DIFFUSE SCAN B)
-
-alpha_reflect, intensity_reflect = np.genfromtxt("data/Reflect1.UXD", unpack=True)
-alpha_diffuse, intensity_diffuse = np.genfromtxt("data/Reflect2.UXD", unpack=True)
-
-smaller_length = min(len(alpha_diffuse), len(alpha_reflect))
-intensity_true = intensity_reflect[:smaller_length] - intensity_diffuse[:smaller_length]
-alpha_true = alpha_reflect[:smaller_length]
-
-plt.scatter(alpha_reflect, intensity_reflect, s=10, marker="x", label="Reflektivitätsscan")
-plt.scatter(alpha_diffuse, intensity_diffuse, s=10, marker="x", label="Diffuser Scan")
-plt.scatter(alpha_true, intensity_true, s=10, marker="x", label="Differenz der Scans")
-plt.grid("on")
-plt.legend()
-plt.xlabel("alpha")
-plt.ylabel("Intensität")
-plt.savefig("plots/reflectivity.pdf")
-plt.figure()
-
-
 ##############################################
 
 ### GEOMETRIEFAKTOR C)
@@ -174,3 +152,31 @@ plt.figure()
 
 print("Geometriewinkel = ", geometriewinkel_links, " und ", geometriewinkel_rechts)
 print("mittlerer Geometriewinkel = ", mittlerer_geometriewinkel, " +- ", abweichung_mittlerer_geometriewinkel)
+
+
+
+
+
+
+
+#######################################
+
+# REFLEKTIVITÄTSSCAN DIFFUSE SCAN B)
+
+alpha_reflect, intensity_reflect = np.genfromtxt("data/Reflect1.UXD", unpack=True)
+alpha_diffuse, intensity_diffuse = np.genfromtxt("data/Reflect2.UXD", unpack=True)
+
+smaller_length = min(len(alpha_diffuse), len(alpha_reflect))
+intensity_true = intensity_reflect[:smaller_length] - intensity_diffuse[:smaller_length]
+alpha_true = alpha_reflect[:smaller_length]
+
+plt.plot(alpha_reflect, intensity_reflect, label="Reflektivitätsscan")
+plt.plot(alpha_diffuse, intensity_diffuse, label="Diffuser Scan")
+plt.plot(alpha_true,    intensity_true,    label="Differenz der Scans")
+plt.grid("on")
+plt.legend()
+plt.yscale("log")
+plt.xlabel("alpha")
+plt.ylabel("Intensität")
+plt.savefig("plots/reflectivity.pdf")
+plt.figure()
