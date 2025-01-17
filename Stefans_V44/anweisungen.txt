@@ -1,0 +1,25 @@
+# zielsetzung 
+# was ist röntgenstrahlung
+# fresnel fotmrln
+# einschicht
+# zu zwei schicht totalreflexion brechungsindex formeln für absorption dispersion
+# wellenvektortransfer
+# mehr schicht
+# parrat
+# Rauigkeit
+# Rauigkeit in größenordnung deer schichtdicke und einmla nicht was ist der unterschied
+# Aufbau Justageschritte
+
+# Auswertung justage hlabwertsbreite fit von Gauß
+# z scan strahlbreite bestimmen
+# rocking geometriewinkel einmal ablesen, einmal ausrechnen
+
+# drei plots
+# 1 dreigraphen reeflektivität diffuse reeflektivität , korrigierte reflektivität (normal-diffus)
+# 2 korrigierte, ideale fresnel reflektivität , mit geometriefaktor korrigiert
+# 3 mit geometriefaktor korrigierte, mit parrat algorithmus bestimmte kurve, -> dispersion, schichtdicke -> kritischer Winkel
+
+# schichtdicke nhand von abstand der minima in der Oszillation
+# unterschied ablesen vs ausrechnen
+# auf kratzer Peaks achten
+# erst Plots schicken und dann den Rest schicken, code mitschicken

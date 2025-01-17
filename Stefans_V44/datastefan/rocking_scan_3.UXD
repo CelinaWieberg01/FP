@@ -1,0 +1,117 @@
+; C:\DIFFDAT1\Praktikum\Christian_Stefan\rocking_scan_3.raw(Diffrac Plus V1.01 file) converted by XCH V1.0
+_FILEVERSION=2
+_SITE='Deutschland'
+_USER='Administrator'
+_GONIOMETER_CODE=4885
+; D8 Theta/Theta; Special
+_SAMPLE_CHANGER_CODE=0
+_ATTACHMENTS_CODE=0
+_GONIOMETER_RADIUS=350.000000
+_FIXED_DIVSLIT=0.600000
+_FIXED_SAMPLESLIT=0.000000
+_FIXED_DETSLIT=11.660000
+_MONOCHROMATOR=0
+; None
+_THIN_FILM='N'
+_BETA_FILTER='Y'
+_FIXED_ANTISLIT=8.340000
+_ANALYZER_CODE=0
+; None
+_DATEMEASURED='16-Oct-2023 10:36:04'
+_WL_UNIT='A'
+_WL1=1.540600
+_WL2=1.544390
+_WL3=1.392220
+_WLRATIO=0.500000
+_ANODE='Cu'
+; (Data for Range number 1)
+_DRIVE='THETA'
+_STEPTIME=0.999980
+_STEPSIZE=0.005000
+_STEPMODE='C'
+_START=0.200000
+_THETA=0.200000
+_2THETA=0.500000
+_KHI=0.000000
+_PHI=90.000000
+_X=1.524000
+_Y=1.000000
+_Z=0.224000
+_DIVERGENCE=0.000000
+_ANTISCATTER=0.000000
+_DETECTOR=5
+_DETECTORSLIT='unkn'
+_AUX1=0.000000
+_AUX2=0.000000
+_AUX3=0.000000
+_TIMESTARTED=2.000000
+_TEMP_RATE=-1.000000
+_TEMP_DELAY=-1.000000
+_KV=40
+_MA=35
+_RANGE_WL=1.540600
+_3DPLANE=0
+_GONIOMETER=0.499700
+_PSDCHANNEL0=0
+_2THETACOUNTS
+   0.2000       763
+   0.2050       677
+   0.2100       701
+   0.2150       697
+   0.2200       675
+   0.2250       694
+   0.2300       608
+   0.2350       609
+   0.2400       638
+   0.2450       613
+   0.2500       573
+   0.2550       592
+   0.2600       589
+   0.2650       594
+   0.2700       591
+   0.2750       550
+   0.2800       625
+   0.2850       598
+   0.2900       526
+   0.2950       581
+   0.3000       551
+   0.3050       545
+   0.3100       548
+   0.3150       543
+   0.3200       573
+   0.3250       551
+   0.3300       574
+   0.3350       505
+   0.3400       540
+   0.3450       553
+   0.3500       512
+   0.3550       569
+   0.3600       581
+   0.3650       559
+   0.3700       537
+   0.3750       567
+   0.3800       594
+   0.3850       532
+   0.3900       563
+   0.3950       514
+   0.4000       534
+   0.4050       550
+   0.4100       551
+   0.4150       571
+   0.4200       564
+   0.4250       538
+   0.4300       518
+   0.4350       591
+   0.4400       566
+   0.4450       555
+   0.4500       578
+   0.4550       557
+   0.4600       541
+   0.4650       572
+   0.4700       565
+   0.4750       513
+   0.4800       516
+   0.4850       584
+   0.4900       554
+   0.4950       549
+   0.5000       547

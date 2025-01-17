@@ -1,0 +1,61 @@
+\section*{Addendum}
+\addcontentsline{toc}{section}{Addendum}
+\begin{lstlisting}[language=python, caption=parrat\_algorithm]
+#The parrameters are passed as arrays (shown at the end of the second code listing). The first index denotes the substrate layer and the last index the vacuum layer.
+def parratt_reflectivity(angle, wavelength, layer_thickness, num_layers,delta,beta,sigma):
+    X = np.zeros(num_layers+1,dtype=complex)
+    r = np.zeros(num_layers+1, dtype=complex)
+    k = 2 * np.pi / wavelength
+    kz= np.zeros(num_layers+1,dtype=complex)
+    n = np.zeros(num_layers+1,dtype=complex)
+    n[0]=1-delta[0]-1j*beta[0]
+    kz[0] = k*np.sqrt(n[0]**2-np.cos(np.deg2rad(angle))**2)
+
+    for i in range(num_layers):
+        n[i+1]=1-delta[i+1]-1j*beta[i+1]     
+        kz[i+1] = k*np.sqrt(n[i+1]**2-np.cos(np.deg2rad(angle))**2)
+        r[i] = ((kz[i+1]-kz[i])/(kz[i+1]+kz[i])) *  np.exp(-2*kz[i]*kz[i+1]*sigma[i]**2)
+        X[i+1]=np.exp(-2j*kz[i+1]*layer_thickness[i])*((r[i] + X[i])/(1+r[i]*X[i] ))       
+    return abs(X[-1])**2
+
+
+def gen_parrat_curve(parrat_angle, wavelength, layer_thickness, delta, beta, sigma):
+    parrat_reflectivity=np.empty(len(parrat_angle))
+    for index,angle in enumerate(parrat_angle):
+        parrat_reflectivity[index] = parratt_reflectivity(angle, wavelength, layer_thickness, len(layer_thickness),delta,beta,sigma)
+    return parrat_reflectivity
+
+\end{lstlisting}
+
+
+\begin{lstlisting}[language=python, caption=code for the optimization]
+#The distance metric called in the objective. Using a good distance metric is critical here!    
+def distance(calced_dist,dist_comp):  
+    result=np.sum(np.abs(np.log(1.0/(calced_dist+1e-6))-np.log(1.0/(dist_comp+1e-6))))*(1/len(calced_dist))  
+    return result
+
+#the objective function combines searchspaces and distance metric
+def optuna_objective(trial,dist_comp,parrat_angle):
+    layer_thickness = trial.suggest_float('layer_thickness', 8.5e-8,8.7e-8)
+    delta1  = trial.suggest_float('delta1', 3e-6,8e-6 )
+    delta2  = trial.suggest_float('delta2', 8e-7,3e-6 )
+    beta1   = trial.suggest_float('beta1', 5e-9,1e-7  )
+    beta2   = trial.suggest_float('beta2', 1e-9,5e-8  )
+    sigma1  = trial.suggest_float('sigma1', 1e-11,1e-9)
+    sigma2  = trial.suggest_float('sigma2', 1e-11,1e-9)
+    return distance(gen_parrat_curve(parrat_angle,1.54e-10,[layer_thickness,0],[delta1,delta2,0],[beta1,beta2,0],[sigma1,sigma2]),dist_comp)
+
+#This function is called to actually perform the parametersearch. 
+#n_trials: determines how many parametercombinations should be tested
+#dist_comp: data to compre the result of the parrat algorithm to (the measured data)
+#parrat_angle: the corresponding angles to dist_comp
+def parameter_search(n_trials,dist_comp,parrat_angle):
+    optuna.logging.set_verbosity(optuna.logging.WARNING)
+    study = optuna.create_study(study_name='parratt',sampler=(optuna.samplers.TPESampler(seed=1)))
+    study.optimize(lambda trial: optuna_objective(trial,dist_comp,parrat_angle), n_trials=n_trials, catch=True,show_progress_bar=True)
+    return study.best_params
+
+parrat_angle_optuna = np.linspace(0, 2.5, len(geometry_corrected_relativity))
+optuna_params=parameter_search(300,geometry_corrected_relativity[1:]/(5*max_intensity),parrat_angle_optuna[1:])
+parratt_refl_optuna = gen_parrat_curve(parrat_angle, 1.54e-10,[optuna_params['layer_thickness'],0],[optuna_params['delta1'],optuna_params['delta2'],0],[optuna_params['beta1'],optuna_params['beta2'],0],[optuna_params['sigma1'],optuna_params['sigma2']])
+\end{lstlisting}

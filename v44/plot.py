@@ -136,9 +136,13 @@ D = 20 # mm, länge des wafers
 def radtodeg(rad):
     return rad*57.2958
 
-alpha_g_theo = np.arcsin(strahlbreite/D)
-alpha_g_theo = radtodeg(alpha_g_theo)
-print("Geometriewinkel-Theorie = ", alpha_g_theo)
+def degtorad(deg):
+    return deg*np.pi/180
+
+alpha_g_theo = unp.arcsin(ufloat(strahlbreite, 0.030)/D)
+alpha_g_theo_nom = radtodeg(unp.nominal_values(alpha_g_theo))
+alpha_g_theo_std = radtodeg(unp.std_devs(alpha_g_theo))
+print("Geometriewinkel-Theorie = ", ufloat(alpha_g_theo_nom, alpha_g_theo_std))
 
 plt.vlines([geometriewinkel_links, geometriewinkel_rechts], 0, max(intensity_rocking), linestyles="dashed", color="red")
 
@@ -154,7 +158,18 @@ print("Geometriewinkel = ", geometriewinkel_links, " und ", geometriewinkel_rech
 print("mittlerer Geometriewinkel = ", mittlerer_geometriewinkel, " +- ", abweichung_mittlerer_geometriewinkel)
 
 
-
+"""
+Strahlbreite =  0.17631863186318636
+mittlere volle Intensität =  374912.26923076925
+mittlere no intensität =  399.6666666666667
+Fitparameter:
+a =  -2123867.4963938277  +-  241153.8795209772
+b =  1002844.098701778  +-  87880.65573862198
+Lasergrenzen laut Fit =  0.2956625662566256  und  0.471981198119812 . Distanz =  0.17631863186318636
+Geometriewinkel-Theorie =  0.505122396592914
+Geometriewinkel =  -0.4  und  0.44
+mittlerer Geometriewinkel =  0.42000000000000004  +-  0.01999999999999999
+"""
 
 
 
@@ -166,13 +181,40 @@ print("mittlerer Geometriewinkel = ", mittlerer_geometriewinkel, " +- ", abweich
 alpha_reflect, intensity_reflect = np.genfromtxt("data/Reflect1.UXD", unpack=True)
 alpha_diffuse, intensity_diffuse = np.genfromtxt("data/Reflect2.UXD", unpack=True)
 
+mittlerer_geometriewinkel_rad = degtorad(mittlerer_geometriewinkel)
+
+def geometrische_korrektur_reflexion(winkel, intensity):
+    winkel = degtorad(winkel)
+    G = (D/strahlbreite * np.sin(winkel[winkel < mittlerer_geometriewinkel_rad]))
+    intensity[winkel < mittlerer_geometriewinkel_rad] /= G
+    print(G)
+    return intensity
+
 smaller_length = min(len(alpha_diffuse), len(alpha_reflect))
 intensity_true = intensity_reflect[:smaller_length] - intensity_diffuse[:smaller_length]
 alpha_true = alpha_reflect[:smaller_length]
 
+alpha_geometrische_korrektur = alpha_true
+intensity_geometrische_korrektur = geometrische_korrektur_reflexion(alpha_geometrische_korrektur, intensity_true)
+
+# Wellenlänge
+wavelength = 1.541*10**(-10) # m
+r_e = 2.817*10**(-15) # m 
+rho = 1.08 * 10**10 / (10**(-6))
+critical_angle = wavelength * np.sqrt(r_e * rho / np.pi)
+# ??????
+
+def ideal_fresnel(alpha_i):
+    R_F = (0.223/(2*alpha_i + 1e-8))**4
+    return R_F
+
+testangles = np.linspace(0, alpha_reflect[-1], 1000)
+ideal_fresnel_reflect = ideal_fresnel(testangles)
+
 plt.plot(alpha_reflect, intensity_reflect, label="Reflektivitätsscan")
 plt.plot(alpha_diffuse, intensity_diffuse, label="Diffuser Scan")
 plt.plot(alpha_true,    intensity_true,    label="Differenz der Scans")
+plt.plot(alpha_geometrische_korrektur, intensity_geometrische_korrektur, label="Geometrische Korrektur")
 plt.grid("on")
 plt.legend()
 plt.yscale("log")
@@ -180,3 +222,4 @@ plt.xlabel("alpha")
 plt.ylabel("Intensität")
 plt.savefig("plots/reflectivity.pdf")
 plt.figure()
+
