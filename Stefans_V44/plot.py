@@ -271,7 +271,7 @@ thickness_geometry_correction,minima_geometry=calc_thickness(ms_angle,geometry_c
 thickness_parrat,minima_parrat=calc_thickness(parrat_angle,parratt_refl_optuna,1.54e-10)
 
 plt.figure()
-plt.plot(ms_angle[1:], geometry_corrected_relativity[1:]/(5*max_intensity),'.',markersize=1,label='Corrected by geometry factor')
+plt.plot(ms_angle[1:], geometry_corrected_relativity[1:]/(5*max_intensity),label='Corrected by geometry factor')
 for i in minima_geometry:
     plt.axvline(ms_angle[i],color='black', linestyle='--')
 plt.axvline(ms_angle[minima_geometry[0]],color='black', linestyle='--',label='minima')
