@@ -89,3 +89,48 @@ Der mittlere Geometriewinkel liegt in der Messung bei
 \begin{equation*}
     \alpha_\text{g, mess.} = \qty{0.42(2)}{\degree}
 \end{equation*}
+
+\subsection{Reflektivität}
+
+Es wird ein Reflektivitätsscan und ein diffuser Scan aufgenommen, zu sehen in \autoref{fig:reflectivity}. Auf der $y$-Achse sind nicht die direkten Messwerte dargestellt, sondern die Reflektivitätsscan
+\begin{equation*}
+    R = \frac{I_\text{Mess}}{5\cdot I_\text{Max}},
+\end{equation*}
+wobei der Faktor $5$ im Nenner dadurch begründet ist, dass das Maximum in \autoref{fig:detektorscan} nur über $1$ Sekunde aufgenommen wurde, die Messung der Reflektivität aber über $5$ Sekunden lief.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/reflectivity.pdf}
+    \caption{Die Messung des Reflektivitätsscans (blau), des diffusen Scans (orange), die Differenz (grün, überdeckt), die Differenz bereinigt um die geometrische Korrektur (rot), ausgewählte Maxima (schwarze Punkte) und die reine Fresnelreflektivität (lila).}
+    \label{fig:reflectivity}
+\end{figure}
+
+Aus den Abständen aufeinanderfolgender Maxima bzw. Minima lässt sich die Schichtdicke nach \autoref{eq:Schichtdicke} abschätzen zur
+\begin{equation*}
+    d = \qty{8.83(25)e-8}{\meter},
+\end{equation*}
+
+die dafür herangezogenen Maxima sind ebenfalls in \autoref{fig:reflectivity} dargestellt.
+
+Mit dem Parratt-Algorithmus \ref{eq:parratt} kann die Reflektivität genähert werden. Um die nötigen Parameter zu bestimmen,
+wird eine Parametersuche mit optuna gemacht. Die gefundenen Parameter sind dargestellt in \autoref{tab:parratt}.
+
+\begin{table}[H]
+    \centering
+    \caption{Gefundene Parratt-Parameter.}
+    \label{tab:parratt}
+    \begin{tabular}{c c}
+        \toprule
+        {Parameter} & {Wert} \\
+        \midrule
+        Schichtdicke & $\qty{8.693e-8}{\meter}$ \\
+        $\delta_\text{Si}$ & $\num{7.861e-6}$ \\
+        $\delta_\text{Poly}$ & $\num{9.418e-7}$ \\
+        $\beta_\text{Si}$    & $\num{8.645e-8}$ \\
+        $\beta_\text{Poly}$  & $\num{1.405e-8}$ \\
+        $\sigma_\text{Si}$   & $\qty{5.182e-10}{\meter}$ \\
+        $\sigma_\text{Poly}$ & $\qty{9.966e-10}{\meter}$ \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
