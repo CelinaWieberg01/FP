@@ -210,8 +210,8 @@ def optuna_objective(trial,dist_comp,parrat_angle):
     layer_thickness = trial.suggest_float('layer_thickness', 8.5e-8,8.7e-8)
     delta1  = trial.suggest_float('delta1', 3e-6,8e-6 )
     delta2  = trial.suggest_float('delta2', 8e-7,3e-6 )
-    beta1   = trial.suggest_float('beta1', 5e-9,1e-7  )
-    beta2   = trial.suggest_float('beta2', 1e-9,5e-8  )
+    beta1   = trial.suggest_float('beta1', 6e-8,3e-7  )
+    beta2   = trial.suggest_float('beta2', 1e-9,9e-9  )
     sigma1  = trial.suggest_float('sigma1', 1e-11,1e-9)
     sigma2  = trial.suggest_float('sigma2', 1e-11,1e-9)
     return distance(gen_parrat_curve(parrat_angle,1.54e-10,[layer_thickness,0],[delta1,delta2,0],[beta1,beta2,0],[sigma1,sigma2]),dist_comp)
@@ -272,9 +272,9 @@ thickness_parrat,minima_parrat=calc_thickness(parrat_angle,parratt_refl_optuna,1
 
 plt.figure()
 plt.plot(ms_angle[1:], geometry_corrected_relativity[1:]/(5*max_intensity),label='Corrected by geometry factor')
-for i in minima_geometry:
-    plt.axvline(ms_angle[i],color='black', linestyle='--')
-plt.axvline(ms_angle[minima_geometry[0]],color='black', linestyle='--',label='minima')
+#for i in minima_geometry:
+#    plt.axvline(ms_angle[i],color='black', linestyle='--')
+#plt.axvline(ms_angle[minima_geometry[0]],color='black', linestyle='--',label='minima')
 plt.plot(parrat_angle, parratt_refl_optuna ,label='Parratt')
 plt.xlabel(r'$\alpha_\text{i}\,/\,°$')
 plt.ylabel('Reflectivity')

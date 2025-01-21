@@ -1,2 +1,64 @@
 \section{Diskussion}
 \label{sec:Diskussion}
+
+\subsection{Geometriewinkel}
+
+Für den Geometriewinkel findet sich
+\begin{align*}
+    \alpha_\text{g, theo.} &= \qty{0.51(9)}{\degree} \\
+    \alpha_\text{g, mess.} &= \qty{0.42(2)}{\degree} \\
+    \Delta \alpha_\text{g} &= \num{17.6} \, \%.
+\end{align*}
+
+Eine Verbesserung wäre mit einer verlängerten Messzeit und feineren Messschritten möglich.
+
+\subsection{Parratt-Algorithmus}
+
+Der Parratt-Algorithmus liefert keinesfalls die besten Parameter, um die Messdaten zu beschreiben. Vergleiche mit Altprotokollen zeigen,
+dass es möglich ist, die Kiessig-Oszillationen fast genau zu beschreiben, was hier aber nicht der Fall ist.
+
+Für die Schichtdicke findet sich
+\begin{align*}
+    d_\text{Kiessig} &= \qty{8.83(25)e-8}{\meter} \\
+    d_\text{Parratt} &= \qty{8.693e-8}{\meter} \\
+    \Delta d &= \num{1.57} \, \%.
+\end{align*}
+
+Für die Dispersion ergibt sich mit den Literaturwerten
+\begin{align*}
+    \delta_\text{Si, Lit.} &= \num{7.6e-6} \\
+    \delta_\text{Si, Parratt} &= \num{7.861e-6} \\
+    \Delta \delta_\text{Si} &= \num{3.4} \, \%
+\end{align*}
+
+und
+
+\begin{align*}
+    \delta_\text{Poly., Lit.} &= \num{3.5e-6} \\
+    \delta_\text{Poly., Parratt} &= \num{9.418e-7} \\
+    \Delta \delta_\text{Poly} &= \num{73.0} \, \%.
+\end{align*}
+
+Für den kritischen Winkel $\alpha_\text{c}$ ergibt sich
+
+\begin{align*}
+    \alpha_\text{c, Si, Lit} &= \qty{0.223}{\degree} \\
+    \alpha_\text{c, Si, Parratt} &= \qty{0.227}{\degree} \\
+    \Delta \alpha_\text{c, Si} &= \num{1.7} \, \%.
+\end{align*}
+
+und 
+
+\begin{align*}
+    \alpha_\text{c, Poly., Lit} &= \qty{0.153}{\degree} \\
+    \alpha_\text{c, Poly., Parratt} &= \qty{0.078}{\degree} \\
+    \Delta \alpha_\text{c, Poly} &= \num{49.0} \, \%.
+\end{align*}
+
+Gründe für die Abweichungen sind unter anderem einmal, dass der Parratt-Algorithmus sichtlich verbesserungswürdig ist, wie bereits erklärt,
+aber auch die Bedingungen der Probe. Kratzer und Flecken sind starke verunreinigungen und haben starken Einfluss auf die Oberflächenbeschaffenheit und dementsprechend
+wirken sich Kratzer auch auf die Reflektivität aus. Diese Kratzer würden sich aber deutlich stärker in den Daten äußern, was hier nicht der Fall war, weshalb davon ausgegangen werden kann, 
+dass keine signifikante Störstelle direkt bestrahlt wurde.
+
+Nichtsdestotrotz ist die Abweichung der berechneten Schichtdicken über die Kiessig-Oszillationen und den Parratt-Algorithmus 
+sehr gering mit nur $\num{1.57} \, \%$
