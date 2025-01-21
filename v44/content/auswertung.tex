@@ -1,6 +1,31 @@
 \section{Auswertung}
 \label{sec:Auswertung}
 
+\subsection{Fehler}
+Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
+Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}. \\
+Der Mittelwert $\bar{x}$ von $N$ gemessenen Werten $a$ bestimmt sich über
+\begin{equation}
+    \bar{x} = \frac{1}{N} \sum^N_{i=1} a_i,
+    \label{eq:mittelwerte}
+\end{equation}
+der Fehler des Mittelwertes über
+\begin{equation}
+    \Delta x = \sqrt{\frac{1}{N \cdot (N-1)} \sum^N_{i=1}(a_i - \bar{x})}.
+    \label{eq:mittelwerte_fehler}
+\end{equation}
+Die Gaußsche Fehlerfortpflanzung für eine berechnete Größe $f$ lautet
+\begin{equation}
+    \Delta f = \sqrt{ \sum^N_{i=1} \left( \frac{\delta f}{\delta x_i}\right)^2 \cdot (\Delta x_i)^2}.
+\end{equation}
+Prozentuale Abweichungen werden mit
+\begin{equation}
+    \Delta x = \left|\frac{x - a}{a}\right|
+    \label{eq:abweichung}
+\end{equation}
+berechnet, wobei $a$ ein Vergleichswert und $x$ der erhaltene Wert ist.
+\newpage
+
 \subsection{Detektorscan}
 
 Für den Detektorscan wird ein Gaußfit der Form
@@ -69,7 +94,7 @@ was einer Strahlbreite von
 
 entspricht. 
 
-Der Geometriewinkel wird einmal berechnet und anschließend gemessen. Nach %%%%% REF GEOMETRIEWINKEL 
+Der Geometriewinkel wird einmal berechnet und anschließend gemessen. Nach \autoref{eq:geometriewinkel}
 ergibt sich mit der Strahlbreite $d$ ein theoretischer Geometriewinkel von
 \begin{equation*}
     \alpha_\text{g, theo.} = \qty{0.51(9)}{\degree}.
@@ -105,7 +130,7 @@ wobei der Faktor $5$ im Nenner dadurch begründet ist, dass das Maximum in \auto
     \label{fig:reflectivity}
 \end{figure}
 
-Aus den Abständen aufeinanderfolgender Maxima bzw. Minima lässt sich die Schichtdicke nach \autoref{eq:Schichtdicke} abschätzen zur
+Aus den Abständen aufeinanderfolgender Maxima bzw. Minima lässt sich die Schichtdicke nach \autoref{eq:schichtdicke} abschätzen zur
 \begin{equation*}
     d = \qty{8.83(25)e-8}{\meter},
 \end{equation*}
@@ -143,10 +168,10 @@ Die Näherung durch den Parratt-Algorithmus ist dargestellt in \autoref{fig:parr
     \label{fig:parratt}
 \end{figure}
 
-Die Parameter des Parratt-Algorithmus ergeben mit \autoref{eq:kritischer_winkel} kritische Winkel von
+Die Parameter des Parratt-Algorithmus ergeben mit \autoref{eq:kritischerwinkel} kritische Winkel von
 
 \begin{align*}
-    \alpha_\text{c, Si} &= \qty{0.227}{\degree} \\
-    \alpha_\text{c, Poly} &= \qty{0.078}{\degree}.
+    \theta_\text{c, Si} &= \qty{0.227}{\degree} \\
+    \theta_\text{c, Poly} &= \qty{0.078}{\degree}.
 \end{align*}
 

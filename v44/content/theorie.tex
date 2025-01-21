@@ -121,6 +121,7 @@ Dabei ist \(m\) eine ganze Zahl, \(d\) die Schichtdicke, \(\theta\) der Einfalls
 Mithilfe der Kiessig-Oszillationen lässt sich die Dicke der Schicht über folgende Gleichung bestimmen:
 \begin{equation}
     d=\frac{\lambda}{2\increment\alpha_\text{i}}
+    \label{eq:schichtdicke}
 \end{equation}
 Hierbei ist $\alpha_i$ der Abstand zweier Extrema welche das gleiche Vorzeichen haben.
 Besteht das System aus mehr als zwei Schichten werden die Kiessig-Oszillationen überlagert, Mithilfe des Parratt-Algorithmus werden 
@@ -131,7 +132,7 @@ die Reflexion der vorherigen Schicht und der Transmissionskoeffizient der aktuel
 für das Multischichtsystem. Das Schema ist zu sehen in \autoref{fig:Abbildung3}.
 
 \begin{figure}
-    \includegraphics{bilder/Multischichten.png}
+    \includegraphics[width=\textwidth]{bilder/Multischichten.png}
     \caption{Skizze eines Systems aus N+1 Schichten mit N Grenzflächen. Es gilt $R_{N+1}=0$
     das heißt, dass es keine Reflexion vom Substrat gibt. \cite{Multischichten}}
     \label{fig:Abbildung3}
@@ -140,6 +141,7 @@ für das Multischichtsystem. Das Schema ist zu sehen in \autoref{fig:Abbildung3}
 Die Rekursionsformel lautet dann
 \begin{equation}
     X_j=\frac{R_j}{T_j}=\exp(-2ik_{z,j}z_j)\frac{r_{j,j+1}+X_{j+1} \exp(2ik_{z,j+1}z_j)}{1+r_{j,j+1}X_{j+1} \exp(2ik_{z,j+1}z_j)}
+    \label{eq:parratt}
 \end{equation}
 mit dem j-ten Reflexionskoeffizient aus den Fresnelschen Formeln
 \begin{equation}
@@ -156,15 +158,15 @@ mit \(N\) als Gesamtanzahl der Schichten
 
 \begin{figure}
     \includegraphics[width=\textwidth]{bilder/Rauigkeit.jpg}
-    \caption{Reflexion von Strahlung an einer glatten Oberfläche im Vergleich zur Reflexion an einer rauen Oberfläche}
+    \caption{Reflexion von Strahlung an einer glatten Oberfläche im Vergleich zur Reflexion an einer rauen Oberfläche. \cite{Oberflächen}
+    }
     \label{fig:Abbildung4}
 \end{figure}
-\cite{Oberflächen}
 
 
 In der Praxis sind Grenzschichten nicht perfekt glatt, sonder uneben, schematisch dargestellt in \autoref{fig:Abbildung4}. Diese Unebenheit wird als Rauigkeit bezeichnet.
 Mathematisch kann die Rauigkeit als Varianz des Höhenfeldes einer Oberfläche beschrieben werden, sie gibt also an, wie Stark die einzelnen
-Höhenwerte um den Durchschnittswert streuen. Die Varianz ist die quadrierte Standartabweichung $\sigma$ 
+Höhenwerte um den Durchschnittswert streuen. Die Varianz ist die quadrierte Standardabweichung
 \begin{equation}
     \sigma^2_j=\int^{}(z-z_j)^2P_j(z)dz
 \end{equation}
@@ -180,13 +182,13 @@ bei betrachtung von rauen Oberflächen müssen sie Mithilfe der Varianz $\sigma^
     \tilde{r}{_{j,j+1}}=r_{j,j+1}exp(-2k_{z,j}k_{z,j+1}\sigma_j^2)
 \end{equation}
 
-Mit diesen modifizierten Koeffizienten kann der Parratt-Algorithmus auch auf Raue Grenzfläöchen angewendet werden.
+Mit diesen modifizierten Koeffizienten kann der Parratt-Algorithmus auch auf Raue Grenzflächen angewendet werden.
 \subsection{Der Geometriefaktor}
-Unter einem bestimmten Einfallswinkel unter dem Grenzwinkel $\alpha_c$ trifft nicht mehr der gesamte Röntgenstrahl
+Unter einem Einfallswinkel kleiner als der Grenzwinkel $\alpha_\text{c}$ trifft nicht mehr der gesamte Röntgenstrahl
 auf die Probe, sondern nurnoch ein Teil. Der Grenzwinkel ist abhängig von der Strahlbreite $d_0$ und der Länge der Probe \(D\)
 
 \begin{equation}
-    \alpha_c=arcsin\Bigl(\frac{d_0}{D}\Bigr)
+    \alpha_\text{c}=\arcsin\Bigl(\frac{d_0}{D}\Bigr).
 \end{equation}
 
 Um diesen Effekt zu berücksichtigen wird der Geometriefaktor \(G\) eingeführt
@@ -194,11 +196,9 @@ Um diesen Effekt zu berücksichtigen wird der Geometriefaktor \(G\) eingeführt
 \begin{equation}
     G=
     \begin{cases}
-        \frac{Dsin(\alpha_i)}{d_0}  &  \alpha_i < \alpha_c \\
-        1                           & \alpha_i \ge \alpha_c \\
+        \frac{Dsin(\alpha_i)}{d_0}  &  \alpha_\text{i} < \alpha_\text{c} \\
+        1                           & \alpha_\text{i} \ge \alpha_\text{c} \\
 
     \end{cases}
+    \label{eq:geometriewinkel}
 \end{equation}   
-
-
-\cite{sample}
