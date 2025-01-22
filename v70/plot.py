@@ -882,3 +882,49 @@ m =  (1.44+/-0.06)e-05    b =  (-4+/-4)e-05
 #L_inv = 1/S_eff - 1/S
 #L = 1/L_inv
 #print(L)
+
+plt.figure()
+
+xx = np.array([1, 2, 3, 4, 5, 6, 7])
+Saugvermögen_nom = np.array([1.39, 0.49, 0.41, 1.54, 1.64, 1.60, 1.02])
+Saugvermögen_err = np.array([0.14, 0.05, 0.04, 0.16, 0.17, 0.17, 0.15])
+
+Saugvermögen_mean_nom = np.mean(Saugvermögen_nom)
+Saugvermögen_mean_err = 1/len(Saugvermögen_nom) * np.sum(np.abs(Saugvermögen_nom -Saugvermögen_mean_nom))
+print("Mittleres Saugvermögen DP = ", Saugvermögen_mean_nom, " +- ", Saugvermögen_mean_err)
+
+plt.errorbar(xx, Saugvermögen_nom, Saugvermögen_err, fmt="x", color="red", label="Saugvermögen")
+plt.hlines(Saugvermögen_mean_nom, 1, 7, label="Mittelwert")
+plt.xticks(xx, (r"$S_1$", r"$S_2$", r"$S_3$", r"$S_{100}$", r"$S_{50}$", r"$S_{10}$", r"$S_{0.5}$"))
+plt.xlabel("Benanntes Saugvermögen")
+plt.ylabel("Saugvermögen in L/s")
+plt.grid("on")
+plt.legend()
+plt.savefig("Diskussion_DP_Saugvermögen.pdf")
+plt.figure()
+
+
+
+xx = np.array([1, 2, 3, 4, 5, 6, 7])
+Saugvermögen_nom = np.array([7.5, 0.78, 0.192, 15, 23, 7.5, 10])
+Saugvermögen_err = np.array([0.8, 0.08, 0.019, 5, 8, 2.4, 3.2])
+
+Saugvermögen_mean_nom = np.mean(Saugvermögen_nom)
+Saugvermögen_mean_err = 1/len(Saugvermögen_nom) * np.sum(np.abs(Saugvermögen_nom -Saugvermögen_mean_nom))
+print("Mittleres Saugvermögen TP = ", Saugvermögen_mean_nom, " +- ", Saugvermögen_mean_err)
+
+plt.errorbar(xx, Saugvermögen_nom, Saugvermögen_err, fmt="x", color="red", label="Saugvermögen")
+plt.hlines(Saugvermögen_mean_nom, 1, 7, label="Mittelwert")
+plt.xticks(xx, (r"$S_1$", r"$S_2$", r"$S_3$", r"$S_{10^{-4}}$", r"$S_{2 \cdot 10^{-4}}$", r"$S_{5 \cdot 10^{-5}}$", r"$S_{7 \cdot 10^{-5}}$"))
+plt.xlabel("Benanntes Saugvermögen")
+plt.ylabel("Saugvermögen in L/s")
+plt.grid("on")
+plt.legend()
+plt.show()
+plt.savefig("Diskussion_TP_Saugvermögen.pdf")
+plt.figure()
+
+"""
+Mittleres Saugvermögen DP =  1.1557142857142857  +-  0.4420408163265306
+Mittleres Saugvermögen TP =  9.138857142857143  +-  5.880979591836735
+"""
