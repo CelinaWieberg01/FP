@@ -8,15 +8,15 @@ und der entstehende Strom $I$ beim Aufwärmen gemessen. Über den Verlauf des St
 \subsection{Ionenkristalle}
 Ordnen sich Anionen und Kationen in einer regelmäßigen Kristallstruktur an, spricht man von Ionenkristallen.
 Die Bindungskraft ist die elektrostatische Anziehungskraft zwischen den involvierten Ionen, eine sehr starke Kraft, weshalb die Schmelzetemperatur 
-von Ionenkristallen sehr hoch ist. 
+von Ionenkristallen sehr hoch ist \cite{schmelzpunkt}.
 
 In Ionenkristallen gibt es verschiedene Defekte. So kann eine Gitterstelle unbesetzt sein, mit einem Fremdatom besetzt sein oder es können Zwischengitterplätze belegt sein, schematisch zu sehen in
 \autoref{fig:defekte}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Bilder/bild.png}
-    \caption{Schematische Darstellung von Defekten in Kristallstrukturen.}
+    \includegraphics[width=0.85\textwidth]{Bilder/bildd.png}
+    \caption{Schematische Darstellung von Defekten in Kristallstrukturen \cite{bild}.}
     \label{fig:defekte}
 \end{figure}
 
@@ -25,7 +25,7 @@ insgesamt nach außen hin elektrisch neutral ist.
 
 Wird nun ein Fremdatom mit einer anderen Ladung $q_i$ in das Gitter eingeführt, beispielsweise ionisiertes Strontium mit einer zweifach positiven Ladung in ein Cäsium-Iodid-Kristall, wo das Cäsium nur einfach positiv geladen ist,
 dann ist der Kristall lokal um das Strontium positiv geladen. Um für die zweifache positive Ladung zu kompensieren, kommt es zu Veränderungen innerhalb des Kristalls, z.B. durch die Verschiebung von Cäsium oder Iodid, sodass der Kristall
-elektrisch neutral wird. Dabei entstehen Dipole $\vect{p}_i$ zwischen dem Strontium und den Cäsium-Leerstellen oder den verschobenen Iodid-Atomen. Diese Dipole sind bei Raumtemperatur zufällig verteilt, sodass der Kristall ein gesamtes Dipolmoment von 0 hat,
+elektrisch neutral wird. Dabei entstehen Dipole $\vec{p}_i$ zwischen dem Strontium und den Cäsium-Leerstellen oder den verschobenen Iodid-Atomen. Diese Dipole sind bei Raumtemperatur zufällig verteilt, sodass der Kristall ein gesamtes Dipolmoment von 0 hat,
 \begin{equation*}
     \vec{p} = \sum_i \vec{p}_i = \sum_i q_i \cdot \vec{r}_i = 0,
  \end{equation*}
@@ -43,7 +43,7 @@ Wird ein elektrisches Feld $\vec{E}$ angelegt, können sich diese Dipole rotiere
 ist die energetisch günstigste Orientierung erreicht, wenn die Dipole parallel zum Feld liegen. Dies ist nur unter der Anwesenheit eines elektrischen Feldes der Fall.
 Die Orientierung der Dipole kann nun festgehalten werden, wenn man den Kristall stark kühlt. Wird das elektrische Feld nun ausgeschaltet, benötigen die Dipole eine gewisse Energie $W$, genannt Aktivierungsenergie, um das Coulomb-Potential des Ionengitters zu überwinden
 und die nun energetisch günstigere zufällige Orientierung anzunehmen. 
-Von Interesse ist dabei die Zeit $\tau$, die vergeht, bis der Kristall wieder entpolarisiert ist. Aufgrund der thermischen Natur lässt sich dieser Vorgang mit der Arrhenius-Gleichung 
+Von Interesse ist dabei die Zeit $\tau$, die vergeht, bis der Kristall wieder entpolarisiert ist. Aufgrund der thermischen Natur lässt sich dieser Vorgang mit der Arrhenius-Gleichung \cite{fuller}
 \begin{equation}
     \tau\left(T\right) = \tau_0 e^{\frac{W}{k_\text{B}T}}
     \label{eq:arrhenius}
@@ -56,24 +56,21 @@ Wird die kalte, polarisierte Probe nun mit einer konstanten Heizrate $b$ erwärm
 das bindende Potential überwinden können. Viel prominenter aber ist die Reorientierung der Dipole, sobald diese ihre Aktivierungsenergie $W$ erhalten. Diese Reorientierung (und zum kleinen Teil die nun freien Ladungsträger) in energetisch günstigere Zustände
 sorgen für einen messbaren Strom, dem Depolarization Current.
 
-Der Depolarization Current lässt sich über folgenden Gedanken quantifizieren:
-
+Der Depolarization Current lässt sich über folgenden Gedanken quantifizieren \cite{fuller}:
 \begin{equation*}
     I\left(T\right) \propto \left(\text{Polarisation pro Dipol}\right) \cdot \left(\text{Anzahl teilnehmender Dipole}\right) \cdot \left(\text{Dipolrelaxationsrate}\right)
 \end{equation*}
-
 Die Dipolrelaxationsrate ist das Inverse der Relaxationszeit \ref{eq:arrhenius}. Die Polarisation pro Dipol $P$ lässt sich über die Debye-Theorie schreiben als
 \begin{equation}
-    P = \frac{\vec{p}^2 \left\lvert E \right\rvert}{3 k_\text{B} T}.
+    P = \frac{\vec{p}^2 \left\lvert \vec{E} \right\rvert}{3 k_\text{B} T}.
     \label{eq:polarisation}
 \end{equation}
 Die Anzahl teilnehmender Dipole $N\left(T\right)$ lässt sich bestimmen über
 \begin{equation}
-    N\left(T\right) = N_\text{p} \exp\left(\frac{-1}{b\tau_0} \int_{T_0}^{T'} \exp\left(\frac{-W}{k_\text{B}T'}\right)\mathrm{d}T'\right),
+    N\left(T\right) = N_\text{p} \exp\left(\frac{-1}{b\tau_0} \int_{T_0}^{T} \exp\left(\frac{-W}{k_\text{B}T'}\right)\mathrm{d}T'\right),
     \label{eq:dipolanzahl}
 \end{equation}
 wobei $N_\text{p}$ die Anzahl ursprünglich parallel orientierter Dipole ist und $T_0$ die Starttemperatur, $T$ die Temperatur zu einem bestimmten Zeitpunkt bei der Aufwärmung ist.
-
 Für den Strom gilt somit
 \begin{equation}
     I\left(T\right) = \frac{\vec{p}^2 \left\lvert \vec{E} \right\rvert}{3 k_\text{B} T_1} \cdot N_\text{p} \exp\left(\frac{-1}{b\tau_0} \int_{T_0}^{T'} \exp{\frac{-W}{k_\text{B}T'}}\right) \cdot \frac{1}{\tau_0} e^{\frac{-W}{k_\text{B}T}}.
@@ -89,35 +86,31 @@ Damit lässt sich die charakteristische Relexationszeit $\tau_0$ berechnen zu
 
 
 
-\subsection{\(W\) über den Polarisationsansatz}
+\subsection{Aktivierungsenergie über den Polarisationsansatz}
 
 Ist $W$ groß im Vergleich zur thermischen Energie $k_\text{B}T$ und die Temperaturdifferenz $T - T_0$ klein, so nähert sich für das Integral in \autoref{eq:dipolanzahl}
 \begin{equation*}
     \int_{T_0}^{T'} \exp{\frac{-W}{k_\text{B}T'} \mathrm{d}}T' \approx 0
 \end{equation*}
-
 und für den Strom gilt
 \begin{equation}
     \ln{I\left(T\right)} \approx \text{C} - \frac{W}{k_\text{B}} \left(T^{-1}\right).
     \label{eq:fit_polarisationsansatz}
 \end{equation}
-
-Über eine lineare Regression lässt sich somit $W$ berechnen. 
-
+Über eine lineare Regression lässt sich somit $W$ berechnen \cite{fuller}. 
 
 
 
-\subsection{\(W\) und \(\tau_0\) über die Stromdichte}
-Das Integral des Depolarization Currents $I\left(T\right)$ ist proportional zur Polarisierung $P$,
+
+\subsection{Aktivierungsenergie und charakteristische Relexationszeit über die Stromdichte}
+Das Integral des Depolarization Currents $I(T)$ ist proportional zur Polarisierung $P$,
 \begin{equation*}
     \int_{T_0}^{T_1} I\left(T\right) \mathrm{d}T = P_0 A = \frac{N \vec{p} \left\lvert \vec{E} \right\rvert}{3k_\text{B}T},
 \end{equation*}
 mit der Probenoberfläche $A$ und der Polarisierung $P_0$ zur Temperatur $T_0$. Über die Änderung der Polarisation 
 ausgezeichnet durch die Stromdichte lässt sich folgende Gleichung herleiten.
-
 \begin{equation}
     \ln\left(\tau\right) = \ln\left(\tau_0\right) + \frac{W}{k_\text{B}T} = \ln\left(\int_{t(T)}^{\infty} I(T(t'))\mathrm{d}t'\right) - \ln\left(I(T)\right)
     \label{eq:fit_stromdichtenansatz}
 \end{equation}
-
-Über ein numerisches Integral lassen sich somit auch $W$ und $\tau_0$ bestimmen.
+Über ein numerisches Integral lassen sich somit auch $W$ und $\tau_0$ bestimmen \cite{fuller}.
