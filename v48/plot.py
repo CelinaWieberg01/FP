@@ -29,7 +29,7 @@ plt.title('Der Depolarisationsstrom für die erste Heizrate')
 plt.grid(True)
 plt.xlim(200, 300)
 plt.ylim(0, 5)
-plt.show()
+#plt.show()
 plt.clf()
 
 #Datensatz 2
@@ -60,7 +60,7 @@ plt.title('Der Depolarisationsstrom für die zweite Heizrate')
 plt.grid(True)
 plt.xlim(200, 300)
 plt.ylim(0, 5)
-plt.show()
+#plt.show()
 plt.clf()
 
 #Angabe Heizraten
@@ -85,7 +85,7 @@ plt.title('Bereinigter Depolarisationsstrom für die erste Heizrate')
 plt.grid(True)
 plt.xlim(200, 340)
 plt.ylim(0, max(bereinigt1))
-plt.show()
+#plt.show()
 plt.clf()
 
 #Plot der bereinigten Daten für Reihe 2
@@ -96,7 +96,146 @@ plt.title('Bereinigter Depolarisationsstrom für die erste Heizrate')
 plt.grid(True)
 plt.xlim(200, 340)
 plt.ylim(0, max(bereinigt2))
+#plt.show()
+plt.clf()
+
+#Aktivierungsenergie über den Polarisationsansatz
+k_B = constants.Boltzmann
+
+#Messreihe 1
+ln_I1 = np.log(I1[14:-35])
+inv_T1= 1 / (k_B * T1[14:-35]) 
+#print(ln_I1)
+fit_params_W1, fit_cov_W1 = np.polyfit(inv_T1, ln_I1, 1, cov=True)  # Lineare Regression
+alpha_W1 = ufloat(fit_params_W1[0], np.sqrt(fit_cov_W1[0][0]))
+beta_W1 = ufloat(fit_params_W1[1], np.sqrt(fit_cov_W1[1][1]))
+
+W1 = -alpha_W1 * k_B  
+
+print(f'Aktivierungsenergie W1 = {W1:.2f} eV')
+
+# Plot für ln(I1) gegen 10^-18 J / K_b T
+plt.scatter(1 / (k_B * T1) , np.log(I1), color='red', marker='x', label='ln(I_1) gegen 1 / k_b T')
+fit_line_W1_x = np.linspace((44), (51), 100)
+fit_line_W1_y = np.polyval(fit_params_W1, fit_line_W1_x)
+plt.plot(fit_line_W1_x, fit_line_W1_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / k_b T$ eV')
+plt.ylabel(r'$ln(I)$ in pA')
+plt.title('ln(I) gegen $1 / k_b T$ eV für die erste Heizrate')
+plt.grid(True)
+#plt.legend()
 plt.show()
 plt.clf()
 
-#Aktivierungsenergie über die Stromdichte
+# Messreihe 2
+ln_I2 = np.log(I2[14:-19])  # Logarithmus des Stroms
+inv_T2 = 1 / (k_B * T2[14:-19])  # Inverse Temperatur
+print(ln_I2)
+fit_params_W2, fit_cov_W2 = np.polyfit(inv_T2, ln_I2, 1, cov=True)  # Lineare Regression
+alpha_W2 = ufloat(fit_params_W2[0], np.sqrt(fit_cov_W2[0][0]))
+beta_W2 = ufloat(fit_params_W2[1], np.sqrt(fit_cov_W2[1][1]))
+
+W2 = -alpha_W2 * k_B 
+
+print(f'Aktivierungsenergie W2 = {W2:.2f} eV')
+
+# Plot für ln(I2) gegen 10^-18 J / K_b T
+plt.scatter(1 / (k_B * T2) , np.log(I2), color='red', marker='x', label='ln(I_2) gegen 1 / k_b T')
+fit_line_W2_x = np.linspace(44.4 ,51, 100)
+fit_line_W2_y = np.polyval(fit_params_W2, fit_line_W2_x)
+plt.plot(fit_line_W2_x, fit_line_W2_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / k_b T$ eV')
+plt.ylabel(r'$ln(I)$ in pA')
+plt.title('ln(I) gegen $1 / k_b$')
+plt.grid(True)
+plt.show()
+plt.clf()
+
+# Aktivierungsenergie und Relaxationszeit über den Ansatz der Stromdichte
+def grafik_integration(I, T):
+    return np.cumsum(I * np.gradient(T))
+
+# Hilfsfunktion zur Berechnung von f(T)
+def berechne_f_T(I, T):
+    P = grafik_integration(I, T)
+    f_T = np.log(P) - np.log(I)
+    return f_T
+
+# Messreihe 1
+f_T1 = berechne_f_T(I1, T1)
+print("Werte von ln(f(T)) für Messreihe 1:", f_T1)
+
+# Plot ohne Regression anzeigen
+plt.scatter(1 / (k_B * T1) , f_T1, color='purple', marker='x', label='ln(f(T_1)) gegen 1 / k_b T')
+plt.xlabel(r'$1 / k_b T$ [eV]')
+plt.ylabel(r'$ln(f(T))$')
+plt.title('ln(f(T)) gegen $1 / k_b T$ [eV] für die erste Heizrate')
+plt.grid(True)
+plt.legend()
+plt.show()
+plt.clf()
+
+# Definition des Bereichs für die Regression für Messreihe 1
+fit_line_tau1_x = np.linspace(40, 60, 100)  # Manuelle Definition des Bereichs
+relevante_indices1 = np.where((1 / (k_B * T1) >= 0) & (1 / (k_B * T1) <= 100))
+print("ggggggggggggggg",relevante_indices1)
+inv_T1_relevant = 1 / (k_B *T1[relevante_indices1]) 
+f_T1_relevant = f_T1[relevante_indices1]
+
+print("Relevante Werte für Messreihe 1 - inv_T1_relevant:", inv_T1_relevant)
+print("Relevante Werte für Messreihe 1 - f_T1_relevant:", f_T1_relevant)
+
+fit_params_tau1, fit_cov_tau1 = np.polyfit(inv_T1_relevant, f_T1_relevant, 1, cov=True)  # Lineare Regression
+fit_line_tau1_y = np.polyval(fit_params_tau1, fit_line_tau1_x)
+
+# Plot der Regression
+plt.scatter(1 / (k_B * T1) , f_T1, color='red', marker='x', label='ln(f(T_1)) gegen 1 / k_b T')
+plt.plot(fit_line_tau1_x, fit_line_tau1_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / k_b T$ [eV]')
+plt.ylabel(r'$ln(f(T))$')
+plt.title('ln(f(T)) gegen $1 / k_b T$ [eV] für die erste Heizrate')
+plt.grid(True)
+plt.legend()
+plt.xlim(40, 60)
+#plt.ylim(-2, 6)
+plt.show()
+plt.clf()
+
+# Messreihe 2
+f_T2 = berechne_f_T(I2, T2)
+print("Werte von ln(f(T)) für Messreihe 2:", f_T2)
+
+# Plot ohne Regression anzeigen
+plt.scatter(1 / (k_B * T2) , f_T2, color='purple', marker='x', label='ln(f(T_2)) gegen 1 / k_b T')
+plt.xlabel(r'$1 / k_b T$ [eV]')
+plt.ylabel(r'$ln(f(T))$')
+plt.title('ln(f(T)) gegen $1 / k_b T$ [eV] für die zweite Heizrate')
+plt.grid(True)
+plt.legend()
+#plt.show()
+plt.clf()
+
+# Definition des Bereichs für die Regression für Messreihe 2
+fit_line_tau2_x = np.linspace(46.5, 49.5, 100)  # Manuelle Definition des Bereichs
+relevante_indices2 = np.where((1 / (k_B * T2)>= 46.5) & (1 / (k_B * T2) <= 49.5))
+inv_T2_relevant = 1 / T2[relevante_indices2]
+f_T2_relevant = f_T2[relevante_indices2]
+
+print("Relevante Werte für Messreihe 2 - inv_T2_relevant:", inv_T2_relevant)
+print("Relevante Werte für Messreihe 2 - f_T2_relevant:", f_T2_relevant)
+
+fit_params_tau2, fit_cov_tau2 = np.polyfit(inv_T2_relevant, f_T2_relevant, 1, cov=True)  # Lineare Regression
+fit_line_tau2_y = np.polyval(fit_params_tau2, fit_line_tau2_x)
+
+# Plot der Regression
+plt.scatter(1 / (k_B * T2) , f_T2, color='red', marker='x', label='ln(f(T_2)) gegen 1 / k_b T')
+plt.plot(fit_line_tau2_x, fit_line_tau2_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / k_b T$ [eV]')
+plt.ylabel(r'$ln(f(T))$')
+plt.title('ln(f(T)) gegen $1 / k_b T$ [eV] für die zweite Heizrate')
+plt.grid(True)
+plt.legend()
+plt.xlim(46.5, 49.5)
+plt.ylim(-2, 6)
+#plt.show()
+plt.clf()
