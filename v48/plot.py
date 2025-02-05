@@ -20,6 +20,10 @@ beta1 = ufloat(fit_params1[1], np.sqrt(fit_cov1[1][1]))
 fit_line1_x = np.linspace(min(T1), max(T1), 100)
 fit_line1_y = np.polyval(fit_params1, fit_line1_x)
 
+# Linearer Fit für die erste Heizrate
+heizrate1_parasm= np.polyfit(t1, T1, 1)  
+heizrate1 = heizrate1_parasm[0]
+
 #Original Plot für die erste Messreihe
 plt.scatter(T1, I1, color='purple', marker='x', label='Erste Heizrate')
 plt.plot(fit_line1_x, fit_line1_y, color='green', linestyle='-', label='Untergrund Fit') 
@@ -29,6 +33,25 @@ plt.title('Der Depolarisationsstrom für die erste Heizrate')
 plt.grid(True)
 plt.xlim(200, 300)
 plt.ylim(0, 5)
+#plt.show()
+plt.clf()
+
+#Angabe Heizrate 1
+print(f'Heizrate für die erste Messung: {alpha1.nominal_value:.2e} K/min')
+
+#Datenbereinigung Reihe 1
+untergrund1 = alpha1.nominal_value * T1 + beta1.nominal_value
+bereinigt1 = I1-untergrund1
+print(f'Erste Messung: alpha1 = {alpha1:.2e} pA/K, beta1 = {beta1:.2e} A')
+
+#Plot der bereinigten Daten für Reihe 1
+plt.scatter(T1, bereinigt1, color='purple', marker='x', label='Bereinigter erster Datensatz durch abziehen des Untergrunds')
+plt.xlabel(r'$T$ in K')
+plt.ylabel(r'$I$ in pA')
+plt.title('Bereinigter Depolarisationsstrom für die erste Heizrate')
+plt.grid(True)
+plt.xlim(200, 340)
+plt.ylim(0, max(bereinigt1))
 #plt.show()
 plt.clf()
 
@@ -63,30 +86,13 @@ plt.ylim(0, 5)
 #plt.show()
 plt.clf()
 
-#Angabe Heizraten
-print(f'Heizrate für die erste Messung: {alpha1.nominal_value:.2e} K/min')
+#Angabe Heizrate 2
 print(f'Heizrate für die zweite Messung: {alpha2.nominal_value:.2e} K/min')
-
-#Datenbereinigung Reihe 1
-untergrund1 = alpha1.nominal_value * T1 + beta1.nominal_value
-bereinigt1 = I1-untergrund1
-print(f'Erste Messung: alpha1 = {alpha1:.2e} pA/K, beta1 = {beta1:.2e} A')
 
 #Datenbereinigung Reihe 2
 untergrund2 = alpha2.nominal_value * T2 + beta2.nominal_value
 bereinigt2 = I2-untergrund2
 print(f'Zweite Messung: alpha2 = {alpha2:.2e} pA/K, beta2 = {beta2:.2e} A')
-
-#Plot der bereinigten Daten für Reihe 1
-plt.scatter(T1, bereinigt1, color='purple', marker='x', label='Bereinigter erster Datensatz durch abziehen des Untergrunds')
-plt.xlabel(r'$T$ in K')
-plt.ylabel(r'$I$ in pA')
-plt.title('Bereinigter Depolarisationsstrom für die erste Heizrate')
-plt.grid(True)
-plt.xlim(200, 340)
-plt.ylim(0, max(bereinigt1))
-#plt.show()
-plt.clf()
 
 #Plot der bereinigten Daten für Reihe 2
 plt.scatter(T1, bereinigt1, color='purple', marker='x', label='Bereinigter zweiter Datensatz durch abziehen des Untergrunds')
@@ -102,32 +108,83 @@ plt.clf()
 #Aktivierungsenergie über den Polarisationsansatz
 k_B = constants.Boltzmann
 
-#Messreihe 1
-ln_I1 = np.log(I1[14:-35])
-inv_T1= 1 / (k_B * T1[14:-35]) 
-#print(ln_I1)
-fit_params_W1, fit_cov_W1 = np.polyfit(inv_T1, ln_I1, 1, cov=True)  # Lineare Regression
-alpha_W1 = ufloat(fit_params_W1[0], np.sqrt(fit_cov_W1[0][0]))
-beta_W1 = ufloat(fit_params_W1[1], np.sqrt(fit_cov_W1[1][1]))
+#erechnung des Logarithmus von I und der Inversen Temperatur für Messreihe 1
+I1= I1 * 1e-11#auf Ampere
+ln_I1 = np.log(I1)
+inv_T1= 1 /k_B * T1 
 
-W1 = -alpha_W1 * k_B  
+#Ausgabe
+print("ln(I1):",ln_I1)
+print("inv_T1(I1):", inv_T1)
 
-print(f'Aktivierungsenergie W1 = {W1:.2f} eV')
-
-# Plot für ln(I1) gegen 10^-18 J / K_b T
-plt.scatter(1 / (k_B * T1) , np.log(I1), color='red', marker='x', label='ln(I_1) gegen 1 / k_b T')
-fit_line_W1_x = np.linspace((44), (51), 100)
-fit_line_W1_y = np.polyval(fit_params_W1, fit_line_W1_x)
-plt.plot(fit_line_W1_x, fit_line_W1_y, color='green', linestyle='-', label='Fit')
-plt.xlabel(r'$1 / k_b T$ eV')
-plt.ylabel(r'$ln(I)$ in pA')
-plt.title('ln(I) gegen $1 / k_b T$ eV für die erste Heizrate')
+# Plot für ln(I1) gegen 1/(kB*T1) ohne Ausgleichsgerade
+plt.scatter(inv_T1, ln_I1, color='purple', marker='x', label='ln(I_1) gegen 1 / (k_B T)')
+plt.xlabel(r'$1 / (k_B T) 1/J$')
+plt.ylabel(r'$ln(I)$ (Einheitenlos)')
+plt.title('ln(I) gegen $1 / (k_B T)$')
 plt.grid(True)
-#plt.legend()
+plt.legend()
 plt.show()
 plt.clf()
 
-# Messreihe 2
+#Auswahl der Daten
+fit_inv_T1 = np.linspace(2.8e+20,3.1e+20 , 100)
+fit_ln_I1 = np.interp(fit_inv_T1, inv_T1, ln_I1)
+
+#Lineare Regression für Reihe 1
+fit_params_w1, fit_cov_w1 = np.polyfit(fit_inv_T1, fit_ln_I1, 1, cov=True)
+alpha_w1 = ufloat(fit_params_w1[0], np.sqrt(fit_cov_w1[0][0]))
+beta_w1 = ufloat(fit_params_w1[1], np.sqrt(fit_cov_w1[1][1]))
+
+#Aktiwierungsenergie für Reihe 1
+a1 = -alpha_w1 / k_B
+b1 = beta_w1
+W1_eV = a1 /  constants.e  # Umrechnung von Joule in eV
+print(f'a1 = {a1:.2e} J')
+print(f'b1 = {b1:.2e}')
+print(f'Aktivierungsenergie W1 = {W1_eV:.2e} eV')
+
+# Plot für ln(I1) gegen 1/(kB*T1) mit Ausgleichsgerade 
+plt.scatter(inv_T1, ln_I1, color='purple', marker='x', label='ln(I_1) gegen 1 / (k_B T)')
+fit_line_y = np.polyval(fit_params_w1, fit_inv_T1)
+plt.plot(fit_inv_T1, fit_line_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / (k_B T) 1/J$')
+plt.ylabel(r'$ln(I)$ (Einheitenlos)')
+plt.title('ln(I) gegen $1 / (k_B T)$')
+plt.grid(True)
+plt.legend()
+plt.show()
+plt.clf()
+
+
+
+"""
+# Plot für ln(I1) gegen 1/(kB*T1) für den kleinen Temperaturbereich
+plt.scatter(inv_T1, ln_I1, color='purple', marker='x', label='ln(I_1) gegen 1 / (k_B T)')
+fit_line_y = np.polyval(fit_params_W1, fit_line_x)
+plt.plot(fit_line_x, fit_line_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / (k_B T) \cdot 10^{20} \, \text{J}^{-1}$')
+plt.ylabel(r'$ln(I)$ (Einheitenlos)')
+plt.title('ln(I) gegen $1 / (k_B T) \cdot 10^{20} \, \text{J}^{-1}$ für die erste Heizrate')
+plt.grid(True)
+plt.legend()
+plt.show()
+plt.clf()"""
+
+"""# Plot für ln(I1) gegen 1/ K_b T
+plt.scatter(1 / (k_B * T1) , np.log(I1), color='red', marker='x', label='ln(I) gegen 1 / kBT')
+fit_line_W1_x = np.linspace(min(inv_T1), max(inv_T1), 100)
+fit_line_W1_y = np.polyval(fit_params_W1, fit_line_W1_x)
+plt.plot(fit_line_W1_x, fit_line_W1_y, color='green', linestyle='-', label='Fit')
+plt.xlabel(r'$1 / k_b T$ in 1/J')
+plt.ylabel(r'$ln(I)$ in 1/A')
+plt.title('ln(I) gegen $1 / k_b T$ 1/Jfür die erste Heizrate')
+plt.grid(True)
+#plt.legend()
+plt.show()
+plt.clf()"""
+
+"""# Messreihe 2
 ln_I2 = np.log(I2[14:-19])  # Logarithmus des Stroms
 inv_T2 = 1 / (k_B * T2[14:-19])  # Inverse Temperatur
 print(ln_I2)
@@ -149,9 +206,9 @@ plt.ylabel(r'$ln(I)$ in pA')
 plt.title('ln(I) gegen $1 / k_b$')
 plt.grid(True)
 plt.show()
-plt.clf()
+plt.clf()"""
 
-# Aktivierungsenergie und Relaxationszeit über den Ansatz der Stromdichte
+"""# Aktivierungsenergie und Relaxationszeit über den Ansatz der Stromdichte
 def grafik_integration(I, T):
     return np.cumsum(I * np.gradient(T))
 
@@ -238,4 +295,4 @@ plt.legend()
 plt.xlim(46.5, 49.5)
 plt.ylim(-2, 6)
 #plt.show()
-plt.clf()
+plt.clf()"""
