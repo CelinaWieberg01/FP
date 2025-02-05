@@ -97,8 +97,10 @@ plt.figure()
 I1 = I1 - linfit(T1, *params_u1)
 I2 = I2 - linfit(T2, *params_u2)
 
-plt.scatter(T1, I1, color="orange", marker="x", label="1. Messreihe, bereinigt")
-plt.scatter(T2, I2, color="blue", marker="+", label="2. Messreihe, bereinigt")
+plt.errorbar(T1, I1, yerr=I1_err, color="orange", marker="x", markersize=9, linestyle="none", label="1. Messreihe, bereinigt")
+plt.plot(T1, I1, color="orange", linewidth=3, alpha=0.3)
+plt.errorbar(T2, I2, yerr=I2_err, color="blue", marker="+", markersize=9, linestyle="none", label="2. Messreihe, bereinigt")
+plt.plot(T2, I2, color="blue", linewidth=3, alpha=0.3)
 plt.xlabel("T in K")
 plt.ylabel("I in A")
 plt.grid("on")
@@ -116,6 +118,7 @@ I1 = I1[T1 > 240]
 T1 = T1[T1 > 240]
 I1 = I1[T1 < 280]
 T1 = T1[T1 < 280]
+I1_err = I1_err[0:len(I1)]
 
 T2 = T2[I2 > 0]
 I2 = I2[I2 > 0]
@@ -123,15 +126,18 @@ I2 = I2[T2 > 240]
 T2 = T2[T2 > 240]
 I2 = I2[T2 < 280]
 T2 = T2[T2 < 280]
+I2_err = I2_err[0:len(I2)]
 
 
-plt.scatter(T1, I1, color="orange", marker="x", label="1. Messreihe, bereinigt")
-plt.scatter(T2, I2, color="blue", marker="+", label="2. Messreihe, bereinigt")
+plt.errorbar(T1, I1, yerr=I1_err, color="orange", marker="x", markersize=9, linestyle="none", label="1. Messreihe, bereinigt")
+plt.plot(T1, I1, color="orange", linewidth=3, alpha=0.3)
+plt.errorbar(T2, I2, yerr=I2_err, color="blue", marker="+", markersize=9, linestyle="none", label="2. Messreihe, bereinigt")
+plt.plot(T2, I2, color="blue", linewidth=3, alpha=0.3)
 plt.xlabel("T in K")
 plt.ylabel("I in A")
 plt.grid("on")
 plt.legend()
-plt.title("Bereinigte Messreihen")
+plt.title("Bereinigte Messreihen, interessante Messpunkte")
 plt.figure()
 
 # Polarisationsansatz
@@ -163,8 +169,10 @@ print("Fit 2 = ", params_W2, " +- ", np.sqrt(np.diag(cov_W2)))
 
 
 plt.scatter(inv_T1, ln_I1, color="orange", marker="x", label="1. Messreihe, bereinigt")
+plt.plot(inv_T1, ln_I1, color="orange", linewidth=3, alpha=0.3)
 plt.scatter(fit_T1, fit_I1, color="brown", marker="x", label="Daten für Fit 1")
 plt.scatter(inv_T2, ln_I2, color="blue", marker="+", label="2. Messreihe, bereinigt")
+plt.plot(inv_T2, ln_I2, color="blue", linewidth=3, alpha=0.3)
 plt.scatter(fit_T2, fit_I2, color="lightblue", marker="+", label="Daten für Fit 2")
 
 plt.plot(xx1, yy_W1, color="red", label="Fit 1")
@@ -256,8 +264,10 @@ t1_3 = t0_1
 W_4 = W2
 t1_4 = t0_2
 
-plt.scatter(T1_inv, F1, color="orange", marker="x", label="Messreihe 1")
-plt.scatter(T2_inv, F2, color="blue", marker="+", label="Messreihe 2")
+plt.scatter(T1_inv, F1, color="orange", marker="x", label="1. Messreihe")
+plt.plot(T1_inv, F1, color="orange", linewidth=3, alpha=0.3)
+plt.scatter(T2_inv, F2, color="blue", marker="+", label="2. Messreihe")
+plt.plot(T2_inv, F2, color="blue", linewidth=3, alpha=0.3)
 plt.plot(xx, yy1, color="red", label="Fit 1")
 plt.plot(xx, yy2, color="green", label="Fit 2")
 plt.xlabel("1/kBT in 1/J")
@@ -276,8 +286,8 @@ xx = np.linspace(270, 320)
 t1 = relaxationszeit(xx, W_1, t1_1)
 t2 = relaxationszeit(xx, W_2, t1_2)
 
-plt.plot(xx, t1, color="orange", label="t0 aus Messreihe 1")
-plt.plot(xx, t2, color="blue", label="t0 aus Messreihe 1")
+plt.plot(xx, t1, color="orange", label="t, 1. Messreihe")
+plt.plot(xx, t2, color="blue", label="t, 2. Messreihe")
 plt.yscale("log")
 plt.title("Relaxationszeit aus dem Polarisationsansatz")
 plt.xlabel("T in K")
@@ -288,8 +298,8 @@ plt.figure()
 t3 = relaxationszeit(xx, W_3, t1_3)
 t4 = relaxationszeit(xx, W_4, t1_4)
 
-plt.plot(xx, t3, color="orange", label="t0 aus Messreihe 1")
-plt.plot(xx, t4, color="blue", label="t0 aus Messreihe 1")
+plt.plot(xx, t3, color="orange", label="t, 1. Messreihe")
+plt.plot(xx, t4, color="blue", label="t, 2. Messreihe")
 plt.yscale("log")
 plt.title("Relaxationszeit aus dem Stromdichtenansatz")
 plt.xlabel("T in K")
@@ -313,10 +323,7 @@ Fit 2 =  [-1.60155768e-19  1.88307760e+01]  +-  [1.20823475e-20 3.46349532e+00]
 Relaxationszeit 1 =  [8.634802285151585e-20+/-2.934815305108716e-19]
 Relaxationszeit 2 =  [1.4454749838472648e-19+/-4.975264060887047e-19]
 
-
-
 Stromdichte
-
 W1 =  (1.97+/-0.14)e-19
 t0_1 =  (0.7+/-2.9)e-23
 W2 =  (1.85+/-0.15)e-19
