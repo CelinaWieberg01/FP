@@ -1,0 +1,32 @@
+Heizrate 1 über Fit 
+b_1 =  \qty{1.24(1)}{\kelvin\per\minute}
+
+Heizrate 2 über Fit
+b_2 = \qty{1.67(2)}{\kelvin\per\minute}
+
+
+
+Parameter für Untergrund 1
+f(t) = \qty{0.0122(4)}{\ampere\per\kelvin} \cdot T - \qty{2.315(98)}{\ampere}
+
+Parameter für Untergrund 2
+f(t) = \qty{0.0211(5)}{\ampere\per\kelvin} \cdot T - \qty{4.356(121)}{\ampere}
+
+
+Polarisationsansatz
+            -W                 C                    Delta W         Delta C
+W_1 = 1.614e-19 +- 1.182e-20
+C_1 = 1.925e1   +- 3.405e0
+
+W_2 = 1.601e-19 +- 1.208e-20
+C_2 = 1.883e1   +- 3.463e0
+
+
+Relaxationszeit 1 =  8.63e-20 +- 2.93e-19
+Relaxationszeit 2 =  1.44e-19 +- 4.97e-19
+
+Stromdichte
+W1   = 1.97e-19 +- 0.14e-19
+t0_1 = 0.7e-23  +- 2.9e-23
+W2   = 1.85e-19 +- 0.15e-19
+t0_2 = 2e-22    +- 8e-22
