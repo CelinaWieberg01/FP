@@ -53,7 +53,7 @@ b_2 = \qty{1.67(2)}{\kelvin\per\minute}
 
 \subsection{Hintergrundsignale und Datenbereinigung}
 In den Abbildungen \ref{fig:Hintergrund1} und \ref{fig:Hintergrund2} werden die Messdaten grafisch dargestellt.
-Für die Analyse wird ein linearer Hintergrund angenommen, der mithilfe der ausgleichsgeraden berechnet wird.
+Für die Analyse wird ein linearer Hintergrund angenommen, der mithilfe der Ausgleichsgeraden berechnet wird.
 
 \begin{figure}[H]
     \centering
@@ -71,10 +71,10 @@ Für die Analyse wird ein linearer Hintergrund angenommen, der mithilfe der ausg
 
 Die Paramneter der Ausgleichsfunktion lauten:
 \begin{equation}
-f(t) = \qty{0.0122(4)}{\ampere\per\kelvin} \cdot T - \qty{2.315(98)}{\ampere}
+f(t) = \qty{0.0122(4)}{\ampere\per\kelvin} \cdot T_i - \qty{2.315(98)}{\ampere}
 \end{equation}
 \begin{equation}
-f(t) = \qty{0.0211(5)}{\ampere\per\kelvin} \cdot T - \qty{4.356(121)}{\ampere}
+f(t) = \qty{0.0211(5)}{\ampere\per\kelvin} \cdot T_i - \qty{4.356(121)}{\ampere}
 \end{equation}
 Diese lineare Funktion wird verwendet, um den Einfluss des Hintergrundes auf die Messreihe zu beschreiben und zu korrigieren,
 sodass nur die relevanten Effekte des Depolarisationsstroms analysiert werden. Um die Messdaten von dem 
@@ -147,7 +147,7 @@ Es wird das Integral $I(T)$ benötigt und die Funktion
 \begin{equation}
 f(T) = \ln \left( \int_{t(T)}^{\infty} I(t') \, dt' \right) - \ln I(T)
 \end{equation}
-berechnet die den in \ref{} Plot liefert. Einige der korrigierten Daten ergaben negative Ströme,
+berechnet die den in \ref{fig:Stromdichteanssatz} Plot liefert. Einige der korrigierten Daten ergaben negative Ströme,
 die aus der Analyse ausgeschlossen wurden, da sie für den untersuchten Effekt irrelevant sind.
 Außerdem kann die Funktion $f(T)$ für negative Ströme nicht bestimmt werden. Die Daten werden durch eine Gerade der Form 
 \begin{equation}
@@ -173,10 +173,10 @@ W1   = 1.97\cdot10^{-19}\pm0.14\cdot10^{-19}J
 bestimmt.
 Die Relaxationszeiten ergeben sich zu
 \begin{equation}
-t0_1 = 0.7\cdot10^{-23}\pm2.9\cdot10^{-23}s
+\tau_1 = 0.7\cdot10^{-23}\pm2.9\cdot10^{-23}s
 \end{equation} 
 \begin{equation}
-t0_2 = 2\cdot10^{-22}\pm8\cdot10^{-22}s
+\tau_2 = 2\cdot10^{-22}\pm8\cdot10^{-22}s
 \end{equation} 
 
 \subsection{Relaxationszeit in Abhängigkeit der Temperatur}
