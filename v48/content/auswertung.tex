@@ -101,6 +101,8 @@ Für die Fits sind insbesondere die gaußähnlichen Datenpunkte relevant in \aut
     \label{fig:Vergleich}
 \end{figure}
 
+Für die Auswertung werden nur diese Punkte benutzt. In \autoref{sec:Originaldaten} sind diese mit einem Stern markiert.
+
 \subsection{Berechnung über den Polarisationsansatz}
 Der Logarithmus des gemessenen Stroms wird geplottet, und die Daten im kleinen Temperaturbereich werden
 durch eine lineare Funktion angenähert. Die entsprechenden Ausgleichsgeraden sind in \autoref{fig:Polarisationsansatz} dargestellt.
@@ -112,21 +114,23 @@ durch eine lineare Funktion angenähert. Die entsprechenden Ausgleichsgeraden si
     \label{fig:Polarisationsansatz}
 \end{figure}
 
-Die Aktivierungsenergie $W$ wird nach \autoref{eq:fit_polarisationsansatz} berechnet.
+Die Aktivierungsenergie $W$ wird nach \autoref{eq:fit_polarisationsansatz} berechnet, sie entspricht der Steigung der Geraden.
 Es ergeben sich für die beiden Messreihen folgende Aktivierungsenergien:
 \begin{align*}
 W_1 &= \qty{1.614(0.118)e-19}{\joule}\\
 W_2 &= \qty{1.601(0.121)e-19}{\joule}
 \end{align*}
-$C_i$ ist eine Konstante,
+$C_i$ ist der $y$-Achsenabschnitt,
 \begin{align*}
 C_1 &= \num{1.921(0.340)e1}\\
 C_2 &= \num{1.883(0.346)e1}
 \end{align*}
-Die Relaxationszeit $\tau_i$ erhält man aus \autoref{eq:tau0_maximum},
+Die Relaxationszeit $\tau_i$ erhält man aus \autoref{eq:tau0_maximum} mit den Temperaturen beim maximalen Strom,
+$T_{\text{max,} 1} = \qty{257.55(30)}{\kelvin}$ und $T_{\text{max,} 2} = \qty{259.95(30)}{\kelvin}$, den zuvor berechneten Heizraten und der Boltzmann-Konstanten,
+$k_\text{B} = \qty{1.380649e-23}{\joule\per\kelvin}$,
 \begin{align*}
-\tau_1 &= \qty{8.63(0.29)e-20}{\second}\\
-\tau_2 &= \qty{1.44(4.97)e-19}{\second}
+\tau_1 = \qty{8.63(0.29)e-20}{\second}\\
+\tau_2 = \qty{1.44(4.97)e-19}{\second}
 \end{align*}
 
 \subsection{Berechnung aus der Stromdichte}
@@ -136,14 +140,9 @@ Es wird das Integral $I(T)$ benötigt und die Funktion
 \begin{equation}
 f(T) = \ln \left( \int_{t(T)}^{\infty} I(t') \, dt' \right) - \ln I(T)
 \end{equation}
-berechnet die den in \ref{fig:Stromdichteansatz} Plot liefert. Einige der korrigierten Daten ergaben negative Ströme,
+berechnet, die den in \autoref{fig:Stromdichteansatz} dargestellten Plot liefert. Einige der korrigierten Daten ergaben negative Ströme,
 die aus der Analyse ausgeschlossen wurden, da sie für den untersuchten Effekt irrelevant sind.
-Außerdem kann die Funktion $f(T)$ für negative Ströme nicht bestimmt werden. Die Daten werden durch eine Gerade der Form 
-\begin{equation}
-    f(T)=\frac{a_i}{k_BT}+b_i
-\end{equation}
-genähert.
-
+Außerdem kann die Funktion $f(T)$ für negative Ströme nicht bestimmt werden. Die Daten werden mit einer linearen Regression gefittet, wie in \autoref{eq:fit_stromdichtenansatz} auf der linken Seite.
 
 \begin{figure}[H]
     \centering
@@ -152,16 +151,16 @@ genähert.
     \label{fig:Stromdichteansatz}
 \end{figure}
 
-Die Aktivierungsenergie werden als 
+Die Aktivierungsenergien, die gleich den Steigungen der Geraden sind, werden als 
 \begin{align*}
 W_1   &= \qty{1.97(14)e-19}{\joule}\\
 W_2  &= \qty{1.85(0.15)e-19}{\joule}
 \end{align*} 
 bestimmt.
-Die Relaxationszeiten ergeben sich zu
+Die Relaxationszeiten, also der $y$-Achsenabschittergeben, sich zu
 \begin{align*}
-\tau_1 = \qty{0.7(2.9)e-23}{\second}\\
-\tau_2 = \qty{2(8)e-22}{\second}
+\ln(\tau_1) = \num{-53(4)} & \Leftrightarrow \tau_1 = \qty{0.7(2.9)e-23}{\second}\\
+\ln(\tau_2) = \num{-50(4)} & \Leftrightarrow \tau_2 = \qty{2(8)e-22}{\second}
 \end{align*} 
 
 \subsection{Relaxationszeit in Abhängigkeit der Temperatur}

@@ -52,7 +52,7 @@ if plot==True:
     plt.legend()
     plt.grid("on")
     plt.title(r"Heizraten")
-    plt.savefig("plots/A_heizraten.pdf")
+    #plt.savefig("plots/A_heizraten.pdf")
     plt.figure()
 
 
@@ -77,7 +77,7 @@ if plot==True:
     plt.title(r'Depolarisationsstrom der 1. Messreihe')
     plt.grid("on")
     plt.legend()
-    plt.savefig("plots/B_messreihe1.pdf")
+    #plt.savefig("plots/B_messreihe1.pdf")
     plt.figure()
 
     #Linearer Fit für den zweiten Untergrund
@@ -98,7 +98,7 @@ if plot==True:
     plt.title(r'Depolarisationsstrom der 2. Messreihe')
     plt.grid("on")
     plt.legend()
-    plt.savefig("plots/C_messreihe2.pdf")
+    #plt.savefig("plots/C_messreihe2.pdf")
     plt.figure()
 
 
@@ -113,7 +113,7 @@ if plot==True:
     plt.grid("on")
     plt.legend()
     plt.title(r"Bereinigte 1. Messreihe")
-    plt.savefig("plots/D_messreihe1_bereinigt.pdf")
+    #plt.savefig("plots/D_messreihe1_bereinigt.pdf")
     plt.figure()
 
 
@@ -124,7 +124,7 @@ if plot==True:
     plt.grid("on")
     plt.legend()
     plt.title(r"Bereinigte 2. Messreihe")
-    plt.savefig("plots/E_messreihe2_bereinigt.pdf")
+    #plt.savefig("plots/E_messreihe2_bereinigt.pdf")
     plt.figure()
 
 
@@ -156,7 +156,7 @@ if plot==True:
     plt.grid("on")
     plt.legend()
     plt.title(r"Bereinigte Messreihen, interessante Messpunkte")
-    plt.savefig("plots/F_messreihen_bereinigt_relevantepunkte.pdf")
+    #plt.savefig("plots/F_messreihen_bereinigt_relevantepunkte.pdf")
     plt.figure()
 
     # Polarisationsansatz
@@ -202,7 +202,7 @@ if plot==True:
     plt.ylabel(r"$\ln{\frac{I}{\SI{1}{\ampere}}}$")
     plt.title(r"Fits für Polarisationsansatz")
     plt.legend()
-    plt.savefig("plots/G_polarisationsansatz.pdf")
+    #plt.savefig("plots/G_polarisationsansatz.pdf")
     plt.figure()
 
 
@@ -270,9 +270,11 @@ if plot==True:
     yy2 = linfit(xx, *params2)
 
     W1 = ufloat(params1[0], np.sqrt(np.diag(cov1))[0])
+    print("ln(t0) = ", ufloat(params1[1], np.sqrt(np.diag(cov1))[1]))
     t0_1 = unp.exp(ufloat(params1[1], np.sqrt(np.diag(cov1))[1]))
 
     W2 = ufloat(params2[0], np.sqrt(np.diag(cov2))[0])
+    print("ln(t0) = ", ufloat(params2[1], np.sqrt(np.diag(cov2))[1]))
     t0_2 = unp.exp(ufloat(params2[1], np.sqrt(np.diag(cov2))[1]))
 
     print("W1 = ", W1)
@@ -296,7 +298,7 @@ if plot==True:
     plt.grid("on")
     plt.title(r"Fits für Stromdichteansatz")
     plt.legend()
-    plt.savefig("plots/H_stromdichte.pdf")
+    #plt.savefig("plots/H_stromdichte.pdf")
     plt.figure()
 
 
@@ -316,7 +318,7 @@ if plot==True:
     plt.xlabel(r"$T$ in $\si{\kelvin}$")
     plt.ylabel(r"$t$ in $\si{\second}$")
     plt.grid("on")
-    plt.savefig("plots/I_relaxationszeit_polarisation.pdf")
+    #plt.savefig("plots/I_relaxationszeit_polarisation.pdf")
     plt.figure()
 
     t3 = relaxationszeit(xx, W_3, t1_3)
@@ -329,6 +331,6 @@ if plot==True:
     plt.xlabel(r"$T$ in $\si{\kelvin}$")
     plt.ylabel(r"$t$ in $\si{\second}$")
     plt.grid("on")
-    plt.savefig("plots/J_relaxationszeit_stromdichte.pdf")
+    #plt.savefig("plots/J_relaxationszeit_stromdichte.pdf")
 
     plt.show()

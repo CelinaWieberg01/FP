@@ -86,3 +86,9 @@ Bei der heizrate ist erkennbar dass diese über Zeit nicht konstant ist sondern 
 Annahme des linearen Untergrunds ist kritisch, vllt lieber exponentiellen Untergrund wählen
 
 Bei der numerischen Integration könnten andere Integrationsmethoden gewählt werden
+
+
+
+
+ln(t0) =  -53+/-4
+ln(t0) =  -50+/-4
