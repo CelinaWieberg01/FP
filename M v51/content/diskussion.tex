@@ -1,2 +1,37 @@
 \section{Diskussion}
 \label{sec:Diskussion}
+Bei der Durchführung unserer Messungen und Analysen gibt es mehrere kritische Aspekte, 
+die berücksichtigt werden müssen, um die Genauigkeit und Zuverlässigkeit der Ergebnisse sicherzustellen.
+Zunächst könnte die Wahl der Fehler genauer sein. Es ist entscheidend, dass die Unsicherheiten
+in den Messungen korrekt bestimmt und berücksichtigt werden, um die Präzision der Ergebnisse zu gewährleisten.
+Während der Messungen des Stromes wurde zu Beginn häufig umgepolt. Dies kann zu systematischen Fehlern führen 
+und sollte in zukünftigen Experimenten minimiert oder vermieden werden.
+Ein weiteres wichtiges Detail ist die Heizrate, die über die Zeit nicht konstant blieb, sondern eher einer logistischen Kurve folgte.
+Dies deutet darauf hin, dass die Temperaturregelung nicht gleichmäßig war und Anpassungen an der Steuerung vorgenommen werden sollten, 
+um eine gleichmäßigere Heizrate zu gewährleisten. Die Annahme eines linearen Hintergrunds für die Datenanalyse ist ebenfalls
+kritisch zu betrachten. Möglicherweise wäre die Verwendung eines exponentiellen Hintergrunds sinnvoller, um die Daten genauer zu 
+modellieren und zu analysieren. Bei der numerischen Integration könnten alternative Integrationsmethoden gewählt werden, um die
+Genauigkeit der Berechnungen zu verbessern. Dies könnte dazu beitragen, systematische Fehler zu minimieren und präzisere Ergebnisse zu erzielen.
+Die experimentell bestimmten Heizraten wichen von den theoretischen Werten ab. Die über den Fit bestimmten Heizraten waren:
+\begin{equation}
+b_1 =  \qty{1.24(1)}{\kelvin\per\minute}
+\end{equation}
+\begin{equation}
+b_2 = \qty{1.67(2)}{\kelvin\per\minute}
+\end{equation}
+
+Die theoretischen Werte sollten $\qty{1.5}{\kelvin\per\minute}$ und $\qty{2.0}{\kelvin\per\minute}$ betragen.
+Die prozentuale Abweichungen sind
+\begin{equation}
+    \Delta W_1= \frac{|1.24 - 1.5|}{1.5} \cdot100 \approx17.33\%
+\end{equation}
+für die erste Heizrate und
+\begin{equation}
+    \Delta W_2= \frac{|1.67 - 2.0|}{2.0} \cdot100 \approx16.5\%
+\end{equation}
+für die zweite. 
+Diese Abweichungen sind signifikant und deuten darauf hin, dass es systematische Unterschiede zwischen den experimentellen 
+Bedingungen und den theoretischen Annahmen gibt. Es ist wichtig, diese Diskrepanzen weiter zu untersuchen und mögliche 
+Ursachen wie experimentelle Fehler, Abweichungen in den Materialien oder Messgeräteungenauigkeiten zu identifizieren und zu korrigieren.
+Durch die Beachtung dieser Aspekte und die Implementierung geeigneter Korrekturmaßnahmen können wir die Genauigkeit und
+Zuverlässigkeit der experimentellen Ergebnisse verbessern.
