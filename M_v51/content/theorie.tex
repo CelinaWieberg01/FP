@@ -1,0 +1,229 @@
+\section{Theorie}
+\label{sec:Theorie}
+
+Im Folgenden wird das Grundprinzip von Operationsverstärkern erklärt, sowie die möglichen Funktionen in Kombination mit 
+weiteren elektrischen Bauteilen beschrieben.
+
+\subsection{Operationsverstärker}
+
+\subsubsection{Idealer und realer OP-Amp}
+Operationsverstärker (OP-Amps) sind elektrische Bauteile, die die Differenz von zwei eingehenden Signalen verstärken können.
+In \autoref{fig:opamps} sind eine Ausführung eines LM741-OP-Amps sowie der prinzipielle Aufbau mit Pin-Konfiguration dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/opamp.png}
+    \caption{Links: LM741. Die Auskerbung gibt die Orientierung des Verstärkers an. Rechts: Pin-Konfiguration eines LM741 in einem DIL8 Housing.}
+    \label{fig:opamps}
+\end{figure}
+
+Pin 1 und 5 werden als Offset-Null 1 und 2 bezeichnet. Pin 2 ist der sogenannte Inverting Input, Pin 3 der Non-Inverting Input. Pin 4 ist für die negative Betriebsspannung, Pin 7 für die positive Betriebsspannung. Pin 6 ist der Output, Pin 8 hat keinen Nutzen.
+Der Output $A_\text{o}$ durch den Inverting Input mit Amplitude $A_-$ und dem Non-Inverting Input mit Amplitude $A_+$ wird beschrieben durch
+
+\begin{equation*}
+    A_\text{o} = A \cdot (A_+ - A_-),
+\end{equation*}
+dabei ist $A$ die Amplification. In einem idealen OP-Amp ist dieser unendlich hoch, was jede noch so kleine Signaldifferenz verstärken würde. In der Realität ist dies nicht möglich, 
+weshalb dieser nur sehr hoch eingestellt wird. Die Betriebsspannungen bestimmen die Range des Outputs, weshalb diese so gewählt werden, dass sie symmetrisch um $\SI{0}{\volt}$ liegen.
+
+Des Weiteren unterscheiden sich ideale und reelle OP-Amps durch insbesondere ihre Impedanzen. Input-Impedanzen sind idealerweise unendlich hoch, sodass es einen Strom-Rückfluss gibt,
+während sie in Realität nur endlich hoch eingestellt werden können. Die Output-Impedanzen sind idealerweise 0, realistisch sind aber nur sehr kleine, von Null verschiedene Werte.
+Die Bandbreite der ausgebbaren Frequenzen ist im idealen OP-Amp unendlich, im reellen aber endlich. Die Slew-Rate, also die Verzögerung zwischen Input und Output, ist im perfekten OP-Amp null, aber in Realität im Bereich von wenigen $\si{\volt\per\micro\second}$.
+
+Der Output eines OP-Amps kann als Feedback für den Input verwendet werden. Wird er in den Inverting Input gespeist,
+spricht man von negativem Feedback. Negatives Feedback stabilisiert den Output und erhöht die Bandbreite. Positives Feedback, wenn der Output in den Non-Inverting Input gespeist wird,
+saturiert den Output und ermöglicht Oszillationen, insbesondere kann somit ein Schmitt-Trigger gebaut werden.
+
+Über Feedback-Schaltungen mit verschiedenen elektrischen Komponenten können weitere Operatoren realisiert werden.
+
+Wenn ein Eingangssignal die Erde ist, kann ein einzelnes Signal mit den im Folgenden erklärten Schaltungen bearbeitet werden.
+
+\subsubsection{Inverting-Amplifier}
+
+Das Schaltbild eines Inverting-Amplifiers ist in \autoref{fig:inv_ampl} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/inv_ampl.png}
+    \caption{Schaltbild eines Inverting-Amplifiers mit zwei Widerständen und einem OP-Amp.}
+    \label{fig:inv_ampl}
+\end{figure}
+
+Ein Inverting-Amplifier kann, wie der Name andeutet, ein eingehendes Signal invertieren. Über die Kirchhoff'schen Knotenregel kann nachgerechnet werden, dass 
+der Verstärkungsfaktor dafür
+
+\begin{equation}
+    A = - \frac{R_2}{R_1}
+    \label{eq:inverter}
+\end{equation}
+
+lautet, wobei $R_1$ und $R_2$ die Widerstände im Schaltbild sind.
+
+
+\subsubsection{Integrator}
+
+Das Schaltbild eines Integrators ist in \autoref{fig:integrator} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/integrator.png}
+    \caption{Schaltbild eines Integrators mit Widerstand, Kondensator und OP-Amp.}
+    \label{fig:integrator}
+\end{figure}
+
+Diese Schaltung kann ein eingehendes Signal integrieren, was anhand der Knotenregeln bewiesen werden kann, sodass gilt
+
+\begin{equation*}
+    U_\text{o} = - \frac{1}{RC} \int U_\text{i} \mathrm{d}t
+\end{equation*}
+
+mit dem Widerstand $R$ und der Kapazität $C$. Ist das Eingangssignal sinusartig, 
+
+\begin{equation*}
+    U_\text{i} = U_0 \sin (\omega t),
+\end{equation*}
+
+ergibt sich für die Verstärkung des Ausgangssignal der Faktor
+
+\begin{equation}
+    A = \frac{1}{RC\omega}
+    \label{eq:integrator}
+\end{equation}
+
+mit der Zeit $t$, der Maximalspannung $U_0$ und der Eingangsfrequenz $\omega$.
+Wird die Frequenz größer, verkleinert ein Integrator das Ausgangssignal.
+
+\subsubsection{Differentiator}
+
+Das Schaltbild eines Differentiators ist in \autoref{fig:differentiator} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/differentiator.png}
+    \caption{Schaltbild eines Differentiators mit Widerstand, Kondensator und OP-Amp.}
+    \label{fig:differentiator}
+\end{figure}
+
+Ein Differentiator kann das Signalprofil eines eingehenden Signales ableiten, was ebenfalls über die Knotenregeln gezeigt werden kann.
+Dabei gilt
+
+\begin{equation*}
+    U_\text{o} = -RC \frac{\mathrm{d}U_\text{i}}{\mathrm{d}t}
+\end{equation*}
+
+mit dem Widerstand $R$, der Kapazität $C$ und der Eingangsspannung $U_\text{i}$ mit der Zeit $t$.
+Analog wie beim Integrator kann gezeigt werden, dass für ein sinusartiges Eingangssignal das Amplitudenverhalten gegeben ist über
+
+\begin{equation}
+    A = -RC\omega
+    \label{eq:differentiator}
+\end{equation}
+mit der Frequenz $\omega$. Somit wird das Ausgangssignal stärker mit höherer Frequenz.
+
+\subsubsection{Schmitt-Trigger}
+
+Ein Schmitt-Trigger ist ähnlich wie ein Inverting-Amplifier aufgebaut mit dem Unterschied, dass positives statt negatives Feedback benutzt wird,
+siehe \autoref{fig:schmitt}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/schmitt.png}
+    \caption{Schaltbild eines Schmitt-Triggers mit Widerständen und OP-Amp.}
+    \label{fig:schmitt}
+\end{figure}
+
+Ein Schmitt-Trigger gibt ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$, aber mit Hysterese. Wird ein Schwellwert $U_+$ ($U_-$) erstmals überschritten (unterschritten),
+so springt der Output auf $+U_\text{S}$ ($-U_\text{S}$), dargestellt in \autoref{fig:schmittverhalten}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/schmitttrigger.png}
+    \caption{Skizzenhaftes Verhalten eines Schmitt-Triggers. Die wellige Kurve ist das Eingangssignal, das Rechtecksignal der Output. Die Schwellwerte heißen hier $U_\text{H}$ und $U_\text{L}$.
+    Die Betriebsspannungen sind hier $U_\text{HA}$ und $U_\text{LA}$.}
+    \label{fig:schmittverhalten}
+\end{figure}
+
+Das bedeutet, wie in \autoref{fig:schmittverhalten} erkennbar, dass, sobald ein Eingangssignal die obere Schwelle überschritten hat, das Ausgangssignal gleich bleibt, auch wenn sie diese Schwelle wieder unterschreitet.
+Dieses Verhalten ist in \autoref{fig:hysterese} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/hysteresis.png}
+    \caption{Skizzenhafte Charakteristik eines Schmitt-Triggers mit Eingangsspannung auf der $x$-Achse und Ausgangsspannung auf der $y$-Achse.}
+    \label{fig:schmittverhalten}
+\end{figure}
+
+Die Schwellwerte lassen sich berechnen zu 
+
+\begin{equation}
+    U_\pm = \pm \frac{R_1}{R_2} U_\text{S}
+    \label{eq:schwellwert}
+\end{equation}
+
+mit der Betriebsspannung $U_\text{S}$ und den widerständen $R_1$ und $R_2$.
+
+\subsubsection{Generatoren}
+
+Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Rechteckspannung erzeugt, kann integeriert werden, sodass eine Dreieckspannung entsteht, wie in \autoref{fig:generator1} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/generator1.png}
+    \caption{Schaltbild eines Generators bestehend aus Schmitt-Trigger (linker OP-Amp) und Integrator (rechter OP-Amp).}
+    \label{fig:generator1}
+\end{figure}
+
+Die erzeugte Frequenz lautet
+
+\begin{equation}
+    \nu = \frac{R_2}{4 C R_1 R_3}
+    \label{eq:frequenz}
+\end{equation}
+
+und die Amplitude des Outputs ist 
+
+\begin{equation}
+    U_\text{o} = U_\text{max} \frac{R_1}{R_2}
+    \label{eq:ampl_generator1}
+\end{equation}
+
+mit Kapazität $C$ und den Widerständen $R_1$, $R_2$ und $R_3$.
+
+
+
+Ein Generator mit variierender Amplitude ist in \autoref{fig:generator2} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/generator2.png}
+    \caption{Schaltbild eines Generators mit variierender Amplitude, bestehend aus zwei Integratoren und einem invertierenden Verstärker.
+    Die Schaltung ist mit einem regelbaren Widerstand versehen, um die Dämpfung der Oszillation zu beeinflussen.}
+    \label{fig:generator2}
+\end{figure}
+
+Dieses Schaltbild wird von folgender DGL beschrieben,
+
+\begin{equation*}
+    \frac{\mathrm{d}^2U_\text{o}}{\mathrm{d}t^2} - \frac{eta}{10RC} \frac{\mathrm{d}U_\text{o}}{\mathrm{d}t} + \frac{1}{R^2 C^2} U_\text{o} = 0,
+\end{equation*}
+
+wobei $\eta$ der Dämpfungsfaktor ist und zwischen $0$ und $1$ liegt. Die DGL besitzt näherungsweise die Lösung
+
+\begin{equation}
+    U_\text{o} = U_0 \exp\left(\frac{t}{\tau}\right) \sin\left(2 \pi \frac{t}{T}\right)
+    \label{eq:loesung}
+\end{equation}
+
+mit der Periodendauer $T$ und der Abklingzeit $\tau$, die gegeben sind über
+
+\begin{equation}
+    T = 2 \pi RC
+    \label{eq:T}
+\end{equation}
+
+und
+
+\begin{equation}
+    \tau = \frac{20 RC}{\left|\eta\right|}.
+    \label{eq:tau}
+\end{equation}
