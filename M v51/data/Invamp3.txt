@@ -1,6 +1,6 @@
-R_1= 1KOhm       R_2= 150KOhm
+#R_1= 1KOhm       R_2= 150KOhm
 
-freq in Hz      Amp in V
+#freq in Hz      Amp in V
 10              4.28
 50              4.30
 100             4.25

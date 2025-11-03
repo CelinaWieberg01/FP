@@ -2,5 +2,59 @@
 \label{sec:Auswertung}
 
 \subsection{Inverting Amplifier}
+Zur Überprüfung der Funktionalität eines invertierenden Operationsverstärkers wurden drei Messreihen mit unterschiedlichen Widerstandskombinationen
+durchgeführt. Dabei wurden jeweils der Eingangs- und der Rückkopplungswiderstand variiert:
+
+\begin{itemize}
+  \item Messung 1: $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{100}{\kilo\ohm}$
+  \item Messung 2: $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{10}{\kilo\ohm}$
+  \item Messung 3: $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{150}{\kilo\ohm}$ (korrigiert)
+\end{itemize}
+
+Die theoretische Spannungsverstärkung eines invertierenden Verstärkers ergibt sich aus der Formel
+
+
+\[
+V_\text{theo} = \left| -\frac{R_2}{R_1} \right| = \frac{R_2}{R_1}
+\]
+
+
+Das Minuszeichen steht für die Phasenumkehr des Ausgangssignals. Die berechneten Verstärkungen lauten:
+
+
+\[
+V_{1,\text{theo}} = 100,\quad V_{2,\text{theo}} = 10,\quad V_{3,\text{theo}} = 150
+\]
+Zur Analyse der Frequenzabhängigkeit der Verstärkung wurde die Ausgangsspannung $U_\text{a}$ in Abhängigkeit von der Frequenz $\nu$ gemessen 
+und die Verstärkung als Quotient $V = U_\text{a} / U_\text{ein}$ berechnet. Anschließend wurde die Verstärkung gegen die Frequenz in einem 
+doppelt-logarithmischen Diagramm dargestellt.
+Im Bereich außerhalb des Verstärkungsplateaus zeigt die Verstärkung ein charakteristisches Abfallverhalten, das durch eine Potenzfunktion beschrieben werden kann:
+
+
+\[
+V(\nu) = a \cdot \nu^b
+\]
+
+
+Die Parameter $a$ und $b$ werden jeweils durch eine Ausgleichsrechnung bestimmt. Die konstante Verstärkung im flachen Bereich des Diagramms wird als $U_\text{konst}$
+bezeichnet und ebenfalls aus den Messdaten gemittelt. Die Grenzfrequenzen ergeben sich aus den Schnittpunkten der
+ Fit-Funktion mit der konstanten Verstärkung. Durch Umstellen der Gleichung ergibt sich:
+
+
+\[
+U_\text{konst} = a \cdot \nu_\text{Grenze}^b
+\quad\Rightarrow\quad
+\nu_\text{Grenze} = \left( \frac{U_\text{konst}}{a} \right)^{1/b}
+\]
+
+Für jede Messreihe werden zwei Grenzfrequenzen bestimmt, eine am unteren und eine am oberen Ende des Plateaus. 
+Die Differenz dieser beiden Werte ergibt die Bandbreite der jeweiligen Verstärkerkonfiguration:
+
+\[
+\text{Bandbreite} = \nu_\text{Grenze, rechts} - \nu_\text{Grenze, links}
+\]
+
+Die Fit-Parameter $a$ und $b$ sowie die konstante Verstärkung $U_\text{konst}$ werden aus den jeweiligen Plots abgelesen und zur Berechnung der Grenzfrequenzen 
+
 
 
