@@ -1,2 +1,56 @@
 \section{Durchführung}
 \label{sec:Durchführung}
+Im Folgenden wird der grundsätzliche Aufbau des Versuches sowie die Durchführung der einzelnen Aufgaben beschrieben.
+
+\subsection{Versuchsaufbau}
+Der Versuch wird auf einem Breadboard durchgeführt, dargestellt in \autoref{fig:breadboard}, die Verbindungen der Anschlüsse sind in \autoref{fig:connections} visualisiert. Des Weiteren stehen eine Spannungsquelle, ein Signalgenerator und ein Oszilloskop zur Verfügung.
+Kleine Kupferkabel können verschiedene elektrische Bauteile miteinander verbinden. Diese sind alle in \autoref{fig:devices} zu sehen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/bredboard.jpg}
+    \caption{Das verwendete Breadboard. Das blaue Kabel links bzw. das rote Kabel rechts sind die negativen bzw. positiven Enden der Betriebsspannung. Das schwarze Kabel oben ist die Erde. Die Kabel unten links und rechts greifen das Eingangs- und Ausgangssignal ab.
+    In der Mitte in Schwarz befindet sich ein OP-Amp.}
+    \label{fig:breadboard}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{theorie_bilder/connections.png}
+    \caption{Visualisierung der Verbindungen in einem Breadboard. Die $+$- und $-$-Spalten verbinden durchgehend, während die Anschlüsse in einer Zeile nur von A bis E bzw. F bis J verbinden.}
+    \label{fig:connections}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/devices.png}
+    \caption{Weitere Geräte, die im Versuch verwendet wurden. Von links nach rechts, von oben nach unten: Signalgenerator, Oszilloskop, Spannungsquelle, Kasten mit elektrischen Bauteilen, Breadboard, Multimeter.}
+    \label{fig:devices}
+\end{figure}
+
+
+\subsection{Versuchsdurchführung}
+
+Die Betriebsspannungen werden für den gesamten Versuch auf $\pm\SI{15}{\volt}$ geregelt. Die Frequenzen und Amplituden der Eingangssignale können wenn nötig mit dem Signalgenerator geregelt werden,
+der Sinus-, Rechteck- und Dreieckspannungen bereitstellen kann. Die Frequenzen und Amplituden der Ausgangsspannungen können am Oszilloskop ausgelesen werden.
+
+
+\subsubsection{Inverting-Amplifier}
+Der Inverting-Amplifier wird gemäß \autoref{fig:inv_ampl} aufgebaut. Es wird ein Sinus-Signal eingespeist, dessen Frequenz variiert wird. Die Amplitude des Ausgangssignals wird gemessen.
+Es werden drei Messungen für den Inverting-Amplifier durchgeführt, jeweils mit verschiedenen Widerständen. Die erste Messung wird durchgeführt mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$, die zweite Messung mit  $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{10}{\kilo\ohm}$
+und die dritte Messung mit  $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{150}{\kilo\ohm}$.
+
+\subsubsection{Integrator}
+
+
+\subsubsection{Differentiator}
+
+
+\subsubsection{Schmitt-Trigger}
+
+
+\subsubsection{Generator}
+
+
+\subsubsection{Generator mit variierender Amplitude}
