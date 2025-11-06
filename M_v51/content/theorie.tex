@@ -13,7 +13,7 @@ In \autoref{fig:opamps} sind eine Ausführung eines LM741-OP-Amps sowie der prin
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{theorie_bilder/opamp.png}
-    \caption{Links: LM741. Die Auskerbung gibt die Orientierung des Verstärkers an. Rechts: Pin-Konfiguration eines LM741 in einem DIL8 Housing.}
+    \caption{Links: LM741. Die Auskerbung gibt die Orientierung des Verstärkers an. Rechts: Pin-Konfiguration eines LM741 in einem DIL8 Housing \cite{opamp}.}
     \label{fig:opamps}
 \end{figure}
 
@@ -23,19 +23,18 @@ Der Output $A_\text{o}$ durch den Inverting Input mit Amplitude $A_-$ und dem No
 \begin{equation*}
     A_\text{o} = A \cdot (A_+ - A_-),
 \end{equation*}
-dabei ist $A$ die Amplification. In einem idealen OP-Amp ist dieser unendlich hoch, was jede noch so kleine Signaldifferenz verstärken würde. In der Realität ist dies nicht möglich, 
+dabei ist $A$ die Amplification \cite{eqns}. In einem idealen OP-Amp ist dieser unendlich hoch, was jede noch so kleine Signaldifferenz verstärken würde. In der Realität ist dies nicht möglich, 
 weshalb dieser nur sehr hoch eingestellt wird. Die Betriebsspannungen bestimmen die Range des Outputs, weshalb diese so gewählt werden, dass sie symmetrisch um $\SI{0}{\volt}$ liegen.
 
 Des Weiteren unterscheiden sich ideale und reelle OP-Amps durch insbesondere ihre Impedanzen. Input-Impedanzen sind idealerweise unendlich hoch, sodass es einen Strom-Rückfluss gibt,
 während sie in Realität nur endlich hoch eingestellt werden können. Die Output-Impedanzen sind idealerweise 0, realistisch sind aber nur sehr kleine, von Null verschiedene Werte.
-Die Bandbreite der ausgebbaren Frequenzen ist im idealen OP-Amp unendlich, im reellen aber endlich. Die Slew-Rate, also die Verzögerung zwischen Input und Output, ist im perfekten OP-Amp null, aber in Realität im Bereich von wenigen $\si{\volt\per\micro\second}$.
+Die Bandbreite der ausgebbaren Frequenzen ist im idealen OP-Amp unendlich, im reellen aber endlich. Die Slew-Rate, also die Verzögerung zwischen Input und Output, ist im perfekten OP-Amp null, aber in Realität im Bereich von wenigen $\si{\volt\per\micro\second}$ \cite{eqns}.
 
 Der Output eines OP-Amps kann als Feedback für den Input verwendet werden. Wird er in den Inverting Input gespeist,
 spricht man von negativem Feedback. Negatives Feedback stabilisiert den Output und erhöht die Bandbreite. Positives Feedback, wenn der Output in den Non-Inverting Input gespeist wird,
 saturiert den Output und ermöglicht Oszillationen, insbesondere kann somit ein Schmitt-Trigger gebaut werden.
 
-Über Feedback-Schaltungen mit verschiedenen elektrischen Komponenten können weitere Operatoren realisiert werden.
-
+Über Feedback-Schaltungen mit verschiedenen elektrischen Komponenten können weitere Operatoren realisiert werden \cite{eqns}.
 Wenn ein Eingangssignal die Erde ist, kann ein einzelnes Signal mit den im Folgenden erklärten Schaltungen bearbeitet werden.
 
 \subsubsection{Inverting-Amplifier}
@@ -45,11 +44,11 @@ Das Schaltbild eines Inverting-Amplifiers ist in \autoref{fig:inv_ampl} dargeste
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{theorie_bilder/inv_ampl.png}
-    \caption{Schaltbild eines Inverting-Amplifiers mit zwei Widerständen und einem OP-Amp.}
+    \caption{Schaltbild eines Inverting-Amplifiers mit zwei Widerständen und einem OP-Amp \cite{anleitung}.}
     \label{fig:inv_ampl}
 \end{figure}
 
-Ein Inverting-Amplifier kann, wie der Name andeutet, ein eingehendes Signal invertieren. Über die Kirchhoff'schen Knotenregel kann nachgerechnet werden, dass 
+Ein Inverting-Amplifier kann, wie der Name andeutet, ein eingehendes Signal invertieren. Über die Kirchhoff'schen Knotenregel \cite{kirchhoff} kann nachgerechnet werden, dass 
 der Verstärkungsfaktor dafür
 
 \begin{equation}
@@ -67,11 +66,11 @@ Das Schaltbild eines Integrators ist in \autoref{fig:integrator} dargestellt.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{theorie_bilder/integrator.png}
-    \caption{Schaltbild eines Integrators mit Widerstand, Kondensator und OP-Amp.}
+    \caption{Schaltbild eines Integrators mit Widerstand, Kondensator und OP-Amp \cite{anleitung}.}
     \label{fig:integrator}
 \end{figure}
 
-Diese Schaltung kann ein eingehendes Signal integrieren, was anhand der Knotenregeln bewiesen werden kann, sodass gilt
+Diese Schaltung kann ein eingehendes Signal integrieren, was anhand der Knotenregeln \cite{kirchhoff} bewiesen werden kann, sodass gilt
 
 \begin{equation*}
     U_\text{o} = - \frac{1}{RC} \int U_\text{i} \mathrm{d}t
@@ -100,11 +99,11 @@ Das Schaltbild eines Differentiators ist in \autoref{fig:differentiator} dargest
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{theorie_bilder/differentiator.png}
-    \caption{Schaltbild eines Differentiators mit Widerstand, Kondensator und OP-Amp.}
+    \caption{Schaltbild eines Differentiators mit Widerstand, Kondensator und OP-Amp \cite{anleitung}.}
     \label{fig:differentiator}
 \end{figure}
 
-Ein Differentiator kann das Signalprofil eines eingehenden Signales ableiten, was ebenfalls über die Knotenregeln gezeigt werden kann.
+Ein Differentiator kann das Signalprofil eines eingehenden Signales ableiten, was ebenfalls über die Knotenregeln \cite{kirchhoff} gezeigt werden kann.
 Dabei gilt
 
 \begin{equation*}
@@ -128,7 +127,7 @@ siehe \autoref{fig:schmitt}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{theorie_bilder/schmitt.png}
-    \caption{Schaltbild eines Schmitt-Triggers mit Widerständen und OP-Amp.}
+    \caption{Schaltbild eines Schmitt-Triggers mit Widerständen und OP-Amp \cite{anleitung}.}
     \label{fig:schmitt}
 \end{figure}
 
@@ -137,7 +136,7 @@ siehe \autoref{fig:schmitt}.
     \centering
     \includegraphics[width=0.6\textwidth]{theorie_bilder/schmitttrigger.png}
     \caption{Skizzenhaftes Verhalten eines Schmitt-Triggers. Die wellige Kurve ist das Eingangssignal, das Rechtecksignal der Output. Die Schwellwerte heißen hier $U_\text{H}$ und $U_\text{L}$.
-    Die Betriebsspannungen sind hier $U_\text{HA}$ und $U_\text{LA}$.}
+    Die Betriebsspannungen sind hier $U_\text{HA}$ und $U_\text{LA}$ \cite{schmitt}.}
     \label{fig:schmittverhalten}
 \end{figure}
 
@@ -149,7 +148,7 @@ Dieses Verhalten ist in \autoref{fig:hysterese} dargestellt.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{theorie_bilder/hysteresis.png}
-    \caption{Skizzenhafte Charakteristik eines Schmitt-Triggers mit Eingangsspannung auf der $x$-Achse und Ausgangsspannung auf der $y$-Achse.}
+    \caption{Skizzenhafte Charakteristik eines Schmitt-Triggers mit Eingangsspannung auf der $x$-Achse und Ausgangsspannung auf der $y$-Achse \cite{hysterese}.}
     \label{fig:hysterese}
 \end{figure}
 Die Schwellwerte lassen sich berechnen zu 
@@ -165,7 +164,7 @@ Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Recht
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{theorie_bilder/generator1.png}
-    \caption{Schaltbild eines Generators bestehend aus Schmitt-Trigger (linker OP-Amp) und Integrator (rechter OP-Amp).}
+    \caption{Schaltbild eines Generators bestehend aus Schmitt-Trigger (linker OP-Amp) und Integrator (rechter OP-Amp) \cite{anleitung}.}
     \label{fig:generator1}
 \end{figure}
 
@@ -183,7 +182,7 @@ und die Amplitude des Outputs ist
     \label{eq:ampl_generator1}
 \end{equation}
 
-mit Kapazität $C$ und den Widerständen $R_1$, $R_2$ und $R_3$.
+\cite{anleitung}, mit Kapazität $C$ und den Widerständen $R_1$, $R_2$ und $R_3$.
 
 
 
@@ -193,7 +192,7 @@ Ein Generator mit variierender Amplitude ist in \autoref{fig:generator2} dargest
     \centering
     \includegraphics[width=0.7\textwidth]{theorie_bilder/generator2.png}
     \caption{Schaltbild eines Generators mit variierender Amplitude, bestehend aus zwei Integratoren und einem invertierenden Verstärker.
-    Die Schaltung ist mit einem regelbaren Widerstand versehen, um die Dämpfung der Oszillation zu beeinflussen.}
+    Die Schaltung ist mit einem regelbaren Widerstand versehen, um die Dämpfung der Oszillation zu variieren \cite{anleitung}.}
     \label{fig:generator2}
 \end{figure}
 
@@ -220,6 +219,8 @@ mit der Periodendauer $T$ und der Abklingzeit $\tau$, die gegeben sind über
 und
 
 \begin{equation}
-    \tau = \frac{20 RC}{\left|\eta\right|}.
+    \tau = \frac{20 RC}{\left|\eta\right|}
     \label{eq:tau}
 \end{equation}
+
+\cite{anleitung}.
