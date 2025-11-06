@@ -44,7 +44,7 @@ Das Schaltbild eines Inverting-Amplifiers ist in \autoref{fig:inv_ampl} dargeste
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/inv_ampl.png}
+    \includegraphics[width=0.7\textwidth]{theorie_bilder/inv_ampl.png}
     \caption{Schaltbild eines Inverting-Amplifiers mit zwei Widerständen und einem OP-Amp.}
     \label{fig:inv_ampl}
 \end{figure}
@@ -66,7 +66,7 @@ Das Schaltbild eines Integrators ist in \autoref{fig:integrator} dargestellt.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/integrator.png}
+    \includegraphics[width=0.7\textwidth]{theorie_bilder/integrator.png}
     \caption{Schaltbild eines Integrators mit Widerstand, Kondensator und OP-Amp.}
     \label{fig:integrator}
 \end{figure}
@@ -99,7 +99,7 @@ Das Schaltbild eines Differentiators ist in \autoref{fig:differentiator} dargest
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/differentiator.png}
+    \includegraphics[width=0.7\textwidth]{theorie_bilder/differentiator.png}
     \caption{Schaltbild eines Differentiators mit Widerstand, Kondensator und OP-Amp.}
     \label{fig:differentiator}
 \end{figure}
@@ -127,48 +127,44 @@ siehe \autoref{fig:schmitt}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/schmitt.png}
+    \includegraphics[width=0.7\textwidth]{theorie_bilder/schmitt.png}
     \caption{Schaltbild eines Schmitt-Triggers mit Widerständen und OP-Amp.}
     \label{fig:schmitt}
 \end{figure}
 
-Ein Schmitt-Trigger gibt ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$, aber mit Hysterese. Wird ein Schwellwert $U_+$ ($U_-$) erstmals überschritten (unterschritten),
-so springt der Output auf $+U_\text{S}$ ($-U_\text{S}$), dargestellt in \autoref{fig:schmittverhalten}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/schmitttrigger.png}
+    \includegraphics[width=0.6\textwidth]{theorie_bilder/schmitttrigger.png}
     \caption{Skizzenhaftes Verhalten eines Schmitt-Triggers. Die wellige Kurve ist das Eingangssignal, das Rechtecksignal der Output. Die Schwellwerte heißen hier $U_\text{H}$ und $U_\text{L}$.
     Die Betriebsspannungen sind hier $U_\text{HA}$ und $U_\text{LA}$.}
     \label{fig:schmittverhalten}
 \end{figure}
 
+Ein Schmitt-Trigger gibt ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$, aber mit Hysterese. Wird ein Schwellwert $U_+$ ($U_-$) erstmals überschritten (unterschritten),
+so springt der Output auf $+U_\text{S}$ ($-U_\text{S}$), dargestellt in \autoref{fig:schmittverhalten}.
 Das bedeutet, wie in \autoref{fig:schmittverhalten} erkennbar, dass, sobald ein Eingangssignal die obere Schwelle überschritten hat, das Ausgangssignal gleich bleibt, auch wenn sie diese Schwelle wieder unterschreitet.
 Dieses Verhalten ist in \autoref{fig:hysterese} dargestellt.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/hysteresis.png}
+    \includegraphics[width=0.6\textwidth]{theorie_bilder/hysteresis.png}
     \caption{Skizzenhafte Charakteristik eines Schmitt-Triggers mit Eingangsspannung auf der $x$-Achse und Ausgangsspannung auf der $y$-Achse.}
-    \label{fig:schmittverhalten}
+    \label{fig:hysterese}
 \end{figure}
-
 Die Schwellwerte lassen sich berechnen zu 
-
 \begin{equation}
     U_\pm = \pm \frac{R_1}{R_2} U_\text{S}
     \label{eq:schwellwert}
 \end{equation}
-
 mit der Betriebsspannung $U_\text{S}$ und den widerständen $R_1$ und $R_2$.
 
 \subsubsection{Generatoren}
-
 Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Rechteckspannung erzeugt, kann integeriert werden, sodass eine Dreieckspannung entsteht, wie in \autoref{fig:generator1} dargestellt.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/generator1.png}
+    \includegraphics[width=0.7\textwidth]{theorie_bilder/generator1.png}
     \caption{Schaltbild eines Generators bestehend aus Schmitt-Trigger (linker OP-Amp) und Integrator (rechter OP-Amp).}
     \label{fig:generator1}
 \end{figure}
@@ -195,7 +191,7 @@ Ein Generator mit variierender Amplitude ist in \autoref{fig:generator2} dargest
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{theorie_bilder/generator2.png}
+    \includegraphics[width=0.7\textwidth]{theorie_bilder/generator2.png}
     \caption{Schaltbild eines Generators mit variierender Amplitude, bestehend aus zwei Integratoren und einem invertierenden Verstärker.
     Die Schaltung ist mit einem regelbaren Widerstand versehen, um die Dämpfung der Oszillation zu beeinflussen.}
     \label{fig:generator2}
@@ -204,7 +200,7 @@ Ein Generator mit variierender Amplitude ist in \autoref{fig:generator2} dargest
 Dieses Schaltbild wird von folgender DGL beschrieben,
 
 \begin{equation*}
-    \frac{\mathrm{d}^2U_\text{o}}{\mathrm{d}t^2} - \frac{eta}{10RC} \frac{\mathrm{d}U_\text{o}}{\mathrm{d}t} + \frac{1}{R^2 C^2} U_\text{o} = 0,
+    \frac{\mathrm{d}^2U_\text{o}}{\mathrm{d}t^2} - \frac{\eta}{10RC} \frac{\mathrm{d}U_\text{o}}{\mathrm{d}t} + \frac{1}{R^2 C^2} U_\text{o} = 0,
 \end{equation*}
 
 wobei $\eta$ der Dämpfungsfaktor ist und zwischen $0$ und $1$ liegt. Die DGL besitzt näherungsweise die Lösung
