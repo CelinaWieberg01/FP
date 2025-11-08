@@ -1,4 +1,42 @@
 \section{Diskussion}
 \label{sec:Diskussion}
 
+Zuletzt werden die theoretischen Erkenntnisse und gemessenen Werte hinsichtlich ihrer Genauigkeit diskutiert.
+
+\subsection{Inverting-Amplifier}
+
+Die gemessenen Verstärkungsfaktoren von \num{88.0(7)}, \num{11.2(1)} und \num{106.0(4)} mit ihren Abweichungen um jeweils $12$, $12$ und $29 \%$
+sind angemessen. Abweichungen sind wahrscheinlich auf Ungenauigkeiten der benutzten Widerstände zurückzuführen. Diese hätten vor Benutzen vermessen werden können, um genauere Werte zu erhalten.
+
+Die Bandbreiten mit \num{1.1(5)e4}, \num{0.5(1.9)e5} und $\qty{8.0(3.3)e3}{\hertz}$ liegen zueinander in Anbetracht ihrer entsprechenden Verstärkung gut,
+eine größere Verstärkung führt zu einer kleineren Bandbreite und umgekehrt, was hier beobachtet werden kann.
+
+\subsection{Integrator}
+Das integrierende Verhalten eines Integrators ist klar demonstriert.
+Des Weiteren ist die Abweichung der gemessenen zur errechneten Zeitkonstanten von \qty{0.00097(3)}{\second} zu \qty{0.001}{\second} mit \qty{2.6}{\percent} minimal.
+\autoref{fig:int} lässt vermuten, dass ein Fit mit einer Potenzfunktion eventuell genauer sein könnte, allerdings entspricht das nicht den hier gestellten theoretischen Erwartungen.
+Es ist zu erwarten, dass die benutzten Bauteile korrekte Labels bzgl. ihrer Größen besitzen.
+
+\subsection{Differentiator}
+Das differezierende Verhalten eines Differentiators ist klar demonstriert.
+Die Abweichung der gemssenen zur errechneten Zeitkonstanten von \qty{0.0022}{\second} zu \qty{0.00185(1)}{\second} mit \qty{16}{\percent} ist deutlich größer als beim Integrator, aber im verkraftbaren Bereich.
+Der lineare Fit in \autoref{fig:dif} passt sehr gut auf die Daten.
+Dies lässt darauf deuten, dass die benutzte Kapazität ein falsches Label trägt, da derselbe Widerstand wie beim Integrator verwendet wurde.
+
+\subsection{Schmitt-Trigger}
+Der Unterschied von \qty{6}{\percent} zwischen der theoretischen Schwellspannung von \qty{2.81(1)}{\volt} und der gemessenen Spannung von \qty{2.980(1)}{\volt} ist akzeptabel.
+Es wäre besser gewesen, wäre die Ausgangssättigungsspannung vorher berechnet worden. So musste die Messung erst gemacht werden, um einen Theoriewert zu erhalten.
+Es konnte ebenfalls die Funktionalität des Schmitt-Triggers demonstriert werden.
+
+
+\subsection{Generatoren}
+Der Frequenzunterschied von \qty{34}{\percent} zwischen der theoretischen Frequenz von \qty{34}{\percent} und der ermittelten Frequenz von \SI{1.65(10)e3}{\hertz}
+ist etwas groß. Das ist wahrscheinlich darauf zu schieben, dass das entstehende Rechtecksignal des Schmitt-Triggers nicht ganz sauber ist, wie in \autoref{fig:schm} erkennbar:
+da dieser deutlich schräg ansteigende Flanken besitzt, ist das Dreiecksignal, also das Integral, an den Spitzen sehr unsauber, was die Frequenzauslese erschwert.
+
+Obwohl kein herkömmlicher Fit einer Lösung auf die Messwerte für den variablen Generator möglich war, sind die gefunden Werte teilweise im Rahmen des Verkraftbaren.
+Die Abweichung in $T$ mit $\qty{15}{\percent}$ bzw. $\qty{14}{\percent}$ ist unerwartet klein, es war zu erwarten, dass aufgrund der ungeauen Lage der peaks diese viel größer sein würde.
+
+Die Abweichung in $\tau$, die wiederum mit einem anderen Fit entstand, ist für die maximale Dämpfung mit \qty{310}{\percent} so hoch, dass dieser vermuten lässt, dass etwas in der Durchführung falsch lief,
+während die Abeweichung für minimale Dämpfung mit \qty{38}{\percent} wieder in einem akzeptablen Bereich liegt.
 

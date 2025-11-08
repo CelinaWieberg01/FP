@@ -1,0 +1,74 @@
+1 a = 5.06e+04 +- 1.19e+04, b = -0.719 +- 0.0249
+1 Plateau = 88.0 +- 0.747
+1 f_cutoff =  (1.1+/-0.5)e+04
+1 A_theo =  100.0
+1 Deviation ampl =  0.120+/-0.007
+
+
+
+
+2 a = 33.1 +- 11.5, b = -0.132 +- 0.0347
+2 Plateau = 11.2 +- 0.0
+2 f_cutoff =  (0.5+/-1.9)e+05
+2 A_theo =  10.0
+2 Deviation ampl =  0.12149532710280368+/-0
+
+
+
+
+3 a = 4.85e+04 +- 1.06e+04, b = -0.72 +- 0.0233
+3 Plateau = 1.06e+02 +- 0.44
+3 f_cutoff =  (8.0+/-3.3)e+03
+3 A_theo =  150.0
+3 Deviation ampl =  0.2919+/-0.0029
+
+
+
+
+INT: theoretische Zeitkonstante tau =  0.001
+INT: m = 1.03e+03 +- 33.2, b = 2.34 +- 0.259
+INT: Zeitkonstante im Fit tau =  0.000974+/-0.000031
+INT: deviation tau =  0.026+/-0.031
+
+
+
+
+DIFF: theoretische Zeitkonstante tau =  0.0021999999999999997
+DIFF: m = 0.00185 +- 1.62e-05, b = 0.139 +- 0.0147
+DIFF: Zeitkonstante im Fit tau =  0.001850+/-0.000016
+DIFF: deviation tau =  0.159+/-0.007
+
+
+
+
+SCHMITT: Soll-Schwelle =  2.810+/-0.010
+SCHMITT: Messung =  2.9800+/-0.0010
+SCHMITT: Dev =  0.060+/-0.004
+
+
+
+
+GEN 1: Theoretische Frequenz =  2500.0
+GEN 1: gemessene Frequenz =  (1.65+/-0.10)e+03
+GEN 1: Dev =  0.34+/-0.04
+
+
+
+
+GEN 2: theoretisches T = 0.00628
+GEN 2: theoretisches tau = 0.02
+
+
+
+GEN 2_max: T =  0.00536+/-0.00016
+GEN 2_max: a_n = 0.011 +- 0.00103, tau_n = 0.0811 +- 0.0253
+GEN 2_max: dev_T = 0.147+/-0.025
+GEN 2_max: dev_tau = 3.1+/-1.3
+
+
+
+
+GEN 2_min: T =  0.00542+/-0.00025
+GEN 2_min: a_n = 0.0105 +- 0.00111, tau_n = 0.0275 +- 0.00624
+GEN 2_min: dev_T = 0.14+/-0.04
+GEN 2_min: dev_tau = 0.38+/-0.31

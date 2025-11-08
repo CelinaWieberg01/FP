@@ -48,15 +48,12 @@ Das Schaltbild eines Inverting-Amplifiers ist in \autoref{fig:inv_ampl} dargeste
     \label{fig:inv_ampl}
 \end{figure}
 
-Ein Inverting-Amplifier kann, wie der Name andeutet, ein eingehendes Signal invertieren. Über die Kirchhoff'schen Knotenregel \cite{kirchhoff} kann nachgerechnet werden, dass 
-der Verstärkungsfaktor dafür
-
+Ein Inverting-Amplifier invert eingehende Signale. Über die Kirchhoff'schen Regeln \cite{kirchhoff} kann nachgerechnet werden, dass 
 \begin{equation}
     A = - \frac{R_2}{R_1}
     \label{eq:inverter}
 \end{equation}
-
-lautet, wobei $R_1$ und $R_2$ die Widerstände im Schaltbild sind.
+gilt, wobei $R_1$ und $R_2$ die Widerstände im Schaltbild sind.
 
 
 \subsubsection{Integrator}
@@ -92,6 +89,7 @@ ergibt sich für die Verstärkung des Ausgangssignal der Faktor
 mit der Zeit $t$, der Maximalspannung $U_0$ und der Eingangsfrequenz $\omega$.
 Wird die Frequenz größer, verkleinert ein Integrator das Ausgangssignal.
 
+\newpage
 \subsubsection{Differentiator}
 
 Das Schaltbild eines Differentiators ist in \autoref{fig:differentiator} dargestellt.
@@ -132,7 +130,7 @@ siehe \autoref{fig:schmitt}.
 \end{figure}
 
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.6\textwidth]{theorie_bilder/schmitttrigger.png}
     \caption{Skizzenhaftes Verhalten eines Schmitt-Triggers. Die wellige Kurve ist das Eingangssignal, das Rechtecksignal der Output. Die Schwellwerte heißen hier $U_\text{H}$ und $U_\text{L}$.
@@ -145,9 +143,9 @@ so springt der Output auf $+U_\text{S}$ ($-U_\text{S}$), dargestellt in \autoref
 Das bedeutet, wie in \autoref{fig:schmittverhalten} erkennbar, dass, sobald ein Eingangssignal die obere Schwelle überschritten hat, das Ausgangssignal gleich bleibt, auch wenn sie diese Schwelle wieder unterschreitet.
 Dieses Verhalten ist in \autoref{fig:hysterese} dargestellt.
 
-\begin{figure}[H]
+\begin{figure}
     \centering
-    \includegraphics[width=0.6\textwidth]{theorie_bilder/hysteresis.png}
+    \includegraphics[width=0.5\textwidth]{theorie_bilder/hysteresis.png}
     \caption{Skizzenhafte Charakteristik eines Schmitt-Triggers mit Eingangsspannung auf der $x$-Achse und Ausgangsspannung auf der $y$-Achse \cite{hysterese}.}
     \label{fig:hysterese}
 \end{figure}
@@ -163,7 +161,7 @@ Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Recht
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{theorie_bilder/generator1.png}
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/generator1.png}
     \caption{Schaltbild eines Generators bestehend aus Schmitt-Trigger (linker OP-Amp) und Integrator (rechter OP-Amp) \cite{anleitung}.}
     \label{fig:generator1}
 \end{figure}
@@ -171,7 +169,7 @@ Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Recht
 Die erzeugte Frequenz lautet
 
 \begin{equation}
-    \nu = \frac{R_2}{4 C R_1 R_3}
+    f = \frac{R_2}{4 C R_1 R_3}
     \label{eq:frequenz}
 \end{equation}
 
@@ -190,7 +188,7 @@ Ein Generator mit variierender Amplitude ist in \autoref{fig:generator2} dargest
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{theorie_bilder/generator2.png}
+    \includegraphics[width=0.8\textwidth]{theorie_bilder/generator2.png}
     \caption{Schaltbild eines Generators mit variierender Amplitude, bestehend aus zwei Integratoren und einem invertierenden Verstärker.
     Die Schaltung ist mit einem regelbaren Widerstand versehen, um die Dämpfung der Oszillation zu variieren \cite{anleitung}.}
     \label{fig:generator2}

@@ -29,9 +29,9 @@ def plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, i, error):
     U_pow = U_inv[powerlaw:]
     err_pow = error[powerlaw:]
 
-    plt.errorbar(f_const, U_const, yerr=err_const, fmt=".", color="green", marker="o", label=r"Konst.")
-    plt.errorbar(f_oth,   U_oth,   yerr=err_oth,   fmt=".", color="red",   marker="x", label=r"ungefittet")
-    plt.errorbar(f_pow,   U_pow,   yerr=err_pow,   fmt=".", color="blue",  marker="o", label=r"Potenzgesetz")
+    plt.errorbar(f_const, U_const, yerr=err_const, fmt="o", capsize=2, color="green", label=r"Konst.")
+    plt.errorbar(f_oth,   U_oth,   yerr=err_oth,   fmt="x", capsize=2, color="red",   label=r"ungefittet")
+    plt.errorbar(f_pow,   U_pow,   yerr=err_pow,   fmt="o", capsize=2, color="blue",  label=r"Potenzgesetz")
 
 
 
@@ -60,6 +60,7 @@ def plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, i, error):
     plateau_x = np.linspace(f_const[0]-f_const[0]/2, f_const[-1]+f_const[-1]*10)
 
     print(i, f"Plateau = {plateau_height:.3} +- {plateau_height_err:.3}")
+
     plt.hlines(plateau_height, plateau_x[0], plateau_x[-1], color="lightgreen", label=r"Fit Potenzgesetz")
 
     plt.hlines(plateau_height/np.sqrt(2), f_inv[0], f_inv[-1], linestyles="dashed", color="orange", label=r"$\frac{U_\text{const}}{\sqrt{2}}$")
@@ -82,346 +83,362 @@ def plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, i, error):
     plt.legend(loc="lower left")
     plt.grid(True, which="both")
 
-print("\n\n\n")
-# data 1
-f_inv, U_inv = np.genfromtxt("data/Invamp1.txt", unpack=True) # Hz, V
-R1 = 1000
-R2 = 100000
+make_plots = False
 
-U_in_inv = 107e-3 # V
-U_in_inv_u = ufloat(U_in_inv, 10e-3)
-U_inv_u = unp.uarray(U_inv, 0.05)
+if make_plots == True:
+    print("\n\n\n")
+    # data 1
+    f_inv, U_inv = np.genfromtxt("data/Invamp1.txt", unpack=True) # Hz, V
+    R1 = 1000
+    R2 = 100000
 
-errs = unp.std_devs(U_inv_u/U_in_inv_u)
+    U_in_inv = 107e-3 # V
+    U_in_inv_u = ufloat(U_in_inv, 10e-3)
+    U_inv_u = unp.uarray(U_inv, 0.05)
 
-c1 = 7
-c2 = 13
+    errs = unp.std_devs(U_inv_u/U_in_inv_u)
 
-plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 1, errs)
-plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$")
-plt.savefig("plots/inv1.pdf")
-plt.figure()
+    c1 = 7
+    c2 = 13
 
-print("\n\n\n")
-# data 2
-f_inv, U_inv = np.genfromtxt("data/Invamp2.txt", unpack=True) # Hz, V
-R1 = 1000
-R2 = 10000
-U_in_inv = 107e-3 # V
-U_in_inv_u = ufloat(U_in_inv, 10e-3)
-U_inv_u = unp.uarray(U_inv, 0.05)
+    plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 1, errs)
+    plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$")
+    plt.savefig("plots/inv1.pdf")
+    plt.figure()
 
-errs = unp.std_devs(U_inv_u/U_in_inv_u)
+    print("\n\n\n")
+    # data 2
+    f_inv, U_inv = np.genfromtxt("data/Invamp2.txt", unpack=True) # Hz, V
+    R1 = 1000
+    R2 = 10000
+    U_in_inv = 107e-3 # V
+    U_in_inv_u = ufloat(U_in_inv, 10e-3)
+    U_inv_u = unp.uarray(U_inv, 0.05)
 
-c1 = 5
-c2 = -6
+    errs = unp.std_devs(U_inv_u/U_in_inv_u)
 
-plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 2, errs)
-plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{10}{\kilo\ohm}$")
-plt.savefig("plots/inv2.pdf")
-plt.figure()
+    c1 = 5
+    c2 = -6
 
-print("\n\n\n")
-# data 3
-f_inv, U_inv = np.genfromtxt("data/Invamp3.txt", unpack=True) # Hz, V
-R1 = 1000
-R2 = 150000
-U_in_inv = 40e-3 # V
-U_in_inv_u = ufloat(U_in_inv, 10e-3)
-U_inv_u = unp.uarray(U_inv, 0.05)
+    plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 2, errs)
+    plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{10}{\kilo\ohm}$")
+    plt.savefig("plots/inv2.pdf")
+    plt.figure()
 
-errs = unp.std_devs(U_inv_u/U_in_inv_u)
+    print("\n\n\n")
+    # data 3
+    f_inv, U_inv = np.genfromtxt("data/Invamp3.txt", unpack=True) # Hz, V
+    R1 = 1000
+    R2 = 150000
+    U_in_inv = 40e-3 # V
+    U_in_inv_u = ufloat(U_in_inv, 10e-3)
+    U_inv_u = unp.uarray(U_inv, 0.05)
 
-c1 = 6
-c2 = -8
+    errs = unp.std_devs(U_inv_u/U_in_inv_u)
 
-plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 3, errs)
-plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{150}{\kilo\ohm}$")
-plt.savefig("plots/inv3.pdf")
-plt.figure()
+    c1 = 6
+    c2 = -8
 
+    plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 3, errs)
+    plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{150}{\kilo\ohm}$")
+    plt.savefig("plots/inv3.pdf")
+    plt.figure()
 
 
 
-print("\n\n\n")
-# integrator
 
-def lin(x, m, b):
-    return m*x+b
+    print("\n\n\n")
+    # integrator
 
-f_int, U1, U2 = np.genfromtxt("data/IntegreatorAmp.txt", unpack=True)
-U1 *= 1e-3
-U1 = unp.uarray(U1, 0.005)
-U2 = unp.uarray(U2, 0.05)
-U_int = U2/U1
+    def lin(x, m, b):
+        return m*x+b
 
-x = 1/(2*np.pi*f_int)
+    f_int, U1, U2 = np.genfromtxt("data/IntegreatorAmp.txt", unpack=True)
+    U1 *= 1e-3
+    U1 = unp.uarray(U1, 0.005)
+    U2 = unp.uarray(U2, 0.05)
+    U_int = U2/U1
 
-R = 10000
-C = 100e-9
-tau = R*C
-print("INT: theoretische Zeitkonstante tau = ", tau)
+    x = 1/(2*np.pi*f_int)
 
-params, cov = curve_fit(lin, x, unp.nominal_values(U_int), sigma=unp.std_devs(U_int))
+    R = 10000
+    C = 100e-9
+    tau = R*C
+    print("INT: theoretische Zeitkonstante tau = ", tau)
 
-m = params[0]
-m_err = np.sqrt(np.diag(cov))[0]
+    params, cov = curve_fit(lin, x, unp.nominal_values(U_int), sigma=unp.std_devs(U_int))
 
-b = params[1]
-b_err = np.sqrt(np.diag(cov))[1]
+    m = params[0]
+    m_err = np.sqrt(np.diag(cov))[0]
 
-m_u = ufloat(m, m_err)
-b_u = ufloat(b, b_err)
+    b = params[1]
+    b_err = np.sqrt(np.diag(cov))[1]
 
-print(f"INT: m = {m:.3} +- {m_err:.3}, b = {b:.3} +- {b_err:.3}")
+    m_u = ufloat(m, m_err)
+    b_u = ufloat(b, b_err)
 
-tau_fit = 1/m_u
-print("INT: Zeitkonstante im Fit tau = ", tau_fit)
+    print(f"INT: m = {m:.3} +- {m_err:.3}, b = {b:.3} +- {b_err:.3}")
 
-dev_tau = np.abs(tau - tau_fit)/tau
-print("INT: deviation tau = ", dev_tau)
+    tau_fit = 1/m_u
+    print("INT: Zeitkonstante im Fit tau = ", tau_fit)
 
-int_x = np.linspace(x[0], x[-1])
-plt.plot(int_x, lin(int_x, *params), color="lightblue", label=r"Fit")
+    dev_tau = np.abs(tau - tau_fit)/tau
+    print("INT: deviation tau = ", dev_tau)
 
+    int_x = np.linspace(x[0], x[-1])
+    plt.plot(int_x, lin(int_x, *params), color="lightblue", label=r"Fit")
 
 
-plt.errorbar(x, unp.nominal_values(U_int), yerr=unp.std_devs(U_int), fmt=".", color="blue", label=r"Messung")
 
-#plt.xscale("log")
-plt.xlabel(r"$\frac{1}{\omega} = \frac{1}{2\pi f}$ in $\si{\per\hertz}$")
+    plt.errorbar(x, unp.nominal_values(U_int), yerr=unp.std_devs(U_int), fmt="o", capsize=2, color="blue", label=r"Messung")
 
-#plt.yscale("log")
-plt.ylabel(r"A")
-plt.legend()
-plt.title("Integrator")
-plt.grid("on")
-plt.savefig("plots/int.pdf")
-plt.figure()
+    #plt.xscale("log")
+    plt.xlabel(r"$\frac{1}{\omega} = \frac{1}{2\pi f}$ in $\si{\per\hertz}$")
 
+    #plt.yscale("log")
+    plt.ylabel(r"A")
+    plt.legend()
+    plt.title("Integrator")
+    plt.grid("on")
+    plt.savefig("plots/int.pdf")
+    plt.figure()
 
 
 
-print("\n\n\n")
-# differentiatior
 
-f_int, U2 = np.genfromtxt("data/differentiator.txt", unpack=True)
-U1 = 3.14
-U1_u = ufloat(U1, 0.05)
-U_int = U2/U1
+    print("\n\n\n")
+    # differentiatior
 
-x = 2*np.pi*f_int
+    f_int, U2 = np.genfromtxt("data/differentiator.txt", unpack=True)
+    U1 = 3.14
+    U1_u = ufloat(U1, 0.05)
+    U2 = unp.uarray(U2, 0.05)
+    U_int = U2/U1
 
-R = 100000
-C = 22e-9
-tau = R*C
-print("DIFF: theoretische Zeitkonstante tau = ", tau)
+    x = 2*np.pi*f_int
 
-params, cov = curve_fit(lin, x, U_int)
+    R = 100000
+    C = 22e-9
+    tau = R*C
+    print("DIFF: theoretische Zeitkonstante tau = ", tau)
 
-m = params[0]
-m_err = np.sqrt(np.diag(cov))[0]
+    params, cov = curve_fit(lin, x, unp.nominal_values(U_int), sigma=unp.std_devs(U_int))
 
-b = params[1]
-b_err = np.sqrt(np.diag(cov))[1]
+    m = params[0]
+    m_err = np.sqrt(np.diag(cov))[0]
 
-m_u = ufloat(m, m_err)
-b_u = ufloat(b, b_err)
+    b = params[1]
+    b_err = np.sqrt(np.diag(cov))[1]
 
-print(f"DIFF: m = {m:.3} +- {m_err:.3}, b = {b:.3} +- {b_err:.3}")
+    m_u = ufloat(m, m_err)
+    b_u = ufloat(b, b_err)
 
-tau_fit = m_u
-print("DIFF: Zeitkonstante im Fit tau = ", tau_fit)
+    print(f"DIFF: m = {m:.3} +- {m_err:.3}, b = {b:.3} +- {b_err:.3}")
 
-dev_tau = np.abs(tau - tau_fit)/tau
-print("DIFF: deviation tau = ", dev_tau)
+    tau_fit = m_u
+    print("DIFF: Zeitkonstante im Fit tau = ", tau_fit)
 
-int_x = np.linspace(x[0], x[-1])
-plt.plot(int_x, lin(int_x, *params), color="lightblue", label=r"Fit")
+    dev_tau = np.abs(tau - tau_fit)/tau
+    print("DIFF: deviation tau = ", dev_tau)
 
+    int_x = np.linspace(x[0], x[-1])
+    plt.plot(int_x, lin(int_x, *params), color="lightblue", label=r"Fit")
 
 
-plt.scatter(x, U_int, color="blue", label=r"Messung")
 
-#plt.xscale("log")
-plt.xlabel(r"$\omega = 2\pi f$ in $\si{\hertz}$")
+    plt.errorbar(x, unp.nominal_values(U_int), yerr=unp.std_devs(U_int), fmt="o", capsize=2, color="blue", label=r"Messung")
 
-#plt.yscale("log")
-plt.ylabel(r"$A$")
-plt.legend()
-plt.grid("on")
-plt.title(r"Differentiator")
-plt.savefig("plots/diff.pdf")
-plt.figure()
+    #plt.xscale("log")
+    plt.xlabel(r"$\omega = 2\pi f$ in $\si{\hertz}$")
 
+    #plt.yscale("log")
+    plt.ylabel(r"$A$")
+    plt.legend()
+    plt.grid("on")
+    plt.title(r"Differentiator")
+    plt.savefig("plots/diff.pdf")
+    plt.figure()
 
 
 
-print("\n\n\n")
-# Schmitt Trigger
-R1 = 10000
-R2 = 100000
-U_s = ufloat(28.1, 0.1)
-U_pm = R1/R2 * U_s
-print("SCHMITT: Soll-Schwelle = ", U_pm)
 
-U_meas = ufloat(2.980, 0.001)
+    print("\n\n\n")
+    # Schmitt Trigger
+    R1 = 10000
+    R2 = 100000
+    U_s = ufloat(28.1, 0.1)
+    U_pm = R1/R2 * U_s
+    print("SCHMITT: Soll-Schwelle = ", U_pm)
 
-print("SCHMITT: Messung = ", U_meas)
+    U_meas = ufloat(2.980, 0.001)
 
-dev = np.abs(U_pm - U_meas)/U_pm
-print("SCHMITT: Dev = ", dev)
+    print("SCHMITT: Messung = ", U_meas)
 
+    dev = np.abs(U_pm - U_meas)/U_pm
+    print("SCHMITT: Dev = ", dev)
 
 
-print("\n\n\n")
-# generator 1
-R1 = 10000
-R2 = 100000
-R3 = 1000
-C = 1e-6
 
-f = R2 / (4 * C * R1 * R3)
-print("GEN 1: Theoretische Frequenz = ", f)
+    print("\n\n\n")
+    # generator 1
+    R1 = 10000
+    R2 = 100000
+    R3 = 1000
+    C = 1e-6
 
-f_meas = ufloat(1645.6, 100)
-print("GEN 1: gemessene Frequenz = ", f_meas)
+    f = R2 / (4 * C * R1 * R3)
+    print("GEN 1: Theoretische Frequenz = ", f)
 
-dev = np.abs(f - f_meas)/f
-print("GEN 1: Dev = ", dev)
+    f_meas = ufloat(1645.6, 100)
+    print("GEN 1: gemessene Frequenz = ", f_meas)
 
+    dev = np.abs(f - f_meas)/f
+    print("GEN 1: Dev = ", dev)
 
 
-print("\n\n\n")
-# generator 2
-C = 100e-9 
-R = 10000
 
-T = 2*np.pi*R*C
-tau = 20*R*C
+    print("\n\n\n")
+    # generator 2
+    C = 100e-9 
+    R = 10000
 
-print(f"GEN 2: theoretisches T = {T:.3}")
-print(f"GEN 2: theoretisches tau = {tau:.3}")
+    T = 2*np.pi*R*C
+    tau = 20*R*C
 
+    print(f"GEN 2: theoretisches T = {T:.3}")
+    print(f"GEN 2: theoretisches tau = {tau:.3}")
 
 
-def decay(x, a, tau):
-    return a*np.exp(-x/tau)
 
+    def decay(x, a, tau):
+        return a*np.exp(-x/tau)
 
-t, U = np.genfromtxt("data/csv/scope_10.csv", delimiter=",", usecols=(0,2), unpack=True)
 
-plt.plot(t, U, color="blue", linewidth=1, label=r"Messung")
-plt.xlabel(r"$t$ in $\si{\second}$")
-plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
-plt.legend()
-plt.grid("on")
-plt.title(r"Generator mit Dämpfung bei maximalem Potentiometer")
-plt.savefig("plots/gen2_max.pdf")
-plt.figure()
+    t, U = np.genfromtxt("data/csv/scope_10.csv", delimiter=",", usecols=(0,2), unpack=True)
 
-t = t[U > 0.03]
-U = U[U > 0.03]
+    plt.plot(t, U, color="blue", linewidth=1, label=r"Messung")
+    plt.xlabel(r"$t$ in $\si{\second}$")
+    plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+    plt.legend()
+    plt.grid("on")
+    plt.title(r"Generator mit Dämpfung bei maximalem Potentiometer")
+    plt.savefig("plots/gen2_max.pdf")
+    plt.figure()
 
-U = U[t < 0.3]
-t = t[t < 0.3]
+    t = t[U > 0.03]
+    U = U[U > 0.03]
 
-U -= np.mean(U)
-t -= t[0]
+    U = U[t < 0.3]
+    t = t[t < 0.3]
 
-pos_peaks, _ = find_peaks(U, distance=15)
-t_ppeaks = t[pos_peaks]
-U_ppeaks = U[pos_peaks]
-t_ppeaks_u = unp.uarray(t_ppeaks, 0.0015)
-U_ppeaks_u = unp.uarray(U_ppeaks, 0.001)
+    U -= np.mean(U)
+    t -= t[0]
 
+    pos_peaks, _ = find_peaks(U, distance=15)
+    t_ppeaks = t[pos_peaks]
+    U_ppeaks = U[pos_peaks]
+    t_ppeaks_u = unp.uarray(t_ppeaks, 0.0015)
+    U_ppeaks_u = unp.uarray(U_ppeaks, 0.001)
 
-neg_peaks, _ = find_peaks(-U, distance=15)
-t_npeaks = t[neg_peaks]
-U_npeaks = U[neg_peaks]
-t_npeaks_u = unp.uarray(t_npeaks, 0.0015)
-U_npeaks_u = unp.uarray(U_npeaks, 0.0015)
 
-plt.errorbar(t_ppeaks, U_ppeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="red", label=r"pos. Peaks")
-plt.errorbar(t_npeaks, U_npeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="green", label=r"pos. Peaks")
+    neg_peaks, _ = find_peaks(-U, distance=15)
+    t_npeaks = t[neg_peaks]
+    U_npeaks = U[neg_peaks]
+    t_npeaks_u = unp.uarray(t_npeaks, 0.0015)
+    U_npeaks_u = unp.uarray(U_npeaks, 0.0015)
 
-Tp = t_ppeaks[1:] - t_ppeaks[:-1]
-Tn = t_npeaks[1:] - t_npeaks[:-1]
-Ts = np.concatenate((Tp, Tn))
-T_mean = np.mean(Ts)
-T_err = np.std(Ts)/np.sqrt(len(Ts))
-T_u = ufloat(T_mean, T_err)
-print("GEN 2_1: T = ", T_u)
+    plt.errorbar(t_ppeaks, U_ppeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="red", label=r"pos. Peaks")
+    plt.errorbar(t_npeaks, U_npeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="green", label=r"pos. Peaks")
 
-t_all_peaks = np.concatenate((t_ppeaks, t_npeaks))
-U_all_peaks = np.concatenate((U_ppeaks, -U_npeaks))
-params, cov = curve_fit(decay, t_all_peaks, U_all_peaks, sigma=0.0015, p0=(-0.01, 0.10))
-errs = np.sqrt(np.diag(cov))
-print(f"GEN 2_1: a_n = {params[0]:.3} +- {errs[0]:.3}, tau_n = {params[1]:.3} +- {errs[1]:.3}")
+    Tp = t_ppeaks[1:] - t_ppeaks[:-1]
+    Tn = t_npeaks[1:] - t_npeaks[:-1]
+    Ts = np.concatenate((Tp, Tn))
+    T_mean = np.mean(Ts)
+    T_err = np.std(Ts)/np.sqrt(len(Ts))
+    T_u = ufloat(T_mean, T_err)
+    print("GEN 2_max: T = ", T_u)
 
-plt.plot(t, U, label=r"Messung")
-plt.xlabel(r"$t$ in $\si{\second}$")
-plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
-plt.legend()
-plt.grid("on")
-plt.savefig("plots/gen2_max_sec.pdf")
-plt.figure()
+    t_all_peaks = np.concatenate((t_ppeaks, t_npeaks))
+    U_all_peaks = np.concatenate((U_ppeaks, -U_npeaks))
+    params, cov = curve_fit(decay, t_all_peaks, U_all_peaks, sigma=0.0015, p0=(-0.01, 0.10))
+    errs = np.sqrt(np.diag(cov))
+    print(f"GEN 2_max: a_n = {params[0]:.3} +- {errs[0]:.3}, tau_n = {params[1]:.3} +- {errs[1]:.3}")
 
-print("\n\n\n")
-t, U = np.genfromtxt("data/csv/scope_13.csv", delimiter=",", usecols=(0,2), unpack=True)
+    plt.plot(t, U, label=r"Messung")
+    plt.xlabel(r"$t$ in $\si{\second}$")
+    plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+    plt.title(r"Generator mit Dämpfung bei maximalem Potentiometer, Ausschnitt")
+    plt.legend()
+    plt.grid("on")
+    plt.savefig("plots/gen2_max_sec.pdf")
+    plt.figure()
 
-plt.plot(t, U, color="blue", linewidth=1, label=r"Messung")
-plt.xlabel(r"$t$ in $\si{\second}$")
-plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
-plt.legend()
-plt.grid("on")
-plt.title(r"Generator mit Dämpfung bei minimalem Potentiometer")
-plt.savefig("plots/gen2_min.pdf")
-plt.figure()
+    dev_T = np.abs(T-T_u)/T
+    print(f"GEN 2_max: dev_T = {dev_T}")
+    dev_tau = np.abs(tau - ufloat(params[1], errs[1]))/tau
+    print(f"GEN 2_max: dev_tau = {dev_tau}")
 
-t = t[U > 0.03]
-U = U[U > 0.03]
+    print("\n\n\n")
+    t, U = np.genfromtxt("data/csv/scope_13.csv", delimiter=",", usecols=(0,2), unpack=True)
 
-U = U[t < 0.28]
-t = t[t < 0.28]
+    plt.plot(t, U, color="blue", linewidth=1, label=r"Messung")
+    plt.xlabel(r"$t$ in $\si{\second}$")
+    plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+    plt.legend()
+    plt.grid("on")
+    plt.title(r"Generator mit Dämpfung bei minimalem Potentiometer")
+    plt.savefig("plots/gen2_min.pdf")
+    plt.figure()
 
-U -= np.mean(U)
-t -= t[0]
+    t = t[U > 0.03]
+    U = U[U > 0.03]
 
+    U = U[t < 0.28]
+    t = t[t < 0.28]
 
-pos_peaks, _ = find_peaks(U, distance=15)
-t_ppeaks = t[pos_peaks]
-U_ppeaks = U[pos_peaks]
-t_ppeaks_u = unp.uarray(t_ppeaks, 0.0015)
-U_ppeaks_u = unp.uarray(U_ppeaks, 0.001)
+    U -= np.mean(U)
+    t -= t[0]
 
 
-neg_peaks, _ = find_peaks(-U, distance=15)
-t_npeaks = t[neg_peaks]
-U_npeaks = U[neg_peaks]
-t_npeaks_u = unp.uarray(t_npeaks, 0.0015)
-U_npeaks_u = unp.uarray(U_npeaks, 0.0015)
+    pos_peaks, _ = find_peaks(U, distance=15)
+    t_ppeaks = t[pos_peaks]
+    U_ppeaks = U[pos_peaks]
+    t_ppeaks_u = unp.uarray(t_ppeaks, 0.0015)
+    U_ppeaks_u = unp.uarray(U_ppeaks, 0.001)
 
-plt.errorbar(t_ppeaks, U_ppeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="red", label=r"pos. Peak")
-plt.errorbar(t_npeaks, U_npeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="green", label=r"pos. Peak")
 
-Tp = t_ppeaks[1:] - t_ppeaks[:-1]
-Tn = t_npeaks[1:] - t_npeaks[:-1]
-Ts = np.concatenate((Tp, Tn))
-T_mean = np.mean(Ts)
-T_err = np.std(Ts)/np.sqrt(len(Ts))
-T_u = ufloat(T_mean, T_err)
-print("T = ", T_u)
+    neg_peaks, _ = find_peaks(-U, distance=15)
+    t_npeaks = t[neg_peaks]
+    U_npeaks = U[neg_peaks]
+    t_npeaks_u = unp.uarray(t_npeaks, 0.0015)
+    U_npeaks_u = unp.uarray(U_npeaks, 0.0015)
 
-t_all_peaks = np.concatenate((t_ppeaks, t_npeaks))
-U_all_peaks = np.concatenate((U_ppeaks, -U_npeaks))
-params, cov = curve_fit(decay, t_all_peaks, U_all_peaks, sigma=0.0015, p0=(0.01, 0.01))
-errs = np.sqrt(np.diag(cov))
-print(f"GEN 2_2: a_n = {params[0]:.3} +- {errs[0]:.3}, tau_n = {params[1]:.3} +- {errs[1]:.3}")
+    plt.errorbar(t_ppeaks, U_ppeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="red", label=r"pos. Peak")
+    plt.errorbar(t_npeaks, U_npeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="green", label=r"pos. Peak")
 
-plt.plot(t, U, label=r"Messung")
-plt.xlabel(r"$t$ in $\si{\second}$")
-plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
-plt.legend()
-plt.grid("on")
-plt.savefig("plots/gen2_min_sec.pdf")
+    Tp = t_ppeaks[1:] - t_ppeaks[:-1]
+    Tn = t_npeaks[1:] - t_npeaks[:-1]
+    Ts = np.concatenate((Tp, Tn))
+    T_mean = np.mean(Ts)
+    T_err = np.std(Ts)/np.sqrt(len(Ts))
+    T_u = ufloat(T_mean, T_err)
+    print("GEN 2_min: T = ", T_u)
+
+    t_all_peaks = np.concatenate((t_ppeaks, t_npeaks))
+    U_all_peaks = np.concatenate((U_ppeaks, -U_npeaks))
+    params, cov = curve_fit(decay, t_all_peaks, U_all_peaks, sigma=0.0015, p0=(0.01, 0.01))
+    errs = np.sqrt(np.diag(cov))
+    print(f"GEN 2_min: a_n = {params[0]:.3} +- {errs[0]:.3}, tau_n = {params[1]:.3} +- {errs[1]:.3}")
+
+    plt.plot(t, U, label=r"Messung")
+    plt.xlabel(r"$t$ in $\si{\second}$")
+    plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+    plt.title(r"Generator mit Dämpfung bei minimalem Potentiometer, Ausschnitt")
+    plt.legend()
+    plt.grid("on")
+    plt.savefig("plots/gen2_min_sec.pdf")
+
+    dev_T = np.abs(T-T_u)/T
+    print(f"GEN 2_min: dev_T = {dev_T}")
+    dev_tau = np.abs(tau - ufloat(params[1], errs[1]))/tau
+    print(f"GEN 2_min: dev_tau = {dev_tau}")
