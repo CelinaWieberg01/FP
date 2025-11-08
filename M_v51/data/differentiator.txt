@@ -1,6 +1,6 @@
 #R=100KOhm C=22nF
 
-#F_2 in Hz     Amp_2 in V   
+#F_2 in Hz     Amp_2 in V  
 36                1.65
 40                1.77
 45                2.01
