@@ -1,261 +1,427 @@
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.optimize import curve_fit
-# === Eingangsspannung ===
-U_e = 2.5  # in Volt; passe für jede Messreihe an
-
-# === Daten einlesen ===
-f_all, U_a_all = np.genfromtxt("data/Invamp1.txt", unpack=True)
-
-# === Verstärkung berechnen ===
-V_all = U_a_all / U_e
-
-# === Potenzgesetz-Funktion ===
-def power_law(f, a, b):
-    return a * f**b
-
-# === Erster Fit (linker Abfall) ===
-f_fit1 = f_all[1:8]      # Beispiel: setze hier sinnvolle Indizes
-V_fit1 = V_all[1:8]
-p1, cov1 = curve_fit(power_law, f_fit1, V_fit1, maxfev=10000)
-a1, b1 = p1
-a1_err, b1_err = np.sqrt(np.diag(cov1))
-
-# === Zweiter Fit (rechter Abfall) ===
-f_fit2 = f_all[8:]      # Beispiel: setze hier sinnvolle Indizes
-V_fit2 = V_all[8:]
-p2, cov2 = curve_fit(power_law, f_fit2, V_fit2, maxfev=10000)
-a2, b2 = p2
-a2_err, b2_err = np.sqrt(np.diag(cov2))
-
-# === Plateau-Verstärkung ===
-U_konst = np.mean(V_all[f_all < 1000])
-
-# === Grenzfrequenzen ===
-f_cut_left = (U_konst / a1)**(1.0 / b1)
-f_cut_right = (U_konst / a2)**(1.0 / b2)
-bandwidth = f_cut_right - f_cut_left
-
-# === Plot (log-log) - benutze f und V, nicht ln-Variablen ===
-plt.figure(figsize=(8,5))
-plt.scatter(f_all, V_all, label="Messdaten")
-f_plot = np.logspace(np.log10(f_all.min()*0.8), np.log10(f_all.max()*1.2), 300)
-plt.plot(f_plot, power_law(f_plot, a1, b1), 'r-', label="Fit links")
-plt.plot(f_plot, power_law(f_plot, a2, b2), 'b-', label="Fit rechts")
-#plt.axhline(U_konst, color='green', linestyle='--', label='U_konst')
-plt.axvline(f_cut_left, color='purple', linestyle=':', label=f'f_cut_links ≈ {f_cut_left:.1f} Hz')
-plt.axvline(f_cut_right, color='purple', linestyle=':', label=f'f_cut_rechts ≈ {f_cut_right:.1f} Hz')
-plt.xscale('log'); plt.yscale('log')
-plt.xlabel('F [Hz]'); plt.ylabel(r'V =$\frac{U_{aus}}{U_{ein}}$')
-plt.legend(); plt.grid(True); plt.show()
-
-print("a1,b1:", a1, b1, "a2,b2:", a2, b2)
-print("U_konst, f_cut_left, f_cut_right, bandwidth:", U_konst, f_cut_left, f_cut_right, bandwidth)
-
-####################################################################################################################
-
-# === Daten einlesen ===
-f_all2, U_a_all2 = np.genfromtxt("data/Invamp2.txt", unpack=True)
-
-# === Verstärkung berechnen ===
-V_all2 = U_a_all2 / U_e
-
-# === Potenzgesetz-Funktion ===
-def power_law2(f2, a2, b2):
-    return a2 * f2**b2
-
-# === Erster Fit (linker Abfall) ===
-f_fit3 = f_all2[1:5]      # Beispiel: setze hier sinnvolle Indizes
-V_fit3 = V_all2[1:5]
-p3, cov3 = curve_fit(power_law2, f_fit3, V_fit3, maxfev=10000)
-a3, b3 = p3
-a3_err, b3_err = np.sqrt(np.diag(cov3))
-
-# === Zweiter Fit (rechter Abfall) ===
-f_fit4 = f_all2[7:-1]      # Beispiel: setze hier sinnvolle Indizes
-V_fit4 = V_all2[7:-1]
-p4, cov4 = curve_fit(power_law2, f_fit4, V_fit4, maxfev=10000)
-a4, b4 = p4
-a4_err, b4_err = np.sqrt(np.diag(cov4))
-
-# === Plateau-Verstärkung ===
-U_konst = np.mean(V_all2[f_all2 < 1000])
-
-# === Grenzfrequenzen ===
-f_cut_left2 = (U_konst / a3)**(1.0 / b3)
-f_cut_right2 = (U_konst / a4)**(1.0 / b4)
-bandwidth2 = f_cut_right2 - f_cut_left2
-
-# === Plot (log-log) - benutze f und V, nicht ln-Variablen ===
-plt.figure(figsize=(8,5))
-plt.scatter(f_all2, V_all2, label="Messdaten")
-f_plot = np.logspace(np.log10(f_all.min()*0.8), np.log10(f_all.max()*1.2), 300)
-plt.plot(f_plot, power_law2(f_plot, a3, b3), 'r-', label="Fit links")
-plt.plot(f_plot, power_law2(f_plot, a4, b4), 'b-', label="Fit rechts")
-#plt.axhline(U_konst, color='green', linestyle='--', label='U_konst')
-plt.axvline(f_cut_left2, color='purple', linestyle=':', label=f'f_cut_links ≈ {f_cut_left2:.1f} Hz')
-plt.axvline(f_cut_right2, color='purple', linestyle=':', label=f'f_cut_rechts ≈ {f_cut_right2:.1f} Hz')
-plt.xscale('log'); plt.yscale('log')
-plt.xlabel('F [Hz]'); plt.ylabel(r'V =$\frac{U_{aus}}{U_{ein}}$')
-plt.legend(); plt.grid(True); plt.show()
-
-print("a3,b3:", a3, b3, "a4,b4:", a4, b4)
-print("U_konst, f_cut_left2, f_cut_right2, bandwidth2:", U_konst, f_cut_left2, f_cut_right2, bandwidth2)
-
-####################################################################################################################
-# === Daten einlesen ===
-f_all3, U_a_all3 = np.genfromtxt("data/Invamp3.txt", unpack=True)
-
-# === Verstärkung berechnen ===
-V_all3 = U_a_all3 / U_e
-
-# === Potenzgesetz-Funktion ===
-def power_law3(f3, a3, b3):
-    return a3 * f3**b3
-
-# === Erster Fit (linker Abfall) ===
-f_fit5 = f_all3[1:8]      # Beispiel: setze hier sinnvolle Indizes
-V_fit5 = V_all3[1:8]
-p5, cov5 = curve_fit(power_law3, f_fit5, V_fit5, maxfev=10000)
-a5, b5 = p5
-a5_err, b5_err = np.sqrt(np.diag(cov5))
-
-# === Zweiter Fit (rechter Abfall) ===
-f_fit6 = f_all3[8:]      # Beispiel: setze hier sinnvolle Indizes
-V_fit6 = V_all3[8:]
-p6, cov6 = curve_fit(power_law3, f_fit6, V_fit6, maxfev=10000)
-a6, b6 = p6
-a6_err, b6_err = np.sqrt(np.diag(cov6))
-
-# === Plateau-Verstärkung ===
-U_konst = np.mean(V_all3[f_all3 < 1000])
-
-# === Grenzfrequenzen ===
-f_cut_left3 = (U_konst / a5)**(1.0 / b5)
-f_cut_right3 = (U_konst / a6)**(1.0 / b6)
-bandwidth3 = f_cut_right3 - f_cut_left3
-
-# === Plot (log-log) - benutze f und V, nicht ln-Variablen ===
-plt.figure(figsize=(8,5))
-plt.scatter(f_all3, V_all3, label="Messdaten")
-f_plot = np.logspace(np.log10(f_all.min()*0.8), np.log10(f_all.max()*1.2), 300)
-plt.plot(f_plot, power_law3(f_plot, a5, b5), 'r-', label="Fit links")
-plt.plot(f_plot, power_law3(f_plot, a6, b6), 'b-', label="Fit rechts")
-#plt.axhline(U_konst, color='green', linestyle='--', label='U_konst')
-plt.axvline(f_cut_left3, color='purple', linestyle=':', label=f'f_cut_links ≈ {f_cut_left3:.1f} Hz')
-plt.axvline(f_cut_right3, color='purple', linestyle=':', label=f'f_cut_rechts ≈ {f_cut_right3:.1f} Hz')
-plt.xscale('log'); plt.yscale('log')
-plt.xlabel('F [Hz]'); plt.ylabel(r'V =$\frac{U_{aus}}{U_{ein}}$')
-plt.legend(); plt.grid(True); plt.show()
-
-print("a5,b5:", a5, b5, "a6,b6:", a6, b6)
-print("U_konst, f_cut_left3, f_cut_right3, bandwidth3:", U_konst, f_cut_left3, f_cut_right3, bandwidth3)
-################################################################################################################
-
-def power_law7(f, a, b):
-    return a * f**b
-
-# -----------------------------
-# === Integrator ===
-# -----------------------------
-# === Eingangsspannung  ===
-U_e_int = 0.103  # Volt
-
-# Parameter: C = 100 nF, R = 10 kΩ
-C_int = 100e-9  # 100 nF
-R_int = 10e3    # 10 kΩ
-
-# === Daten einlesen ===
-f_int, U_a_int = np.genfromtxt("data/IntegreatorAmp.txt", unpack=True)
-
-# === Verstärkung berechnen ===
-V_int = U_a_int / U_e_int
-
-# === Nonlinearer Fit mit curve_fit ===
-p_int, cov_int = curve_fit(power_law7, f_int, V_int, maxfev=10000)
-a_int, b_int = p_int
-a_err_int, b_err_int = np.sqrt(np.diag(cov_int))
-
-# === Lineare Ausgleichsgerade im ln-ln Raum ===
-ln_f_int = np.log(f_int)
-ln_V_int = np.log(V_int)
-coef_lin_int = np.polyfit(ln_f_int, ln_V_int, deg=1)  # coef_lin_int[0] = b_lin, coef_lin_int[1] = ln(a_lin)
-b_lin_int = coef_lin_int[0]
-a_lin_int = np.exp(coef_lin_int[1])
-
-# === Zeitkonstante berechnen (wie in deinem Ansatz) ===
-Ckonst_int = a_int * R_int * C_int
-
-# === Plot Integrator: Daten, curve_fit (rot), ln-ln Ausgleich (orange gestrichelt) ===
-plt.figure(figsize=(8,5))
-plt.scatter(f_int, V_int, label="Integrator Messdaten", color="blue", s=20)
-
-f_plot_int = np.logspace(np.log10(f_int.min()*0.8), np.log10(f_int.max()*1.2), 400)
-plt.plot(f_plot_int, power_law7(f_plot_int, a_int, b_int), color="red", linewidth=2, label="Fit")
-plt.plot(f_plot_int, power_law7(f_plot_int, a_lin_int, b_lin_int), color="orange", linestyle="--", linewidth=2, label="Ausgleichsgerade")
-
-plt.xscale("log"); plt.yscale("log")
-plt.xlabel("Frequenz [Hz]"); plt.ylabel(r"$V = \frac{U_{aus}}{U_{ein}}$")
-#plt.title("Integrator: Amplitude vs Frequenz")
-plt.legend(); plt.grid(True, linestyle="--", linewidth=0.5); plt.tight_layout()
-plt.show()
-
-# === Ergebnisse Integrator ausgeben ===
-print("=== Integrator ===")
-print(f"Nonlinearer Fit: a_int = {a_int:.6g} ± {a_err_int:.6g}, b_int = {b_int:.6g} ± {b_err_int:.6g}")
-print(f"Ausgleichsgerade = {a_lin_int:.6g}, b_lin_int = {b_lin_int:.6g}")
-print(f"Ckonst_int = {Ckonst_int:.6g} F")
-print()
-
-# -----------------------------
-# === Differentiator ===
-# -----------------------------
-# === Eingangsspannung  ===
-U_e_diff = 3.14  # Volt
-
-# Parameter: C = 22 nF, R = 100 kΩ (wie du gesagt hast: 22 nF)
-C_diff = 22e-9   # 22 nF
-R_diff = 100e3   # 100 kΩ
-
-# === Daten einlesen ===
-f_diff, U_a_diff = np.genfromtxt("data/differentiator.txt", unpack=True)
-
-# === Verstärkung berechnen ===
-V_diff = U_a_diff / U_e_diff
-
-# === Nonlinearer Fit mit curve_fit ===
-p_diff, cov_diff = curve_fit(power_law7, f_diff, V_diff, maxfev=10000)
-a_diff, b_diff = p_diff
-a_err_diff, b_err_diff = np.sqrt(np.diag(cov_diff))
-
-# === Lineare Ausgleichsgerade im ln-ln Raum ===
-ln_f_diff = np.log(f_diff)
-ln_V_diff = np.log(V_diff)
-coef_lin_diff = np.polyfit(ln_f_diff, ln_V_diff, deg=1)
-b_lin_diff = coef_lin_diff[0]
-a_lin_diff = np.exp(coef_lin_diff[1])
-
-# === Zeitkonstante berechnen (wie in deinem Ansatz) ===
-Ckonst_diff = a_diff * R_diff * C_diff
-
-# === Plot Differentiator: Daten, curve_fit (rot), ln-ln Ausgleich (orange gestrichelt) ===
-plt.figure(figsize=(8,5))
-plt.scatter(f_diff, V_diff, label="Differentiator Messdaten", color="blue", s=20)
-
-f_plot_diff = np.logspace(np.log10(f_diff.min()*0.8), np.log10(f_diff.max()*1.2), 400)
-plt.plot(f_plot_diff, power_law7(f_plot_diff, a_diff, b_diff), color="red", linewidth=2, label="Fit")
-plt.plot(f_plot_diff, power_law7(f_plot_diff, a_lin_diff, b_lin_diff), color="orange", linestyle="--", linewidth=2, label="Ausgleichsgerade")
-
-plt.xscale("log"); plt.yscale("log")
-plt.xlabel("Frequenz [Hz]"); plt.ylabel(r"$V =\frac{U_{aus}}{U_{ein}}$")
-#plt.title("Differentiator: Amplitude vs Frequenz")
-plt.legend(); plt.grid(True, linestyle="--", linewidth=0.5); plt.tight_layout()
-plt.show()
-
-# === Ergebnisse Differentiator ausgeben ===
-print("=== Differentiator ===")
-print(f"Fit : a_diff = {a_diff:.6g} ± {a_err_diff:.6g}, b_diff = {b_diff:.6g} ± {b_err_diff:.6g}")
-print(f"Ausgleichsgerade : a_lin_diff = {a_lin_diff:.6g}, b_lin_diff = {b_lin_diff:.6g}")
-print(f"Ckonst_diff  = {Ckonst_diff:.6g} F")
+import matplotlib.pyplot as plt         # Für Plots
+import numpy as np                      # Fürs Rechnen
+from uncertainties import ufloat        # zahl = ufloat(nominal_value, std_devs)
+import uncertainties.unumpy as unp      # wie ufloat nur mit arrays
+from scipy.optimize import curve_fit    # params, cov = curve_fit(fitfunktion, x-wert, y-wert, cov=True)
+import scipy.constants as constants         # z.B. h = constants.h für planckzahl
+from scipy.signal import find_peaks
 
 
+def pow(x, a, b):
+    return a*x**b
+
+
+
+def plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, i, error):
+    U_inv /= U_in_inv
+    const = c1
+    powerlaw = c2
+
+    f_const = f_inv[:const]
+    U_const = U_inv[:const]
+    err_const = error[:const]
+
+    f_oth = f_inv[const:powerlaw]
+    U_oth = U_inv[const:powerlaw]
+    err_oth = error[const:powerlaw]
+
+    f_pow = f_inv[powerlaw:]
+    U_pow = U_inv[powerlaw:]
+    err_pow = error[powerlaw:]
+
+    plt.errorbar(f_const, U_const, yerr=err_const, fmt=".", color="green", marker="o", label=r"Konst.")
+    plt.errorbar(f_oth,   U_oth,   yerr=err_oth,   fmt=".", color="red",   marker="x", label=r"ungefittet")
+    plt.errorbar(f_pow,   U_pow,   yerr=err_pow,   fmt=".", color="blue",  marker="o", label=r"Potenzgesetz")
+
+
+
+    params, cov = curve_fit(pow, f_pow, U_pow)
+
+    a = params[0]
+    a_err = np.sqrt(np.diag(cov))[0]
+
+    b = params[1]
+    b_err = np.sqrt(np.diag(cov))[1]
+
+    a_u = ufloat(a, a_err)
+    b_u = ufloat(b, b_err)
+
+    print(i, f"a = {a:.3} +- {a_err:.3}, b = {b:.3} +- {b_err:.3}")
+
+    fit_x = np.linspace(f_pow[0]-f_pow[0]/2, f_pow[-1]+f_pow[-1]/2)
+
+    plt.plot(fit_x, pow(fit_x, a, b), color="lightblue", label=r"Fit Potenzgesetz")
+
+    # linke flanke
+    plateau_height = np.mean(U_const)
+    plateau_height_err = U_const.std(ddof=1)/np.sqrt(len(U_const))
+    plateau_u = ufloat(plateau_height, plateau_height_err)
+
+    plateau_x = np.linspace(f_const[0]-f_const[0]/2, f_const[-1]+f_const[-1]*10)
+
+    print(i, f"Plateau = {plateau_height:.3} +- {plateau_height_err:.3}")
+    plt.hlines(plateau_height, plateau_x[0], plateau_x[-1], color="lightgreen", label=r"Fit Potenzgesetz")
+
+    plt.hlines(plateau_height/np.sqrt(2), f_inv[0], f_inv[-1], linestyles="dashed", color="orange", label=r"$\frac{U_\text{const}}{\sqrt{2}}$")
+
+    f_cutoff = (plateau_u/np.sqrt(2) / a_u)**(1/b_u)
+    print(i, "f_cutoff = ", f_cutoff)
+
+    theoretical_amplification = R2/R1
+    print(i, "A_theo = ", theoretical_amplification)
+
+    dev_amplification = np.abs(theoretical_amplification - plateau_u)/theoretical_amplification
+    print(i, "Deviation ampl = ", dev_amplification)
+    plt.xscale("log")
+    plt.xlabel(r"$f$ in $\si{\hertz}$")
+
+    plt.yscale("log")
+    plt.ylabel(r"$A$")
+
+    #plt.title(r"R_1 = \SI{}, R2 = {R2}")
+    plt.legend(loc="lower left")
+    plt.grid(True, which="both")
+
+print("\n\n\n")
+# data 1
+f_inv, U_inv = np.genfromtxt("data/Invamp1.txt", unpack=True) # Hz, V
+R1 = 1000
+R2 = 100000
+
+U_in_inv = 107e-3 # V
+U_in_inv_u = ufloat(U_in_inv, 10e-3)
+U_inv_u = unp.uarray(U_inv, 0.05)
+
+errs = unp.std_devs(U_inv_u/U_in_inv_u)
+
+c1 = 7
+c2 = 13
+
+plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 1, errs)
+plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$")
+plt.savefig("plots/inv1.pdf")
+plt.figure()
+
+print("\n\n\n")
+# data 2
+f_inv, U_inv = np.genfromtxt("data/Invamp2.txt", unpack=True) # Hz, V
+R1 = 1000
+R2 = 10000
+U_in_inv = 107e-3 # V
+U_in_inv_u = ufloat(U_in_inv, 10e-3)
+U_inv_u = unp.uarray(U_inv, 0.05)
+
+errs = unp.std_devs(U_inv_u/U_in_inv_u)
+
+c1 = 5
+c2 = -6
+
+plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 2, errs)
+plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{10}{\kilo\ohm}$")
+plt.savefig("plots/inv2.pdf")
+plt.figure()
+
+print("\n\n\n")
+# data 3
+f_inv, U_inv = np.genfromtxt("data/Invamp3.txt", unpack=True) # Hz, V
+R1 = 1000
+R2 = 150000
+U_in_inv = 40e-3 # V
+U_in_inv_u = ufloat(U_in_inv, 10e-3)
+U_inv_u = unp.uarray(U_inv, 0.05)
+
+errs = unp.std_devs(U_inv_u/U_in_inv_u)
+
+c1 = 6
+c2 = -8
+
+plot1(f_inv, U_inv, R1, R2, U_in_inv, c1, c2, 3, errs)
+plt.title(r"Inverting Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{150}{\kilo\ohm}$")
+plt.savefig("plots/inv3.pdf")
+plt.figure()
+
+
+
+
+print("\n\n\n")
+# integrator
+
+def lin(x, m, b):
+    return m*x+b
+
+f_int, U1, U2 = np.genfromtxt("data/IntegreatorAmp.txt", unpack=True)
+U1 *= 1e-3
+U1 = unp.uarray(U1, 0.005)
+U2 = unp.uarray(U2, 0.05)
+U_int = U2/U1
+
+x = 1/(2*np.pi*f_int)
+
+R = 10000
+C = 100e-9
+tau = R*C
+print("INT: theoretische Zeitkonstante tau = ", tau)
+
+params, cov = curve_fit(lin, x, unp.nominal_values(U_int), sigma=unp.std_devs(U_int))
+
+m = params[0]
+m_err = np.sqrt(np.diag(cov))[0]
+
+b = params[1]
+b_err = np.sqrt(np.diag(cov))[1]
+
+m_u = ufloat(m, m_err)
+b_u = ufloat(b, b_err)
+
+print(f"INT: m = {m:.3} +- {m_err:.3}, b = {b:.3} +- {b_err:.3}")
+
+tau_fit = 1/m_u
+print("INT: Zeitkonstante im Fit tau = ", tau_fit)
+
+dev_tau = np.abs(tau - tau_fit)/tau
+print("INT: deviation tau = ", dev_tau)
+
+int_x = np.linspace(x[0], x[-1])
+plt.plot(int_x, lin(int_x, *params), color="lightblue", label=r"Fit")
+
+
+
+plt.errorbar(x, unp.nominal_values(U_int), yerr=unp.std_devs(U_int), fmt=".", color="blue", label=r"Messung")
+
+#plt.xscale("log")
+plt.xlabel(r"$\frac{1}{\omega} = \frac{1}{2\pi f}$ in $\si{\per\hertz}$")
+
+#plt.yscale("log")
+plt.ylabel(r"A")
+plt.legend()
+plt.title("Integrator")
+plt.grid("on")
+plt.savefig("plots/int.pdf")
+plt.figure()
+
+
+
+
+print("\n\n\n")
+# differentiatior
+
+f_int, U2 = np.genfromtxt("data/differentiator.txt", unpack=True)
+U1 = 3.14
+U1_u = ufloat(U1, 0.05)
+U_int = U2/U1
+
+x = 2*np.pi*f_int
+
+R = 100000
+C = 22e-9
+tau = R*C
+print("DIFF: theoretische Zeitkonstante tau = ", tau)
+
+params, cov = curve_fit(lin, x, U_int)
+
+m = params[0]
+m_err = np.sqrt(np.diag(cov))[0]
+
+b = params[1]
+b_err = np.sqrt(np.diag(cov))[1]
+
+m_u = ufloat(m, m_err)
+b_u = ufloat(b, b_err)
+
+print(f"DIFF: m = {m:.3} +- {m_err:.3}, b = {b:.3} +- {b_err:.3}")
+
+tau_fit = m_u
+print("DIFF: Zeitkonstante im Fit tau = ", tau_fit)
+
+dev_tau = np.abs(tau - tau_fit)/tau
+print("DIFF: deviation tau = ", dev_tau)
+
+int_x = np.linspace(x[0], x[-1])
+plt.plot(int_x, lin(int_x, *params), color="lightblue", label=r"Fit")
+
+
+
+plt.scatter(x, U_int, color="blue", label=r"Messung")
+
+#plt.xscale("log")
+plt.xlabel(r"$\omega = 2\pi f$ in $\si{\hertz}$")
+
+#plt.yscale("log")
+plt.ylabel(r"$A$")
+plt.legend()
+plt.grid("on")
+plt.title(r"Differentiator")
+plt.savefig("plots/diff.pdf")
+plt.figure()
+
+
+
+
+print("\n\n\n")
+# Schmitt Trigger
+R1 = 10000
+R2 = 100000
+U_s = ufloat(28.1, 0.1)
+U_pm = R1/R2 * U_s
+print("SCHMITT: Soll-Schwelle = ", U_pm)
+
+U_meas = ufloat(2.980, 0.001)
+
+print("SCHMITT: Messung = ", U_meas)
+
+dev = np.abs(U_pm - U_meas)/U_pm
+print("SCHMITT: Dev = ", dev)
+
+
+
+print("\n\n\n")
+# generator 1
+R1 = 10000
+R2 = 100000
+R3 = 1000
+C = 1e-6
+
+f = R2 / (4 * C * R1 * R3)
+print("GEN 1: Theoretische Frequenz = ", f)
+
+f_meas = ufloat(1645.6, 100)
+print("GEN 1: gemessene Frequenz = ", f_meas)
+
+dev = np.abs(f - f_meas)/f
+print("GEN 1: Dev = ", dev)
+
+
+
+print("\n\n\n")
+# generator 2
+C = 100e-9 
+R = 10000
+
+T = 2*np.pi*R*C
+tau = 20*R*C
+
+print(f"GEN 2: theoretisches T = {T:.3}")
+print(f"GEN 2: theoretisches tau = {tau:.3}")
+
+
+
+def decay(x, a, tau):
+    return a*np.exp(-x/tau)
+
+
+t, U = np.genfromtxt("data/csv/scope_10.csv", delimiter=",", usecols=(0,2), unpack=True)
+
+plt.plot(t, U, color="blue", linewidth=1, label=r"Messung")
+plt.xlabel(r"$t$ in $\si{\second}$")
+plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+plt.legend()
+plt.grid("on")
+plt.title(r"Generator mit Dämpfung bei maximalem Potentiometer")
+plt.savefig("plots/gen2_max.pdf")
+plt.figure()
+
+t = t[U > 0.03]
+U = U[U > 0.03]
+
+U = U[t < 0.3]
+t = t[t < 0.3]
+
+U -= np.mean(U)
+t -= t[0]
+
+pos_peaks, _ = find_peaks(U, distance=15)
+t_ppeaks = t[pos_peaks]
+U_ppeaks = U[pos_peaks]
+t_ppeaks_u = unp.uarray(t_ppeaks, 0.0015)
+U_ppeaks_u = unp.uarray(U_ppeaks, 0.001)
+
+
+neg_peaks, _ = find_peaks(-U, distance=15)
+t_npeaks = t[neg_peaks]
+U_npeaks = U[neg_peaks]
+t_npeaks_u = unp.uarray(t_npeaks, 0.0015)
+U_npeaks_u = unp.uarray(U_npeaks, 0.0015)
+
+plt.errorbar(t_ppeaks, U_ppeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="red", label=r"pos. Peaks")
+plt.errorbar(t_npeaks, U_npeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="green", label=r"pos. Peaks")
+
+Tp = t_ppeaks[1:] - t_ppeaks[:-1]
+Tn = t_npeaks[1:] - t_npeaks[:-1]
+Ts = np.concatenate((Tp, Tn))
+T_mean = np.mean(Ts)
+T_err = np.std(Ts)/np.sqrt(len(Ts))
+T_u = ufloat(T_mean, T_err)
+print("GEN 2_1: T = ", T_u)
+
+t_all_peaks = np.concatenate((t_ppeaks, t_npeaks))
+U_all_peaks = np.concatenate((U_ppeaks, -U_npeaks))
+params, cov = curve_fit(decay, t_all_peaks, U_all_peaks, sigma=0.0015, p0=(-0.01, 0.10))
+errs = np.sqrt(np.diag(cov))
+print(f"GEN 2_1: a_n = {params[0]:.3} +- {errs[0]:.3}, tau_n = {params[1]:.3} +- {errs[1]:.3}")
+
+plt.plot(t, U, label=r"Messung")
+plt.xlabel(r"$t$ in $\si{\second}$")
+plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+plt.legend()
+plt.grid("on")
+plt.savefig("plots/gen2_max_sec.pdf")
+plt.figure()
+
+print("\n\n\n")
+t, U = np.genfromtxt("data/csv/scope_13.csv", delimiter=",", usecols=(0,2), unpack=True)
+
+plt.plot(t, U, color="blue", linewidth=1, label=r"Messung")
+plt.xlabel(r"$t$ in $\si{\second}$")
+plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+plt.legend()
+plt.grid("on")
+plt.title(r"Generator mit Dämpfung bei minimalem Potentiometer")
+plt.savefig("plots/gen2_min.pdf")
+plt.figure()
+
+t = t[U > 0.03]
+U = U[U > 0.03]
+
+U = U[t < 0.28]
+t = t[t < 0.28]
+
+U -= np.mean(U)
+t -= t[0]
+
+
+pos_peaks, _ = find_peaks(U, distance=15)
+t_ppeaks = t[pos_peaks]
+U_ppeaks = U[pos_peaks]
+t_ppeaks_u = unp.uarray(t_ppeaks, 0.0015)
+U_ppeaks_u = unp.uarray(U_ppeaks, 0.001)
+
+
+neg_peaks, _ = find_peaks(-U, distance=15)
+t_npeaks = t[neg_peaks]
+U_npeaks = U[neg_peaks]
+t_npeaks_u = unp.uarray(t_npeaks, 0.0015)
+U_npeaks_u = unp.uarray(U_npeaks, 0.0015)
+
+plt.errorbar(t_ppeaks, U_ppeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="red", label=r"pos. Peak")
+plt.errorbar(t_npeaks, U_npeaks, yerr=0.0015, xerr=0.0015, fmt="x", capsize=2, color="green", label=r"pos. Peak")
+
+Tp = t_ppeaks[1:] - t_ppeaks[:-1]
+Tn = t_npeaks[1:] - t_npeaks[:-1]
+Ts = np.concatenate((Tp, Tn))
+T_mean = np.mean(Ts)
+T_err = np.std(Ts)/np.sqrt(len(Ts))
+T_u = ufloat(T_mean, T_err)
+print("T = ", T_u)
+
+t_all_peaks = np.concatenate((t_ppeaks, t_npeaks))
+U_all_peaks = np.concatenate((U_ppeaks, -U_npeaks))
+params, cov = curve_fit(decay, t_all_peaks, U_all_peaks, sigma=0.0015, p0=(0.01, 0.01))
+errs = np.sqrt(np.diag(cov))
+print(f"GEN 2_2: a_n = {params[0]:.3} +- {errs[0]:.3}, tau_n = {params[1]:.3} +- {errs[1]:.3}")
+
+plt.plot(t, U, label=r"Messung")
+plt.xlabel(r"$t$ in $\si{\second}$")
+plt.ylabel(r"rel. Spannung $U$ in $\si{\volt}$")
+plt.legend()
+plt.grid("on")
+plt.savefig("plots/gen2_min_sec.pdf")

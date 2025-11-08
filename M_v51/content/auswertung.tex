@@ -1,472 +1,271 @@
 \section{Auswertung}
 \label{sec:Auswertung}
-\begin{comment}Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
-Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
-
-\subsection{Inverting Amplifier}
-Zur Überprüfung der Funktionalität eines invertierenden Operationsverstärkers wurden drei Messreihen mit unterschiedlichen Widerstandskombinationen
-durchgeführt. Dabei wurden jeweils der Eingangs- und der Rückkopplungswiderstand variiert:
-
-\begin{itemize}
-  \item Messung 1: $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{100}{\kilo\ohm}$
-  \item Messung 2: $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{10}{\kilo\ohm}$
-  \item Messung 3: $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{150}{\kilo\ohm}$ 
-\end{itemize}
-
-Die theoretische Spannungsverstärkung eines invertierenden Verstärkers ergibt sich aus der Formel
-
-
-\[
-V_\text{theo} = \left| -\frac{R_2}{R_1} \right| = \frac{R_2}{R_1}
-\]
-
-
-Das Minuszeichen steht für die Phasenumkehr des Ausgangssignals. Die berechneten Verstärkungen lauten:
-
-
-\[
-V_{1,\text{theo}} = 100,\quad V_{2,\text{theo}} = 10,\quad V_{3,\text{theo}} = 150
-\]
-Zur Analyse der Frequenzabhängigkeit der Verstärkung wurde die Ausgangsspannung $U_\text{a}$ in Abhängigkeit von der Frequenz $\nu$ gemessen 
-und die Verstärkung als Quotient $V = U_\text{a} / U_\text{ein}$ berechnet. Anschließend wurde die Verstärkung gegen die Frequenz in einem 
-doppelt-logarithmischen Diagramm dargestellt.
-Im Bereich außerhalb des Verstärkungsplateaus zeigt die Verstärkung ein charakteristisches Abfallverhalten, das durch eine Potenzfunktion beschrieben werden kann:
-
-
-\[
-V(\nu) = a \cdot \nu^b
-\]
-
-
-Die Parameter $a$ und $b$ werden jeweils durch eine Ausgleichsrechnung bestimmt.
-Die Grenzfrequenzen ergeben sich aus den Schnittpunkten der
-Fit-Funktion mit der konstanten Verstärkung. Durch Umstellen der Gleichung ergibt sich:
-
-
-\[
-U_\text{konst} = a \cdot \nu_\text{Grenze}^b
-\quad\Rightarrow\quad
-\nu_\text{Grenze} = \left( \frac{U_\text{konst}}{a} \right)^{1/b}
-\]
-
-Für jede Messreihe werden zwei Grenzfrequenzen bestimmt, eine am unteren und eine am oberen Ende des Plateaus. 
-Die Differenz dieser beiden Werte ergibt die Bandbreite der jeweiligen Verstärkerkonfiguration:
-
-c
-
-Die Fit-Parameter $a$ und $b$ sowie die konstante Verstärkung $U_\text{konst}$ werden aus den jeweiligen Plots abgelesen und zur Berechnung der Grenzfrequenzen verwendet.
-
-Für die erste Messreihe ergaben sich die Fit‑Parameter
-
-\[
-a_{1}=229.352605,\qquad b_{1}=-0.011981\quad
-\]
-
-und
-
-\[
-a_{2}=229.35260,\qquad b_{2}=-0.488338\quad
-\]
-
-
-Die gemessene Plateauverstärkung beträgt \(U_{\text{konst}}=3.81\). Aus diesen Werten folgen die Grenzfrequenzen
-\(\nu_{\text{links}}\approx 100.881520\mathrm{Hz}\) und \(\nu_{\text{rechts}}\approx 4407.099025,\mathrm{Hz}\), 
-somit ergibt sich eine Bandbreite von etwa 4306.217505\mathrm{Hz}\.
-Diese Werte sind plausibel, die sehr flache linke Flanke (kleiner Exponent \(b\) nahe Null) zeigt, dass der Verstärker bei tiefen Frequenzen praktisch 
-konstant verstärkt, während das deutlich negative \(b\) der rechten Flanke den erwarteten Abfall der Verstärkung mit steigender Frequenz widerspiegelt.
-
-\paragraph{Plot}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/invamp1.png}
-  \caption{Plot zur ersten Messreihe. Die verwendeten Wiederstände betragen $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{100}{\kilo\ohm}$}
-  \label{fig:inv1}
-\end{figure}
-
-
-Die zweite Messreihe liefert die Fit‑Parameter
-
-
-\[
-a_{3}=0.4799,\qquad b_{3}\approx 2.12446\times10^{-9}\quad
-\]
-
-und
-
-\[
-a_{4}=0.545130,\qquad b_{4}=-0.03477\quad\text
-\]
-
-mit \(U_{\text{konst}}=0.48\). Hier zeigt sich ein numerisch auffälliges Ergebnis.Der Exponent \(b_{3}\) ist nahe Null deutet auf einen konstanten Fit in diesem Bereich hin. 
-Die berechneten Grenzfrequenzen ergeben in diesem Fall \(\nu_{\text{links}}\approx 123.359739\mathrm{Hz}\) und \(\nu_{\text{rechts}}\approx 38.839297,\mathrm{Hz}\),
-wodurch die formale „Bandbreite“ negativ wird (≈ \(-84.5204426\mathrm{Hz}\)). Ein negatives Ergebnis ist physikalisch nicht sinnvoll und weist darauf hin,
-dass hier der Fit der linken und rechten Flanke nicht robust gewählt wurde oder dass die Zuordnung von „links“ und „rechts“ vertauscht bzw. der Plateaubereich nicht korrekt identifiziert wurde. 
-
-\paragraph{Plot}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/invamp2.png}
-  \caption{Plot zur zweiten Messreihe. Die verwendeten Wiederstände betragen $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{10}{\kilo\ohm}$}
-  \label{fig:inv2}
-\end{figure}
-
-Für die dritte Messreihe ergaben sich 
-
-\[
-a_{5}=1.828665,\qquad b_{5}=-0.014048\quad\text{(linke Flanke)}
-\]
-
-und
-
-\[
-a_{6}=177.20940,\qquad b_{6}=-0.565788\quad\text{(rechte Flanke)},
-\]
-
-mit \(U_{\text{konst}}=1.709\). Daraus folgen die Grenzfrequenzen \(\nu_{\text{links}}\approx 123.6533,\mathrm{Hz}\) und \(\nu_{\text{rechts}}\approx3653.55023,\mathrm{Hz}\) 
-sowie eine Bandbreite von etwa 3529.896902\mathrm{Hz}\. Das Ergebnis ist konsistent mit einer linken Flanke, die nur langsam variiert, und einer steileren rechten Flanke, 
-die die obere Frequenzbegrenzung des Verstärkers bestimmt. 
-
-\paragraph{Plot}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/invamp3.png}
-  \caption{Plot zur dritten Messreihe. Die verwendeten Wiederstände betragen $R_1 = \SI{1}{\kilo\ohm}$, $R_2 = \SI{150}{\kilo\ohm}$}
-  \label{fig:inv3}
-\end{figure}
-
-\subsection{Integrator}
-Für den Integrator wurde die Ausgangsamplitude \(U_{A}\) in Abhängigkeit von der Anregungsfrequenz \(\nu\) aufgenommen. 
-Als Bauelemente kamen ein Kondensator \(C=\SI{100}{\nano\farad}\) und ein Wiederstand \(R=\SI{10}{\kilo\ohm}\) zum Einsatz. 
-Die gemessenen Verstärkungswerte wurden mit einer Potenzfunktion der Form
-
-
-\[
-V(\nu)=a_{\text{int}}\;\nu^{\,b_{\text{int}}}
-\]
-
-angepasst. Die Regression liefert die Parameter
-
-\[
-a_{\text{int}} = 132.47 \pm 592
-b_{\text{int}} = -0.6519\pm 0.033
-\]
-ein
-
-Aus dem Fit‑Parameter \(a_{\text{int}}\) und den Bauelementwerten wurde gemäß der im Versuch verwendeten Herleitung die konstante Größe \(C_{\text{konst}}\) berechnet.
-
-
-\[
-C_{\text{konst,int}} = 0.132 F
-\]
-
-
-
-Die Messdaten und die Fitkurve sind in Abbildung\ref{fig:4} dargestellt. 
-Zusätzlich wurde untersucht, welches Verhalten der Integrator bei angelegten Rechteck‑ und Dreieckssignalen zeigt. Wie erwartet führt ein Rechtecksignal 
-am Ausgang näherungsweise zu einer dreieckförmigen Spannungsform  während ein Dreieckssignal am Ausgang näherungsweise eine parabolische Form ergibt.
-
-\paragraph{Plot}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/integrator.png}
-  \caption{Plot zum Integrator, zu sehen sind die Messwerte und die Fitfunktion.}
-  \label{fig:4}
-\end{figure}
-
-\subsection{Differentiator}
-Die Messreihe für den Differentiator wurde analog durchgeführt. Verwendet wurden ein Kondensator \(C=\SI{2}{\nano\farad}\) und ein
- Widerstand \(R=\SI{100}{\kilo\ohm}\). Die Amplitudenfrequenzabhängigkeit wurde ebenfalls mit der Potenzform
-
-
-\[
-V(\nu)=a_{\text{diff}}\;\nu^{\,b_{\text{diff}}}
-\]
-
-angepasst. Die Fitparameter ergeben sich zu
-
-\[
-a_{\text{diff}} = 0.02049 \pm 0.001
-b_{\text{diff}} = 0.90430 \pm 0.010
-\]
-
-
-Für den Differentiator wurde analog die konstante Größe \(C_{\text{konst}}\) berechnet.
-
-\[
-C_{\text{konst,diff}} = 4.507e-7 F
-\]
-
-\paragraph{Plot}
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/differentiator.png}
-  \caption{Plot der Messwerte sowie einer Ausgleichsgeraden zum Differentiator,}
-  \label{fig:diff}
-\end{figure}
-
-
-\end{comment}
-\subsection{Invertierender Verstärker}
-Es wurden drei Messreihen eines invertierenden Operationsverstärkers mit unterschiedlichen Widerstandskombinationen aufgenommen:
-\begin{itemize}
-  \item Messreihe 1: \(R_1 = 1\ \text{k}\Omega\), \(R_2 = 100\ \text{k}\Omega\).
-  \item Messreihe 2: \(R_1 = 1\ \text{k}\Omega\), \(R_2 = 10\ \text{k}\Omega\).
-  \item Messreihe 3: \(R_1 = 1\ \text{k}\Omega\), \(R_2 = 150\ \text{k}\Omega\).
-\end{itemize}
-
-Die (betragsmäßige) ideale Spannungsverstärkung eines invertierenden Verstärkers ist
-\begin{equation}
-  V_{\mathrm{theo}}=\left|\!-\frac{R_2}{R_1}\right|=\frac{R_2}{R_1},
-\end{equation}
-woraus sich die theoretischen Werte
-\begin{equation}
-  V_{1,\mathrm{theo}}=100,\quad V_{2,\mathrm{theo}}=10,\quad V_{3,\mathrm{theo}}=150
-\end{equation}
-ergeben.
-
-Zur Analyse des Frequenzverhaltens wurde die Ausgangsamplitude \(U_{\mathrm{a}}(\nu)\) gemessen und die Verstärkung als
-\begin{equation}
-  V(\nu)=\frac{U_{\mathrm{a}}(\nu)}{U_{\mathrm{ein}}}
-\end{equation}
-berechnet. Außerhalb des Plateaus beschreibt ein Potenzgesetz das Abfallen der Verstärkung:
-\begin{equation}\label{eq:powerlaw}
-  V(\nu)=a\,\nu^{\,b},
-\end{equation}
-wobei \(a\) und \(b\) durch nichtlineare Regression bestimmt werden. Die Plateauverstärkung \(U_{\mathrm{konst}}\) wurde als Mittelwert der Messwerte im Plateaubereich (hier: \(\nu<1000\ \text{Hz}\)) bestimmt.
-
-Die Grenzfrequenz \(\nu_{\mathrm{Grenze}}\) als Schnittpunkt der Potenzkurve mit \(U_{\mathrm{konst}}\) ergibt sich aus
-\begin{equation}\label{eq:cutoff}
-  U_{\mathrm{konst}} = a\,\nu_{\mathrm{Grenze}}^{\,b}
-  \quad\Rightarrow\quad
-  \nu_{\mathrm{Grenze}} = \left(\frac{U_{\mathrm{konst}}}{a}\right)^{1/b}.
-\end{equation}
-Die Bandbreite wird als Differenz der rechten und linken Grenzfrequenz definiert:
-\begin{equation}\label{eq:bandwidth}
-  \mathrm{Bandbreite}=\nu_{\mathrm{Grenze,right}}-\nu_{\mathrm{Grenze,left}}.
-\end{equation}
-
-\subsubsection*{Messreihe 1 (R\_2 = 100 kΩ, \(U_{\mathrm{ein}} = 2.5\ \text{V}\))}
-Aus den Fits der Flanken ergaben sich folgende Parameter:
-\begin{align}
-  \text{linke Flanke:}\quad & a_{1}=4.0265,\quad b_{1}=-0.01198,\\
-  \text{rechte Flanke:}\quad & a_{2}=229.3526,\quad b_{2}=-0.48834,
-\end{align}
-und als Plateauwert \(U_{\mathrm{konst}} = 3.81\).
-
-Eingesetzt in Gleichung~\eqref{eq:cutoff} ergibt sich
-\begin{align}
-  \nu_{\mathrm{left}} &\approx 1.0088\times 10^{2}\ \text{Hz},\\
-  \nu_{\mathrm{right}} &\approx 4.4071\times 10^{3}\ \text{Hz},
-\end{align}
-woraus sich die Bandbreite
-\begin{equation}
-  \mathrm{Bandbreite}\approx 4.3062\times 10^{3}\ \text{Hz}
-\end{equation}
-ergibt. Die sehr flache linke Flanke (kleiner Exponent \(b\) nahe Null) zeigt, dass der Verstärker bei tiefen Frequenzen nahezu konstant verstärkt; die negative Steigung der rechten Flanke entspricht dem erwarteten Abfall bei hohen Frequenzen.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/invamp1.png}
-  \caption{Messreihe 1: Verstärkung \(V=U_{\mathrm{a}}/U_{\mathrm{ein}}\) gegen Frequenz \(\nu\) (log‑log). Rote Linie: Potenzfit \(a\nu^{b}\). Orange gestrichelt: ln–ln Ausgleichsgerade. Grüne Linie: \(U_{\mathrm{konst}}\). Graue Linien: berechnete Grenzfrequenzen.}
-  \label{fig:inv1}
-\end{figure}
-
-\subsubsection*{Messreihe 2 (R\_2 = 10 kΩ, \(U_{\mathrm{ein}} = 90\ \text{mV}\))}
-Die Fits lieferten:
-\begin{align}
-  \text{linke Flanke:}\quad & a_{3}=0.4799,\quad b_{3}\approx 2.12\times 10^{-9},\\
-  \text{rechte Flanke:}\quad & a_{4}=0.54513,\quad b_{4}=-0.03477,
-\end{align}
-mit Plateau \(U_{\mathrm{konst}}=0.48\).
-
-Einsetzen in \eqref{eq:cutoff} ergibt formal
-\begin{align}
-  \nu_{\mathrm{left}} &\approx 1.2336\times 10^{2}\ \text{Hz},\\
-  \nu_{\mathrm{right}} &\approx 3.8839\times 10^{1}\ \text{Hz},
-\end{align}
-wodurch die formale Bandbreite negativ wird:
-\begin{equation}
-  \mathrm{Bandbreite}\approx -8.4520\times 10^{1}\ \text{Hz}.
-\end{equation}
-Diese negative Bandbreite ist physikalisch nicht sinnvoll und weist auf Probleme bei der Fitwahl bzw. der Plateaubestimmung hin (z.\,B. zu schlecht bestimmter Exponent \(b_3\), vertauschte Fitbereiche oder Ausreißer). Vor einer finalen Interpretation sollten die Fitbereiche überprüft und der Fit ggf. neu gewählt werden.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/invamp2.png}
-  \caption{Messreihe 2: Verstärkung gegen Frequenz (Darstellung wie in Abb.~\ref{fig:inv1}). Auffällig ist der nahezu verschwindende Exponent der linken Flanke, was zu nichtrobusten Schnittpunkten führt.}
-  \label{fig:inv2}
-\end{figure}
-
-\subsubsection*{Messreihe 3 (R\_2 = 150 kΩ, \(U_{\mathrm{ein}} = 500\ \text{mV}\))}
-Die Fitparameter lauten:
-\begin{align}
-  \text{linke Flanke:}\quad & a_{5}=1.8287,\quad b_{5}=-0.01405,\\
-  \text{rechte Flanke:}\quad & a_{6}=177.2094,\quad b_{6}=-0.56579,
-\end{align}
-mit Plateau \(U_{\mathrm{konst}}=1.709\). Daraus folgen
-\begin{align}
-  \nu_{\mathrm{left}} &\approx 1.2365\times 10^{2}\ \text{Hz},\\
-  \nu_{\mathrm{right}} &\approx 3.6536\times 10^{3}\ \text{Hz},
-\end{align}
-und damit
-\begin{equation}
-  \mathrm{Bandbreite}\approx 3.5299\times 10^{3}\ \text{Hz}.
-\end{equation}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/invamp3.png}
-  \caption{Messreihe 3: Verstärkung gegen Frequenz (Darstellung wie in Abb.~\ref{fig:inv1}).}
-  \label{fig:inv3}
-\end{figure}
-
-
-\clearpage
-\subsection{Integrator}
-Für den Integrator wurden die Ausgangsamplitude \(U_A\) als Funktion der Frequenz gemessen. Verwendete Bauteile: \(C = 100\ \text{nF}\) und \(R = 10\ \text{k}\Omega\). Die Daten wurden mit Gleichung~\eqref{eq:powerlaw} gefittet; die erhaltenen Parameter lauten
-\begin{equation}
-  a_{\mathrm{int}} = 63.136 \pm 8.55,\qquad b_{\mathrm{int}} = -0.722 \pm 0.050.
-\end{equation}
-Gemäß der im Versuch verwendeten Herleitung wurde aus \(a_{\mathrm{int}}\) die konstante Größe \(C_{\mathrm{konst,int}}\) berechnet:
-\begin{equation}
-  C_{\mathrm{konst,int}} = 159.155.
-\end{equation}
-Die Messdaten und die Fitkurve sind in Abbildung~\ref{fig:integrator} dargestellt.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/integrator.png}
-  \caption{Integrator: Amplitude \(V=U_A/U_{\mathrm{ein}}\) gegen Frequenz; rote Linie: Potenzfit, orange gestrichelt: ln–ln Ausgleichsgerade.}
-  \label{fig:integrator}
-\end{figure}
-
-Bei Rechteck‑ bzw. Dreieckseingängen zeigt der Integrator das erwartete Verhalten.
-
-\begin{figure}[htbp]
-  \centering
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{data/bilder/integrator_rechteck.png}
-    \caption{Integrator bei Rechteck‑Eingang.}
-    \label{fig:int_rect}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{data/bilder/integrator_dreieck.png}
-    \caption{Integrator bei Dreiecks Spannung.}
-    \label{fig:int_tri}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{data/bilder/integrator_sinus.png}
-    \caption{Integrator bei Sinus‑Eingang.}
-    \label{fig:int_sine}
-  \end{subfigure}
-  \caption{Zeitbereichsantworten des Integrators für drei Eingangssignale (grün: Eingang, gelb: Ausgang).}
-  \label{fig:int_time}
-\end{figure}
-
-\smallskip
-
-Kurzbeschreibung der Beobachtungen:
-\begin{itemize}
-  \item \textbf{Rechteck (Abb.~\ref{fig:int_rect}):} Der Integrator wandelt ein Rechtecksignal in eine annähernd dreieckförmige Ausgangsspannung um, da die Integration einer Sprungfolge zu linearen Anstiegen und Abfällen führt.
-  \item \textbf{Dreieck (Abb.~\ref{fig:int_tri}):} Bei einem Dreieckseingang ergibt sich am Ausgang ein stückweise quadratischer Verlauf (ungefähr parabolische Form), da die Integration einer konstanten Steigung eine linear wachsende Amplitude liefert, deren Ableitung wiederum linearer Verlauf ist.
-  \item \textbf{Sinus (Abb.~\ref{fig:int_sine}):} Bei sinusförmigem Eingang erscheint am Ausgang ebenfalls ein Sinus, jedoch phasenverschoben um etwa \(-90^\circ\) und mit amplitudenabhängiger Skalierung entsprechend dem Frequenzverhalten des Integrators.
-\end{itemize}
-
-\subsection{Differentiator}
-Für den Differentiator wurden die Bauteile \(C = 2\ \text{nF}\) und \(R = 100\ \text{k}\Omega\) verwendet. Die Fitparameter sind
-\begin{equation}
-  a_{\mathrm{diff}} = 0.017 \pm 0.003,\qquad b_{\mathrm{diff}} = 0.958 \pm 0.035.
-\end{equation}
-Daraus wurde die konstante Größe berechnet:
-\begin{equation}
-  C_{\mathrm{konst,diff}} = 0.014.
-\end{equation}
-Die Messdaten und der Fit sind in Abbildung~\ref{fig:differentiator} dargestellt. Der Exponent \(b_{\mathrm{diff}}\) nahe \(1\) ist konsistent mit differentiellen Verhalten (Amplitude proportional zu \(\nu\)) im betrachteten Frequenzbereich.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{Plots/differentiator.png}
-  \caption{Differentiator: Amplitude \(V=U_A/U_{\mathrm{ein}}\) gegen Frequenz; Darstellung wie in Abb.~\ref{fig:integrator}.}
-  \label{fig:differentiator}
-\end{figure}
-
-Nach Auswertung der Amplitudenfrequenzgänge wurden die zeitlichen Ausgangssignale des Differentiators für drei standardisierte
-Eingangssignale aufgenommen: Rechteck, Dreieck und Sinus. Abbildung~\ref{fig:diff_time} zeigt die gemessenen Verläufe, das Eingangssignal ist grün, das Ausgangssignal gelb.
-
-\begin{figure}[htbp]
-  \centering
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{data/bilder/differentiator_rechteck.png}
-    \caption{Differentiator bei Rechteck‑Eingang.}
-    \label{fig:diff_rect}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{data/bilder/differentiator_dreieck.png}
-    \caption{Differentiator bei Dreieck‑Eingang.}
-    \label{fig:diff_tri}
-  \end{subfigure}\hfill
-  \begin{subfigure}[t]{0.32\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{data/bilder/differentiator_sinus.png}
-    \caption{Differentiator bei Sinus‑Eingang.}
-    \label{fig:diff_sine}
-  \end{subfigure}
-  \caption{Zeitbereichsantworten des Differentiators für drei Eingangssignale.}
-  \label{fig:diff_time}
-\end{figure}
-
-\smallskip
-
-\begin{itemize}
-  \item \textbf{Rechteck (Abb.~\ref{fig:diff_rect}):} Der Differentiator erzeugt an den Flanken kurze, starke Impulse (positive bei ansteigender Flanke, negativ bei fallender Flanke). Das ist typisch, da die Ableitung eines Rechtecks Nadel‑ bzw. Impuls‑artige Anstiege ergibt.
-  \item \textbf{Dreieck (Abb.~\ref{fig:diff_tri}):} Bei einem Dreieckssignal ergibt sich am Ausgang eine stückweise konstante Amplitude, da die Ableitung eines Dreiecks (konstante Steigung) nahezu rechteckartige Abschnitte liefert.
-  \item \textbf{Sinus (Abb.~\ref{fig:diff_sine}):} Für einen sinusförmigen Eingang ergibt der Differentiator ebenfalls eine sinusförmige Ausgangsspannung, phasenverschoben um etwa 90° und amplitudenproportional zur Frequenz; dies ist in der Messkurve sichtbar als Sinus mit erkennbarer Phasenverschiebung und ggf. veränderter Amplitude.
-\end{itemize}
-
-\subsection{Schmitt-Trigger
-Aus den in der Durchführung verwendeten Widerstandskonfigurationen ergibt sich ein theoretischer Schwellwert von
-\begin{equation}
-  U_{\pm}=\pm 2.98\ \mathrm{V}.
-\end{equation}
-Experimentell wurde der Schwellwert durch Variation der Eingangsspannung ermittelt, wobei bei einer gemessenen Eingangsspannung
-\begin{equation}
-  U_{\text{Schwell}} = 2.985\pm0.001 \mathrm{V}
-\end{equation}
-ein stabiler Rechteckbetrieb mit der erwarteten Amplitude auftrat. Die Messkurve am ermittelten Schwellwert ist in Abbildung~\ref{fig:schwell} dargestellt, sie zeigt den Übergang in das stabile Rechteckverhalten.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{data/bilder/scope_6.png}
-  \caption{Messung zur Bestimmung des Schwellwertes. Darstellung der Eingangsspannung und des stabilen Rechtecksignals bei \(U_{\text{Schwell}}=2.985\mathrm{V}\).}
-  \label{fig:schwell}
-\end{figure}}
-
-\subsection{Generator}
-Im Rahmen der Messung wurde das Oszilloskopbild aufgenommen, das den angelegten sinusförmigen Generatorausgang zeigt.
-Aus dem Bild können die Messgrößen direkt abgelesen werden. Die Signalfrequenz beträgt \(\nu = 1.6465\ \text{Hz}\) und der gemessene Spannungswert liegt bei \(U = 5.4\ \text{V}\).
-Die zugehörige Aufnahme ist in Abbildung~\ref{fig:generator_signal} eingefügt. Sie dient sowohl der Dokumentation der verwendeten Anregung 
-als auch der Kontrolle, dass die eingestellten Parameter während der Messung stabil waren.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.8\textwidth]{M_v51/data/bilder/scope_7.png}
-  \caption{Oszilloskopaufnahme des an den Versuch angelegten sinusförmigen Signals.}
-  \label{fig:generator_signal}
-\end{figure}
-
-\subsection{Generator mit variabler Amplitude}
-
-
-
-
-
-
-
-
-
-
+% Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
+% Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
+% 
+% 
+% \subsection{Invertierender Verstärker}
+% Es wurden drei Messreihen eines invertierenden Operationsverstärkers mit unterschiedlichen Widerstandskombinationen aufgenommen:
+% \begin{itemize}
+%   \item Messreihe 1: \(R_1 = 1\ \text{k}\Omega\), \(R_2 = 100\ \text{k}\Omega\).
+%   \item Messreihe 2: \(R_1 = 1\ \text{k}\Omega\), \(R_2 = 10\ \text{k}\Omega\).
+%   \item Messreihe 3: \(R_1 = 1\ \text{k}\Omega\), \(R_2 = 150\ \text{k}\Omega\).
+% \end{itemize}
+% 
+% Die (betragsmäßige) ideale Spannungsverstärkung eines invertierenden Verstärkers ist
+% \begin{equation}
+%   V_{\mathrm{theo}}=\left|\!-\frac{R_2}{R_1}\right|=\frac{R_2}{R_1},
+% \end{equation}
+% woraus sich die theoretischen Werte
+% \begin{equation}
+%   V_{1,\mathrm{theo}}=100,\quad V_{2,\mathrm{theo}}=10,\quad V_{3,\mathrm{theo}}=150
+% \end{equation}
+% ergeben.
+% 
+% Zur Analyse des Frequenzverhaltens wurde die Ausgangsamplitude \(U_{\mathrm{a}}(\nu)\) gemessen und die Verstärkung als
+% \begin{equation}
+%   V(\nu)=\frac{U_{\mathrm{a}}(\nu)}{U_{\mathrm{ein}}}
+% \end{equation}
+% berechnet. Außerhalb des Plateaus beschreibt ein Potenzgesetz das Abfallen der Verstärkung:
+% \begin{equation}\label{eq:powerlaw}
+%   V(\nu)=a\,\nu^{\,b},
+% \end{equation}
+% wobei \(a\) und \(b\) durch nichtlineare Regression bestimmt werden. Die Plateauverstärkung \(U_{\mathrm{konst}}\) wurde als Mittelwert der Messwerte im Plateaubereich (hier: \(\nu<1000\ \text{Hz}\)) bestimmt.
+% 
+% Die Grenzfrequenz \(\nu_{\mathrm{Grenze}}\) als Schnittpunkt der Potenzkurve mit \(U_{\mathrm{konst}}\) ergibt sich aus
+% \begin{equation}\label{eq:cutoff}
+%   U_{\mathrm{konst}} = a\,\nu_{\mathrm{Grenze}}^{\,b}
+%   \quad\Rightarrow\quad
+%   \nu_{\mathrm{Grenze}} = \left(\frac{U_{\mathrm{konst}}}{a}\right)^{1/b}.
+% \end{equation}
+% Die Bandbreite wird als Differenz der rechten und linken Grenzfrequenz definiert:
+% \begin{equation}\label{eq:bandwidth}
+%   \mathrm{Bandbreite}=\nu_{\mathrm{Grenze,right}}-\nu_{\mathrm{Grenze,left}}.
+% \end{equation}
+% 
+% \subsubsection*{Messreihe 1 (R\_2 = 100 kΩ, \(U_{\mathrm{ein}} = 2.5\ \text{V}\))}
+% Aus den Fits der Flanken ergaben sich folgende Parameter:
+% \begin{align}
+%   \text{linke Flanke:}\quad & a_{1}=4.0265,\quad b_{1}=-0.01198,\\
+%   \text{rechte Flanke:}\quad & a_{2}=229.3526,\quad b_{2}=-0.48834,
+% \end{align}
+% und als Plateauwert \(U_{\mathrm{konst}} = 3.81\).
+% 
+% Eingesetzt in Gleichung~\eqref{eq:cutoff} ergibt sich
+% \begin{align}
+%   \nu_{\mathrm{left}} &\approx 1.0088\times 10^{2}\ \text{Hz},\\
+%   \nu_{\mathrm{right}} &\approx 4.4071\times 10^{3}\ \text{Hz},
+% \end{align}
+% woraus sich die Bandbreite
+% \begin{equation}
+%   \mathrm{Bandbreite}\approx 4.3062\times 10^{3}\ \text{Hz}
+% \end{equation}
+% ergibt. Die sehr flache linke Flanke (kleiner Exponent \(b\) nahe Null) zeigt, dass der Verstärker bei tiefen Frequenzen nahezu konstant verstärkt; die negative Steigung der rechten Flanke entspricht dem erwarteten Abfall bei hohen Frequenzen.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{Plots/invamp1.png}
+%   \caption{Messreihe 1: Verstärkung \(V=U_{\mathrm{a}}/U_{\mathrm{ein}}\) gegen Frequenz \(\nu\) (log‑log). Rote Linie: Potenzfit \(a\nu^{b}\). Orange gestrichelt: ln–ln Ausgleichsgerade. Grüne Linie: \(U_{\mathrm{konst}}\). Graue Linien: berechnete Grenzfrequenzen.}
+%   \label{fig:inv1}
+% \end{figure}
+% 
+% \subsubsection*{Messreihe 2 (R\_2 = 10 kΩ, \(U_{\mathrm{ein}} = 90\ \text{mV}\))}
+% Die Fits lieferten:
+% \begin{align}
+%   \text{linke Flanke:}\quad & a_{3}=0.4799,\quad b_{3}\approx 2.12\times 10^{-9},\\
+%   \text{rechte Flanke:}\quad & a_{4}=0.54513,\quad b_{4}=-0.03477,
+% \end{align}
+% mit Plateau \(U_{\mathrm{konst}}=0.48\).
+% 
+% Einsetzen in \eqref{eq:cutoff} ergibt formal
+% \begin{align}
+%   \nu_{\mathrm{left}} &\approx 1.2336\times 10^{2}\ \text{Hz},\\
+%   \nu_{\mathrm{right}} &\approx 3.8839\times 10^{1}\ \text{Hz},
+% \end{align}
+% wodurch die formale Bandbreite negativ wird:
+% \begin{equation}
+%   \mathrm{Bandbreite}\approx -8.4520\times 10^{1}\ \text{Hz}.
+% \end{equation}
+% Diese negative Bandbreite ist physikalisch nicht sinnvoll und weist auf Probleme bei der Fitwahl bzw. der Plateaubestimmung hin (z.\,B. zu schlecht bestimmter Exponent \(b_3\), vertauschte Fitbereiche oder Ausreißer). Vor einer finalen Interpretation sollten die Fitbereiche überprüft und der Fit ggf. neu gewählt werden.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{Plots/invamp2.png}
+%   \caption{Messreihe 2: Verstärkung gegen Frequenz (Darstellung wie in Abb.~\ref{fig:inv1}). Auffällig ist der nahezu verschwindende Exponent der linken Flanke, was zu nichtrobusten Schnittpunkten führt.}
+%   \label{fig:inv2}
+% \end{figure}
+% 
+% \subsubsection*{Messreihe 3 (R\_2 = 150 kΩ, \(U_{\mathrm{ein}} = 500\ \text{mV}\))}
+% Die Fitparameter lauten:
+% \begin{align}
+%   \text{linke Flanke:}\quad & a_{5}=1.8287,\quad b_{5}=-0.01405,\\
+%   \text{rechte Flanke:}\quad & a_{6}=177.2094,\quad b_{6}=-0.56579,
+% \end{align}
+% mit Plateau \(U_{\mathrm{konst}}=1.709\). Daraus folgen
+% \begin{align}
+%   \nu_{\mathrm{left}} &\approx 1.2365\times 10^{2}\ \text{Hz},\\
+%   \nu_{\mathrm{right}} &\approx 3.6536\times 10^{3}\ \text{Hz},
+% \end{align}
+% und damit
+% \begin{equation}
+%   \mathrm{Bandbreite}\approx 3.5299\times 10^{3}\ \text{Hz}.
+% \end{equation}
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{Plots/invamp3.png}
+%   \caption{Messreihe 3: Verstärkung gegen Frequenz (Darstellung wie in Abb.~\ref{fig:inv1}).}
+%   \label{fig:inv3}
+% \end{figure}
+% 
+% 
+% \clearpage
+% \subsection{Integrator}
+% Für den Integrator wurden die Ausgangsamplitude \(U_A\) als Funktion der Frequenz gemessen. Verwendete Bauteile: \(C = 100\ \text{nF}\) und \(R = 10\ \text{k}\Omega\). Die Daten wurden mit Gleichung~\eqref{eq:powerlaw} gefittet; die erhaltenen Parameter lauten
+% \begin{equation}
+%   a_{\mathrm{int}} = 63.136 \pm 8.55,\qquad b_{\mathrm{int}} = -0.722 \pm 0.050.
+% \end{equation}
+% Gemäß der im Versuch verwendeten Herleitung wurde aus \(a_{\mathrm{int}}\) die konstante Größe \(C_{\mathrm{konst,int}}\) berechnet:
+% \begin{equation}
+%   C_{\mathrm{konst,int}} = 159.155.
+% \end{equation}
+% Die Messdaten und die Fitkurve sind in Abbildung~\ref{fig:integrator} dargestellt.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{Plots/integrator.png}
+%   \caption{Integrator: Amplitude \(V=U_A/U_{\mathrm{ein}}\) gegen Frequenz; rote Linie: Potenzfit, orange gestrichelt: ln–ln Ausgleichsgerade.}
+%   \label{fig:integrator}
+% \end{figure}
+% 
+% Bei Rechteck‑ bzw. Dreieckseingängen zeigt der Integrator das erwartete Verhalten.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \begin{subfigure}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{data/bilder/integrator_rechteck.png}
+%     \caption{Integrator bei Rechteck‑Eingang.}
+%     \label{fig:int_rect}
+%   \end{subfigure}\hfill
+%   \begin{subfigure}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{data/bilder/integrator_dreieck.png}
+%     \caption{Integrator bei Dreiecks Spannung.}
+%     \label{fig:int_tri}
+%   \end{subfigure}\hfill
+%   \begin{subfigure}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{data/bilder/integrator_sinus.png}
+%     \caption{Integrator bei Sinus‑Eingang.}
+%     \label{fig:int_sine}
+%   \end{subfigure}
+%   \caption{Zeitbereichsantworten des Integrators für drei Eingangssignale (grün: Eingang, gelb: Ausgang).}
+%   \label{fig:int_time}
+% \end{figure}
+% 
+% \smallskip
+% 
+% Kurzbeschreibung der Beobachtungen:
+% \begin{itemize}
+%   \item \textbf{Rechteck (Abb.~\ref{fig:int_rect}):} Der Integrator wandelt ein Rechtecksignal in eine annähernd dreieckförmige Ausgangsspannung um, da die Integration einer Sprungfolge zu linearen Anstiegen und Abfällen führt.
+%   \item \textbf{Dreieck (Abb.~\ref{fig:int_tri}):} Bei einem Dreieckseingang ergibt sich am Ausgang ein stückweise quadratischer Verlauf (ungefähr parabolische Form), da die Integration einer konstanten Steigung eine linear wachsende Amplitude liefert, deren Ableitung wiederum linearer Verlauf ist.
+%   \item \textbf{Sinus (Abb.~\ref{fig:int_sine}):} Bei sinusförmigem Eingang erscheint am Ausgang ebenfalls ein Sinus, jedoch phasenverschoben um etwa \(-90^\circ\) und mit amplitudenabhängiger Skalierung entsprechend dem Frequenzverhalten des Integrators.
+% \end{itemize}
+% 
+% \subsection{Differentiator}
+% Für den Differentiator wurden die Bauteile \(C = 2\ \text{nF}\) und \(R = 100\ \text{k}\Omega\) verwendet. Die Fitparameter sind
+% \begin{equation}
+%   a_{\mathrm{diff}} = 0.017 \pm 0.003,\qquad b_{\mathrm{diff}} = 0.958 \pm 0.035.
+% \end{equation}
+% Daraus wurde die konstante Größe berechnet:
+% \begin{equation}
+%   C_{\mathrm{konst,diff}} = 0.014.
+% \end{equation}
+% Die Messdaten und der Fit sind in Abbildung~\ref{fig:differentiator} dargestellt. Der Exponent \(b_{\mathrm{diff}}\) nahe \(1\) ist konsistent mit differentiellen Verhalten (Amplitude proportional zu \(\nu\)) im betrachteten Frequenzbereich.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{Plots/differentiator.png}
+%   \caption{Differentiator: Amplitude \(V=U_A/U_{\mathrm{ein}}\) gegen Frequenz; Darstellung wie in Abb.~\ref{fig:integrator}.}
+%   \label{fig:differentiator}
+% \end{figure}
+% 
+% Nach Auswertung der Amplitudenfrequenzgänge wurden die zeitlichen Ausgangssignale des Differentiators für drei standardisierte
+% Eingangssignale aufgenommen: Rechteck, Dreieck und Sinus. Abbildung~\ref{fig:diff_time} zeigt die gemessenen Verläufe, das Eingangssignal ist grün, das Ausgangssignal gelb.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \begin{subfigure}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{data/bilder/differentiator_rechteck.png}
+%     \caption{Differentiator bei Rechteck‑Eingang.}
+%     \label{fig:diff_rect}
+%   \end{subfigure}\hfill
+%   \begin{subfigure}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{data/bilder/differentiator_dreieck.png}
+%     \caption{Differentiator bei Dreieck‑Eingang.}
+%     \label{fig:diff_tri}
+%   \end{subfigure}\hfill
+%   \begin{subfigure}[t]{0.32\textwidth}
+%     \centering
+%     \includegraphics[width=\linewidth]{data/bilder/differentiator_sinus.png}
+%     \caption{Differentiator bei Sinus‑Eingang.}
+%     \label{fig:diff_sine}
+%   \end{subfigure}
+%   \caption{Zeitbereichsantworten des Differentiators für drei Eingangssignale.}
+%   \label{fig:diff_time}
+% \end{figure}
+% 
+% \smallskip
+% 
+% \begin{itemize}
+%   \item \textbf{Rechteck (Abb.~\ref{fig:diff_rect}):} Der Differentiator erzeugt an den Flanken kurze, starke Impulse (positive bei ansteigender Flanke, negativ bei fallender Flanke). Das ist typisch, da die Ableitung eines Rechtecks Nadel‑ bzw. Impuls‑artige Anstiege ergibt.
+%   \item \textbf{Dreieck (Abb.~\ref{fig:diff_tri}):} Bei einem Dreieckssignal ergibt sich am Ausgang eine stückweise konstante Amplitude, da die Ableitung eines Dreiecks (konstante Steigung) nahezu rechteckartige Abschnitte liefert.
+%   \item \textbf{Sinus (Abb.~\ref{fig:diff_sine}):} Für einen sinusförmigen Eingang ergibt der Differentiator ebenfalls eine sinusförmige Ausgangsspannung, phasenverschoben um etwa 90° und amplitudenproportional zur Frequenz; dies ist in der Messkurve sichtbar als Sinus mit erkennbarer Phasenverschiebung und ggf. veränderter Amplitude.
+% \end{itemize}
+% 
+% \subsection{Schmitt-Trigger
+% Aus den in der Durchführung verwendeten Widerstandskonfigurationen ergibt sich ein theoretischer Schwellwert von
+% \begin{equation}
+%   U_{\pm}=\pm 2.98\ \mathrm{V}.
+% \end{equation}
+% Experimentell wurde der Schwellwert durch Variation der Eingangsspannung ermittelt, wobei bei einer gemessenen Eingangsspannung
+% \begin{equation}
+%   U_{\text{Schwell}} = 2.985\pm0.001 \mathrm{V}
+% \end{equation}
+% ein stabiler Rechteckbetrieb mit der erwarteten Amplitude auftrat. Die Messkurve am ermittelten Schwellwert ist in Abbildung~\ref{fig:schwell} dargestellt, sie zeigt den Übergang in das stabile Rechteckverhalten.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{data/bilder/scope_6.png}
+%   \caption{Messung zur Bestimmung des Schwellwertes. Darstellung der Eingangsspannung und des stabilen Rechtecksignals bei \(U_{\text{Schwell}}=2.985\mathrm{V}\).}
+%   \label{fig:schwell}
+% \end{figure}}
+% 
+% \subsection{Generator}
+% Im Rahmen der Messung wurde das Oszilloskopbild aufgenommen, das den angelegten sinusförmigen Generatorausgang zeigt.
+% Aus dem Bild können die Messgrößen direkt abgelesen werden. Die Signalfrequenz beträgt \(\nu = 1.6465\ \text{Hz}\) und der gemessene Spannungswert liegt bei \(U = 5.4\ \text{V}\).
+% Die zugehörige Aufnahme ist in Abbildung~\ref{fig:generator_signal} eingefügt. Sie dient sowohl der Dokumentation der verwendeten Anregung 
+% als auch der Kontrolle, dass die eingestellten Parameter während der Messung stabil waren.
+% 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.8\textwidth]{M_v51/data/bilder/scope_7.png}
+%   \caption{Oszilloskopaufnahme des an den Versuch angelegten sinusförmigen Signals.}
+%   \label{fig:generator_signal}
+% \end{figure}
+% 
+% \subsection{Generator mit variabler Amplitude}
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
+% 
