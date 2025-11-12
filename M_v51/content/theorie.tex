@@ -35,7 +35,7 @@ spricht man von negativem Feedback. Negatives Feedback stabilisiert den Output u
 saturiert den Output und ermöglicht Oszillationen, insbesondere kann somit ein Schmitt-Trigger gebaut werden.
 
 Über Feedback-Schaltungen mit verschiedenen elektrischen Komponenten können weitere Operatoren realisiert werden \cite{eqns}.
-Wenn ein Eingangssignal die Erde ist, kann ein einzelnes Signal mit den im Folgenden erklärten Schaltungen bearbeitet werden.
+Wenn ein Eingang auf die Erde geschaltet ist, kann ein einzelnes Signal mit den im Folgenden erklärten Schaltungen bearbeitet werden.
 
 \subsubsection{Inverting-Amplifier}
 
@@ -79,14 +79,14 @@ mit dem Widerstand $R$ und der Kapazität $C$. Ist das Eingangssignal sinusartig
     U_\text{i} = U_0 \sin (\omega t),
 \end{equation*}
 
-ergibt sich für die Verstärkung des Ausgangssignal der Faktor
+ergibt sich für die Verstärkung des Ausgangssignal der betragsmäßige Faktor
 
 \begin{equation}
     A = \frac{1}{RC\omega}
     \label{eq:integrator}
 \end{equation}
 
-mit der Zeit $t$, der Maximalspannung $U_0$ und der Eingangsfrequenz $\omega$.
+mit der Zeit $t$, der Maximalspannung $U_0$ und der Eingangsfrequenz $\omega$. Das Vorzeichen wird hier weggelassen, aber es ist anzumerken, dass ein Integrator auch einen Vorzeichenwechsel verursacht.
 Wird die Frequenz größer, verkleinert ein Integrator das Ausgangssignal.
 
 \newpage
@@ -101,7 +101,7 @@ Das Schaltbild eines Differentiators ist in \autoref{fig:differentiator} dargest
     \label{fig:differentiator}
 \end{figure}
 
-Ein Differentiator kann das Signalprofil eines eingehenden Signales ableiten, was ebenfalls über die Knotenregeln \cite{kirchhoff} gezeigt werden kann.
+Ein Differentiator kann das Signalprofil eines eingehenden Signales zeitlich differenzieren, was ebenfalls über die Knotenregeln \cite{kirchhoff} gezeigt werden kann.
 Dabei gilt
 
 \begin{equation*}
@@ -138,10 +138,11 @@ siehe \autoref{fig:schmitt}.
     \label{fig:schmittverhalten}
 \end{figure}
 
-Ein Schmitt-Trigger gibt ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$, aber mit Hysterese. Wird ein Schwellwert $U_+$ ($U_-$) erstmals überschritten (unterschritten),
+Ein Schmitt-Trigger ist ein sogenannter Komparator, der ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$ gibt, sobald das Eingangssignal klein oder groß genug ist.
+Wird ein Schwellwert $U_+$ ($U_-$) erstmals überschritten (unterschritten),
 so springt der Output auf $+U_\text{S}$ ($-U_\text{S}$), dargestellt in \autoref{fig:schmittverhalten}.
 Das bedeutet, wie in \autoref{fig:schmittverhalten} erkennbar, dass, sobald ein Eingangssignal die obere Schwelle überschritten hat, das Ausgangssignal gleich bleibt, auch wenn sie diese Schwelle wieder unterschreitet.
-Dieses Verhalten ist in \autoref{fig:hysterese} dargestellt.
+Diese Hysterese im Output ist in \autoref{fig:hysterese} dargestellt.
 
 \begin{figure}
     \centering
@@ -154,10 +155,10 @@ Die Schwellwerte lassen sich berechnen zu
     U_\pm = \pm \frac{R_1}{R_2} U_\text{S}
     \label{eq:schwellwert}
 \end{equation}
-mit der Ausgangssättigungsspannung $U_\text{S}$ und den widerständen $R_1$ und $R_2$.
+mit der Ausgangssättigungsspannung $U_\text{S}$ und den Widerständen $R_1$ und $R_2$.
 
 \subsubsection{Generatoren}
-Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Rechteckspannung erzeugt, kann integeriert werden, sodass eine Dreieckspannung entsteht, wie in \autoref{fig:generator1} dargestellt.
+Es lassen sich auch Signalgeneratoren bauen. Der Output des Schmitt-Triggers, der eine Rechteckspannung erzeugt, kann integeriert werden, sodass eine Dreieckspannung entsteht, wie in \autoref{fig:generator1} dargestellt.
 
 \begin{figure}[H]
     \centering
@@ -166,14 +167,14 @@ Es lassen sich auch Signalgeneratoren bauen. Der Schmitt-Trigger, der eine Recht
     \label{fig:generator1}
 \end{figure}
 
-Die erzeugte Frequenz lautet
+Die Frequenz des ausgegebenen Signals lautet
 
 \begin{equation}
     f = \frac{R_2}{4 C R_1 R_3}
     \label{eq:frequenz}
 \end{equation}
 
-und die Amplitude des Outputs ist 
+und die dazugehörige Amplitude ist 
 
 \begin{equation}
     U_\text{o} = U_\text{max} \frac{R_1}{R_2}
@@ -194,7 +195,7 @@ Ein Generator mit variierender Amplitude ist in \autoref{fig:generator2} dargest
     \label{fig:generator2}
 \end{figure}
 
-Dieses Schaltbild wird von folgender DGL beschrieben,
+Die Ausgangsspannung der in \autoref{fig:generator2} dargestellten Schaltung wird beschrieben durch
 
 \begin{equation*}
     \frac{\mathrm{d}^2U_\text{o}}{\mathrm{d}t^2} - \frac{\eta}{10RC} \frac{\mathrm{d}U_\text{o}}{\mathrm{d}t} + \frac{1}{R^2 C^2} U_\text{o} = 0,

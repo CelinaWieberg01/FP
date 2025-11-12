@@ -1,7 +1,7 @@
 \section{Auswertung}
 \label{sec:Auswertung}
-Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
-Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
+Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits werden mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy} ausgeführt.
+Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots werden mit Hilfe von \texttt{matplotlib.pyplot} \cite{matplotlib} durchgeführt.
 
 In abgebildeten Aufnahmen des Oszilloskops ist in gelb das Eingangssignal und in grün das Ausgangssignal dargestellt.
 
@@ -9,18 +9,18 @@ In abgebildeten Aufnahmen des Oszilloskops ist in gelb das Eingangssignal und in
 
 \subsection{Inverting-Amplifier}
 Für den Inverting-Amplifier werden verschiedene Verhältnisse von Widerständen verwendet.
-Es wird das Verhältnis $A$ zwischen gemessener Ausgangsspannung $U_\text{out}$ und eingestellter Eingangsspannung $U_\text{in}$ gegen die Frequenz in einem doppellogarithmischen Plot dargestellt
+Es wird das Verhältnis $A$ zwischen gemessener Ausgangsspannung $U_\text{out}$ und eingestellter Eingangsspannung $U_\text{in}$ in Abhängigkeit von der Frequenz in einem doppellogarithmischen Plot dargestellt
 und die abnehmende Flanke mit einer Potenzfunktion
 \begin{equation*}
     A(f) = a \left(\frac{f}{\SI{1}{\hertz}}\right)^b
 \end{equation*}
-gefittet. Das annähernd konstante Plateau bei $A(f) = A_0$ wird durch die Messwerte gemittelt und mit dem Erwartungswert von \autoref{eq:inverter} verglichen.
+gefittet. Das annähernd konstante Plateau bei $A(f) = A_0$ wird durch der Mittelwert der Messwerte bestimmt und mit dem Erwartungswert von \autoref{eq:inverter} verglichen.
 Die Cutoff-Frequenz $f_\text{c}$ ergibt sich durch
 \begin{equation*}
     \frac{A_0}{\sqrt{2}} = a \left(\frac{f_\text{c}}{\SI{1}{\hertz}}\right) ^b.
 \end{equation*}
 
-Die Plots für die drei verschiedenen Widerstandsverhältnise befinden sich in \autoref{fig:inv1}, \autoref{fig:inv2} und \autoref{fig:inv3}.
+Die Plots für die drei verschiedenen Widerstandsverhältnise werden in \autoref{fig:inv1}, \autoref{fig:inv2} und \autoref{fig:inv3} dargestellt.
 Die Fitparameter, Cutoff-Frequenz und Verstärkungen finden sich in \autoref{tab:inv}
 
 \begin{figure}[H]
@@ -29,7 +29,7 @@ Die Fitparameter, Cutoff-Frequenz und Verstärkungen finden sich in \autoref{tab
     \caption{Inverting-Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{100}{\kilo\ohm}$ und eingezeichneten Fits.}
     \label{fig:inv1}
 \end{figure}
-\autoref{fig:inv1} zeigt eine konstante Verstärkung bis in den $\si{\kilo\hertz}$-Bereich und folgt einem Potenzgesetz ab circa $\SI{10}{\kilo\hertz}$.
+\autoref{fig:inv1} zeigt eine konstante Verstärkung bis in den $\si{\kilo\hertz}$-Bereich, darüber hinaus folgt einem exponentiellen Zerfall.
 
 \begin{figure}[H]
     \centering
@@ -37,7 +37,7 @@ Die Fitparameter, Cutoff-Frequenz und Verstärkungen finden sich in \autoref{tab
     \caption{Inverting-Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{10}{\kilo\ohm}$ und eingezeichneten Fits.}
     \label{fig:inv2}
 \end{figure}
-\autoref{fig:inv2} zeigt eine konstante Verstärkung bis in den $\si{\kilo\hertz}$-Bereich sowie auf einer anderen Höhe bis zum $\SI{10}{\kilo\hertz}$-Bereich. Das Potenzgesetz greift hier weniger deutlich, wird für Vergleichbarkeit dennoch durchgeführt.
+\autoref{fig:inv2} zeigt eine konstante Verstärkung bis in den $\si{\kilo\hertz}$-Bereich. Eine weitere annähernd konstante, aber kleinere Verstärkung fällt im $\SI{10}{\kilo\hertz}$-Bereich auf. Die exponentielle Natur des Zerfalls bei höheren Frequenzen ist hier weniger deutlich, aber vorhanden.
 
 \begin{figure}[H]
     \centering
@@ -45,7 +45,7 @@ Die Fitparameter, Cutoff-Frequenz und Verstärkungen finden sich in \autoref{tab
     \caption{Inverting-Amplifier mit $R_1 = \SI{1}{\kilo\ohm}$ und $R_2 = \SI{150}{\kilo\ohm}$ und eingezeichneten Fits.}
     \label{fig:inv3}
 \end{figure}
-\autoref{fig:inv3} zeigt eine konstante Verstärkung bis über den $\si{\kilo\hertz}$-Bereich hinaus und folgt einem Potenzgesetz ab circa $\SI{10}{\kilo\hertz}$.
+\autoref{fig:inv3} zeigt eine konstante Verstärkung bis über den $\si{\kilo\hertz}$-Bereich hinaus, ab circa $\SI{10}{\kilo\hertz}$ folgt sie wieder einem exponentiellen Zerfall.
 
 \begin{table}[H]
     \centering
@@ -70,7 +70,8 @@ sodass die Bandbreite gleich $f_\text{c}$ ist.
 \newpage
 \subsection{Integrator}
 Für den Integrator wird ebenfalls die Verstärkung $A$ wie für den Inverting-Amplifier ermittelt.
-Gemäß \autoref{eq:integrator} wird $f$ in $\omega$ umgerechnet und $A$ gegen das inverse $\omega$ geplottet. Mit einem linearen Fit der Form
+Gemäß \autoref{eq:integrator} wird $f$ in $\omega = 2 \pi f$
+umgerechnet und $A$ gegen das inverse $\omega$ geplottet. Mit einem linearen Fit der Form
 \begin{equation}
     A(f) = m \cdot \frac{1}{\omega} + b,
     \label{eq:linfit}
@@ -85,7 +86,7 @@ wobei $m = \frac{1}{RC}$ in $\si{\per\second}$ der inversen Zeitkonstanten $RC$ 
     \label{fig:int}
 \end{figure}
 
-Die ermittelten Fitparameter lauten
+Die ermittelten Fitparameter sind
 \begin{align*}
     m &= \qty{1.03(0.03)e3}{\per\second} \\
     b &= \num{2.34(26)}
@@ -101,32 +102,32 @@ Mit den eingestellten $R = \SI{100}{\kilo\ohm}$ und $C = \SI{22}{\nano\farad}$ e
     \tau_\text{Integrator} = RC = \qty{0.001}{\second}.
 \end{equation*}
 
-Die Abweichung zwischen Theoriewert und Messwert lautet
+Die Abweichung zwischen Theoriewert und Messwert beträgt
 \begin{equation*}
     \Delta \tau = \qty{2.6}{\percent}.
 \end{equation*}
 
-Zur Demonstration, dass der Integrator als dieser fungiert, sind in \autoref{fig:int_sin}, \autoref{fig:int_recht} und \autoref{fig:int_drei}
-jeweils eine Sinus-, Rechteck- und Dreieckspannung als Eingang und ihr integrierter Output dargestellt.
+Zur Demonstration, dass der Integrator ein Eingangssignal zeitlich integeriert, sind in \autoref{fig:int_sin}, \autoref{fig:int_recht} und \autoref{fig:int_drei}
+jeweils eine Sinus-, Rechteck- und Dreieckspannung als Eingang und ihr zugehöriger Output dargestellt.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{data/bilder/integrator_sinus.png}
-    \caption{Sinusspannung und integrierte Sinusspannung.}
+    \includegraphics[width=0.45\textwidth]{data/bilder/integrator_sinus.png}
+    \caption{Die Sinusspannung wird zu einer Cosinusspannung integeriert.}
     \label{fig:int_sin}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{data/bilder/integrator_rechteck.png}
-    \caption{Rechteckspannung und integrierte Rechteckspannung.}
+    \includegraphics[width=0.45\textwidth]{data/bilder/integrator_rechteck.png}
+    \caption{Die Rechteckspannung wird zu einer negativen Dreieckspannung integriert.}
     \label{fig:int_recht}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{data/bilder/integrator_dreieck.png}
-    \caption{Dreieckspannung und integrierte Dreieckspannung.}
+    \includegraphics[width=0.45\textwidth]{data/bilder/integrator_dreieck.png}
+    \caption{Die Dreieckspannung wird zu einer negativen parabolischen Spannung integriert.}
     \label{fig:int_drei}
 \end{figure}
 
@@ -135,7 +136,7 @@ jeweils eine Sinus-, Rechteck- und Dreieckspannung als Eingang und ihr integrier
 \newpage
 \subsection{Differentiator}
 Für den Differentiator wird ebenfalls die Verstärkung $A$ wie für den Inverting-Amplifier ermittelt.
-Gemäß \autoref{eq:differentiator} wird $f$ in $\omega$ umgerechnet und $A$ gegen $\omega$ geplottet. Mit einem linearen Fit wie in \autoref{eq:linfit}
+Gemäß \autoref{eq:differentiator} wird $f$ in $\omega = 2 \pi f$ umgerechnet und $A$ gegen $\omega$ geplottet. Mit einem linearen Fit wie in \autoref{eq:linfit}
 wobei jetzt $m = RC$ in $\si{\second}$ der Zeitkonstanten $RC$ entspricht, lässt sich die Zeitkonstante ermitteln. Dies geschieht in
 \autoref{fig:dif}
 
@@ -162,33 +163,33 @@ Mit den eingestellten $R = \SI{100}{\kilo\ohm}$ und $C = \SI{22}{\nano\farad}$ e
     \tau_\text{Integrator} = RC = \qty{0.0022}{\second}.
 \end{equation*}
 
-Die Abweichung zwischen Theoriewert und Messwert lautet
+Die Abweichung zwischen Theoriewert und Messwert beträgt
 \begin{equation*}
     \Delta \tau = \qty{16}{\percent}
 \end{equation*}
 
 \newpage
 Zur Demonstration, dass der Differentiator als dieser fungiert, sind in \autoref{fig:dif_sin}, \autoref{fig:dif_recht} und \autoref{fig:dif_drei}
-jeweils eine Sinus-, Rechteck- und Dreieckspannung als Eingang und ihr differenzierter Output dargestellt.
+jeweils eine Sinus-, Rechteck- und Dreieckspannung als Eingang und ihr zugehöriger Output dargestellt.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{data/bilder/differentiator_sinus.png}
-    \caption{Sinusspannung und differenzierte Sinusspannung.}
+    \includegraphics[width=0.45\textwidth]{data/bilder/differentiator_sinus.png}
+    \caption{Die Sinusspannung wird zu einer negativen Cosinusspannung integriert.}
     \label{fig:dif_sin}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{data/bilder/differentiator_rechteck.png}
-    \caption{Rechteckspannung und differenzierte Rechteckspannung.}
+    \includegraphics[width=0.45\textwidth]{data/bilder/differentiator_rechteck.png}
+    \caption{Rechteckspannung wird zu negativen Signal-Peaks differenziert.}
     \label{fig:dif_recht}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{data/bilder/differentiator_dreieck.png}
-    \caption{Dreieckspannung und differenzierte Dreieckspannung.}
+    \includegraphics[width=0.45\textwidth]{data/bilder/differentiator_dreieck.png}
+    \caption{Dreieckspannung wird zu einer negativen Rechteckspannung differenziert.}
     \label{fig:dif_drei}
 \end{figure}
 
@@ -199,7 +200,7 @@ Die Ausgangssättigungsspannung mit $R_1 = \SI{10}{\kilo\ohm}$ und $R_2 = \SI{10
 \begin{equation*}
     U_\text{S} = \qty{28.1(1)}{\volt}
 \end{equation*}
-und die Schwellwert-Spannung nach \autoref{eq:schwellwert} lautet in der Theorie
+und die Schwellwert-Spannung ergibt nach \autoref{eq:schwellwert} einen Theoriewert von
 \begin{equation*}
     U_\pm = \qty{2.81(1)}{\volt}.
 \end{equation*}
@@ -217,7 +218,7 @@ Die Aufnahme des hier verwendeten Schmitt-Triggers befindet sich in \autoref{fig
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{data/bilder/scope_6.png}
-    \caption{Aufnahme vom Oszilloskop bei ausgelöstem Schmitt-Trigger.}
+    \caption{Aufnahme des Trigger-Signals am Oszilloskop.}
     \label{fig:schm}
 \end{figure}
 
@@ -226,9 +227,9 @@ Die Aufnahme des hier verwendeten Schmitt-Triggers befindet sich in \autoref{fig
 \newpage
 \subsection{Generator}
 Vom ersten Signalgenerator kann die Frequenz gemäß \autoref{eq:frequenz} berechnet werden.
-Diese beläuft sich zu 
+Diese beläuft sich auf 
 \begin{equation*}
-    f = \qty{34}{\percent}.
+    f = \qty{2500}{\hertz}.
 \end{equation*}
 
 Die Messung ist dargestellt in \autoref{fig:gen1} und die dort gemessene Frequenz lautet 
@@ -236,7 +237,7 @@ Die Messung ist dargestellt in \autoref{fig:gen1} und die dort gemessene Frequen
     f = \SI{1.65(10)e3}{\hertz}
 \end{equation*}
 
-Die Abweichung zwischen Theoriewert und Messwert lautet
+Die Abweichung zwischen Theoriewert und Messwert beträgt
 \begin{equation*}
     \Delta f = \qty{34}{\percent}.
 \end{equation*}
@@ -261,14 +262,14 @@ Die Aufnahmen vom Oszilloskop befinden sich in \autoref{fig:gen2_scope_max} und 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{data/bilder/scope_11.png}
-    \caption{Oszilloskopaufnahme bei maximaler Dämpfung.}
+    \caption{Oszilloskopaufnahme des Outputsignals bei maximaler eingestellten Dämpfung.}
     \label{fig:gen2_scope_max}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{data/bilder/scope_12.png}
-    \caption{Oszilloskopaufnahme bei minimaler Dämpfung.}
+    \caption{Oszilloskopaufnahme des Outputsignals bei minimaler eingestellen Dämpfung.}
     \label{fig:gen2_scope_min}
 \end{figure}
 
@@ -294,19 +295,19 @@ Die transformierten Messpunkte befinden sich in \autoref{fig:gen2_max} und \auto
     \label{fig:gen2_min}
 \end{figure}
 
-Um an $T$ zu kommen, werden die Abstände vom positiven zum positiven bzw. negativen zum negativen Peak gemittelt.
+Um $T$ zu bestimmen, werden die Abstände vom positiven zum positiven bzw. negativen zum negativen Peak gemittelt.
 Um an $\tau$ zu kommen, werden die negativen Peaks mit $-1$ multipliziert und ihr Abfall mit 
 \begin{equation*}
     U(t) = U_0 e^{-\frac{t}{\tau}}
 \end{equation*}
 gefittet.
 
-Die errechneten und gefundenen Periodendauern, Abklingzeiten, $U_0$ und Abweichungen sind in \autoref{tab:generators} dargestellt.
+Die errechneten und bestimmten Periodendauern, Abklingzeiten, $U_0$ und Abweichungen sind in \autoref{tab:generators} dargestellt.
 
 \begin{table}[H]
     \centering
-    \caption{}
-    \label{tab:}
+    \caption{Errechnete und bestimmte Werte des Generators.}
+    \label{tab:generators}
     \begin{tabular}{c c c c c c c c}
         \toprule
         {Dämpfung} & {$T_\text{theo}$ in $\si{\second}$} & {$T$ in $\si{\second}$} & {$\Delta T$} & {$\tau_\text{theo}$ in $\si{\second}$} & {$\tau$ in $\si{\second}$} & {$\Delta \tau$} & {$U_0$ in $\si{\volt}$} \\
