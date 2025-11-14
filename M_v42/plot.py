@@ -5,3 +5,10 @@ import uncertainties.unumpy as unp      # wie ufloat nur mit arrays
 from scipy.optimize import curve_fit    # params, cov = curve_fit(fitfunktion, x-wert, y-wert, cov=True)
 import scipy.constants as constants         # z.B. h = constants.h für planckzahl
 
+data = plt.imread("data/test.png")
+ft = np.fft.ifftshift(data)
+ft = np.fft.fft2(ft)
+ft = np.fft.fftshift(ft)
+plt.subplot(122)
+plt.imshow(abs(ft))
+plt.show()
