@@ -23,16 +23,16 @@ Der Output $A_\text{o}$ durch den Inverting Input mit Amplitude $A_-$ und dem No
 \begin{equation*}
     A_\text{o} = A \cdot (A_+ - A_-),
 \end{equation*}
-dabei ist $A$ die Amplification \cite{eqns}. In einem idealen OP-Amp ist dieser unendlich hoch, was jede noch so kleine Signaldifferenz verstärken würde. In der Realität ist dies nicht möglich, 
-weshalb dieser nur sehr hoch eingestellt wird. Die Betriebsspannungen bestimmen die Range des Outputs, weshalb diese so gewählt werden, dass sie symmetrisch um $\SI{0}{\volt}$ liegen.
+dabei ist $A$ die Amplification \cite{eqns}. In einem idealen OP-Amp ist diese unendlich hoch, was jede noch so kleine Signaldifferenz verstärken würde. In der Realität ist dies nicht möglich, 
+weshalb diese nur sehr hoch eingestellt wird. Die Betriebsspannungen bestimmen die Range des Outputs, weshalb diese so gewählt werden, dass sie symmetrisch um $\SI{0}{\volt}$ liegen.
 
-Des Weiteren unterscheiden sich ideale und reelle OP-Amps durch insbesondere ihre Impedanzen. Input-Impedanzen sind idealerweise unendlich hoch, sodass es einen Strom-Rückfluss gibt,
+Des Weiteren unterscheiden sich ideale und reelle OP-Amps insbesondere durch ihre Impedanzen. Input-Impedanzen sind idealerweise unendlich hoch, sodass es einen Strom-Rückfluss gibt,
 während sie in Realität nur endlich hoch eingestellt werden können. Die Output-Impedanzen sind idealerweise 0, realistisch sind aber nur sehr kleine, von Null verschiedene Werte.
 Die Bandbreite der ausgebbaren Frequenzen ist im idealen OP-Amp unendlich, im reellen aber endlich. Die Slew-Rate, also die Verzögerung zwischen Input und Output, ist im perfekten OP-Amp null, aber in Realität im Bereich von wenigen $\si{\volt\per\micro\second}$ \cite{eqns}.
 
 Der Output eines OP-Amps kann als Feedback für den Input verwendet werden. Wird er in den Inverting Input gespeist,
-spricht man von negativem Feedback. Negatives Feedback stabilisiert den Output und erhöht die Bandbreite. Positives Feedback, wenn der Output in den Non-Inverting Input gespeist wird,
-saturiert den Output und ermöglicht Oszillationen, insbesondere kann somit ein Schmitt-Trigger gebaut werden.
+spricht man von negativem Feedback. Negatives Feedback stabilisiert den Output und erhöht die Bandbreite. Positives Feedback, das heißt, wenn der Output in den Non-Inverting Input gespeist wird,
+saturiert den Output und ermöglicht Oszillationen. Somit kann ein Schmitt-Trigger gebaut werden.
 
 Über Feedback-Schaltungen mit verschiedenen elektrischen Komponenten können weitere Operatoren realisiert werden \cite{eqns}.
 Wenn ein Eingang auf die Erde geschaltet ist, kann ein einzelnes Signal mit den im Folgenden erklärten Schaltungen bearbeitet werden.
@@ -48,7 +48,7 @@ Das Schaltbild eines Inverting-Amplifiers ist in \autoref{fig:inv_ampl} dargeste
     \label{fig:inv_ampl}
 \end{figure}
 
-Ein Inverting-Amplifier invert eingehende Signale. Über die Kirchhoff'schen Regeln \cite{kirchhoff} kann nachgerechnet werden, dass 
+Ein Inverting-Amplifier invertiert eingehende Signale. Über die Kirchhoff'schen Regeln \cite{kirchhoff} kann nachgerechnet werden, dass 
 \begin{equation}
     A = - \frac{R_2}{R_1}
     \label{eq:inverter}
@@ -67,7 +67,7 @@ Das Schaltbild eines Integrators ist in \autoref{fig:integrator} dargestellt.
     \label{fig:integrator}
 \end{figure}
 
-Diese Schaltung kann ein eingehendes Signal integrieren, was anhand der Knotenregeln \cite{kirchhoff} bewiesen werden kann, sodass gilt
+Diese Schaltung kann ein eingehendes Signal integrieren, was über die Knotenregeln \cite{kirchhoff} hergeleitett werden kann, sodass gilt
 
 \begin{equation*}
     U_\text{o} = - \frac{1}{RC} \int U_\text{i} \mathrm{d}t
@@ -138,7 +138,7 @@ siehe \autoref{fig:schmitt}.
     \label{fig:schmittverhalten}
 \end{figure}
 
-Ein Schmitt-Trigger ist ein sogenannter Komparator, der ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$ gibt, sobald das Eingangssignal klein oder groß genug ist.
+Ein Schmitt-Trigger ist ein sogenannter Komparator, der ein binäres Signal in Höhe der beiden Betriebsspannungen $U_\text{S}$ ausgibt, sobald das Eingangssignal klein oder groß genug ist.
 Wird ein Schwellwert $U_+$ ($U_-$) erstmals überschritten (unterschritten),
 so springt der Output auf $+U_\text{S}$ ($-U_\text{S}$), dargestellt in \autoref{fig:schmittverhalten}.
 Das bedeutet, wie in \autoref{fig:schmittverhalten} erkennbar, dass, sobald ein Eingangssignal die obere Schwelle überschritten hat, das Ausgangssignal gleich bleibt, auch wenn sie diese Schwelle wieder unterschreitet.
