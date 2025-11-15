@@ -1,4 +1,119 @@
 \section{Theorie}
 \label{sec:Theorie}
+\subsection{Tunneleffekt}
+Der Tunneleffekt ist ein rein quantenmechanisches Phänomen, bei dem Teilchen eine klassisch unüberwindbare Potentialbarriere mit endlicher Wahrscheinlichkeit durchdringen.
+Im Rastertunnelmikroskop führt dies dazu, dass Elektronen zwischen einer metallischen Spitze und der Probenoberfläche durch die Vakuumbarriere tunneln, obwohl ihre Energie
+unter der effektiven Barrierenhöhe liegt. Da die Tunnelwahrscheinlichkeit stark vom Abstand zwischen Spitze und Probe abhängt, lässt sich über die Messung des Tunnelstroms 
+die Topographie der Oberfläche mit atomarer Auflösung rekonstruieren.
+Zur quantitativen Beschreibung betrachtet man ein Elektron mit Energie \(E\) in einer eindimensionalen Barriereregion mit konstanter effektiver Barrierenhöhe \(\Phi\) über 
+der Fermienergie und Breite \(d\). Die zeitunabhängige Schrödingergleichung in der Barriereregion lautet
 
-\cite{sample}
+\begin{equation}
+-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}+(\Phi-E)\psi=0.
+\end{equation}
+
+Für \(E<\Phi\) ergibt sich ein reeller Dämpfungsparameter
+
+\begin{equation}
+\kappa=\frac{\sqrt{2m(\Phi-E)}}{\hbar},
+\end{equation}
+
+wodurch die Wellenfunktion in der Barriereregion exponentiell abklingt, \(\psi(x)\propto e^{-\kappa x}\).
+Die Transmissionswahrscheinlichkeit durch die Barriere skaliert in führender Näherung wie
+
+
+\[
+T\propto e^{-2\kappa d}.
+\]
+
+Bei kleinen Biasspannungen und unter der Annahme, dass die Zustandsdichten der Spitze und der Probe in der betrachteten Energiezone
+annähernd konstant sind, ist der gemessene Tunnelstrom proportional zur Transmission und zur Spannung \(V\). Daraus 
+folgt die zentrale Auswertungsrelation für das STM:
+
+
+\begin{equation}
+I(d)\propto V\,\rho_t(E_F)\,\rho_s(E_F)\,e^{-2\kappa d},
+\end{equation}
+
+wobei \(\rho_t(E_F)\) und \(\rho_s(E_F)\) die Zustandsdichten an der Fermienergie der Spitze bzw. Probe bezeichnen. 
+Für typische Metallspitzen gilt \(E\ll\Phi\) und man setzt \(\kappa\approx\sqrt{2m\Phi}/\hbar\), sodass häufig verwendet wird
+
+\begin{equation}
+I(d)\propto e^{-2\kappa d},\qquad \kappa\approx\frac{\sqrt{2m\Phi}}{\hbar}.
+\end{equation}
+
+\subsection{Tunnelstrom und lokale Zustandsdichte}
+Der gemessene Tunnelstrom enthält neben Topographieinformation auch direkte elektronische Information der Probe, da er aus den energetischen
+Übergängen zwischen besetzten Zuständen der einen Elektrode und unbesetzten Zuständen der anderen entsteht und durch die Tunneltransmission gewichtet
+wird. Für kohärentes, elastisches Tunneln lässt sich der Gleichstrom bei angelegter Spannung \(V\) allgemein als Energieintegral über die Produktionen der 
+Zustandsdichten und der Transmission schreiben.
+
+\begin{equation}
+I(V)\propto\int_{-\infty}^{\infty}\rho_t(E-eV)\,\rho_s(E)\,T(E,d)\,\big[f(E-eV)-f(E)\big]\,\mathrm{d}E,
+\end{equation}
+
+
+wobei \(\rho_t\) und \(\rho_s\) die elektronischen Zustandsdichten von Spitze und Probe, \(T(E,d)\) die energie‑ und abstandsabhängige Tunneltransmission
+und \(f(E)\) die Fermi‑Verteilungsfunktion sind. Unter den in STM‑Experimenten üblichen Bedingungen wie geringe Temperatur, kleine Biasspannungen, 
+und eine Spitze mit annähernd konstanter DOS im betrachteten Energiebereich, ist die Besetzungsdifferenz auf ein schmales Energiefenster um die 
+Fermi‑energie beschränkt. Dann reduziert sich das Integral im führenden Näherungsgrad auf das integrierte Spektrum der Probenzustandsdichte
+im Fenster zwischen \(E_F\) und \(E_F+eV\). In der Tersoff–Hamann‑Nähe, bei der die Spitze als s‑symmetrisches, energetisch flaches Reservoir
+modelliert wird und das Tunnelmatrixelement proportional zur Probenwellenfunktion an der Spitzenposition \(\mathbf{r}_0\) ist, folgt die gebräuchliche Näherung
+
+\begin{equation}
+I(V,\mathbf{r}_0)\propto\int_{E_F}^{E_F+eV}\rho_s(\mathbf{r}_0,E)\,\mathrm{d}E,
+\end{equation}
+
+woraus durch Differentiation nach \(V\) die zentrale Relation der spektroskopischen Auswertung resultiert.
+
+\begin{equation}
+\frac{\mathrm{d}I}{\mathrm{d}V}(V,\mathbf{r}_0)\propto\rho_s(\mathbf{r}_0,E_F+eV).
+\end{equation}
+
+
+Damit stellt \(\mathrm{d}I/\mathrm{d}V\) unter den genannten Näherungen ein direktes Maß für die lokale Zustandsdichte der Probe bei der entsprechenden
+Energie dar und bildet die Grundlage der Scanning Tunneling Spectroscopy. 
+
+\subsection*{Exponentielle Zerfallsrate \(\kappa\)}
+
+Die exponentielle Zerfallsrate \(\kappa\) charakterisiert den räumlichen Abfall der elektronischen Wellenfunktion innerhalb der Vakuumbarriere und verbindet die 
+effektive Barrierenhöhe mit der Abstandabhängigkeit der Tunnelwahrscheinlichkeit. Betrachtet man ein eindimensionales Potential mit konstanter Barrierenhöhe \(\Phi\)
+oberhalb der Elektronenenergie \(E\) (für \(E<\Phi\)), lautet die zeitunabhängige Schrödingergleichung in der Barriereregion
+
+\begin{equation}
+-\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}+(\Phi-E)\psi=0.
+\end{equation}
+
+Für konstantes \(\Phi\) führt dies zu Lösungen exponentiellen Typs. Mit der Definition des Dämpfungsparameters
+
+\begin{equation}
+\kappa=\frac{\sqrt{2m(\Phi-E)}}{\hbar}
+\end{equation}
+
+fällt die Wellenfunktion in der Barriereregion wie \(\psi(x)\propto e^{-\kappa x}\) ab. Die Transmissionswahrscheinlichkeit \(T\) durch eine Barrierendicke 
+\(d\) skaliert in führender Näherung mit dem Quadrat der Amplitude am Barriereende, sodass gilt
+
+\begin{equation}
+T\propto e^{-2\kappa d}.
+\end{equation}
+
+Im STM‑Kontext ist der Tunnelstrom proportional zur Transmission, woraus die zentrale Abstand‑Strom‑Relation folgt.
+
+\begin{equation}
+I(d)\propto e^{-2\kappa d}.
+\end{equation}
+
+Für Energien nahe dem Ferminiveau wird häufig \(E\ll\Phi\) angenommen, womit sich die gebräuchliche Näherung
+
+\begin{equation}
+\kappa\approx\frac{\sqrt{2m\Phi}}{\hbar}
+\end{equation}
+
+ergibt. Umgekehrt lässt sich aus einem bestimmten experimentellen \(\kappa\) die effektive Barrierenhöhe berechnen durch
+
+\begin{equation}
+\Phi=\frac{(\hbar\kappa)^2}{2m}.
+\end{equation}
+
+Damit verbindet \(\kappa\) die quantenmechanische Beschreibung der Wellenfunktion in der Barriereregion direkt mit der
+makroskopisch beobachtbaren exponentiellen Abhängigkeit des Tunnelstroms vom Spitzen‑Probendistanz \(d\).
