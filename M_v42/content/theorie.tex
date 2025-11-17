@@ -117,3 +117,116 @@ ergibt. Umgekehrt lässt sich aus einem bestimmten experimentellen \(\kappa\) di
 
 Damit verbindet \(\kappa\) die quantenmechanische Beschreibung der Wellenfunktion in der Barriereregion direkt mit der
 makroskopisch beobachtbaren exponentiellen Abhängigkeit des Tunnelstroms vom Spitzen‑Probendistanz \(d\).
+
+\subsection{Piezoröhren}
+Piezoröhren sind zylindrische Aktuatoren aus piezoelektrischer Keramik, deren Innen- und Außenflächen mit segmentierten Elektroden metallisiert sind.
+Durch Polung der ferroelektrischen Domänen während der Herstellung wird eine reversible elektromechanische Kopplung etabliert. Anlegen einer elektrischen 
+Spannung an die Elektroden erzeugt eine lokale Deformation der Rohrwand, die in geeigneter Kombination axiale Längenänderungen (Z‑Achse) sowie Biege‑ und Torsionsanteile 
+(X,Y‑Richtungen) hervorruft. Im Rastertunnelmikroskop dient die Piezoröhre als Feinantrieb für die genaue Positionierung von Spitze bzw. Probe. Typische maximale
+Ausschläge liegen im Bereich weniger Nanometer aufgrund der exponentiellen Abhängigkeit des Tunnelstroms vom Abstand.
+Für kleine elektrische Felder lässt sich die axiale Längenänderung in linearer Näherung schreiben:
+
+
+\begin{equation}
+\Delta L \approx d_{33}\,L_0\,E = d_{33}\,L_0\,\frac{V}{t},
+\end{equation}
+
+wobei \(d_{33}\) der piezoelektrische Koeffizient, \(L_0\) die nominale Länge, \(t\) die Wandstärke und \(V\) die angelegte Spannung ist.
+Diese lineare Relation ist jedoch nur eine erste Näherung, für reale Piezoröhren sind mehrere nichtlineare und zeitabhängige Phänomene von Bedeutung, 
+die die Qualität von STM‑Messungen direkt beeinflussen.
+Fünf zentrale Effekte sind experimentell relevant: Hysterese, Kreep, Nichtlinearität/Skalenabweichung, Kopplung zwischen Achsen (Cross‑Talk) und mechanische Resonanzen.
+Hysterese führt zu unterschiedlicher Verschiebung bei auf- und ablaufender Spannung und erzeugt dadurch systematische Positionsfehler, 
+welche sich in Rasterverzerrungen und Asymmetrien äußern. Kreep bezeichnet die zeitabhängige Nachbewegung nach einem Spannungssprung und verursacht langsame Drift
+im Scanbild. Dieser Effekt ist besonders kritisch bei langsamen Linienraten oder beim Abtasten feiner Strukturen. Nichtlinearität und veränderliche Skalenfaktoren bedingen
+Volt‑Abweichungen über den Arbeitsbereich und führen zu Maßstabsfehlern. Cross‑Talk entsteht, weil eine Ansteuerung eines Segments parasitäre Bewegungen 
+in den anderen Achsen induziert, ohne Korrektur erscheinen Rotations‑ oder Scherartefakte. Mechanische Eigenmoden von Röhre und Montage können bei bestimmten
+Anregungsfrequenzen resonant angeregt werden und sind Ursache für periodische Artefakte bei zu hohen Scanraten.
+Diese Effekte lassen sich nicht vollständig eliminieren, aber teilweise kompensieren. Geschlossene Regelkreise mit kapazitiven oder interferometrischen Wegsensoren 
+ermöglichen echtes Closed‑Loop‑Feedback und reduzieren Hysterese und Kreep erheblich, sofern Sensorauflösung und Bandbreite ausreichend sind. Fehlt eine direkte Wegmessung,
+so kann eine regelmäßige Kalibrierungen an Referenzgittern helfen, verlässlichere Messwerte zu erzielen.
+Vor Messreihen sind Kalibrierungen der Volt‑Skalierung und der Achsentopologie durchzuführen. Aufnahmen in Vorwärts‑ und Rückwärtsrichtung liefern Hinweise auf Hystereseeffekte 
+und erlauben Korrekturen, langsame Linienraten und ausreichende thermische Stabilisierung reduzieren Kreep‑ und Driftfehler. FFT‑gestützte Auswertungsschritte sind vorzuziehen,
+da periodische Strukturen so präziser im Frequenzraum bestimmt und systematische Verzerrungen identifiziert werden können. Ebenso sind bei der Bestimmung von Sprunghöhen auf
+Gold die Höhenkalibrierung und die Eliminierung von Spitzenartefakten essenziell, da die lateralen und vertikalen Sensitivitäten der Piezoröhre sowie mögliche Cross‑Talk‑Beiträge
+direkten Einfluss auf die gemessenen Werte haben.
+Als technische Alternativen zu Piezoröhren kommen piezostack‑Aktuatoren, bimorphe Biegebalken sowie Kombinationen aus Grobverstellern (Inchworm bzw. stick‑slip‑Mechanismen) und
+feinen Piezoaktoren in Betracht. 
+
+\subsection{Gitterstruktur}
+\subsubsection{Graphen}
+
+Graphen ist eine einzelne Schicht des Graphitgitters und bildet ein zweidimensionales, hexagonales Kohlenstoffnetzwerk. Jedes Kohlenstoffatom ist sp\textsuperscript{2}-hybridisiert 
+und bindet kovalent an drei Nachbarn in der Ebene. Die verbleibenden p\textsubscript{z}-Orbitale bilden delokalisierte \(\pi\)-Zustände senkrecht zur Ebene, die die charakteristische 
+elektronische Struktur erzeugen. Die in‑plane Gitterkonstante beträgt \(a \approx 0{.}246\ \mathrm{nm}\), der nächste Nachbarabstand \(a_{\mathrm{CC}}\approx 0{.}142\ \mathrm{nm}\).
+Die Fläche der Einheitszelle und die Flächendichte der Atome sind gegeben durch
+\begin{equation}
+A_{\mathrm{uc}}=\frac{\sqrt{3}}{2}a^2,\qquad 
+\sigma=\frac{2}{A_{\mathrm{uc}}}=\frac{4}{\sqrt{3}\,a^2}.
+\end{equation}
+
+Für kontextbezogene Betrachtungen der STM‑Messung sind die reellen Basisvektoren der zweidimensionalen Bravais‑Gitterdarstellung und die zugehörigen reziproken Gittervektoren nützlich. Eine gebräuchliche Wahl der reellen Basisvektoren lautet
+\begin{equation}
+\mathbf{a}_1 = a\,(1,0),\qquad 
+\mathbf{a}_2 = a\Big(\tfrac{1}{2},\tfrac{\sqrt{3}}{2}\Big),
+\end{equation}
+wobei die Einheitszelle zwei Basisatome (Sublattice A und B) enthält. Die zugehörigen reziproken Basisvektoren ergeben sich aus \(\mathbf{a}_i\cdot\mathbf{b}_j=2\pi\delta_{ij}\) und können in der obigen Koordinatendarstellung geschrieben werden als
+\begin{equation}
+\mathbf{b}_1 = \frac{2\pi}{a}\Big(1,-\frac{1}{\sqrt{3}}\Big),\qquad
+\mathbf{b}_2 = \frac{2\pi}{a}\Big(0,\frac{2}{\sqrt{3}}\Big).
+\end{equation}
+Die Lage der Dirac‑Punkte in der reziproken Ebene lässt sich mit diesen Vektoren ausdrücken; ein K‑Punkt ist gegeben durch
+\begin{equation}
+\mathbf{K}=\frac{4\pi}{3a}\,(1,0)=\frac{1}{3}\mathbf{b}_1+\frac{2}{3}\mathbf{b}_2,
+\end{equation}
+wodurch die in der Theorie wichtigen linear dispersiven Bereiche um \(\mathbf{K}\) und \(\mathbf{K}'=-\mathbf{K}\) unmittelbar verknüpft sind mit den Periodizitäten, die in FFT‑Analysen von STM‑Bildern nachweisbar sind.
+
+Im reziproken Raum treten die Dirac‑Punkte an den K‑Punkten auf, die Dispersion nahe diesen Punkten ist annähernd linear und lässt sich schreiben als
+\begin{equation}
+E(\mathbf{k})=\pm\hbar v_{\mathrm{F}}|\mathbf{k}|,
+\end{equation}
+mit \(v_{\mathrm{F}}\approx 10^6\ \mathrm{m/s}\). Die elektronische Zustandsdichte eines idealen, ungestörten monolagigen Graphens skaliert näherungsweise
+wie \(\rho(E)\propto|E|\) und verschwindet bei den Dirac‑Punkten.  
+HOPG liefert aufgrund der gut orientierten Graphenschichten und der ausgeprägten \(\pi\)-Zustände einen starken, periodischen elektronischen Kontrast. 
+Die atomare Periodizität und die hohe laterale Homogenität führen zu scharfen, gut zuordenbaren Peaks in der 2D‑Fourier‑Transformation, weshalb HOPG als 
+Lateralkalibrierstandard und Referenzgitter weit verbreitet ist. Frisch aufgebrochene HOPG‑Flächen sind leicht reproduzierbar, was die experimentelle Vergleichbarkeit 
+verbessert. Einschränkungen ergeben sich durch Sublattice‑abhängige Kontraste, sowie lokale Defekte, die lokale Abweichungen verursachen 
+
+\subsubsection{Gold}
+
+Gold kristallisiert im kubisch‑flächenzentrierten (fcc) Gitter mit der Gitterkonstante \(a_0\) (Raumtemperatur: \(a_0\approx 0{.}408\ \mathrm{nm}\)).
+Für die (111)-Ebene ergeben sich die charakteristischen Längenskalen
+
+\begin{equation}
+a_{\mathrm{NN}}=\frac{a_0}{\sqrt{2}}\approx 0{.}288\ \mathrm{nm},\qquad
+h_{111}=\frac{a_0}{\sqrt{3}}\approx 0{.}236\ \mathrm{nm}.
+\end{equation}
+
+Allgemein gilt für den Netzebenenabstand der Miller‑Indizes \((hkl)\)
+
+\begin{equation}
+d_{hkl}=\frac{a_0}{\sqrt{h^2+k^2+l^2}}.
+\end{equation}
+
+Die Fläche der primitiven Zelle der (111)-Ebene sowie die Oberflächenatomdichte sind
+
+\begin{equation}
+A_{111}=\frac{\sqrt{3}}{2}a_{\mathrm{NN}}^2=\frac{\sqrt{3}}{4}a_0^2,\qquad
+\sigma_{111}=\frac{1}{A_{111}}=\frac{4}{\sqrt{3}\,a_0^2}.
+\end{equation}
+
+Elektronisch dominieren bei Gold delokalisierte s‑ und d‑Elektronen. Oberflächennahe Zustände und Rekonstruktionen modifizieren die ideale Oberflächenstruktur. 
+Gold eignet sich besonders zur Untersuchung von monoatomaren Stufen und Oberflächenrekonstruktionen, da die Stufenhöhen klar definierte Vertikalskalen liefern.
+Die atomaren topographischen Amplituden sind jedoch klein (Sub‑Å‑Bereich) und der laterale atomare Kontrast in oberflächenempfindlichen Techniken wie STM hängt 
+stark von Spitzengeometrie, Bias und elektronischer Struktur ab. Rekonstruktive Superstrukturen überlagern den reinen Gitterkontrast und erschweren die direkte 
+Bestimmung der atomaren Gitterkonstante, daher sind höhere Anforderungen an Probenvorbereitung, Spitzenzustand und Auswertemethoden nötig. 
+
+\subsubsection{Fazit}
+Die angegebenen geometrischen und elektronischen Ausdrücke verknüpfen die atomare Anordnung direkt mit relevanten Längen‑ und Energieskalen. 
+HOPG/Graphen bietet durch seine ausgeprägte, elektronisch dominierte atomare Signatur und einfache Probenvorbereitung eine robuste Grundlage für laterale Kalibrierung und präzise 
+Bestimmung der Gitterkonstante. Gold liefert zuverlässige Informationen über Terrassenhöhen und Oberflächenrekonstruktionen, erfordert aber für atomare Gittervermessungen 
+erhöhte experimentelle Sorgfalt.
+
+\subsection{}
+
+
+
