@@ -56,7 +56,7 @@ I(V)\propto\int_{-\infty}^{\infty}\rho_t(E-eV)\,\rho_s(E)\,T(E,d)\,\big[f(E-eV)-
 wobei \(\rho_t\) und \(\rho_s\) die elektronischen Zustandsdichten von Spitze und Probe, \(T(E,d)\) die energie‑ und abstandsabhängige Tunneltransmission
 und \(f(E)\) die Fermi‑Verteilungsfunktion sind. Unter den in STM‑Experimenten üblichen Bedingungen wie geringe Temperatur, kleine Biasspannungen, 
 und eine Spitze mit annähernd konstanter DOS im betrachteten Energiebereich, ist die Besetzungsdifferenz auf ein schmales Energiefenster um die 
-Fermi‑energie beschränkt. Dann reduziert sich das Integral im führenden Näherungsgrad auf das integrierte Spektrum der Probenzustandsdichte
+Fermi‑Energie beschränkt. Dann reduziert sich das Integral im führenden Näherungsgrad auf das integrierte Spektrum der Probenzustandsdichte
 im Fenster zwischen \(E_F\) und \(E_F+eV\). In der Tersoff–Hamann‑Nähe, bei der die Spitze als s‑symmetrisches, energetisch flaches Reservoir
 modelliert wird und das Tunnelmatrixelement proportional zur Probenwellenfunktion an der Spitzenposition \(\mathbf{r}_0\) ist, folgt die gebräuchliche Näherung
 
@@ -164,12 +164,14 @@ A_{\mathrm{uc}}=\frac{\sqrt{3}}{2}a^2,\qquad
 \sigma=\frac{2}{A_{\mathrm{uc}}}=\frac{4}{\sqrt{3}\,a^2}.
 \end{equation}
 
-Für kontextbezogene Betrachtungen der STM‑Messung sind die reellen Basisvektoren der zweidimensionalen Bravais‑Gitterdarstellung und die zugehörigen reziproken Gittervektoren nützlich. Eine gebräuchliche Wahl der reellen Basisvektoren lautet
+Für kontextbezogene Betrachtungen der STM‑Messung sind die reellen Basisvektoren der zweidimensionalen Bravais‑Gitterdarstellung und die zugehörigen reziproken Gittervektoren nützlich.
+Eine gebräuchliche Wahl der reellen Basisvektoren lautet
 \begin{equation}
 \mathbf{a}_1 = a\,(1,0),\qquad 
 \mathbf{a}_2 = a\Big(\tfrac{1}{2},\tfrac{\sqrt{3}}{2}\Big),
 \end{equation}
-wobei die Einheitszelle zwei Basisatome (Sublattice A und B) enthält. Die zugehörigen reziproken Basisvektoren ergeben sich aus \(\mathbf{a}_i\cdot\mathbf{b}_j=2\pi\delta_{ij}\) und können in der obigen Koordinatendarstellung geschrieben werden als
+wobei die Einheitszelle zwei Basisatome enthält. Die zugehörigen reziproken Basisvektoren ergeben sich aus \(\mathbf{a}_i\cdot\mathbf{b}_j=2\pi\delta_{ij}\) und können in der obigen
+Koordinatendarstellung geschrieben werden als
 \begin{equation}
 \mathbf{b}_1 = \frac{2\pi}{a}\Big(1,-\frac{1}{\sqrt{3}}\Big),\qquad
 \mathbf{b}_2 = \frac{2\pi}{a}\Big(0,\frac{2}{\sqrt{3}}\Big).
@@ -220,13 +222,43 @@ Die atomaren topographischen Amplituden sind jedoch klein (Sub‑Å‑Bereich) u
 stark von Spitzengeometrie, Bias und elektronischer Struktur ab. Rekonstruktive Superstrukturen überlagern den reinen Gitterkontrast und erschweren die direkte 
 Bestimmung der atomaren Gitterkonstante, daher sind höhere Anforderungen an Probenvorbereitung, Spitzenzustand und Auswertemethoden nötig. 
 
+
 \subsubsection{Fazit}
 Die angegebenen geometrischen und elektronischen Ausdrücke verknüpfen die atomare Anordnung direkt mit relevanten Längen‑ und Energieskalen. 
 HOPG/Graphen bietet durch seine ausgeprägte, elektronisch dominierte atomare Signatur und einfache Probenvorbereitung eine robuste Grundlage für laterale Kalibrierung und präzise 
 Bestimmung der Gitterkonstante. Gold liefert zuverlässige Informationen über Terrassenhöhen und Oberflächenrekonstruktionen, erfordert aber für atomare Gittervermessungen 
 erhöhte experimentelle Sorgfalt.
 
-\subsection{}
+
+\subsection{PID-Regler}
+Ein PID-Regler besteht aus drei Anteilen: proportional (P), integral (I) und differential (D) — und übersetzt die Abweichung des gemessenen Tunnelstroms vom Sollwert in eine Stellgröße 
+für die Z‑Position des Piezoaktors. Formal lässt sich die Stellgröße in Zeitdomäne schreiben als
+
+\begin{equation}
+u(t)=K_P\,e(t) + K_I\int_0^t e(\tau)\,\mathrm{d}\tau + K_D\frac{\mathrm{d}e(t)}{\mathrm{d}t},
+\end{equation}
+
+wobei \(e(t)\) der Regelabweichung entspricht und \(K_P\), \(K_I\), \(K_D\) die Verstärkungsfaktoren der jeweiligen Anteile sind. Physikalisch wird diese Stellspannung über den 
+piezoelektrischen Effekt in eine Längenänderung umgesetzt. Die vom Regler erzeugte elektrische Ansteuerung \(u(t)\) ist damit die Eingangsgröße für das mechanische Subsystem des Scanners.
+Die mechanische Dynamik des durch die Piezoansteuerung bewegten Teils lässt sich in guter Näherung durch ein gedämpftes Massen‑Feder‑System beschreiben. 
+Für die effektive Koordinate \(x(t)\) des bewegten Teils gilt dann
+
+\begin{equation}
+m\ddot{x} + c\dot{x} + kx = F_{\mathrm{drive}}(t),
+\end{equation}
+
+wobei \(m\) die effektive Masse, \(c\) die Dämpfung, \(k\) die effektive Steifigkeit der Baugruppe und \(F_{\mathrm{drive}}(t)\) die durch das Piezoelement erzeugte Antriebskraft darstellt. 
+Die Stellspannung \(u(t)\) ist über die Piezocharakteristik proportional zur erzeugten Deformation und somit indirekt mit \(F_{\mathrm{drive}}(t)\) verknüpft. Nichtlineare Effekte wie Piezo‑Hysterese 
+und Kreep sowie Kopplungen an statische Vorspannung und Kontaktbedingungen modifizieren diese Beziehung.
+Physikalisch wirkt der proportionale Anteil \(K_P e(t)\) als unmittelbares Stellsignal proportional zur aktuellen Regelabweichung, in mechanischer Sprache bedeutet das eine schnelle Änderung von 
+\(F_{\mathrm{drive}}(t)\) und damit erhöhte Beschleunigungsanforderungen an die Masse \(m\). Große Beschleunigungsanteile erzeugen hohe Trägheitskräfte \(m\ddot{x}\), können den Übergang von Haftung
+zu Gleiten in piezo‑inertialen Kontakten begünstigen und mechanische Eigenmoden anregen. Der integrale Anteil \(K_I\!\int_0^t e(\tau)\,\mathrm{d}\tau\) akkumuliert langfristige Fehler und verschiebt 
+so die mittlere Stellposition, wodurch langsame systematische Abweichungen wie Piezo‑Kreep oder thermisch bedingte Drift ausgeglichen werden. Diese sukzessive Anpassung entspricht einer langsamen Änderung 
+des Mittelwerts von \(F_{\mathrm{drive}}(t)\) und somit von \(x(t)\). Da die Kontaktkräfte (statische Haftkraft \(F_{\mathrm{stick}}\), kinetische Reibung \(F_{\mathrm{kin}}\)) in der Praxis variabel sind,
+kann das Integral jedoch falsche Korrekturen aufsummieren.
+Der differentielle Anteil \(K_D\,\mathrm{d}e/\mathrm{d}t\) reagiert auf die Änderungsrate des Fehlers und wirkt dämpfend auf schnelle Störungen. Physikalisch entspricht dies einer zusätzlichen
+viskosen Dämpfung der schnellen Dynamik und reduziert Überschwingen, verstärkt jedoch hochfrequentes Messrauschen, sofern vor der Differentiation keine geeignete Filterung erfolgt.
+
 
 
 
