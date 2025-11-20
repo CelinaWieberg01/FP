@@ -70,8 +70,8 @@ sodass die Bandbreite gleich $f_\text{c}$ ist.
 \newpage
 \subsection{Integrator}
 Für den Integrator wird ebenfalls die Verstärkung $A$ ermittelt.
-Gemäß \autoref{eq:integrator} wird $f$ in $\omega = 2 \pi f$
-umgerechnet und $A$ gegen das inverse $\omega$ geplottet. Mit einem linearen Fit der Form
+Gemäß \autoref{eq:integrator} wird die Frequenz $f$ in die Kreisfrequenz $\omega = 2 \pi f$
+umgerechnet und die Verstärkung $A$ gegen die inverse Kreisfrequenz $\omega$ geplottet. Mit einem linearen Fit der Form
 \begin{equation}
     A(f) = m \cdot \frac{1}{\omega} + b,
     \label{eq:linfit}
@@ -175,7 +175,7 @@ jeweils eine Sinus-, Rechteck- und Dreieckspannung als Eingang und ihr zugehöri
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.45\textwidth]{data/bilder/differentiator_sinus.png}
-    \caption{Die Sinusspannung wird zu einer negativen Cosinusspannung integriert.}
+    \caption{Die Sinusspannung wird zu einer negativen Cosinusspannung differenziert.}
     \label{fig:dif_sin}
 \end{figure}
 
@@ -209,7 +209,7 @@ Der Schwellwert wird im Experiment ermittelt und beträgt
 \begin{equation*}
     U_\pm = \qty{2.980(1)}{\volt}.
 \end{equation*}
-Die Abweichung zwischen Theoriewert und Messwert lautet somit
+Die Abweichung zwischen Theoriewert und Messwert beträgt somit
 \begin{equation*}
     \Delta U_\pm = \qty{6}{\percent}.
 \end{equation*}
@@ -232,7 +232,7 @@ Diese beläuft sich auf
     f = \qty{2500}{\hertz}.
 \end{equation*}
 
-Die Messung ist dargestellt in \autoref{fig:gen1} und die dort gemessene Frequenz lautet 
+Die Messung ist dargestellt in \autoref{fig:gen1} und die dort gemessene Frequenz beträgt 
 \begin{equation*}
     f = \SI{1.65(10)e3}{\hertz}
 \end{equation*}
@@ -296,7 +296,7 @@ Die transformierten Messpunkte befinden sich in \autoref{fig:gen2_max} und \auto
 \end{figure}
 
 Um $T$ zu bestimmen, werden die Abstände vom positiven zum positiven bzw. negativen zum negativen Peak gemittelt.
-Um an $\tau$ zu kommen, werden die negativen Peaks mit $-1$ multipliziert und ihr Abfall mit 
+Um $\tau$ zu bestimmen, werden die negativen Peaks mit $-1$ multipliziert und ihr Abfall mit 
 \begin{equation*}
     U(t) = U_0 e^{-\frac{t}{\tau}}
 \end{equation*}

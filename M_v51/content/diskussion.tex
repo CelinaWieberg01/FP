@@ -5,11 +5,8 @@ Zuletzt werden die theoretischen Erkenntnisse und gemessenen Werte hinsichtlich 
 
 \subsection{Inverting-Amplifier}
 
-Die gemessenen Verstärkungsfaktoren von \num{88.0(7)}, \num{11.2(1)} und \num{106.0(4)} mit ihren Abweichungen um jeweils $\qty{12}{\percent}$, $\qty{12}{\percent}$ und $\qty{29}{\percent}$ von den Theoriewerten von $100$, $10$ und $150$
-sind nicht groß. Die Abweichungen sind entweder auf Ungenauigkeiten der benutzten Widerstände als auch auf unbeachtete Impedanzen im Bredboard zurückzuführen.
-
-Die Bandbreiten mit \num{1.1(5)e4}, \num{0.5(1.9)e5} und $\qty{8.0(3.3)e3}{\hertz}$ liegen zueinander entsprechend ihrer jeweiligen Verstärkung sinvoll.
-Es wird beobachtet, dass größere Verstärkungen zu kleineren Bandbreiten führt.
+Die gemessenen Verstärkungsfaktoren mit den dazugehörigen Bandbreiten betragen \num{88.0(7)} mit \qty{1.1(5)e4}{\hertz}, \num{11.2(1)} mit \qty{0.5(1.9)e5}{\hertz} und \num{106.0(4)} mit \qty{8.0(3.3)e3}{\hertz}. Die Abweichungen der Verstärkungsfaktoren um jeweils $\qty{12}{\percent}$, $\qty{12}{\percent}$ und $\qty{29}{\percent}$ von den Theoriewerten von $100$, $10$ und $150$
+sind nicht groß. Die Abweichungen sind entweder auf Ungenauigkeiten der benutzten Widerstände oder auf unbeachtete Impedanzen im Bredboard zurückzuführen. Die Bandbreiten nehmen mit größerer Verstärkung ab und kleinerer Verstärkung zu.
 
 \subsection{Integrator}
 Das integrierende Verhalten eines Integrators ist klar demonstriert.
@@ -19,7 +16,8 @@ Des Weiteren ist die Abweichung der gemessenen zur errechneten Zeitkonstanten vo
 \subsection{Differentiator}
 Das differenzierende Verhalten eines Differentiators ist klar demonstriert.
 Die Abweichung der gemessenen zur errechneten Zeitkonstanten von \qty{0.0022}{\second} zu \qty{0.00185(1)}{\second} ist mit \qty{16}{\percent} größer als beim Integrator.
-Der lineare Fit in \autoref{fig:dif} passt sehr gut zu den Messdaten.
+Der lineare Fit in \autoref{fig:dif} passt allerdings sehr gut zu den Messdaten. Eine mögliche Fehlerquelle ist die Sensitivität des Differentiators. Die aufgenommenen Bilder ikn \autoref{fig:dif_sin}, \ref{fig:dif_recht} und \ref{fig:dif_drei} zeigen verglichen
+mit dem Integrator starkes Rauschen, was einen Einfluss auf die gemessenen Verstärkungen haben könnte.
 
 \subsection{Schmitt-Trigger}
 Die Abweichung zwischen der theoretischen Schwellspannung von \qty{2.81(1)}{\volt} und der gemessenen Spannung von \qty{2.980(1)}{\volt} beträgt \qty{6}{\percent}.
@@ -30,13 +28,13 @@ was die Vergleichbarkeit zwischen einem Theoriewert und des experimentell bestim
 
 \subsection{Generatoren}
 Der Frequenzunterschied von \qty{34}{\percent} zwischen der theoretischen Frequenz von \qty{2500}{\hertz} und der ermittelten Frequenz von \SI{1.65(10)e3}{\hertz}
-ist verglichen mit anderen berechneten Abweichungen groß. Das ist damit zu begründen, dass das entstehende Rechtecksignal des Schmitt-Triggers Unstetigkeiten schräg ansteigende Flanken besitzt, wie in \autoref{fig:schm} erkennbar ist.
+ist verglichen mit anderen berechneten Abweichungen groß. Das ist damit zu erklären, dass das vom Schmitt-Trigger erzeugte Rechtecksignal schräg ansteigende Flanken statt glatte Unstetigkeiten besitzt, wie in \autoref{fig:schm} erkennbar ist. Die vom Signalgenerator erzeugte Rechteckspannung, zu sehen in \autoref{fig:dif_recht}, besitzt im Vergleich keine Flanken.
 Dies führt dazu, dass das Dreiecksignal, also das Integral des Outputs, an den Spitzen Unstetigkeiten aufweist, was die automatische Auslese vom Oszilloskop möglicherweise stört.
 
 Es konnte kein herkömmlicher Fit einer Lösung auf die Messwerte für den variablen Generator durchgeführt werden. 
-Die Abweichungen in $T$ von \qty{0.00628}{\second} mit \qty{0.00536(16)}{\second} bzw. \qty{0.00542(25)}{\second} betragen $\qty{15}{\percent}$ bzw. $\qty{14}{\percent}$.
-Die Abweichungen in $\tau$ vom Theoriewert von \qty{0.02}{\second} für die maximale Dämpfung mit \qty{0.081(25)}{\second} lautet \qty{310}{\percent}.
-Die Abeweichung für minimale Dämpfung mit \qty{0.027(6)}{\second} lautet \qty{38}{\percent}.
+Die theoretische, berechnete Periodendauer $T$ beträgt \qty{0.00628}{\second} Die gemesesnen Periodendauern betragen \qty{0.00536(16)}{\second} und \qty{0.00542(25)}{\second}. Die entsprechenden Abweichungen betragen $\qty{15}{\percent}$ bzw. $\qty{14}{\percent}$.
+Die theoretische, berechnete Abklingzeit $\tau$ beträgt \qty{0.02}{\second}. Die gemessene Abklingzeit bei maximaler Dämpfung beträgt \qty{0.081(25)}{\second}. Die Abweichung beträgt \qty{310}{\percent}.
+Die gemessene Abklingzeit bei minimaler Dämpfung beträgt \qty{0.027(6)}{\second}, die Abweichung beträgt \qty{38}{\percent}.
 
 Die Bestimmung des Dämpfungsfaktors ist nicht quantitativ, sondern nur qualitativ. Das Potentiometer wurde in beiden Messungen bis zum Anschlag hoch- und runtergeregelt.
 Die genaue Größe des Faktors wurde somit nicht bestimmt, was die große Abweichung für eine Abklingdauer gemäß \autoref{eq:tau} erklärt.
