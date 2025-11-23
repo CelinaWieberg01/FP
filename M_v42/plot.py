@@ -35,7 +35,6 @@ def lattice_constant(number):
     plt.xlabel(r"$x$ in \si{\nano\meter}")
     plt.ylabel(r"$y$ in \si{\nano\meter}")
     plt.colorbar(label=r"Intensität in arbiträren Einheiten")
-    plt.tight_layout()
 
     if show == True:
         plt.show()
@@ -68,8 +67,6 @@ def lattice_constant(number):
     plt.xlabel(r"$k_x$ in \si{\per\nano\meter}")
     plt.ylabel(r"$k_y$ in \si{\per\nano\meter}")
     plt.colorbar(label=r"Intensität in arbiträren Einheiten")
-    plt.tight_layout()
-    plt.colorbar()
 
     col = ["red", "blue", "green", "white", "orange", "purple"] # ignorieren
     #for i in range(6):
