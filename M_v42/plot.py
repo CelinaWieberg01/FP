@@ -32,7 +32,9 @@ def lattice_constant(number):
     data = gaussian(np.genfromtxt(f"data/{number}.csv", delimiter=";")) 
 
     plt.imshow(data, origin="lower", cmap="BuPu", extent=[0,nm_imagesize, 0,nm_imagesize]) # plot data
-    plt.colorbar()
+    plt.xlabel(r"$x$ in \si{\nano\meter}")
+    plt.ylabel(r"$y$ in \si{\nano\meter}")
+    plt.colorbar(label=r"Intensität in arbiträren Einheiten")
     plt.tight_layout()
 
     if show == True:
@@ -63,6 +65,9 @@ def lattice_constant(number):
     
 
     plt.imshow(f, origin="lower", extent=[kx[0], kx[-1], ky[0], ky[-1]])
+    plt.xlabel(r"$k_x$ in \si{\per\nano\meter}")
+    plt.ylabel(r"$k_y$ in \si{\per\nano\meter}")
+    plt.colorbar(label=r"Intensität in arbiträren Einheiten")
     plt.tight_layout()
     plt.colorbar()
 
@@ -96,3 +101,10 @@ r_avg = ufloat(np.mean(unp.nominal_values(r)), np.std(unp.nominal_values(r))/np.
 print("Average distance = ", r_avg, " nm")
 print("Deviation from literature = ", 100*np.abs(r_avg - 0.246)/0.246, " %")
 
+
+
+heights = np.array((1.64, 1.63, 1.11, 1.76, 1.35, 1.58))
+
+height = ufloat(np.mean(heights), np.std(heights)/np.sqrt(len(heights)))
+
+print(f"Height = {height} nm")
