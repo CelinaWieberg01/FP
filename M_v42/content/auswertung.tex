@@ -18,5 +18,8 @@ Anschließend werden die Intensitäten fouriertransformiert. Die Abstände benac
 \subsection{Gold}
 Für Gold können keine atomar aufgelösten Bilder gemacht werden, aber aus den Messungen mit dem Mikroskop lassen sich Informationen über Schichtdicken gewinnen.
 Mit \texttt{Gwyddion} können die Messungen zunächst nachbearbeitet werden. Dafür werden sie zuerst geebnet und anschließend das Minimum der Daten auf null gesetzt. 
-
+Für die Auswertung der Höhe wird ein vom Programm bereitgestelltes Tool benutzt, das die Höhenverteilung in ausgewählten Bereichen darstellt. Dafür wird eine 35 mal 35 Pixel große Fläche
+händisch über das Scanbild gefahren und in Echtzeit die statistische Verteilung der Höhen beobachtet. Es können optisch bereits Stellen ausgemacht werden, an denen
+Höhenunterschiede sichtbar sind. Wenn die Statistik mindestens zwei eindeutige Peaks zeigt, werden diese markiert und die Differenz der entsprechenden Höhen ausgerechnet.
+Dies wird für den ersten Vorwärtsscan drei Mal wiederholt. Für den zweiten Vorwärtsscan sowie den zugehörigen Rückwärtsscan wird dies je ein Mal durchgeführt.
 
