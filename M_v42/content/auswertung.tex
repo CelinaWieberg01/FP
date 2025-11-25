@@ -1,5 +1,22 @@
 \section{Auswertung}
 \label{sec:Auswertung}
 
-Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
+Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Mögliche Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize}. \cite{scipy}.
 Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
+Bildbearbeitungen für das HOPG werden mit \texttt{skimage} durchgeführt. Die Auswertung der Goldprobe wird mit \texttt{Gwyddion} durchgeführt.
+
+\subsection{HOPG}
+
+Um Rauschartefakte zu unterdrücken, werden die Messungen der HOPG-Probe mit einem Gauß-Filter versehen.
+Anschließend werden die Intensitäten fouriertransformiert. Die Abstände benachbarter Peaks im reziproken Raum entsprechen den reziproken Gittervektoren zwischen den hellen Spots im Realraum.
+Über \autoref{eq:rez_to_real} lassen sich somit die Gittervektoren bzw. die Abstände heller Spots berechnen.
+
+
+
+
+
+\subsection{Gold}
+Für Gold können keine atomar aufgelösten Bilder gemacht werden, aber aus den Messungen mit dem Mikroskop lassen sich Informationen über Schichtdicken gewinnen.
+Mit \texttt{Gwyddion} können die Messungen zunächst nachbearbeitet werden. Dafür werden sie zuerst geebnet und anschließend das Minimum der Daten auf null gesetzt. 
+
+
