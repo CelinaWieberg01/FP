@@ -11,19 +11,19 @@ Um Rauschartefakte zu unterdrücken, werden die Messungen der HOPG-Probe mit ein
 Anschließend werden die Intensitäten fouriertransformiert. Die Abstände benachbarter Peaks im reziproken Raum entsprechen den reziproken Gittervektoren zwischen den hellen Spots im Realraum. Diese Abstände werden
 errechnet und über \autoref{eq:rez_to_real} in die Abstände heller Spots im Realraum rücktransformiert. Für jedes Bild werden die entstandenen Abstände gemittelt.
 
-Die Daten sind in \autoref{fig:plots0}, \ref{fig:plots1}, \ref{fig:plots2}, \ref{fig:plots3}, \ref{fig:plots4} links dargestellt, ihre Fouriertransformierten rechts..
+Die Daten sind in \autoref{fig:plots0}, \ref{fig:plots1}, \ref{fig:plots2}, \ref{fig:plots3}, \ref{fig:plots4} links dargestellt, ihre Fouriertransformierten rechts.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{plots/both_plots_0.pdf}
-    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte. Erkennbar sind Probleme in der Aufnahme, aber eine Periodizität bleibt bestehen.}
     \label{fig:plots0}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{plots/both_plots_1.pdf}
-    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte. Die Fouriertransformation deutet auf eine sehr schwache Periodizität in eine der sechs Symmetrieachsen.}
     \label{fig:plots1}
 \end{figure}
 
@@ -48,16 +48,124 @@ Die Daten sind in \autoref{fig:plots0}, \ref{fig:plots1}, \ref{fig:plots2}, \ref
     \label{fig:plots4}
 \end{figure}
 
-Die Messung in \autoref{fig:plots0} ist nicht nähere Betrachtung zu schenken, da sie fehlerhaft ist. Die \enquote{Schlieren}, die dort zu sehen sind, sind bei jedem Scan in Rückwärtsrichtung aufgetreten, was auf eine eine unperfekte Nadel hindeutet,
+Der Messung in \autoref{fig:plots0} ist nicht nähere Betrachtung zu schenken, da sie fehlerhaft ist. Die \enquote{Schlieren}, die dort zu sehen sind, sind bei jedem Scan in Rückwärtsrichtung aufgetreten, was auf eine eine unperfekte Nadel hindeutet,
 die in dieser Richtung an der Probe hängen bleibt. Allerdings fällt eine gewisse Periodizität auf, die auch durch die Fouriertransformation bestätigt wird, da diese immer noch vor allem zwei besonders helle Punkte aufweist.
+Die Messung in \autoref{fig:plots1} zeigt in der Fouriertransformierten eine schwache Periodizität in einer der Symmetrieachsen der entstehenden Hexagons, ist aber dennoch messbar.
+Alle Messungen scheinen eine gewisse Verzerrung in eine Richtung zu besitzen, die mit dem Auge nicht sofort erkennbar ist. Die Fouriertransformierte ist für keine Messung ein regelmäßiges Sechseck, sondern in $k_x$ Richtung etwas dünner als in $k_y$.
+Mit diesem Wissen ist erkennbar, dass, entsprechend \autoref{eq:rez_to_real}, die Spots etwas flacher und breiter erscheinen. Des Weiteren sind in \autoref{fig:plots2}, \ref{fig:plots3} und \ref{fig:plots4} im Zentrum schwache Stellen erkennbar,
+die aufgrund ihrer Ausrichtung eine sehr schwache Periodizität in $y$-Richtung hindeuten, die allerdings nicht optisch erkennbar ist.
 
+Die für die erfolgreichen Messungen berechneten Gitterkonstanten sind
+
+\begin{align*}
+    r_1 &= \qty{0.150(11)}{\nano\meter} \\
+    r_2 &= \qty{0.171(10)}{\nano\meter} \\
+    r_3 &= \qty{0.171(11)}{\nano\meter} \\
+    r_4 &=  \qty{0.174(5)}{\nano\meter}
+\end{align*}
+
+Was zu einer mittleren Gitterkonstanten von 
+
+\begin{equation*}
+    \bar{r} = \qty{0.167(5)}{\nano\meter}
+\end{equation*}
+
+führt. Die Abweichung vom Literaturwert von $a = \qty{0.246}{\nano\meter}$ beträgt \qty{32.3}{\percent}.
 
 
 \subsection{Gold}
 Für Gold können keine atomar aufgelösten Bilder gemacht werden, aber aus den Messungen mit dem Mikroskop lassen sich Informationen über Schichtdicken gewinnen.
-Mit \texttt{Gwyddion} können die Messungen zunächst nachbearbeitet werden. Dafür werden sie zuerst geebnet und anschließend das Minimum der Daten auf null gesetzt. 
+Mit \texttt{Gwyddion} können die Messungen nachbearbeitet werden. Dafür werden sie zuerst geebnet und anschließend das Minimum der Daten auf null gesetzt. 
 Für die Auswertung der Höhe wird ein vom Programm bereitgestelltes Tool benutzt, das die Höhenverteilung in ausgewählten Bereichen darstellt. Dafür wird eine 35 mal 35 Pixel große Fläche
-händisch über das Scanbild gefahren und in Echtzeit die statistische Verteilung der Höhen beobachtet. Es können optisch bereits Stellen ausgemacht werden, an denen
-Höhenunterschiede sichtbar sind. Wenn die Statistik mindestens zwei eindeutige Peaks zeigt, werden diese markiert und die Differenz der entsprechenden Höhen ausgerechnet.
+händisch über das Scanbild gefahren und in Echtzeit die statistische Verteilung der Höhen beobachtet. Es können optisch auf dem aufgenommenen Bild bereits Stellen ausgemacht werden, an denen
+Höhenunterschiede sichtbar sind. Wenn die Statistik mindestens zwei eindeutige Peaks zeigt, werden diese in dem Plot der Höhenverteilungen markiert und die Differenz der entsprechenden Höhen ausgerechnet.
 Dies wird für den ersten Vorwärtsscan drei Mal wiederholt. Für den zweiten Vorwärtsscan sowie den zugehörigen Rückwärtsscan wird dies je ein Mal durchgeführt.
+
+Die ausgewählten Bereiche sind in \autoref{fig:sections1}, \ref{fig:sections2} und \ref{fig:sections3}, die entsprechenden Statistiken in \autoref{fig:graph1}, \ref{fig:graph2}, \ref{fig:graph3},
+\ref{fig:graph4} und\ref{fig:graph5} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{V42_Gwyddion/sections.png}
+    \caption{Die ausgewählten Bereiche des ersten Vorwärtsscans, betitelt (a), (b) und (c). Es sind Kontraste erkennbar. Grafik entnommen aus \texttt{Gwyddion}.} 
+    \label{fig:sections1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{V42_Gwyddion/3061_1_graph.png}
+    \caption{Die Höhenverteilung von Bereich (a) in \autoref{fig:sections1}. Es sind drei äquidistante Höhen erkennbar, die viel häufiger vorkommen, die hier markiert werden. Grafik entnommen aus \texttt{Gwyddion}.}
+    \label{fig:graph1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{V42_Gwyddion/3061_2_graph.png}
+    \caption{Die Höhenverteilung von Bereich (b) in \autoref{fig:sections1}. Es sind zwei Höhen erkennbar, die viel häufiger vorkommen, die hier markiert werden.} Grafik entnommen aus \texttt{Gwyddion}.
+    \label{fig:graph2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{V42_Gwyddion/3061_3_graph.png}
+    \caption{Die Höhenverteilung von Bereich (c) in \autoref{fig:sections1}. Es sind zwei Höhen erkennbar, die viel häufiger vorkommen, die hier markiert werden. Grafik entnommen aus \texttt{Gwyddion}.}
+    \label{fig:graph3}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{V42_Gwyddion/3062_1_section.png}
+    \caption{Der ausgewählte Bereich im zweiten Vorwärtsscan. Grafik entnommen aus \texttt{Gwyddion}.}
+    \label{fig:sections2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{V42_Gwyddion/3062_1_graph.png}
+    \caption{Die Höhenverteilung vom markierten Bereich in \autoref{fig:sections2}. Es sind zwei Höhen erkennbar, die viel häufiger vorkommen, die hier markiert werden. Grafik entnommen aus \texttt{Gwyddion}.}
+    \label{fig:graph4}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{V42_Gwyddion/3062b_1_section.png}
+    \caption{Der ausgewählte Bereich im zweiten Rückwärtsscan. Grafik entnommen aus \texttt{Gwyddion}.}
+    \label{fig:graph3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{V42_Gwyddion/3062b_1_graph.png}
+    \caption{Die Höhenverteilung vom markierten Bereich in \autoref{fig:sections3}. Es sind zwei Höhen erkennbar, die viel häufiger vorkommen, die hier markiert werden. Grafik entnommen aus \texttt{Gwyddion}.}
+    \label{fig:graph5}
+\end{figure}
+
+
+Die gemessenen Abstände zwischen den markierten Stellen in den Statistiken sind in \autoref{tab:dist} dargestellt.
+
+\begin{table}[H]
+    \centering
+    \caption{Die gemessenen Höhenunterschiede in den Messungen entnommen aus den Statistiken. \autoref{fig:graph1} hat zwei Höhen, da dort drei Peaks gemessen wurden.}
+    \label{tab:dist}
+    \begin{tabular}{c c}
+        \toprule
+        {Abbildungsnummer der Statistik} & {Höhe in \si{\nano\meter}} \\
+        \midrule
+        \ref{fig:graph1} & \num{1.64}; \num{1.63} \\
+        \ref{fig:graph2} & \num{1.11} \\
+        \ref{fig:graph3} & \num{1.76} \\
+        \ref{fig:graph4} & \num{1.35} \\
+        \ref{fig:graph5} & \num{1.58} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Die mittlere Schichtdicke ergibt sich somit zu
+
+\begin{equation*}
+    d = \SI{1.51(9)}{\nano\meter}.
+\end{equation*}
 
