@@ -65,7 +65,7 @@ def lattice_constant(number):
     if save:
         fig.savefig(f"plots/both_plots_{number}.pdf")
 
-    k_distances = np.sqrt((kx_peaks - np.roll(kx_peaks, -1))**2 + (ky_peaks - np.roll(ky_peaks, -1))**2) # berechne abstände zwischen den peaks
+    k_distances = np.sqrt((kx_peaks)**2 + (ky_peaks)**2) # berechne abstände zwischen den peaks
     k_distances = ufloat(np.mean(k_distances), np.std(k_distances)/np.sqrt(6)) 
     r_distances = 2/(np.sqrt(3)*k_distances) # berechne länge des gittervektors vom reziproken gittervektor
     print(f"Distances {number} = {r_distances} nm")

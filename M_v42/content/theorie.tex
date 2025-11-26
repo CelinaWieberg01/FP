@@ -1,22 +1,25 @@
 \section{Theorie}
 \label{sec:Theorie}
+Die Rastertunnelmikroskopie basiert auf den Effekt der Tunnelströme, die im folgenden erklärt werden. Es wird auf den Aufbau und die Funktionsweise von Piezoröhren mit PID-Reglern eingegangen.
+Das nötige Hintergrundwissen für die zu vermessenden Proben HOPG und Gold wird gegeben.
+
 \subsection{Tunneleffekt}
 Der Tunneleffekt ist ein rein quantenmechanisches Phänomen, bei dem Teilchen eine klassisch unüberwindbare Potentialbarriere mit endlicher Wahrscheinlichkeit durchdringen.
 Im Rastertunnelmikroskop führt dies dazu, dass Elektronen zwischen einer metallischen Spitze und der Probenoberfläche durch die Vakuumbarriere tunneln, obwohl ihre Energie
 unter der effektiven Barrierenhöhe liegt. Da die Tunnelwahrscheinlichkeit stark vom Abstand zwischen Spitze und Probe abhängt, lässt sich über die Messung des Tunnelstroms 
 die Topographie der Oberfläche mit atomarer Auflösung rekonstruieren.
-Zur quantitativen Beschreibung betrachtet man ein Elektron mit Energie \(E\) in einer eindimensionalen Barriereregion mit konstanter effektiver Barrierenhöhe \(\Phi\) über 
-der Fermienergie und Breite \(d\). Die zeitunabhängige Schrödingergleichung in der Barriereregion lautet
+Zur quantitativen Beschreibung wird ein Elektron mit Energie \(E\) und Masse $m$ in einer eindimensionalen Barriereregion mit konstanter effektiver Barrierenhöhe \(\Phi\) über 
+der Fermienergie und Breite \(d\) betrachtet. Die zeitunabhängige Schrödingergleichung für die Wellenfunktion $\psi$ in der Barriereregion lautet
 
-\begin{equation}
+\begin{equation*}
 -\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}+(\Phi-E)\psi=0.
-\end{equation}
+\end{equation*}
 
-Für \(E<\Phi\) ergibt sich ein reeller Dämpfungsparameter
+$\hbar$ ist das Planck'sche Wirkungsquantum. Für \(E<\Phi\) ergibt sich ein reeller Dämpfungsparameter
 
-\begin{equation}
+\begin{equation*}
 \kappa=\frac{\sqrt{2m(\Phi-E)}}{\hbar},
-\end{equation}
+\end{equation*}
 
 wodurch die Wellenfunktion in der Barriereregion exponentiell abklingt, \(\psi(x)\propto e^{-\kappa x}\).
 Die Transmissionswahrscheinlichkeit durch die Barriere skaliert in führender Näherung wie
@@ -28,131 +31,62 @@ T\propto e^{-2\kappa d}.
 
 Bei kleinen Biasspannungen und unter der Annahme, dass die Zustandsdichten der Spitze und der Probe in der betrachteten Energiezone
 annähernd konstant sind, ist der gemessene Tunnelstrom proportional zur Transmission und zur Spannung \(V\). Daraus 
-folgt die zentrale Auswertungsrelation für das STM:
+folgt die zentrale Auswertungsrelation für das STM,
 
 
-\begin{equation}
-I(d)\propto V\,\rho_t(E_F)\,\rho_s(E_F)\,e^{-2\kappa d},
-\end{equation}
+\begin{equation*}
+I(d)\propto V\,\rho_\text{t}(E_F)\,\rho_\text{s}(E_F)\,e^{-2\kappa d},
+\end{equation*}
 
-wobei \(\rho_t(E_F)\) und \(\rho_s(E_F)\) die Zustandsdichten an der Fermienergie der Spitze bzw. Probe bezeichnen. 
-Für typische Metallspitzen gilt \(E\ll\Phi\) und man setzt \(\kappa\approx\sqrt{2m\Phi}/\hbar\), sodass häufig verwendet wird
+wobei \(\rho_\text{t}(E_F)\) und \(\rho_\text{s}(E_F)\) die Zustandsdichten (Density of States, DOS) an der Fermienergie der Spitze bzw. Probe bezeichnen. 
+Für typische Metallspitzen gilt \(E\ll\Phi\) und es wird \(\kappa\approx\sqrt{2m\Phi}/\hbar\) gesetzt, sodass häufig 
 
-\begin{equation}
-I(d)\propto e^{-2\kappa d},\qquad \kappa\approx\frac{\sqrt{2m\Phi}}{\hbar}.
-\end{equation}
+\begin{equation*}
+I(d)\propto e^{-2\kappa d},\qquad \kappa\approx\frac{\sqrt{2m\Phi}}{\hbar}
+\end{equation*}
+verwendet wird \cite{schroedinger}.
 
 \subsection{Tunnelstrom und lokale Zustandsdichte}
 Der gemessene Tunnelstrom enthält neben Topographieinformation auch direkte elektronische Information der Probe, da er aus den energetischen
 Übergängen zwischen besetzten Zuständen der einen Elektrode und unbesetzten Zuständen der anderen entsteht und durch die Tunneltransmission gewichtet
 wird. Für kohärentes, elastisches Tunneln lässt sich der Gleichstrom bei angelegter Spannung \(V\) allgemein als Energieintegral über die Produktionen der 
-Zustandsdichten und der Transmission schreiben.
+Zustandsdichten und der Transmission schreiben,
 
-\begin{equation}
-I(V)\propto\int_{-\infty}^{\infty}\rho_t(E-eV)\,\rho_s(E)\,T(E,d)\,\big[f(E-eV)-f(E)\big]\,\mathrm{d}E,
-\end{equation}
+\begin{equation*}
+I(V)\propto\int_{-\infty}^{\infty}\rho_\text{t}(E-eV)\,\rho_\text{s}(E)\,T(E,d)\,\big[f(E-eV)-f(E)\big]\,\mathrm{d}E,
+\end{equation*}
 
 
-wobei \(\rho_t\) und \(\rho_s\) die elektronischen Zustandsdichten von Spitze und Probe, \(T(E,d)\) die energie‑ und abstandsabhängige Tunneltransmission
+wobei \(\rho_\text{t}\) und \(rho_\text{s}\) die elektronischen Zustandsdichten von Spitze und Probe, \(T(E,d)\) die energie‑ und abstandsabhängige Tunneltransmission
 und \(f(E)\) die Fermi‑Verteilungsfunktion sind. Unter den in STM‑Experimenten üblichen Bedingungen wie geringe Temperatur, kleine Biasspannungen, 
 und eine Spitze mit annähernd konstanter DOS im betrachteten Energiebereich, ist die Besetzungsdifferenz auf ein schmales Energiefenster um die 
 Fermi‑Energie beschränkt. Dann reduziert sich das Integral im führenden Näherungsgrad auf das integrierte Spektrum der Probenzustandsdichte
-im Fenster zwischen \(E_F\) und \(E_F+eV\). In der Tersoff–Hamann‑Nähe, bei der die Spitze als s‑symmetrisches, energetisch flaches Reservoir
+im Fenster zwischen \(E_\text{F}\) und \(E_\text{F}+eV\). In der Tersoff–Hamann‑Nähe, bei der die Spitze als s‑symmetrisches, energetisch flaches Reservoir
 modelliert wird und das Tunnelmatrixelement proportional zur Probenwellenfunktion an der Spitzenposition \(\mathbf{r}_0\) ist, folgt die gebräuchliche Näherung
 
-\begin{equation}
-I(V,\mathbf{r}_0)\propto\int_{E_F}^{E_F+eV}\rho_s(\mathbf{r}_0,E)\,\mathrm{d}E,
-\end{equation}
+\begin{equation*}
+I(V,\mathbf{r}_0)\propto\int_{E_\text{F}}^{E_\text{F}+eV}\rho_\text{s}(\mathbf{r}_0,E)\,\mathrm{d}E,
+\end{equation*}
 
-woraus durch Differentiation nach \(V\) die zentrale Relation der spektroskopischen Auswertung resultiert.
+woraus durch Differentiation nach \(V\) die zentrale Relation der spektroskopischen Auswertung resultiert,
 
-\begin{equation}
-\frac{\mathrm{d}I}{\mathrm{d}V}(V,\mathbf{r}_0)\propto\rho_s(\mathbf{r}_0,E_F+eV).
-\end{equation}
+\begin{equation*}
+\frac{\mathrm{d}I}{\mathrm{d}V}(V,\mathbf{r}_0)\propto\rho_s(\mathbf{r}_0,E_\text{F}+eV).
+\end{equation*}
 
 
 Damit stellt \(\mathrm{d}I/\mathrm{d}V\) unter den genannten Näherungen ein direktes Maß für die lokale Zustandsdichte der Probe bei der entsprechenden
-Energie dar und bildet die Grundlage der Scanning Tunneling Spectroscopy. 
+Energie dar und bildet die Grundlage der Scanning Tunneling Spectroscopy \cite{carbillet}. 
 
-\subsection*{Exponentielle Zerfallsrate \(\kappa\)}
-
-Die exponentielle Zerfallsrate \(\kappa\) charakterisiert den räumlichen Abfall der elektronischen Wellenfunktion innerhalb der Vakuumbarriere und verbindet die 
-effektive Barrierenhöhe mit der Abstandabhängigkeit der Tunnelwahrscheinlichkeit. Betrachtet man ein eindimensionales Potential mit konstanter Barrierenhöhe \(\Phi\)
-oberhalb der Elektronenenergie \(E\) (für \(E<\Phi\)), lautet die zeitunabhängige Schrödingergleichung in der Barriereregion
-
-\begin{equation}
--\frac{\hbar^2}{2m}\frac{\mathrm{d}^2\psi}{\mathrm{d}x^2}+(\Phi-E)\psi=0.
-\end{equation}
-
-Für konstantes \(\Phi\) führt dies zu Lösungen exponentiellen Typs. Mit der Definition des Dämpfungsparameters
-
-\begin{equation}
-\kappa=\frac{\sqrt{2m(\Phi-E)}}{\hbar}
-\end{equation}
-
-fällt die Wellenfunktion in der Barriereregion wie \(\psi(x)\propto e^{-\kappa x}\) ab. Die Transmissionswahrscheinlichkeit \(T\) durch eine Barrierendicke 
-\(d\) skaliert in führender Näherung mit dem Quadrat der Amplitude am Barriereende, sodass gilt
-
-\begin{equation}
-T\propto e^{-2\kappa d}.
-\end{equation}
-
-Im STM‑Kontext ist der Tunnelstrom proportional zur Transmission, woraus die zentrale Abstand‑Strom‑Relation folgt.
-
-\begin{equation}
-I(d)\propto e^{-2\kappa d}.
-\end{equation}
-
-Für Energien nahe dem Ferminiveau wird häufig \(E\ll\Phi\) angenommen, womit sich die gebräuchliche Näherung
-
-\begin{equation}
-\kappa\approx\frac{\sqrt{2m\Phi}}{\hbar}
-\end{equation}
-
-ergibt. Umgekehrt lässt sich aus einem bestimmten experimentellen \(\kappa\) die effektive Barrierenhöhe berechnen durch
-
-\begin{equation}
-\Phi=\frac{(\hbar\kappa)^2}{2m}.
-\end{equation}
-
-Damit verbindet \(\kappa\) die quantenmechanische Beschreibung der Wellenfunktion in der Barriereregion direkt mit der
-makroskopisch beobachtbaren exponentiellen Abhängigkeit des Tunnelstroms vom Spitzen‑Probendistanz \(d\).
 
 \subsection{Piezoröhren}
 Piezoröhren sind zylindrische Aktuatoren aus piezoelektrischer Keramik, deren Innen- und Außenflächen mit segmentierten Elektroden metallisiert sind.
-Durch Polung der ferroelektrischen Domänen während der Herstellung wird eine reversible elektromechanische Kopplung etabliert. Anlegen einer elektrischen 
-Spannung an die Elektroden erzeugt eine lokale Deformation der Rohrwand, die in geeigneter Kombination axiale Längenänderungen (Z‑Achse) sowie Biege‑ und Torsionsanteile 
+Durch Polung der ferroelektrischen Domänen während der Herstellung wird eine reversible elektromechanische Kopplung etabliert. Der Aufbau einer Piezoröhre ist in \autoref{fig:piezo} dargestellt.
+Anlegen einer elektrischen  Spannung an die Elektroden erzeugt eine lokale Deformation der Rohrwand, die in geeigneter Kombination axiale Längenänderungen sowie Biege‑ und Torsionsanteile 
 (X,Y‑Richtungen) hervorruft. Im Rastertunnelmikroskop dient die Piezoröhre als Feinantrieb für die genaue Positionierung von Spitze bzw. Probe. Typische maximale
 Ausschläge liegen im Bereich weniger Nanometer aufgrund der exponentiellen Abhängigkeit des Tunnelstroms vom Abstand.
-Für kleine elektrische Felder lässt sich die axiale Längenänderung in linearer Näherung schreiben:
 
-
-\begin{equation}
-\Delta L \approx d_{33}\,L_0\,E = d_{33}\,L_0\,\frac{V}{t},
-\end{equation}
-
-wobei \(d_{33}\) der piezoelektrische Koeffizient, \(L_0\) die nominale Länge, \(t\) die Wandstärke und \(V\) die angelegte Spannung ist.
-Diese lineare Relation ist jedoch nur eine erste Näherung, für reale Piezoröhren sind mehrere nichtlineare und zeitabhängige Phänomene von Bedeutung, 
-die die Qualität von STM‑Messungen direkt beeinflussen.
-Fünf zentrale Effekte sind experimentell relevant: Hysterese, Kreep, Nichtlinearität/Skalenabweichung, Kopplung zwischen Achsen (Cross‑Talk) und mechanische Resonanzen.
-Hysterese führt zu unterschiedlicher Verschiebung bei auf- und ablaufender Spannung und erzeugt dadurch systematische Positionsfehler, 
-welche sich in Rasterverzerrungen und Asymmetrien äußern. Kreep bezeichnet die zeitabhängige Nachbewegung nach einem Spannungssprung und verursacht langsame Drift
-im Scanbild. Dieser Effekt ist besonders kritisch bei langsamen Linienraten oder beim Abtasten feiner Strukturen. Nichtlinearität und veränderliche Skalenfaktoren bedingen
-Volt‑Abweichungen über den Arbeitsbereich und führen zu Maßstabsfehlern. Cross‑Talk entsteht, weil eine Ansteuerung eines Segments parasitäre Bewegungen 
-in den anderen Achsen induziert, ohne Korrektur erscheinen Rotations‑ oder Scherartefakte. Mechanische Eigenmoden von Röhre und Montage können bei bestimmten
-Anregungsfrequenzen resonant angeregt werden und sind Ursache für periodische Artefakte bei zu hohen Scanraten.
-Diese Effekte lassen sich nicht vollständig eliminieren, aber teilweise kompensieren. Geschlossene Regelkreise mit kapazitiven oder interferometrischen Wegsensoren 
-ermöglichen echtes Closed‑Loop‑Feedback und reduzieren Hysterese und Kreep erheblich, sofern Sensorauflösung und Bandbreite ausreichend sind. Fehlt eine direkte Wegmessung,
-so kann eine regelmäßige Kalibrierungen an Referenzgittern helfen, verlässlichere Messwerte zu erzielen.
-Vor Messreihen sind Kalibrierungen der Volt‑Skalierung und der Achsentopologie durchzuführen. Aufnahmen in Vorwärts‑ und Rückwärtsrichtung liefern Hinweise auf Hystereseeffekte 
-und erlauben Korrekturen, langsame Linienraten und ausreichende thermische Stabilisierung reduzieren Kreep‑ und Driftfehler. FFT‑gestützte Auswertungsschritte sind vorzuziehen,
-da periodische Strukturen so präziser im Frequenzraum bestimmt und systematische Verzerrungen identifiziert werden können. Ebenso sind bei der Bestimmung von Sprunghöhen auf
-Gold die Höhenkalibrierung und die Eliminierung von Spitzenartefakten essenziell, da die lateralen und vertikalen Sensitivitäten der Piezoröhre sowie mögliche Cross‑Talk‑Beiträge
-direkten Einfluss auf die gemessenen Werte haben.
-Als technische Alternativen zu Piezoröhren kommen piezostack‑Aktuatoren, bimorphe Biegebalken sowie Kombinationen aus Grobverstellern (Inchworm bzw. stick‑slip‑Mechanismen) und
-feinen Piezoaktoren in Betracht. 
-
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{bildertheorie/piezo.jpg}
     \caption{Aufbau und Funktionsweise des piezoelektrischen Rohraktuators \cite{piezo}.}
@@ -160,106 +94,36 @@ feinen Piezoaktoren in Betracht.
   \end{figure}
 
 
-
-\subsection{Gitterstruktur}
-\subsubsection{Graphen}
-
-Graphen ist eine einzelne Schicht des Graphitgitters und bildet ein zweidimensionales, hexagonales Kohlenstoffnetzwerk. Jedes Kohlenstoffatom ist sp\textsuperscript{2}-hybridisiert 
-und bindet kovalent an drei Nachbarn in der Ebene. Die verbleibenden p\textsubscript{z}-Orbitale bilden delokalisierte \(\pi\)-Zustände senkrecht zur Ebene, die die charakteristische 
-elektronische Struktur erzeugen. Die in‑plane Gitterkonstante beträgt \(a \approx 0{.}246\ \mathrm{nm}\), der nächste Nachbarabstand \(a_{\mathrm{CC}}\approx 0{.}142\ \mathrm{nm}\).
-Die Fläche der Einheitszelle und die Flächendichte der Atome sind gegeben durch
-\begin{equation}
-A_{\mathrm{uc}}=\frac{\sqrt{3}}{2}a^2,\qquad 
-\sigma=\frac{2}{A_{\mathrm{uc}}}=\frac{4}{\sqrt{3}\,a^2}.
-\end{equation}
-
-Für kontextbezogene Betrachtungen der STM‑Messung sind die reellen Basisvektoren der zweidimensionalen Bravais‑Gitterdarstellung und die zugehörigen reziproken Gittervektoren nützlich.
-Eine gebräuchliche Wahl der reellen Basisvektoren lautet
-\begin{equation}
-\mathbf{a}_1 = a\,(1,0),\qquad 
-\mathbf{a}_2 = a\Big(\tfrac{1}{2},\tfrac{\sqrt{3}}{2}\Big),
-\end{equation}
-wobei die Einheitszelle zwei Basisatome enthält. Die zugehörigen reziproken Basisvektoren ergeben sich aus \(\mathbf{a}_i\cdot\mathbf{b}_j=2\pi\delta_{ij}\) und können in der obigen
-Koordinatendarstellung geschrieben werden als
-\begin{equation}
-\mathbf{b}_1 = \frac{2\pi}{a}\Big(1,-\frac{1}{\sqrt{3}}\Big),\qquad
-\mathbf{b}_2 = \frac{2\pi}{a}\Big(0,\frac{2}{\sqrt{3}}\Big).
-\end{equation}
-Die Lage der Dirac‑Punkte in der reziproken Ebene lässt sich mit diesen Vektoren ausdrücken; ein K‑Punkt ist gegeben durch
-\begin{equation}
-\mathbf{K}=\frac{4\pi}{3a}\,(1,0)=\frac{1}{3}\mathbf{b}_1+\frac{2}{3}\mathbf{b}_2,
-\end{equation}
-wodurch die in der Theorie wichtigen linear dispersiven Bereiche um \(\mathbf{K}\) und \(\mathbf{K}'=-\mathbf{K}\) unmittelbar verknüpft sind mit den Periodizitäten, die in FFT‑Analysen von STM‑Bildern nachweisbar sind.
-
-Im reziproken Raum treten die Dirac‑Punkte an den K‑Punkten auf, die Dispersion nahe diesen Punkten ist annähernd linear und lässt sich schreiben als
-\begin{equation}
-E(\mathbf{k})=\pm\hbar v_{\mathrm{F}}|\mathbf{k}|,
-\end{equation}
-mit \(v_{\mathrm{F}}\approx 10^6\ \mathrm{m/s}\). Die elektronische Zustandsdichte eines idealen, ungestörten monolagigen Graphens skaliert näherungsweise
-wie \(\rho(E)\propto|E|\) und verschwindet bei den Dirac‑Punkten.  
-HOPG liefert aufgrund der gut orientierten Graphenschichten und der ausgeprägten \(\pi\)-Zustände einen starken, periodischen elektronischen Kontrast. 
-Die atomare Periodizität und die hohe laterale Homogenität führen zu scharfen, gut zuordenbaren Peaks in der 2D‑Fourier‑Transformation, weshalb HOPG als 
-Lateralkalibrierstandard und Referenzgitter weit verbreitet ist. Frisch aufgebrochene HOPG‑Flächen sind leicht reproduzierbar, was die experimentelle Vergleichbarkeit 
-verbessert. Einschränkungen ergeben sich durch Sublattice‑abhängige Kontraste, sowie lokale Defekte, die lokale Abweichungen verursachen.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{bildertheorie/Bild.jpg}
-    \caption{Schematische Darstellung der Gitterstruktur von Graphen \cite{Graphen}.}
-    \label{fig:Graphen}
-  \end{figure}
+Für kleine elektrische Felder lässt sich die axiale Längenänderung in linearer Näherung als
 
 
+\begin{equation*}
+\Delta L \approx d_{33}\,L_0\,E = d_{33}\,L_0\,\frac{V}{t},
+\end{equation*}
 
-\subsubsection{Gold}
+schreiben, wobei \(d_{33}\) der piezoelektrische Koeffizient, \(L_0\) die nominale Länge, \(t\) die Wandstärke und \(V\) die angelegte Spannung ist.
+Diese lineare Relation ist jedoch nur eine erste Näherung, für reale Piezoröhren sind mehrere nichtlineare und zeitabhängige Phänomene von Bedeutung, 
+die die Qualität von STM‑Messungen direkt beeinflussen.
+Fünf zentrale Effekte sind experimentell relevant: Hysterese, Creep, Nichtlinearität/Skalenabweichung, Kopplung zwischen Achsen (Cross‑Talk) und mechanische Resonanzen.
+Hysterese führt zu unterschiedlicher Verschiebung bei auf- und ablaufender Spannung und erzeugt dadurch systematische Positionsfehler, 
+welche sich in Rasterverzerrungen und Asymmetrien äußern. Creep bezeichnet die zeitabhängige Nachbewegung nach einem Spannungssprung und verursacht langsamen Drift
+im Scanbild. Dieser Effekt ist besonders kritisch bei langsamen Linienraten oder beim Abtasten feiner Strukturen. Nichtlinearität und veränderliche Skalenfaktoren bedingen
+Volt‑Abweichungen über den Arbeitsbereich und führen zu Maßstabsfehlern. Cross‑Talk entsteht, weil eine Ansteuerung eines Segments parasitäre Bewegungen 
+in den anderen Achsen induziert, ohne Korrektur erscheinen Rotations‑ oder Scherartefakte. Mechanische Eigenmoden von Röhre und Montage können bei bestimmten
+Anregungsfrequenzen resonant angeregt werden und sind Ursache für periodische Artefakte bei zu hohen Scanraten.
+Diese Effekte lassen sich nicht vollständig eliminieren, aber teilweise kompensieren. Geschlossene Regelkreise mit kapazitiven oder interferometrischen Wegsensoren 
+ermöglichen echtes Closed‑Loop‑Feedback und reduzieren Hysterese und Creep erheblich, sofern Sensorauflösung und Bandbreite ausreichend sind. Fehlt eine direkte Wegmessung,
+so kann eine regelmäßige Kalibrierungen an Referenzgittern helfen, verlässlichere Messwerte zu erzielen.
+Vor Messreihen sind Kalibrierungen der Volt‑Skalierung und der Achsentopologie durchzuführen. Aufnahmen in Vorwärts‑ und Rückwärtsrichtung liefern Hinweise auf Hystereseeffekte 
+und erlauben Korrekturen, langsame Linienraten und ausreichende thermische Stabilisierung reduzieren Creep‑ und Driftfehler. FFT‑gestützte Auswertungsschritte sind vorzuziehen,
+da periodische Strukturen so präziser im Frequenzraum bestimmt und systematische Verzerrungen identifiziert werden können. Ebenso sind bei der Bestimmung von Sprunghöhen auf
+Gold die Höhenkalibrierung und die Eliminierung von Spitzenartefakten essenziell, da die lateralen und vertikalen Sensitivitäten der Piezoröhre sowie mögliche Cross‑Talk‑Beiträge
+direkten Einfluss auf die gemessenen Werte haben.
+Als technische Alternativen zu Piezoröhren kommen piezostack‑Aktuatoren, bimorphe Biegebalken sowie Kombinationen aus Grobverstellern (Inchworm bzw. stick‑slip‑Mechanismen) und
+feinen Piezoaktoren in Betracht \cite{lueth} \cite{piezo1}. 
 
-Gold kristallisiert im kubisch‑flächenzentrierten (fcc) Gitter mit der Gitterkonstante \(a_0\) (Raumtemperatur: \(a_0\approx 0{.}408\ \mathrm{nm}\)).
-Für die (111)-Ebene ergeben sich die charakteristischen Längenskalen
-
-\begin{equation}
-a_{\mathrm{NN}}=\frac{a_0}{\sqrt{2}}\approx 0{.}288\ \mathrm{nm},\qquad
-h_{111}=\frac{a_0}{\sqrt{3}}\approx 0{.}236\ \mathrm{nm}.
-\end{equation}
-
-Allgemein gilt für den Netzebenenabstand der Miller‑Indizes \((hkl)\)
-
-\begin{equation}
-d_{hkl}=\frac{a_0}{\sqrt{h^2+k^2+l^2}}.
-\end{equation}
-
-Die Fläche der primitiven Zelle der (111)-Ebene sowie die Oberflächenatomdichte sind
-
-\begin{equation}
-A_{111}=\frac{\sqrt{3}}{2}a_{\mathrm{NN}}^2=\frac{\sqrt{3}}{4}a_0^2,\qquad
-\sigma_{111}=\frac{1}{A_{111}}=\frac{4}{\sqrt{3}\,a_0^2}.
-\end{equation}
-
-Elektronisch dominieren bei Gold delokalisierte s‑ und d‑Elektronen. Oberflächennahe Zustände und Rekonstruktionen modifizieren die ideale Oberflächenstruktur. 
-Gold eignet sich besonders zur Untersuchung von monoatomaren Stufen und Oberflächenrekonstruktionen, da die Stufenhöhen klar definierte Vertikalskalen liefern.
-Die atomaren topographischen Amplituden sind jedoch klein (Sub‑Å‑Bereich) und der laterale atomare Kontrast in oberflächenempfindlichen Techniken wie STM hängt 
-stark von Spitzengeometrie, Bias und elektronischer Struktur ab. Rekonstruktive Superstrukturen überlagern den reinen Gitterkontrast und erschweren die direkte 
-Bestimmung der atomaren Gitterkonstante, daher sind höhere Anforderungen an Probenvorbereitung, Spitzenzustand und Auswertemethoden nötig. 
-
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.4\textwidth]{bildertheorie/fcc.jpeg}
-    \caption{Aufbau eines fcc-Gitters \cite{fcc}.}
-    \label{fig:fcc}
-  \end{figure}
-
-
-
-\subsubsection{Fazit}
-Die angegebenen geometrischen und elektronischen Ausdrücke verknüpfen die atomare Anordnung direkt mit relevanten Längen‑ und Energieskalen. 
-HOPG/Graphen bietet durch seine ausgeprägte, elektronisch dominierte atomare Signatur und einfache Probenvorbereitung eine robuste Grundlage für laterale Kalibrierung und präzise 
-Bestimmung der Gitterkonstante. Gold liefert zuverlässige Informationen über Terrassenhöhen und Oberflächenrekonstruktionen, erfordert aber für atomare Gittervermessungen 
-erhöhte experimentelle Sorgfalt.
-
-
-\subsection{PID-Regler}
-Ein PID-Regler besteht aus drei Anteilen: proportional (P), integral (I) und differential (D) — und übersetzt die Abweichung des gemessenen Tunnelstroms vom Sollwert in eine Stellgröße 
-für die Z‑Position des Piezoaktors. Formal lässt sich die Stellgröße in Zeitdomäne schreiben als
+Die Piezoröhren werden über sogenannte PID-Regler gesteuert. Ein PID-Regler besteht aus drei Anteilen: proportional (P), integral (I) und differential (D) — und übersetzt die Abweichung des gemessenen Tunnelstroms vom Sollwert in eine Stellgröße 
+für die $Z$‑Position des Piezoaktors. Formal lässt sich die Stellgröße in Zeitdomäne schreiben als
 
 \begin{equation}
 u(t)=K_P\,e(t) + K_I\int_0^t e(\tau)\,\mathrm{d}\tau + K_D\frac{\mathrm{d}e(t)}{\mathrm{d}t},
@@ -276,22 +140,114 @@ m\ddot{x} + c\dot{x} + kx = F_{\mathrm{drive}}(t),
 
 wobei \(m\) die effektive Masse, \(c\) die Dämpfung, \(k\) die effektive Steifigkeit der Baugruppe und \(F_{\mathrm{drive}}(t)\) die durch das Piezoelement erzeugte Antriebskraft darstellt. 
 Die Stellspannung \(u(t)\) ist über die Piezocharakteristik proportional zur erzeugten Deformation und somit indirekt mit \(F_{\mathrm{drive}}(t)\) verknüpft. Nichtlineare Effekte wie Piezo‑Hysterese 
-und Kreep sowie Kopplungen an statische Vorspannung und Kontaktbedingungen modifizieren diese Beziehung.
+und Creep sowie Kopplungen an statische Vorspannung und Kontaktbedingungen modifizieren diese Beziehung.
 Physikalisch wirkt der proportionale Anteil \(K_P e(t)\) als unmittelbares Stellsignal proportional zur aktuellen Regelabweichung, in mechanischer Sprache bedeutet das eine schnelle Änderung von 
 \(F_{\mathrm{drive}}(t)\) und damit erhöhte Beschleunigungsanforderungen an die Masse \(m\). Große Beschleunigungsanteile erzeugen hohe Trägheitskräfte \(m\ddot{x}\), können den Übergang von Haftung
 zu Gleiten in piezo‑inertialen Kontakten begünstigen und mechanische Eigenmoden anregen. Der integrale Anteil \(K_I\!\int_0^t e(\tau)\,\mathrm{d}\tau\) akkumuliert langfristige Fehler und verschiebt 
-so die mittlere Stellposition, wodurch langsame systematische Abweichungen wie Piezo‑Kreep oder thermisch bedingte Drift ausgeglichen werden. Diese sukzessive Anpassung entspricht einer langsamen Änderung 
+so die mittlere Stellposition, wodurch langsame systematische Abweichungen wie Piezo‑Creep oder thermisch bedingte Drift ausgeglichen werden. Diese sukzessive Anpassung entspricht einer langsamen Änderung 
 des Mittelwerts von \(F_{\mathrm{drive}}(t)\) und somit von \(x(t)\). Da die Kontaktkräfte (statische Haftkraft \(F_{\mathrm{stick}}\), kinetische Reibung \(F_{\mathrm{kin}}\)) in der Praxis variabel sind,
 kann das Integral jedoch falsche Korrekturen aufsummieren.
 Der differentielle Anteil \(K_D\,\mathrm{d}e/\mathrm{d}t\) reagiert auf die Änderungsrate des Fehlers und wirkt dämpfend auf schnelle Störungen. Physikalisch entspricht dies einer zusätzlichen
 viskosen Dämpfung der schnellen Dynamik und reduziert Überschwingen, verstärkt jedoch hochfrequentes Messrauschen, sofern vor der Differentiation keine geeignete Filterung erfolgt.
-
-\begin{figure}[htbp]
+Beispielhafte Signalaufnahmen eines PID-Reglers sind in \autoref{fig:pid} zu sehen \cite{pidregler}.
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{bildertheorie/pid.jpg}
     \caption{Vergleich der synchron aufgezeichneten Signale eines PID-Reglers \cite{pid}.}
     \label{fig:pid}
 \end{figure}
+
+
+\subsection{Proben}
+\subsubsection{HOPG}
+Bei Highly Ordered Pyrolytic Graphite, kurz HOPG, handelt es sich um ein Material, welches aus mehreren Graphenschichten, zu sehen in \autoref{fig:graphen}, besteht,
+die in einer $a$-$b$-Struktur zu einander stehen, dargestellt in \autoref{fig:hopg}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{bildertheorie/Bild.jpg}
+    \caption{Schematische Darstellung der Gitterstruktur von Graphen \cite{Graphen}.}
+    \label{fig:graphen}
+  \end{figure}
+  
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{bildertheorie/hopg.jpg}
+    \caption{Schematischer Aufbau von HOPG. Der weiter oben liegende Layer ist schwarz, der darunter liegende Layer weiß. Aufgrund der $a$-$b$-Struktur der Schichten ist je ein Atom der zweiatomigen Basis direkt über einem anderen Atom einer darunter liegenden Basis \cite{hopg}.}
+    \label{fig:hopg}
+\end{figure}
+
+Graphen ist eine einzelne Schicht des Graphitgitters und bildet ein zweidimensionales, hexagonales Kohlenstoffnetzwerk. Jedes Kohlenstoffatom ist sp\textsuperscript{2}-hybridisiert 
+und bindet kovalent an drei Nachbarn in der Ebene. Die verbleibenden p\textsubscript{z}-Orbitale bilden delokalisierte \(\pi\)-Zustände senkrecht zur Ebene, die die charakteristische 
+elektronische Struktur erzeugen. Die in‑plane Gitterkonstante beträgt \(r \approx \SI{0.246}{\nano\meter}\), der nächste Nachbarabstand \(r_{\mathrm{CC}}\approx 0{.}142\ \mathrm{nm}\).
+Aufgrund der Wechselwirkung übereinander liegender Kohlenstoffatome ändern sich die Zustandsdichten eben jener Atome, sodass unter einem Rastertunnelmikroskop
+nur jedes zweite Atom gemessen werden kann. Deshalb wird in diesem Versuch der Abstand $r \approx \SI{0.246}{\nano\meter}$ vermessen.
+
+Aufgrund der periodischen Struktur liegt es nahe, die reale Struktur über eine Fouriertransformation in den reziproken Raum zu übersetzen, schematisch dargestellt in \autoref{fig:ft}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{bildertheorie/ft.png}
+    \caption{Sechs Bilder mit periodischen Mustern verschiedener Komplexität und ihre Übersetzung über eine Fouriertransformation in den reziproken Raum. Periodische Strukturen
+    werden in Punkte übersetzt, die Periodizität in eine bestimmte Richtung darstellen \cite{ft}.}
+    \label{fig:ft}
+\end{figure}
+
+In dieser Darstellung werden periodische Strukturen im realen Raum zu Punktpaaren im reziproken Raum, die vom Ursprung aus in Richtung der Periodizität liegen. Ihr abstand enthält Informationen über
+die Frequenz der Periodizität. Diese Abstände im reziproken Raum und realen Raum stehen invers zu einander, was über die Definition des reziproken Gitters
+
+\begin{equation*}
+  b_i^* = \frac{2\pi}{V_\text{E}} (a_j \times a_k)
+\end{equation*}
+
+nachgerechnet werden kann. $b_i^*$ ist ein reziproker Gittervektor, $a_j$ und $a_k$ sind reale Gittervektoren. Auch scheinbar komplexe Strukturen können so in wenige Punkte zerlegt werden.
+Für die Abstände im hexagonalen Gitter ergibt sich
+\begin{equation*}
+  \left|r\right| = \frac{4pi}{\sqrt{3}k}
+\end{equation*}
+für $k$ in Radians pro Länge. Für $k$ in Zyklen pro Länge wird ein Faktor von $2\pi$ eliminiert,
+\begin{equation}
+    \left|r\right| = \frac{2}{\sqrt{3}k}.
+    \label{eq:rez_to_real}
+\end{equation}
+\cite{ft}
+HOPG liefert aufgrund der gut orientierten Graphenschichten und der ausgeprägten \(\pi\)-Zustände einen starken, periodischen elektronischen Kontrast. 
+Die atomare Periodizität und die hohe laterale Homogenität führen zu scharfen, gut zuordenbaren Peaks in der 2D‑Fourier‑Transformation, weshalb HOPG als 
+Lateralkalibrierstandard und Referenzgitter weit verbreitet ist. Frisch aufgebrochene HOPG‑Flächen sind leicht reproduzierbar, was die experimentelle Vergleichbarkeit 
+verbessert. Einschränkungen ergeben sich durch Sublattice‑abhängige Kontraste, sowie lokale Defekte, die lokale Abweichungen verursachen.
+
+
+
+
+
+\subsubsection{Gold}
+
+Gold kristallisiert im kubisch‑flächenzentrierten (fcc) Gitter, dargestellt in \autoref{fig:fcc}, mit der Gitterkonstante $a_0\approx \SI{0.408}{\nano\meter}$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{bildertheorie/fcc.jpeg}
+    \caption{Aufbau eines fcc-Gitters \cite{fcc}.}
+    \label{fig:fcc}
+  \end{figure}
+
+Für die (111)-Ebene ergeben sich die charakteristischen Längenskalen
+
+\begin{equation*}
+a_{\mathrm{NN}}=\frac{a_0}{\sqrt{2}}\approx 0{.}288\ \mathrm{nm},\qquad
+h_{111}=\frac{a_0}{\sqrt{3}}\approx 0{.}236\ \mathrm{nm}.
+\end{equation*}
+
+
+Elektronisch dominieren bei Gold delokalisierte s‑ und d‑Elektronen. Oberflächennahe Zustände und Rekonstruktionen modifizieren die ideale Oberflächenstruktur. 
+Gold eignet sich besonders zur Untersuchung von monoatomaren Stufen und Oberflächenrekonstruktionen, da die Stufenhöhen klar definierte Vertikalskalen liefern.
+Die atomaren topographischen Amplituden sind jedoch klein (Sub‑Å‑Bereich) und der laterale atomare Kontrast in oberflächenempfindlichen Techniken wie STM hängt 
+stark von Spitzengeometrie, Bias und elektronischer Struktur ab. Rekonstruktive Superstrukturen überlagern den reinen Gitterkontrast und erschweren die direkte 
+Bestimmung der atomaren Gitterkonstante, daher sind höhere Anforderungen an Probenvorbereitung, Spitzenzustand und Auswertemethoden nötig. 
+
+
+
+
 
 
 
