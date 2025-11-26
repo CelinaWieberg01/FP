@@ -8,10 +8,48 @@ Bildbearbeitungen für das HOPG werden mit \texttt{skimage} durchgeführt. Die A
 \subsection{HOPG}
 
 Um Rauschartefakte zu unterdrücken, werden die Messungen der HOPG-Probe mit einem Gauß-Filter versehen.
-Anschließend werden die Intensitäten fouriertransformiert. Die Abstände benachbarter Peaks im reziproken Raum entsprechen den reziproken Gittervektoren zwischen den hellen Spots im Realraum.
-Über \autoref{eq:rez_to_real} lassen sich somit die Gittervektoren bzw. die Abstände heller Spots berechnen.
+Anschließend werden die Intensitäten fouriertransformiert. Die Abstände benachbarter Peaks im reziproken Raum entsprechen den reziproken Gittervektoren zwischen den hellen Spots im Realraum. Diese Abstände werden
+errechnet und über \autoref{eq:rez_to_real} in die Abstände heller Spots im Realraum rücktransformiert. Für jedes Bild werden die entstandenen Abstände gemittelt.
 
+Die Daten sind in \autoref{fig:plots0}, \ref{fig:plots1}, \ref{fig:plots2}, \ref{fig:plots3}, \ref{fig:plots4} links dargestellt, ihre Fouriertransformierten rechts..
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/both_plots_0.pdf}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \label{fig:plots0}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/both_plots_1.pdf}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \label{fig:plots1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/both_plots_2.pdf}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \label{fig:plots2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/both_plots_3.pdf}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \label{fig:plots3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/both_plots_4.pdf}
+    \caption{Aufgenommenes Realraum-Bild und die Fouriertransformierte.}
+    \label{fig:plots4}
+\end{figure}
+
+Die Messung in \autoref{fig:plots0} ist nicht nähere Betrachtung zu schenken, da sie fehlerhaft ist. Die \enquote{Schlieren}, die dort zu sehen sind, sind bei jedem Scan in Rückwärtsrichtung aufgetreten, was auf eine eine unperfekte Nadel hindeutet,
+die in dieser Richtung an der Probe hängen bleibt. Allerdings fällt eine gewisse Periodizität auf, die auch durch die Fouriertransformation bestätigt wird, da diese immer noch vor allem zwei besonders helle Punkte aufweist.
 
 
 
