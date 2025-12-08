@@ -1,31 +1,32 @@
 \section{Theorie}
 \label{sec:Theorie}
-\subsection*{Energieverlust und Wechselwirkung mit Hüllenelektronen}
+\subsection{Energieverlust und Wechselwirkung mit Hüllenelektronen}
 Der kontinuierliche Energieverlust geladener Teilchen durch Anregung und Ionisation der Hüllenelektronen wird
 durch das Störungsverhalten der Elektronen beschrieben und für schnelle, nichtrelativistische bis moderat relativistische 
-Teilchen durch die Bethe‑Bloch‑Gleichung genähert.
+Teilchen durch die Bethe‑Bloch‑Gleichung genähert,
 
 
-\begin{equation}
+\begin{equation*}
 \frac{\mathrm{d}E}{\mathrm{d}x}
 = -\frac{4\pi e^4 z^2 N Z}{m_0 v^2 (4\pi\varepsilon_0)^2}\,\ln\!\left(\frac{2 m_0 v^2}{I}\right),
-\end{equation}
+\end{equation*}
 
 
-wobei \(z\) die Ladungszahl des Projektils, \(N\) die Atomdichte des Targets, \(Z\) die Kernladungszahl, \(m_0\) 
+wobei \(z\) die Ladungszahl des Projektils, \(N\) die Atomdichte des Targets, \(Z\) die Kernladungszahl des Targetmaterials, \(m_0\) 
 die Elektronenruhemasse, \(v\) die Teilchengeschwindigkeit und \(I\) die mittlere Ionisationsenergie des Materials bezeichnet.
 Aus dem Energieverlust folgt durch Integration über die Energie die Reichweite \(R(E)\) der Teilchen, sodass die effektive 
 Folienstärke \(x\) aus dem gemessenen Energieverlust \(\Delta E\) über
 
-\begin{equation}
+\begin{equation*}
 x \;=\; \int_{E_\alpha-\Delta E}^{E_\alpha} \left(\frac{\mathrm{d}E}{\mathrm{d}x}\right)^{-1}\mathrm{d}E
-\end{equation}
+\end{equation*}
 
 
-bestimmt werden kann. Die Atomdichte \(N\) wird durch die Materialdichte \(\rho\), die molare Masse \(A\) und die Avogadrozahl \(N_A\) über
+bestimmt werden kann. Die Atomdichte \(N\) wird durch die Materialdichte \(\rho\), die molare Masse \(M\) und die Avogadrozahl \(N_A\) über
 
 \begin{equation}
-N \;=\; \frac{\rho N_A}{A}
+N \;=\; \frac{\rho N_A}{M}
+\label{eq:dichte}
 \end{equation}
 
 ausgedrückt. Für die Kalibrierung der Pulshöhen ist zu berücksichtigen, dass die gemessene Pulshöhe proportional zur verbliebenen kinetischen Energie der \(\alpha\)-Teilchen ist.
@@ -38,6 +39,7 @@ die Form
 \begin{equation}
 \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}(\theta)
 = \left(\frac{z Z e^2}{16\pi\varepsilon_0 E_\alpha}\right)^{\!2}\frac{1}{\sin^4(\theta/2)},
+\label{eq:rutherford}
 \end{equation}
 
 
@@ -46,15 +48,17 @@ gibt die Wahrscheinlichkeit an, in einen bestimmten Raumwinkel \(\mathrm{d}\Omeg
 der Ladungszahlen \(zZ\). Experimentell wird die Zählrate \(I(\theta)\) gemessen, die mit dem differentiellen Wirkungsquerschnitt durch die Beziehung
 
 \begin{equation}
-I(\theta) \;=\; I_0\, n x\, \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}(\theta)\,\Delta\Omega\,\varepsilon
+I(\theta) \;=\; I_0\, N d\, \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}(\theta)\,\Delta\Omega\,\varepsilon
+\label{eq:I0}
 \end{equation}
 
-verknüpft ist. Hierbei bezeichnet \(I_0\) den einfallenden Teilchenstrom, \(n\) die Zahl der Streuzentren pro Volumen, \(x\) die Folienstärke, 
+verknüpft ist. Hierbei bezeichnet \(I_0\) den einfallenden Teilchenstrom, \(x\) die Folienstärke, 
 \(\Delta\Omega\) den vom Detektor abgedeckten Raumwinkel und \(\varepsilon\) die Detektionseffizienz. Für kleine Detektoren in ausreichendem 
 Abstand \(r\) zur Streustelle kann der Raumwinkel näherungsweise durch
 
 \begin{equation}
-\Delta\Omega \approx \frac{A\cos\alpha}{r^2}
+\Delta\Omega = 4 \arctan\left(\frac{b_x}{2l}\right)\arctan\left(\frac{b_x}{2l}\right)
+\label{eq:omega}
 \end{equation}
 
 beschrieben werden, wobei \(A\) die effektive Detektorfläche und \(\alpha\) der Winkel zwischen Detektorebene und Sichtlinie ist.
@@ -70,12 +74,11 @@ des Kerns führt zu Abweichungen bei großen Streuwinkeln und ermöglicht Rücks
 Die Streuung an vielen kleinen Stößen innerhalb der Folie führt zu einer statistischen Aufweitung des Streuwinkels, die durch Näherungsformeln beschrieben werden kann. 
 Für die charakteristische RMS‑Ablenkung \(\theta_0\) wird häufig die Highland‑Formel verwendet,
 
-\begin{equation}
+\begin{equation*}
 \theta_0 \approx \frac{13{,}6\ \mathrm{MeV}}{\beta p c}\,z\,\sqrt{\frac{x}{X_0}}\left[1+0{,}038\ln\!\left(\frac{x}{X_0}\right)\right],
-\end{equation}
+\end{equation*}
 
 wobei \(\beta\) und \(p\) die relative Geschwindigkeit bzw. der Impuls des Projektils, \(z\) dessen Ladungszahl, \(x\) die Materialdicke und \(X_0\) die Strahlungslänge
 des Materials bezeichnen. Durch Vergleich der gemessenen Winkelverteilung für verschiedene Folienstärken kann der Übergang von der Einzelstreuung zur Mehrfachstreuung 
 quantifiziert werden.
 
-\cite{sample}

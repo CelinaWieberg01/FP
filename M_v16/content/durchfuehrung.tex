@@ -2,17 +2,18 @@
 \label{sec:Durchführung}
 \subsection{Aufbau}
 Der Versuch wird in einer evakuierten Messkammer durchgeführt, da die Reichweite der \(\alpha\)-Strahlung in Luft sehr gering ist.
-Die Kammer wird mit einer Vakuumpumpe auf Betriebsdruck gebracht. Als Strahlquelle dient ein \(\mathrm{^{241}Am}\)-Präparat,
+Die Kammer wird mit einer Vakuumpumpe auf Betriebdrucks von $\SI{0}{\milli\bar}$ gebracht. Als Strahlquelle dient ein \(\mathrm{^{241}Am}\)-Präparat,
 das \(\alpha\)-Teilchen mit einer Energie von etwa \(E_{\alpha}=5{,}486\ \mathrm{MeV}\) emittiert. Zur räumlichen Begrenzung des Strahls sind
 zwei hintereinander angeordnete Schlitzblenden mit einer Öffnung von \(2\ \mathrm{mm}\) installiert, diese Kollimation sorgt dafür,
 dass die \(\alpha\)-Teilchen nahezu senkrecht auf die Probenfolie treffen. Die Probe ist auf einem drehbaren Probenhalter montiert,
-sodass die Streuwinkel \(\Theta\) präzise eingestellt werden können. Die an der Folie gestreuten \(\alpha\)-Teilchen werden von einem
+sodass die Streuwinkel \(\theta\) präzise eingestellt werden können. Die an der Folie gestreuten \(\alpha\)-Teilchen werden von einem
 Surface‑Barrier‑Halbleiterdetektor registriert. In der Sperrschicht des Detektors erzeugen die einfallenden \(\alpha\)-Teilchen 
 Elektronen‑Loch‑Paare. Diese Ladungsträger werden durch das angelegte elektrische Feld zu den Elektroden beschleunigt und 
 erzeugen so einen messbaren Stromimpuls. Zur Signalaufbereitung werden die Detektorsignale vorverstärkt und gegebenenfalls weiter verstärkt.
 Für die Auswertung stehen ein Oszilloskop zur Bestimmung von Energieverlusten und ein Zählwerk zur Erfassung der Zählraten zur Verfügung.
 Alle relevanten Komponenten (Vakuumpumpe, Strahlquelle, Schlitzblenden, Probenhalter, Detektor, Vorverstärker, Verstärker, Oszilloskop, Zählwerk) 
 sind mechanisch und elektrisch so angeordnet, dass Justage, Probenwechsel und winkelabhängige Messungen reproduzierbar und sicher durchgeführt werden können.
+Der Aufbau ist in \autoref{fig:AufbauGesamt} dargestellt.
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.48\textwidth}
@@ -23,7 +24,7 @@ sind mechanisch und elektrisch so angeordnet, dass Justage, Probenwechsel und wi
     \end{subfigure}\hfill
     \begin{subfigure}[b]{0.48\textwidth}
       \centering
-      \includegraphics[width=\textwidth]{Aufbau/Aufbau2.jpeg}
+      \includegraphics[width=0.8\textwidth]{Aufbau/Aufbau2.jpeg}
       \caption{Evakuierter Rezipient mit eingesetzter Goldfolie auf dem Probenhalter.}
       \label{fig:Aufbau2}
     \end{subfigure}
@@ -33,14 +34,14 @@ sind mechanisch und elektrisch so angeordnet, dass Justage, Probenwechsel und wi
 
 \subsection{Durchführung}
 Zu Beginn des Versuchs wird die Messkammer mit einer Drehschieberpumpe evakuiert, um Streuungen an Restgasen zu minimieren.
-Nach Erreichen des Betriebsdrucks werden Quelle und Detektor so justiert, dass ein gerader Durchtritt der \(\alpha\)-Teilchen
-gewährleistet ist. Anschließend wird ohne Einbringen einer Probe das Strahlprofil aufgenommen und dokumentiert, um später Korrekturen der
+Nach Erreichen des Betriebsdrucks werden Quelle und Detektor so zu einander positioniert, dass ein gerader Durchtritt der \(\alpha\)-Teilchen
+gewährleistet ist. Über das eingebaute Goniometer wird der Detektor genullt.
+Anschließend wird ohne Einbringen einer Probe das Strahlprofil aufgenommen und dokumentiert, um später Korrekturen der
 Winkelabhängigkeit und die Detektorempfindlichkeit vornehmen zu können. Zur Bestimmung des Untergrunds und der ungestörten Aktivität wird
 die Zählrate ohne Folie im evakuierten Zustand für \(t=\SI{300}{s}\) gemessen. Für die eigentlichen Streumessungen werden nacheinander
-eine Goldfolie und eine Bismutfolie eingesetzt. Für jedes Material werden Messungen an jeweils zehn Winkelpositionen links und zehn
-Winkelpositionen rechts symmetrisch zur Strahlachse durchgeführt. An jeder Winkelposition wird die Zählrate \(I\) über eine feste
+eine Goldfolie und eine Bismutfolie eingesetzt. Für jedes Material werden Messungen an verschiedenen Winkelpositionen durchgeführt.
+An jeder Winkelposition wird die Zählrate \(I\) über eine feste
 Messzeit von \(t=\SI{300}{s}\) aufgenommen. Die Wahl der Messzeit berücksichtigt die poissonsche Statistik des \(\alpha\)-Zerfalls,
 sodass der statistische Fehler \(\Delta I=\sqrt{I}\) und der relative Fehler \(\Delta I/I=1/\sqrt{I}\) für die Auswertung verwendet werden.
 Bei Bedarf kann die Messzeit an Winkel mit sehr geringer Zählrate verlängert werden, um die gewünschte relative Unsicherheit zu erreichen.
-Alle Messwerte werden tabellarisch mit Angabe des Streuwinkels \(\Theta\), der Messzeit \(t\), der gemessenen Zählrate \(I\) und des
-statistischen Fehlers \(\sqrt{I}\) protokolliert. 
+Es werden der eingestellte zu messende Streuwinkels \(\theta\), die Messzeit \(t\) und die gemessene Zählrate \(I\) aufgenommen.

@@ -81,6 +81,7 @@ plt.savefig('plots/meas_Bi.pdf')
 plt.figure()
 
 C0 = 330000*np.exp(-11391/157680) * 20/(4*np.pi*56**2) # Bq
+print(f"C0 = {C0}\n")
 n_au = constants.Avogadro*19320/0.197
 n_bi = constants.Avogadro*9790/0.209
 d = 2e-6
@@ -150,3 +151,21 @@ plt.title('Bismutfolie')
 plt.grid()
 plt.legend()
 plt.savefig('plots/dsdO_Bi.pdf')
+
+"""
+FIT CHARAKTERISTIK 
+a = 25.7824534650455 +- 1.2684464548723544 
+b = 0.05477198645817272 +- 0.008228050765638132
+
+verwendete Parameter: z = 2 
+Z_au = 79 
+Z_bi = 83 
+K = 8.78954e-13 J
+Fit Au: 
+a = 7.262708003143793e-28 +- 1.9803165327819873e-28 
+b = -1.943973740460461 +- 0.5819389388172267
+
+Fit Bi: 
+a = 5.810029621743515e-29 +- 1.1067825897386602e-29 
+b = 1.9423547438989655 +- 0.2013308424403709
+"""

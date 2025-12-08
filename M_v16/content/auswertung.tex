@@ -3,3 +3,59 @@
 
 Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
 Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
+
+Für die Folien werden die gemessenen Zählraten über \autoref{eq:I0} mit \autoref{eq:dichte} und \autoref{eq:omega}
+in differentielle Streuquerschnitte umgerechnet.
+Dafür wird für beide Folien die Folienstärke $d = \qty{2}{\micro\meter}$ und die Abmessung der Apparatur mit
+$b_x = \qty{2}{\milli\meter}$, $b_y = \qty{10}{\milli\meter}$ und $l = \qty{45}{\milli\meter}$ verwendet.
+Die einfallende Zählrate wird über die Aktivität des Präparats multipliziert mit dem Raumwinkel des Targets berechnet.
+Mit der Aktivität von \SI{330}{\kilo\becquerel} im Jahr 1994, einer Halbwertszeit von $432$ Jahren und einer Blendenfläche von \SI{20}{\milli\meter\squared} ergibt sich eine
+einfallende Zählraten von $C_0 = \qty{155.805}{\per\second}$.
+
+Die Messwerte werden mit einem Fit der Form
+\begin{equation}
+    f(\theta) = \frac{a}{\sin^2\left(\frac{\theta}{2}\right)}
+    \label{eq:sinfit}
+\end{equation}
+versehen und der theoretische Streuquerschnitt nach \autoref{eq:rutherford} dargestellt. Die dafür verwendeten Parameter lauten
+\begin{align*}
+    z &= 2
+    E_\text{\alpha} &= \qty{8.78954e-13}{\joule}.
+\end{align*}
+
+\subsection{Vakuum}
+
+Die Strahlcharakteristik wird in einem Vakuum von \SI{0}{\milli\bar} durchgeführt, welches konstant aufrecht gehalten wird.
+Die gemessenen Zählraten befinden sich in \autoref{fig:vakuum}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/meas_Vac.pdf}
+    \caption{Strahlcharakteristik des Präparats im Vakuum. Ebenfalls dargestellt ist ein Gauß-Fit für die positiven Winkel, wobei Ausreißer nicht beachtet wurden.}
+    \label{fig:vakuum}
+\end{figure}
+
+Die Zählraten folgen grob einer Normalverteilung um \SI{0}{\degree}. Zuerst wurde von \SI{0}{\degree} ausgehend die Zählrate für negative Winkel vermessen,
+nach einer Fehleinstellung beim Wechsel auf positive Winkel musste die Apparatur neu geeicht werden.
+Ebenfalls wurde nach dem ersten Ausreißer bei \SI{3}{\degree} der Diskriminator erhöht.
+
+Die Parameter des Gaußfits
+\begin{equation*}
+    f(\theta) = a \cdot e^{-b \cdot x^2}
+\end{equation*}
+
+lauten
+
+\begin{align*}
+    a &= \qty{25.782(1268)}{\per\second} \\
+    b &= \num{0.054(8)} \frac{1}{\qty{1}{\degree\squared}}.
+\end{align*}
+
+
+\subsection{Gold}
+Für die Umrechnung der Zählraten in den Wirkungsquerschnitt nach \autoref{eq:I0} werden $\rho_\text{Au} = \qty{19320}{\kilo\gram\per\meter\cubed}$ und $M_\text{Au} = \qty{0.197}{\kilo\gram\per\mole}$ verwendet.
+Die Ordnungszahl ist $Z_\text{Au} = 79$.
+
+
+
+\subsection{Bismut}
