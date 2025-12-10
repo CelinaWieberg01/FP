@@ -3,7 +3,7 @@
 \subsection{Energieverlust und Wechselwirkung mit Hüllenelektronen}
 Der kontinuierliche Energieverlust geladener Teilchen durch Anregung und Ionisation der Hüllenelektronen wird
 durch das Störungsverhalten der Elektronen beschrieben und für schnelle, nichtrelativistische bis moderat relativistische 
-Teilchen durch die Bethe‑Bloch‑Gleichung genähert,
+Teilchen durch die Bethe‑Bloch‑Gleichung \cite{bethe} genähert,
 
 
 \begin{equation*}
@@ -33,12 +33,12 @@ ausgedrückt. Für die Kalibrierung der Pulshöhen ist zu berücksichtigen, dass
 
 \subsection{Elastische Coulomb‑Streuung und differentieller Wirkungsquerschnitt}
 Die Ablenkung der \(\alpha\)-Teilchen durch die Coulombkraft des positiv geladenen Kerns wird durch den differentiellen Wirkungsquerschnitt beschrieben. 
-Unter der Annahme der Einzelstreuung und der Vernachlässigung quantenmechanischer Feinheiten ergibt sich für den Rutherford‑Wirkungsquerschnitt 
+Unter der Annahme der Einzelstreuung und der Vernachlässigung quantenmechanischer Feinheiten ergibt sich für den Rutherford‑Wirkungsquerschnitt \cite{rutherford} 
 die Form
 
 \begin{equation}
 \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}(\theta)
-= \left(\frac{z Z e^2}{16\pi\varepsilon_0 E_\alpha}\right)^{\!2}\frac{1}{\sin^4(\theta/2)},
+= \left(\frac{z Z e^2}{4\pi\varepsilon_0 E_\alpha}\right)^{\!2}\frac{1}{\sin^4(\theta/2)},
 \label{eq:rutherford}
 \end{equation}
 
@@ -48,9 +48,9 @@ gibt die Wahrscheinlichkeit an, in einen bestimmten Raumwinkel \(\mathrm{d}\Omeg
 der Ladungszahlen \(zZ\). Experimentell wird die Zählrate \(I(\theta)\) gemessen, die mit dem differentiellen Wirkungsquerschnitt durch die Beziehung
 
 \begin{equation}
-I(\theta) \;=\; I_0\, N d\, \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}(\theta)\,\Delta\Omega\,\varepsilon
+I(\theta) \;=\; I_0\, N d\, \frac{\mathrm{d}\sigma}{\mathrm{d}\Omega}(\theta)\,\Delta\Omega\,\varepsilon 
 \label{eq:I0}
-\end{equation}
+\end{equation}\cite{lumin}
 
 verknüpft ist. Hierbei bezeichnet \(I_0\) den einfallenden Teilchenstrom, \(x\) die Folienstärke, 
 \(\Delta\Omega\) den vom Detektor abgedeckten Raumwinkel und \(\varepsilon\) die Detektionseffizienz. Für kleine Detektoren in ausreichendem 
@@ -68,11 +68,11 @@ Bei der Anwendung der Rutherford‑Formel werden mehrere Näherungen getroffen, 
 ist nur für dünne Folien gültig. Bei zunehmender Folienstärke werden Mehrfachstreuungen relevant und führen zu einer Aufweitung der Winkelverteilung. 
 Bei großen Impactparametern wird die Kernladung durch die Hüllenelektronen abgeschirmt, sodass bei sehr kleinen Streuwinkeln Abweichungen von der
 reinen Coulomb‑Form auftreten. Bei sehr kleinen Impactparametern wird die Annahme eines punktförmigen Kerns unzureichend, die endliche Ladungsverteilung 
-des Kerns führt zu Abweichungen bei großen Streuwinkeln und ermöglicht Rückschlüsse auf den effektiven Kernradius.
+des Kerns führt zu Abweichungen bei großen Streuwinkeln und ermöglicht Rückschlüsse auf den effektiven Kernradius \cite{kernradien}.
 
 \subsection{Mehrfachstreuung}
 Die Streuung an vielen kleinen Stößen innerhalb der Folie führt zu einer statistischen Aufweitung des Streuwinkels, die durch Näherungsformeln beschrieben werden kann. 
-Für die charakteristische RMS‑Ablenkung \(\theta_0\) wird häufig die Highland‑Formel verwendet,
+Für die charakteristische RMS‑Ablenkung \(\theta_0\) wird häufig die Highland‑Formel \cite{highland} verwendet,
 
 \begin{equation*}
 \theta_0 \approx \frac{13{,}6\ \mathrm{MeV}}{\beta p c}\,z\,\sqrt{\frac{x}{X_0}}\left[1+0{,}038\ln\!\left(\frac{x}{X_0}\right)\right],

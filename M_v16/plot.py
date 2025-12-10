@@ -103,8 +103,8 @@ def rutherford(theta, z, Z, K):
     dcs_th = (z*Z*e0**2/(4*np.pi*epsilon0*4*K))**2 * 1/(np.sin(theta*np.pi/360))**4
     return dcs_th
 
-def rtf_fit(theta, a, b):
-    return a/np.sin(np.pi*(theta-b)/360)**4 
+def rtf_fit(theta, a):
+    return a/np.sin(np.pi*(theta)/360)**4 
 
 theta = np.linspace(5,22)
 z = 2
@@ -115,9 +115,9 @@ K = 8.78954e-13
 print("verwendete Parameter: z = 2 \nZ_au = 79 \nZ_bi = 83 \nK = 8.78954e-13 J")
 
 params_Au, cov_Au = curve_fit(rtf_fit, degAu, unp.nominal_values(dcs_au))
-print(f"Fit Au: \na = {params_Au[0]} +- {np.sqrt(np.diag(cov_Au))[0]} \nb = {params_Au[1]} +- {np.sqrt(np.diag(cov_Au))[1]}\n")
-params_Bi, cov_Bi = curve_fit(rtf_fit, degBi, unp.nominal_values(dcs_bi), p0=(1e-19, 1))
-print(f"Fit Bi: \na = {params_Bi[0]} +- {np.sqrt(np.diag(cov_Bi))[0]} \nb = {params_Bi[1]} +- {np.sqrt(np.diag(cov_Bi))[1]}\n")
+print(f"Fit Au: \na = {params_Au[0]} +- {np.sqrt(np.diag(cov_Au))[0]} \n")#b = {params_Au[1]} +- {np.sqrt(np.diag(cov_Au))[1]}\n")
+params_Bi, cov_Bi = curve_fit(rtf_fit, degBi, unp.nominal_values(dcs_bi), p0=(1e-19))
+print(f"Fit Bi: \na = {params_Bi[0]} +- {np.sqrt(np.diag(cov_Bi))[0]} \n")#b = {params_Bi[1]} +- {np.sqrt(np.diag(cov_Bi))[1]}\n")
 
 rtf_au = rutherford(theta, z, Z_au, K)
 rtf_fit_au = rtf_fit(theta, *params_Au)
@@ -162,10 +162,8 @@ Z_au = 79
 Z_bi = 83 
 K = 8.78954e-13 J
 Fit Au: 
-a = 7.262708003143793e-28 +- 1.9803165327819873e-28 
-b = -1.943973740460461 +- 0.5819389388172267
+a = 2.5341618395048713e-28 +- 1.3889490034401842e-29 
 
 Fit Bi: 
-a = 5.810029621743515e-29 +- 1.1067825897386602e-29 
-b = 1.9423547438989655 +- 0.2013308424403709
+a = 2.5139862670515245e-28 +- 1.6713150961343575e-29 
 """

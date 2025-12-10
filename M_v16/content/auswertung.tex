@@ -4,29 +4,51 @@
 Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
 Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
 
+\subsection{Verstärkung}
+Um die Wirkung des Verstärkers zu demonstrieren, werden Oszilloskopbilder jeweils mit und ohne Verstärker aufgenommen, dargestellt in \autoref{fig:oszilloskop}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{plots/unverstaerkt.JPG}
+      \caption{Ohne Verstärker.}
+      \label{fig:ohne_verstaerker}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{plots/verstaerkt.JPG}
+      \caption{Mit Verstärker.}
+      \label{fig:mit_verstaerker}
+    \end{subfigure}
+    \caption{Oszilloskopfaufnahmen ohne und mit Verstärker.}
+    \label{fig:oszilloskop}
+  \end{figure}
+
+Es ist erkennbar, dass die Messung mit dem Verstärker ein klareres, stärkeres Signal liefert.
+\subsection{Strahlcharakteristik und Wirkungsquerschnitte}
 Für die Folien werden die gemessenen Zählraten über \autoref{eq:I0} mit \autoref{eq:dichte} und \autoref{eq:omega}
 in differentielle Streuquerschnitte umgerechnet.
 Dafür wird für beide Folien die Folienstärke $d = \qty{2}{\micro\meter}$ und die Abmessung der Apparatur mit
 $b_x = \qty{2}{\milli\meter}$, $b_y = \qty{10}{\milli\meter}$ und $l = \qty{45}{\milli\meter}$ verwendet.
 Die einfallende Zählrate wird über die Aktivität des Präparats multipliziert mit dem Raumwinkel des Targets berechnet.
 Mit der Aktivität von \SI{330}{\kilo\becquerel} im Jahr 1994, einer Halbwertszeit von $432$ Jahren und einer Blendenfläche von \SI{20}{\milli\meter\squared} ergibt sich eine
-einfallende Zählraten von $C_0 = \qty{155.805}{\per\second}$.
+einfallende Zählrate von $C_0 = \qty{155.805}{\per\second}$.
 
 Die Messwerte werden mit einem Fit der Form
 \begin{equation}
-    f(\theta) = \frac{a}{\sin^2\left(\frac{\theta}{2}\right)}
+    f(\theta) = \frac{a}{\sin^4\left(\frac{\theta}{2}\right)}
     \label{eq:sinfit}
 \end{equation}
 versehen und der theoretische Streuquerschnitt nach \autoref{eq:rutherford} dargestellt. Die dafür verwendeten Parameter lauten
 \begin{align*}
-    z &= 2
-    E_\text{\alpha} &= \qty{8.78954e-13}{\joule}.
+    z &= 2 \\
+    E_\text{\alpha} &= \qty{8.78954e-13}{\joule}
 \end{align*}
-
-\subsection{Vakuum}
-
+\cite{241am}.
+\subsubsection{Vakuum}
 Die Strahlcharakteristik wird in einem Vakuum von \SI{0}{\milli\bar} durchgeführt, welches konstant aufrecht gehalten wird.
-Die gemessenen Zählraten befinden sich in \autoref{fig:vakuum}.
+Die gemessenen Zählraten sind in \autoref{fig:vakuum} dargestellt.
 
 \begin{figure}[H]
     \centering
@@ -51,11 +73,46 @@ lauten
     b &= \num{0.054(8)} \frac{1}{\qty{1}{\degree\squared}}.
 \end{align*}
 
+Es wird nur die positive Seite der Messung für den Fit berücksichtigt, da auf dieser Seite die nachfolgenden Messungen stattfinden und die erneute Eichung
+in der Durchführung zu einer Unvergleichbarkeit der beiden Seiten führt.
 
-\subsection{Gold}
-Für die Umrechnung der Zählraten in den Wirkungsquerschnitt nach \autoref{eq:I0} werden $\rho_\text{Au} = \qty{19320}{\kilo\gram\per\meter\cubed}$ und $M_\text{Au} = \qty{0.197}{\kilo\gram\per\mole}$ verwendet.
-Die Ordnungszahl ist $Z_\text{Au} = 79$.
+Die Zählrate nimmt mit steigendem Winkel rapide ab, was auf fehlende Stöße zurückzuführen ist, die die \alpha-Teilchen aus ihrer Bahn lenken würden.
 
+\subsubsection{Gold}
+Für die Umrechnung der Zählraten in den Wirkungsquerschnitt nach \autoref{eq:I0} werden $\rho_\text{Au} = \qty{19320}{\kilo\gram\per\meter\cubed}$ und $M_\text{Au} = \qty{0.197}{\kilo\gram\per\mole}$ \cite{gold} verwendet.
+Die Ordnungszahl ist $Z_\text{Au} = 79$. Die gemessenen Zählraten sind in \autoref{fig:gold} dargestellt.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/dsdO_Au.pdf}
+    \caption{Winkelabhängiger Wirkungsquerschnitt von einer \SI{2}{\micro\meter} dicken Goldfolie. Ebenfalls dargestellt ist ein Fit nach \autoref{eq:sinfit} und der theoretische Wirkungsquerschnitt nach \autoref{eq:rutherford}.}
+    \label{fig:gold}
+\end{figure}
 
-\subsection{Bismut}
+Der Parameter des Fits nach \autoref{eq:sinfit} lautet
+\begin{equation*}
+    a_\text{Au} = \qty{7.627(138)e-28}{\meter\per\steradian\squared}.
+\end{equation*}
+
+Die Streuquerschnitte folgen dem Verlauf der Theoriekurve qualitativ, allerdings ist eine Verschiebung der Werte nach oben zu erkennen.
+Werte bei höheren Winkeln liegen näher an der Theoriekurve als jene bei kleineren Winkeln. 
+
+\subsubsection{Bismut}
+Für die Umrechnung der Zählraten in den Wirkungsquerschnitt nach \autoref{eq:I0} werden $\rho_\text{Bi} = \qty{9790}{\kilo\gram\per\meter\cubed}$ und $M_\text{Bi} = \qty{0.209}{\kilo\gram\per\mole}$ \cite{bismut} verwendet.
+Die Ordnungszahl ist $Z_\text{Bi} = 83$. Die gemessenen Zählraten sind in \autoref{fig:bismut} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/dsdO_Bi.pdf}
+    \caption{Winkelabhängiger Wirkungsquerschnitt von einer \SI{2}{\micro\meter} dicken Bismutfolie. Ebenfalls dargestellt ist ein Fit nach \autoref{eq:sinfit} und der theoretische Wirkungsquerschnitt nach \autoref{eq:rutherford}.}
+    \label{fig:bismut}
+\end{figure}
+
+Der Parameter des Fits nach \autoref{eq:sinfit} lautet
+\begin{equation*}
+    a_\text{Bi} = \qty{2.513(167)e-28}{\meter\per\steradian\squared}.
+\end{equation*}
+
+Auch hier liegen die gemessenen Streuquerschnitte über der Theoriekurve, wobei die Abweichung bei kleineren Winkeln größer ist als bei größeren, im Falle von Bismut
+ist dieser Unterschied bei den ersten Messwerten besonders stark ausgeprägt, wird dann aber für Winkel ab \SI{7}{\degree} beinahe irrelevant. 
+
