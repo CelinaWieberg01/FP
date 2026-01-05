@@ -377,6 +377,8 @@ if make_plots == True:
     print(f"GEN 2_max: dev_T = {dev_T}")
     dev_tau = np.abs(tau - ufloat(params[1], errs[1]))/tau
     print(f"GEN 2_max: dev_tau = {dev_tau}")
+    eta_max = 20*R*C/ufloat(params[1], errs[1])
+    print(f"GEN 2_max: eta_max = {eta_max}")
 
     print("\n\n\n")
     t, U = np.genfromtxt("data/csv/scope_13.csv", delimiter=",", usecols=(0,2), unpack=True)
@@ -442,3 +444,12 @@ if make_plots == True:
     print(f"GEN 2_min: dev_T = {dev_T}")
     dev_tau = np.abs(tau - ufloat(params[1], errs[1]))/tau
     print(f"GEN 2_min: dev_tau = {dev_tau}")
+
+    eta_min = 20*R*C/(ufloat(params[1], errs[1]))
+    print(f"GEN 2_min: eta_min = {eta_min}")
+
+
+"""
+GEN 2_max: eta_max = 0.25+/-0.08
+GEN 2_min: eta_min = 0.73+/-0.16
+"""
