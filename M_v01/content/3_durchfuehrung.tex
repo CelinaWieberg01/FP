@@ -59,16 +59,9 @@ Die Umsetzung ist in \autoref{fig:aufbau} dargestellt.
 
 Die Power Supply (B) versorgt die Photomultiplier mit dem nötigen Strom. Diese detektieren die Lichtblitze, die beim Eintreten und Zerfallen der Myonen entstehen. Über einen Discriminator (E) werden zu schwache Signale rausgefiltert. Diese entstehen hauptsächlich durch
 spontane Emissionen von Elektronen in den Dynoden der Photomultiplier. Da diese aber nicht die volle Verstärkung der PMs erfahren, ist dieses Signal entsprechend schwächer und kann ignoriert werden. Die Ursache für die spontane Emission ist die endlich hohe Temperatur der Dynoden, die diese Emission ermöglicht.
-Über eine Verzögerungsschaltung (Delay) (C) kann die Verzögerung zwischen zwei Signalen für die Coincidence-Schaltung (D) reguliert werden. Die Coincidence-Schaltung gibt ein Signal nur dann, wenn beide Inputs gleichzeitig antreffen.
-Es kann auch ein Doppelimpulsgenerator (F) mit variablem Pulsabstand in die Coincidence-Schaltung geschaltet werden, um den Vielkanalanalysator zu kalibrieren.
+Über eine Verzögerungsschaltung (Delay) (C) kann die Verzögerung zwischen zwei Signalen für die Coincidence-Schaltung (D) reguliert werden.
 
-Nach der Coincidence-Schaltung folgen zwei AND-Gatter (H), die über einen weiteren Delay (J) mit einem Monoflop (I)
-das Start- und Stopsignal der Wartezeit für zwischen Myon-Eintritt und Myon-Zerfall im Szintillatortank produzieren. Das Startsignal entsteht, sobald die Coincidence-Schaltung ein Signal gibt. Dieses Signal geht in beide AND-Gatter
-und in den Monoflop, der ein zeitlich instabiles Signal erzeugt, das $\bar{\text{OUT}}$ in \autoref{fig:skizze}. Nach einer gewissen Zeit kippt dieses Signal und das Stopsignal wird gegeben. Über den Time-to-Amplitude-Converter (TAC) (A) und den Monoflop kann die Suchzeit eingestellt werden. Der TAC wandelt die gemessene
-Zeit in ein Amplitudensignal um, das der Vielkanalanalysator verwerten kann.
-
-
-\begin{figure}
+\begin{figure}[H]
     \centering
     \begin{subfigure}{0.9\textwidth}
       \centering
@@ -85,6 +78,15 @@ Zeit in ein Amplitudensignal um, das der Vielkanalanalysator verwerten kann.
     \caption{Verwendeter Versuchsaufbau mit nummerierten Bestandteilen im NIM-Rack.}
     \label{fig:aufbau}
   \end{figure}
+
+
+Die Coincidence-Schaltung gibt ein Signal nur dann, wenn beide Inputs gleichzeitig antreffen.
+Es kann auch ein Doppelimpulsgenerator (F) mit variablem Pulsabstand in die Coincidence-Schaltung geschaltet werden, um den Vielkanalanalysator zu kalibrieren.
+Nach der Coincidence-Schaltung folgen zwei AND-Gatter (H), die über einen weiteren Delay (J) mit einem Monoflop (I)
+das Start- und Stopsignal der Wartezeit für zwischen Myon-Eintritt und Myon-Zerfall im Szintillatortank produzieren. Das Startsignal entsteht, sobald die Coincidence-Schaltung ein Signal gibt. Dieses Signal geht in beide AND-Gatter
+und in den Monoflop, der ein zeitlich instabiles Signal erzeugt, das $\bar{\text{OUT}}$ in \autoref{fig:skizze}. Nach einer gewissen Zeit kippt dieses Signal und das Stopsignal wird gegeben. Über den Time-to-Amplitude-Converter (TAC) (A) und den Monoflop kann die Suchzeit eingestellt werden. Der TAC wandelt die gemessene
+Zeit in ein Amplitudensignal um, das der Vielkanalanalysator verwerten kann.
+
 
 \begin{wrapfigure}{r}{0.40\textwidth}
     \vspace{-35pt}
