@@ -1,2 +1,136 @@
 \section{Durchführung}
 \label{sec:Durchführung}
+In diesem Abschnitt wird die Funktionsweise vom verwendeten Szintillationsdetektor, der Aufbau und die Kalibrierung sowie Messung beschrieben.
+
+\begin{wrapfigure}[20]{r}{0.4\textwidth}
+    \vspace{-20pt}
+    \centering
+    \includegraphics[width=0.35\textwidth]{bilder/szinti.png}
+    \caption{Schematische Darstellung der Anregung eines Exzitons in einem anorganischen Kristall im Bandstrukturmodell \cite{szin}.}
+    \label{fig:szintillation}
+\end{wrapfigure}
+
+\subsection{Szintillationsdetektor}
+Ein Szintillationsdetektor besteht im Kern aus einem Szintillator, also einem Material, das in der Lage ist, im optischen oder UV-Bereich zu leuchten. Es existieren verschiedene Arten von Szintillatoren, z. B.
+anorganische Kristalle wie Bismutgermanat, organische Kristalle wie Anthracen, Gase (insbesondere Helium, Xenon, Krypton und ARgon) und organische Flüssigkeiten mit Lösungsmittel wie 2,5-Diphenyloxazol in Benzol gelöst.
+Verschiedene Szintillator-Materialien haben verschiedene Vor- und Nachteile, so haben Flüssigkeiten eine schnelle Fluoreszenzzeit von ca. \SI{3}{\nano\second} und passen in beliebige Detektorformen, sind aber sensibel gegenüber
+Verunreinigungen; organische Kristalle sind mechanisch widerstandsfähig; Edelgase haben sehr schnelle Fluoreszenzzeiten von unter einer nanosekunde.
+
+
+Das Hauptprinzip der Szintillation ist die Ionisierung durch Stöße, in diesem Versuch also Stöße von Myonen vor dem Zerfall bzw. Elektronen nach dem Zerfall mit den Atomen und Molekülen im Szintillatortank. \autoref{fig:szintillation} ist eine schematische Darstellung
+des Szintillationsprozesses in einem anorganischen Kristall.
+
+Im Falle von Edelgasen ist dies ein rein atomarer Prozess, der aber analog verläuft. Organische Kristalle haben ähnliche Vorgänge auf molekularer Ebene mit sogenannten HOMO- und LUMO-Übergängen \cite{szin}. 
+
+Die entstandenen Photonen werden mit Photomultipliern verstärkt. Ein Photomultiplier (PM) besteht grundlegend aus einer Kathodenschicht, die den photoelektrischen Effekt ausnutzt, um ein Elektron zu erzeugen, und viele Dynoden,
+die über elektrische Felder Elektronen beschleunigen und mehr Elektronen erzeugen \cite{pm}. Der prinzipielle Aufbau eines PMs und ein realisierter Aufbau sind in \autoref{fig:pm} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/pm.jpg}
+      \caption{Prinzipieller Aufbau eines PM mit Dynoden \cite{pm}.}
+      \label{fig:pm1}
+    \end{subfigure}\hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+      \centering
+      \includegraphics[width=0.8\textwidth]{bilder/pm2.jpg}
+      \caption{Realisierter Aufbau eines PMs miot erkennbaren Dynoden in der Mitte \cite{pm2}.}
+      \label{fig:pm2}
+    \end{subfigure}
+    \caption{Darstellungen eines Photomultipliers.}
+    \label{fig:pm}
+\end{figure}
+
+Über Photomultiplier ist es möglich, schwache Signale zu verstärken.
+
+
+\begin{wrapfigure}[18]{r}{0.40\textwidth}
+    \vspace{-45pt}
+    \centering
+    \includegraphics[width=0.40\textwidth]{bilder/skizze.png}
+    \caption{Schaltplan des Versuches.}
+    \label{fig:skizze}
+\end{wrapfigure}
+\subsection{Aufbau}
+Die Schaltskizze der einzelnen Komponenten ist in \autoref{fig:skizze} dargestellt.
+Die Umsetzung ist in \autoref{fig:aufbau} dargestellt.
+
+Die Power Supply (B) versorgt die Photomultiplier mit dem nötigen Strom. Diese detektieren die Lichtblitze, die beim Eintreten und Zerfallen der Myonen entstehen. Über einen Discriminator (E) werden zu schwache Signale rausgefiltert. Diese entstehen hauptsächlich durch
+spontane Emissionen von Elektronen in den Dynoden der Photomultiplier. Da diese aber nicht die volle Verstärkung der PMs erfahren, ist dieses Signal entsprechend schwächer und kann ignoriert werden. Die Ursache für die spontane Emission ist die endlich hohe Temperatur der Dynoden, die diese Emission ermöglicht.
+Über eine Verzögerungsschaltung (Delay) (C) kann die Verzögerung zwischen zwei Signalen für die Coincidence-Schaltung (D) reguliert werden. Die Coincidence-Schaltung gibt ein Signal nur dann, wenn beide Inputs gleichzeitig antreffen.
+Es kann auch ein Doppelimpulsgenerator (F) mit variablem Pulsabstand in die Coincidence-Schaltung geschaltet werden, um den Vielkanalanalysator zu kalibrieren.
+
+Nach der Coincidence-Schaltung folgen zwei AND-Gatter (H), die über einen weiteren Delay (J) mit einem Monoflop (I)
+das Start- und Stopsignal der Wartezeit für zwischen Myon-Eintritt und Myon-Zerfall im Szintillatortank produzieren. Das Startsignal entsteht, sobald die Coincidence-Schaltung ein Signal gibt. Dieses Signal geht in beide AND-Gatter
+und in den Monoflop, der ein zeitlich instabiles Signal erzeugt, das $\bar{\text{OUT}}$ in \autoref{fig:skizze}. Nach einer gewissen Zeit kippt dieses Signal und das Stopsignal wird gegeben. Über den Time-to-Amplitude-Converter (TAC) (A) und den Monoflop kann die Suchzeit eingestellt werden. Der TAC wandelt die gemessene
+Zeit in ein Amplitudensignal um, das der Vielkanalanalysator verwerten kann.
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.9\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/tank.jpeg}
+      \caption{Szintillationstank mit Photomultipliern links und rechts.}
+      \label{fig:aufbau1}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.9\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/rack.jpeg}
+      \caption{Verwendete Module für den Versuch. A: TAC. B: Power Supply. C: Discriminator-Delay. D: Coincidence-Schaltung. E: Discriminator. F: Doppelimpulsgenerator. G: Counter. H: AND-AND-Schaltung. I: Monoflop. J: Monoflop-Delay.}
+      \label{fig:aufbau2}
+    \end{subfigure}
+    \caption{Verwendeter Versuchsaufbau mit nummerierten Bestandteilen im NIM-Rack.}
+    \label{fig:aufbau}
+  \end{figure}
+
+\begin{wrapfigure}{r}{0.40\textwidth}
+    \vspace{-35pt}
+    \centering
+    \includegraphics[width=0.40\textwidth]{bilder/delay.png}
+    \caption{Qualitative Darstellung der Delay-Kalibrierung. Oben sind die Signale bei drei verschiedenen Delays dargestellt, unten der Überlapp }
+    \label{fig:delay}
+\end{wrapfigure}
+
+\subsection{Kalibrierung}
+Als erstes müssen die PMs mit genügend Spannung versorgt werden. Dafür werden diese auf ungefähr \SI{1800}{\volt} hochgeregelt und über den Discriminator dem Counter verbunden. Die Spannungen werden möglichst auf ungefähr 30 Events pro Sekunde geregelt.
+In dieser Versuchsdurchführung war ein Counter deutlich schneller als der andere, weshalb der Discriminator umgeregelt werden muss. Über ein Oszilloskop lassen sich Breite und Höhe der gemessenen Signale darstellen. Diese sollten eine Breite von ungefähr \SI{10}{\nano\second} 
+und eine genügend große Intensität haben. Über die Regelschrauben "THR" für Threshold und "WIDTH" können die Höhe bzw. Breite der Signale reguliert werden. Diese werden variiert, bis sie eine akzeptable Breite und ausreichenden Ausschlag haben.
+
+Anschließend muss der Delay der Coincidence-Schaltung kalibriert werden. Da die Signale verschiedene Weglängen zurücklegen müssen, kommen sie zeitlich versetzt an, lösen die Coincidence-Schaltung also nicht aus. Dafür wird die Weglänge künstlich variiert.
+Hierfür wird zunächst das Signal eines PMs an den Delay (C) gesteckt und schrittweise um \SI{0.5}{\nano\second} von \SI{0}{\nano\second} auf \SI{16}{\nano\second} erhöht und über 20 Sekunden die Events gemessen und am Counter abgelesen.
+Anschließend wird der andere Photomultiplier stattdessen angesteckt, um eine Verzögerung des anderen Signals, also in \enquote{negative Richtung} zu erhalten. Die vorige Messung wird wiederholt.
+
+Die Signale der PMs sind rechteck-ähnlich mit gauß-ähnlichen Tails. Werden diese schrittweise durch Variation des Delays überlagert, nimmt der Überlapp der Signale schrittweise zu und hat eine ähnliche Form wie die Signale selber.
+Dieser Sachverhalt ist in \autoref{fig:delay} dargestellt. Es wird jener Delay gewählt, der den höchsten Überlapp, also den höchsten Count produziert, da die Signale dann gleichzeitig ankommen.
+
+Im Anschluss muss noch der Vielkanalanalysator (Multi-Channel Analyzer, MCA) kalibriert werden. Hierfür wird der Doppelimpulsgenerator angeschlossen, der zwei Signale mit einstellbarer Verzögerung liefert. 
+Diese Verzögerung gibt über den TAC eine feste Amplitude, sodass ein Kanal des MCAs einer bestimmten Zeitspanne entspricht. Die Verzögerungen werden in \SI{5}{\micro\second}-Schritten variiert und die zugehörigen Kanäle gemessen.
+Es ist ein linearer Zusammenhang zu erwarten, sodass über 
+
+\begin{equation}
+    t(K) = m \cdot K + n
+    \label{eq:linfit}
+\end{equation}
+
+einem Kanal eine eindeutige Zeitspanne zugeordnet werden kann. $K$ ist dabei die Kanalnummer, $m$ ist die Steigung in \si{\micro\second} pro Kanalnummer und $n$ der $y$-Achsenabschnitt in \si{\micro\second}.
+
+\subsection{Messung der Myonen}
+
+Sobald alle Kalibrierungen vorgenommen wurden, kann die Messung der Myonen beginnen. Die erwartete Lebensdauer beträgt circa \SI{2}{\micro\second}. Um eine gute Statistik zu erhalten, wird also eine Suchzeit von ungefähr 
+\SI{10}{\micro\second} eingestellt. Das ist die Zeit, die zwischen Eintritt und Zerfall eines Myons verstreicht. Der Counter wird an die beiden AND-Gatter verbunden, sodass alle Startsignale und Stopsignale auch gezählt werden.
+
+Es besteht die Möglichkeit, dass zwei Myonen sehr zeitnah eintreffen, was dazu führen würde, dass ein Stopsignal nicht durch den Zerfall eines Myons, sondern durch ein weiteres Eintreten ausgelöst wird. Dieser Prozess wird als Untergrund $U$ behandelt
+und kann berücksichtigt werden. Wird eine Poissonverteilung der Wahrscheinlichkeit eines doppelten Eintritts angenommen, ergibt sich für die Wahrscheinlichkeit, dass ein zweites Myon eintritt 
+
+\begin{equation}
+    P(1) = T_\text{S} \cdot N_\text{Myon} \cdot \exp(T_\text{S} \cdot N_\text{Myon})
+    \label{eq:p}
+\end{equation}
+mit der Suchzeit $T_\text{S}$ und der Eintrittsrate der Myonen $N_\text{Myon} = \frac{N_\text{start}}{t_\text{Mess}}$.
+Die Anzahl fehlerhafte Counts pro Kanal ergibt sich dann zu
+\begin{equation}
+    U = \frac{N_\text{start}\cdot P(1)}{\# \text{Kanäle}}.
+\end{equation}

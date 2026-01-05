@@ -1,4 +1,45 @@
 \section{Theorie}
 \label{sec:Theorie}
 
-\cite{sample}
+Im Folgenden werden Informationen über Myonen gegeben.
+
+\subsection{Myonen}
+
+Myonen sind geladene Leptonen, die ungefähr 200 mal schwerer als Elektronen sind. Sie besitzen die selbe Ladung von $q = 1 e$, wobei $e$ die Elementarladung ist. 
+Myonen entstehen in der Atmosphäre durch sogenannte kosmische Strahlung, ein Prozess,
+bei dem hauptsächlich Protonen und ionisierte Atomkerne \cite{myonen} mit einer Energie zwischen \num{10e2} und \SI{10e20}{\giga\electronvolt} \cite{energie} auf Teilchen in der Atmosphäre in \num{10} bis \SI{30}{\kilo\meter} 
+treffen und Teilchenschauer auslösen, vergleiche \autoref{fig:schauer} rechts. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{bilder/schauer.jpg}
+    \caption{Schematische Skizze eines hadronischen Luftschauers. Rechts ist die Entstehung von Myonen und Antimyonen dargestellt \cite{schauer}.}
+    \label{fig:schauer}
+\end{figure}
+
+Dabei entstehen Myonen nicht direkt, sondern über einen Zerfall von Pionen, z. B.
+
+\begin{equation*}
+    \pi^{-} \rightarrow \mu^{-} + \bar{\nu}_{\mu},
+\end{equation*}
+
+dabei ist $\pi^{-}$ das negative Pion und $\bar{\nu}_{\mu}$ ein Myon-Antineutrino, das Pendant zum Elektron-Antineutrino.
+Myonen sind nicht stabil, sie zerfallen zu Elektronen,
+
+\begin{equation*}
+    \mu^{-} \rightarrow e^{-} + \nu_e + \bar{\nu}_e.
+\end{equation*}
+
+Die mittlere Zeit, in der Myonen existieren, ist die sogenannte mittlere Lebensdauer $T$. Sie ist verknüpft mit der Halbwertszeit $\tau_{1/2}$ über
+\begin{equation*}
+    \tau_{1/2} = T \cdot \ln(2).
+\end{equation*}
+Für Myonen beträgt $T = \SI{2.2}{\micro\second}$ \cite{myonen}. Nach klassischer Rechnung wären also keine Myonen auf der Erdoberfläche messbar, da diese mit beinahe Lichtgeschwindigkeit in nur ungefähr 2 Mikrosekunden eine Strecke von wenigen hundert Metern zurücklegen.
+Aufgrund ihrer hohen Geschwindigkeit müssen allerdings relativistische Effekte wie Zeitdilatation oder Längenkontraktion berücksichtigt werden. Für die Myonen vergeht die Zeit also viel langsamer, sodass
+sie noch bevor sie zerfallen die Erdoberfläche treffen können, oder genau äquivalent formuliert ist die zurückzulegende Strecke zwischen Entstehungsort und Erdoberfläche kontrahiert und somit viel kürzer, also in der Lebensdauer für die Myonen zurücklegbar \cite{myonen}.
+
+Die Messwerte sind exponentiell abfallend verteilt, wie es aus Zerfallsprozessen bekannt ist. Ein exponentieller Fit der Form
+\begin{equation}
+    N(t) = N_0 \cdot exp(-\lambda t) + U
+\end{equation}
+mit der Zerfallskonstanten $\lambda$, die der Kehrwert der Lebensdauer ist, kann die Messung beschreiben.
