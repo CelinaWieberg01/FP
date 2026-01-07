@@ -3,3 +3,39 @@
 
 Für die Auswertung wird die \texttt{Python}-Bibliothek \texttt{numpy} \cite{numpy} benutzt. Die Fits entstehen mit \texttt{curve\_fit} aus \texttt{scipy.optimize} \cite{scipy}.
 Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgeführt. Plots entstehen mit \texttt{matplotlib.pyplot} \cite{matplotlib}.
+
+% Ergebnisse für die Auswertung
+% Ich habe dir auch schon die nötigen Referenzen auf Gleichungen aus der Theorie geschrieben
+% Du musst noch die Zahlen zu angemessenen Stellen runden
+
+%%% Startsignale: 1496787
+%%% Stoppsignale: 3144
+
+%%%%%% Die Gleichung musst du einmal selber angeben, die konnte ich nicht gut in die Theorie packen
+%%% gauss: f(x) = a * e^((x-x0)^2 / (2*sigma^2)
+%%% a = 283.6143354+/-7.8672758 Einheit: Counts
+%%% x0 = 0.6513704308+/-0.1750581592 Einheit: ns
+%%% sigma = 5.066269628+/-0.196916370 Einheit: ns
+%%% fwhm breite = 11.93015327+/-0.46370262 Einheit: ns
+
+%%%%%% Referenz: \autoref{eq:linfit}
+%%% linfit für kalibrierung: t(K) = m*K + n
+%%% m =  0.021700+/-0.000015  Einheit: µs/Kanalnummer
+%%% n =  0.1577+/-0.0035  Einheit: µs
+
+% Ja, for some rason ist der Fehler hier in a und c RIESIG. idk warum
+% außerdem: ich hab jetzt beim fit für lambda alle ersten vier werte ignoriert und die letzten paar hundert auch
+% man kann aber auch argumentieren, den fit erst ab dem Peak zu machen (also so ab Kanal #24), weil der Anstieg an Counts in den Kanälen davor nicht erklärbar ist
+% Hab ich jetzt aber halt nicht gemacht
+
+%%%%%% Referenz: \autoref{eq:lambda}
+%%% zerfallskurve = a*e^(-lambda*t - c)
+%%% N_0 =  93.8+/-146477176.8, Einheit: Counts
+%%% lambda =      0.575+/-     0.035 Einheit: 1/µs
+%%% T = -1.815+/-2716074.511 Einheit: µs
+%%% U = 0.7124202112+/-0.3260971519 Einheit: Counts
+%%%  
+%%% Mittlere Lebensdauer = 1/lambda = 1.739345761+/-0.104935602 Einheit: µs
+
+%%%%%% Referenz: \autoref{eq:p} und \autoref{eq:U}
+%%% Berechneter Untergrund: U = 0.2499813999936612 Einheit: Counts/Kanal

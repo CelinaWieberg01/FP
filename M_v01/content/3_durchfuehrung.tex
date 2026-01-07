@@ -120,6 +120,7 @@ einem Kanal eine eindeutige Zeitspanne zugeordnet werden kann. $K$ ist dabei die
 
 Sobald alle Kalibrierungen vorgenommen wurden, kann die Messung der Myonen beginnen. Die erwartete Lebensdauer beträgt circa \SI{2}{\micro\second}. Um eine gute Statistik zu erhalten, wird also eine Suchzeit von ungefähr 
 \SI{10}{\micro\second} eingestellt. Das ist die Zeit, die zwischen Eintritt und Zerfall eines Myons verstreicht. Der Counter wird an die beiden AND-Gatter verbunden, sodass alle Startsignale und Stopsignale auch gezählt werden.
+Die Messung läuft für ungefähr 48 Stunden.
 
 Es besteht die Möglichkeit, dass zwei Myonen sehr zeitnah eintreffen, was dazu führen würde, dass ein Stopsignal nicht durch den Zerfall eines Myons, sondern durch ein weiteres Eintreten ausgelöst wird. Dieser Prozess wird als Untergrund $U$ behandelt
 und kann berücksichtigt werden. Wird eine Poissonverteilung der Wahrscheinlichkeit eines doppelten Eintritts angenommen, ergibt sich für die Wahrscheinlichkeit, dass ein zweites Myon eintritt 
@@ -132,4 +133,5 @@ mit der Suchzeit $T_\text{S}$ und der Eintrittsrate der Myonen $N_\text{Myon} = 
 Die Anzahl fehlerhafte Counts pro Kanal ergibt sich dann zu
 \begin{equation}
     U = \frac{N_\text{start}\cdot P(1)}{\# \text{Kanäle}}.
+    \label{eq:U}
 \end{equation}
