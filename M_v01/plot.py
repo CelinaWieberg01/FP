@@ -84,3 +84,9 @@ plt.legend()
 
 plt.savefig("plots/kali.pdf")
 plt.figure()
+
+
+# Versuch mal für die Auswertung der Lebensdauern möglichst die ersten paar Werte und die letzten rauszunehmen (aber trotzdem bitte plotten, am besten in anderen farben)
+# ich würde vorschlagen, dass wir die nur die werte NACH dem Kanal mit dem höchsten Count bis zu dem letzten Kanal der noch einen Count =/= hat nehmen
+# vergiss auch nicht die fehlerbalken der counts hinzuzufügen, wahrscheinlich wäre das sinnvoll wenn die transparenter als die Scatterpunkte wären damit man Zeug erkennen kann
+# und vergiss auch nicht Kanalnummern in Zeiten umzuwandeln, entweder direkt für den Plot oder du fittest erst den Zerfall auf die Kanalnummern und rechnest dann die Konstante in eine Zeitzahl um
