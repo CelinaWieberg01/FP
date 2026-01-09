@@ -6,7 +6,7 @@ Im Folgenden Abschnitt werden die gefundenen Ergebnisse diskutiert.
 \subsection{Kalibrierung}
 
 Die in \autoref{fig:delay} dargestellten Ergebnisse deuten darauf hin, dass die beiden Signale der PMs fast zeitgleich eintreffen, da die meisten Counts bei einem Delay von ungefähr 0 gemessen wurden. Die Abnahme der Counts bei höheren und niedrigeren Delays
-ist damit zu erklären, dass die Signale wie in \autoref{fig:delayskizze} dargestellt eine Breite besitzen und der Überlapp, also die Menge der gleichzeitig eintreffenden Counts, abnimmt.
+ist damit zu erklären, dass die Signale wie in \autoref{fig:delayskizze} dargestellt eine Breite besitzen und der Überlapp, also die Menge der gleichzeitig eintreffenden Counts, abnimmt. Der eingestellte Delay von \qty{0}{\nano\second} ist somit begründet.
 
 Die Kalibrierung des MCA in \autoref{fig:kali} zeigt die zu erwartende lineare Abhängigkeit zwischen Kanalnummer und Zeit.
 
@@ -14,4 +14,13 @@ Die Kalibrierung des MCA in \autoref{fig:kali} zeigt die zu erwartende lineare A
 
 Die in \autoref{fig:zerfall} dargestellten Messdaten zeigen den erwarteten exponentiellen Abfall der Myonenanzahl über die Zeit. Sehr hohe Zeiten werden gar nicht gemessen, da statistisch nur sehr wenige Myonen so lange leben. Bei einer längeren Messzeit wäre zu erwarten, auch hier Counts über 0 zu erhalten.
 Ebenfalls auffällig ist die Abweichung der ersten Messpunkte vom exponentiellen Fit, dort ist ein sehr rasanter Anstieg der Counts zu erkennen, der nicht auf der Natur der Myonen beruhen kann, weshalb diese Messwerte für die Auswertung vernachlässigt wurden.
-Da die Zeit der Myonen zwischen Eintritt und Zerfall in diesen Kanälen sehr kurz ist, ist es vorstellbar, dass die geringe Anzahl der Counts auf elektrotechnische Effekte zurückzuführen ist, 
+Da die Zeit der Myonen zwischen Eintritt und Zerfall in diesen Kanälen sehr kurz ist, könnte es vorstellbar sein, dass die geringe Anzahl der Counts auf elektrotechnische Effekte zurückzuführen ist, die durch eine nicht perfekte Justierung des Delays bedingt sind.
+
+Die gefundene Lebensdauer $\tau$ beträgt
+\begin{equation*}
+    \tau = \qty{1.739(105)}{\micro\second}
+\end{equation*}
+
+und hat somit eine Abweichung vom Literaturwert $\tau_\text{lit} = \qty{2.196}{\micro\second}$ von etwa \qty{20.8}{\percent}.
+Es sei hier angemerkt, dass die Lebensdauer unter Berücksichtigung aller Messwerte bei $\qty{2.345(147)}{\micro\second}$ liegen würde, was eine Abweichung von nur \qty{6.7}{\percent} zum Literaturwert bedeuten würde.
+Allerdings ist diese Auswertung durch die nicht erklärbaren Messwerte bei geringen Zeiten verfälscht.
