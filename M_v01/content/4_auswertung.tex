@@ -39,3 +39,83 @@ Die Fehlerrechnung wird mit \texttt{uncertainties} \cite{uncertainties} durchgef
 
 %%%%%% Referenz: \autoref{eq:p} und \autoref{eq:U}
 %%% Berechneter Untergrund: U = 0.2499813999936612 Einheit: Counts/Kanal
+
+\subsection{Kalibrierung}
+
+Der Delay wird wie in \autoref{sec:Kalibrierung} gemessen, die Messdaten sind in \autoref{fig:delay} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/delay.pdf}
+    \caption{Messung des Delays. Bei den blauen Messpunkten ist die Verzögerung in PM \enquote{A} eingestellt worden, bei den roten in PM \enquote{B}. Ebenfalls ist ein Gaußfit mit FWHM dargestellt.}
+    \label{fig:delay}
+\end{figure}
+Es ist erkennbar, dass ein Delay in beide Richtungen zu einem Sinken der gemessenen Counts führt.
+
+Der Gaußfit der Form
+\begin{equation*}
+    f(x) = a \cdot \exp\left((x-x_0)^2 / (2\sigma^2)\right),
+\end{equation*}
+
+$x$ ist der eingestellte Delay in Nanosekunden, hat die Parameter
+
+\begin{align*}
+    a &= \num{283.61(7.86)} \\
+    x_0 &= \qty{0.651(175)}{\nano\second} \\
+    \sigma &= \qty{5.07(20)}{\nano\second}
+\end{align*}
+
+mit einer FWHM-Breite von
+\begin{equation*}
+    \text{FWHM} = \qty{11.93(46)}{\nano\second}.
+\end{equation*}
+
+Die Kalibrierung für den MCA wird ebenfalls wie in \autoref{sec:Kalib} beschrieben durchgeführt. Die Messdaten sind in \autoref{fig:kali} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/kali.pdf}
+    \caption{Kalibrierung des MCA. Dargestellt sind der eingestellte Impulsabstand gegen die zugeordnete Kanalnummer. Ebenfalls ist ein linearer Fit dargestellt.  }
+    \label{fig:kali}
+\end{figure}
+
+Der lineare Fit nach \autoref{eq:linfit} hat die Parameter
+
+\begin{align*}
+    m &= \qty{0.021700(15)}{\micro\second\per\text{Kanal}} \\
+    n &= \qty{0.1577(35)}{\micro\second}.
+\end{align*}
+
+Über diese Funktion können die Kanalnummern in Zeiten umgerechnet werden.
+
+
+\subsection{Messung der Myonen}
+
+Die Messung der Myonen wird wie in \autoref{sec:Messung} beschrieben durchgeführt. Die Kanäle werden wie zuvor beschrieben in Zeiten umgerechnet und die Counts der Kanäle gegen die Zeit aufgetragen, siehe \autoref{fig:zerfall}. Es werden \num{1496787} Startsignale und \num{3144} Stoppsignale gemessen.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{plots/zerfall.pdf}
+    \caption{Messung der Myonenlebensdauer. Dargestellt sind die gemessenen Counts gegen die Zeit. Ebenfalls ist ein exponentieller Fit nach \autoref{eq:lambda} dargestellt. Blau sind die dafür berücksichtigten Messpunkte, rot jene, die dafür ignoriert wurden.}
+    \label{fig:zerfall}
+\end{figure}
+
+Der exponentielle Fit nach \autoref{eq:lambda} hat die Parameter
+\begin{align*}
+    N_0 &= \num{93.8} \pm \num{146477176.8} \\
+    \lambda &= \qty{0.575(35)}{\per\micro\second} \\
+    c &= \left(\qty{-1.815} \pm \num{2716074.511}\right) \si{\micro\second} \\
+    U &= \num{0.712(326)}.
+\end{align*}
+
+Für die mittlere Lebensdauer ergibt sich somit
+
+\begin{equation*}
+    \tau = \frac{1}{\lambda} = \qty{1.739(105)}{\micro\second}.
+\end{equation*}
+
+Neben dem Untergrund für den durchgeführten Fit kann dieser auch wie in \autoref{eq:p} und \ref{eq:U} beschrieben berechnet werden, es ergibt sich
+\begin{equation*}
+    U = \num{0.250} \, \text{Counts/Kanal}.
+\end{equation*}
+

@@ -90,10 +90,11 @@ Zeit in ein Amplitudensignal um, das der Vielkanalanalysator verwerten kann.
     \centering
     \includegraphics[width=0.40\textwidth]{bilder/delay.png}
     \caption{Qualitative Darstellung der Delay-Kalibrierung. Oben sind die Signale bei drei verschiedenen Delays dargestellt, unten der Überlapp }
-    \label{fig:delay}
+    \label{fig:delayskizze}
 \end{wrapfigure}
 
 \subsection{Kalibrierung}
+\label{sec:Kalibrierung}
 Als erstes müssen die PMs mit genügend Spannung versorgt werden. Dafür werden diese auf ungefähr \SI{1800}{\volt} hochgeregelt und über den Discriminator dem Counter verbunden. Die Spannungen werden möglichst auf ungefähr 30 Events pro Sekunde geregelt.
 In dieser Versuchsdurchführung war ein Counter deutlich schneller als der andere, weshalb der Discriminator umgeregelt werden muss. Über ein Oszilloskop lassen sich Breite und Höhe der gemessenen Signale darstellen. Diese sollten eine Breite von ungefähr \SI{10}{\nano\second} 
 und eine genügend große Intensität haben. Über die Regelschrauben "THR" für Threshold und "WIDTH" können die Höhe bzw. Breite der Signale reguliert werden. Diese werden variiert, bis sie eine akzeptable Breite und ausreichenden Ausschlag haben.
@@ -103,7 +104,7 @@ Hierfür wird zunächst das Signal eines PMs an den Delay (C) gesteckt und schri
 Anschließend wird der andere Photomultiplier stattdessen angesteckt, um eine Verzögerung des anderen Signals, also in \enquote{negative Richtung} zu erhalten. Die vorige Messung wird wiederholt.
 
 Die Signale der PMs sind rechteck-ähnlich mit gauß-ähnlichen Tails. Werden diese schrittweise durch Variation des Delays überlagert, nimmt der Überlapp der Signale schrittweise zu und hat eine ähnliche Form wie die Signale selber.
-Dieser Sachverhalt ist in \autoref{fig:delay} dargestellt. Es wird jener Delay gewählt, der den höchsten Überlapp, also den höchsten Count produziert, da die Signale dann gleichzeitig ankommen.
+Dieser Sachverhalt ist in \autoref{fig:delayskizze} dargestellt. Es wird jener Delay gewählt, der den höchsten Überlapp, also den höchsten Count produziert, da die Signale dann gleichzeitig ankommen.
 
 Im Anschluss muss noch der Vielkanalanalysator (Multi-Channel Analyzer, MCA) kalibriert werden. Hierfür wird der Doppelimpulsgenerator angeschlossen, der zwei Signale mit einstellbarer Verzögerung liefert. 
 Diese Verzögerung gibt über den TAC eine feste Amplitude, sodass ein Kanal des MCAs einer bestimmten Zeitspanne entspricht. Die Verzögerungen werden in \SI{5}{\micro\second}-Schritten variiert und die zugehörigen Kanäle gemessen.
@@ -117,7 +118,7 @@ Es ist ein linearer Zusammenhang zu erwarten, sodass über
 einem Kanal eine eindeutige Zeitspanne zugeordnet werden kann. $K$ ist dabei die Kanalnummer, $m$ ist die Steigung in \si{\micro\second} pro Kanalnummer und $n$ der $y$-Achsenabschnitt in \si{\micro\second}.
 
 \subsection{Messung der Myonen}
-
+\label{sec:Messung}
 Sobald alle Kalibrierungen vorgenommen wurden, kann die Messung der Myonen beginnen. Die erwartete Lebensdauer beträgt circa \SI{2}{\micro\second}. Um eine gute Statistik zu erhalten, wird also eine Suchzeit von ungefähr 
 \SI{10}{\micro\second} eingestellt. Das ist die Zeit, die zwischen Eintritt und Zerfall eines Myons verstreicht. Der Counter wird an die beiden AND-Gatter verbunden, sodass alle Startsignale und Stopsignale auch gezählt werden.
 Die Messung läuft für ungefähr 48 Stunden.
