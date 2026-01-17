@@ -1,4 +1,160 @@
 \section{Theoretical Background}
 \label{sec:Theorie}
 
-In this section, the theoretical background for interferometry is established. The concepts of polarisation and coherence of light are explained. Equations for for intensities, contrasts, angle dependencies and refration indices are given.
+In this section, the theoretical background for interferometry is established. The concepts of polarisation and coherence of light are explained. Equations for for intensities, contrasts, angle dependencies and indices of refraction are given.
+
+
+\subsection{Light and its properties}
+
+In order to measure interference, the light needs to be coherent and polarized. These two aspects are explained below.
+
+\subsubsection{Polarization}
+
+\begin{wrapfigure}{r}{0.48\textwidth}
+    \vspace{-20pt}
+    \centering
+    \includegraphics[width=0.48\textwidth]{bilder/polarization.png}
+    \caption{Three possible polarizations of light. The superimposed waves are shown in red and green in the back, the resulting wave in blue in the middle of each example. On the bottom, the path of the resulting field vector is shown \cite{polarization}.}
+    \label{fig:polarization}
+\end{wrapfigure}
+
+Light is an electromagnetic wave, meaning it has two perpendicular oscillating components, an electric field $\vec{E}$ and a magnetic field $\vec{B}$. By convention, the direction polarization is determined by the direction of oscillation of the electric wave component \cite{edmund}.
+Usually, light from most sources is \textbf{unpolarized} or rather \textbf{randomly polarized}, meaning the direction of oscillation of the electric field changes rapidly.
+Using a polarizing effect, it is possible to extract a preferred mode of oscillation. These effects can be found in birefringent polarizers like calcite, reflection polarizers using the Brewster's angle, or dichroistic absorbers like polyvinil alcohol \cite{API}.
+The light is then \textbf{linearly polarized}, meaning the electric field only oscillates in one direction. If two linearly polarized beams are superimposed perpendicular to one another with the same magnitude in their respective $\vec{E}$,
+the result is \textbf{circularly polarized} light where the sum of the electric field vectors follows a circle. Depending on the phase of the linearly polarized waves, one differentiates between right circular and left circular polarization.
+Lastly, if the superimposed waves do not have the same magnitude, the resulting light has \textbf{elliptical polarization}. Linear, circular and elliptical polarization are shown in \autoref{fig:polarization}.
+
+
+
+\subsubsection{Coherence}
+Coherence describes the correlation of points in a wave at different points in space or time. For this purpose, one differentiates between \textbf{temporal coherence} and \textbf{spatial coherence}.
+A temporally coherent wave has a set phase relation at one point in space at different points in time. This means it is possible to predict the phase of a wave for all times $t$. This is only true for ideally monochromatic light
+that has only one wavelength $\lambda$ or frequencs $\nu$. Real sources, however, emit in a small spectrum causing the frequency of around $\SI{10e15}{\hertz}$ to fluctuate slowly. The time in which it is possible to predict the phase is called the \textbf{coherence time} $\Delta t_\text{c}$ for which it holds that
+\begin{equation*}
+    \Delta t_\text{c} = \frac{1}{\Delta \nu}
+\end{equation*}
+with the spectral width $\Delta \nu$ \cite{hecht}.
+
+Analogously, spatial coherence describes the correlation of different points in space at one point in time.
+Sometimes, the concept of spatial coherence is applied to light sources: a spatially incoherent light source like a filament light bulb emits light at different point with uncorrelated phases \cite{gretarsson}.
+
+The degree of coherence is defined as \cite{hecht}
+\begin{equation}
+    \left|\tilde{\gamma}_{12}(\tau)\right| = \left| \frac{\left\langle E_1(t+\tau)E_2^{\ast}(t)\right\rangle_T }{\sqrt{\left\langle \left| E_1 \right|^2 \right\rangle \left\langle \left| E_2 \right|^2 \right\rangle}} \right| = \gamma
+    \label{eq:gamma}
+\end{equation}
+with the complex electric fields $E_1$ and $E_2$, the time delay between the two fields $\tau$ and the time of observation $t$. This expression basically quantifies the coherence of two waves. $\gamma = 1$ describes perfect coherence, $\gamma = 0$ complete incoherence. For $0 < \gamma < 1$, waves are partially coherent.
+
+
+Coherence as well as well as determined polarization are key in lab interferometry experiments.
+
+
+\subsection{Interferometry}
+
+\begin{wrapfigure}{r}{0.40\textwidth}
+    \vspace{-20pt}
+    \centering
+    \includegraphics[width=0.40\textwidth]{bilder/thinfilminterference.jpg}
+    \caption{Close up of a water-lipid boundary, showcasing thin-film interference of incoherent, unpolarized light \cite{thinfilm}.}
+    \label{fig:thinfilm}
+\end{wrapfigure}
+Coherent and polarized light is not necessary for interference to take place. E. g., water lipid boundaries are able to produce interference patterns in sunlight, see \autoref{fig:thinfilm}.
+The reason for this are small path lengths in the film along with the splitting of light in different polarizations according to the Fresnel equations. 
+In lab experiments relying on interference, dimensions are much larger, requiring coherent light with sufficient coherence lengths. The coherence length is related to the previously explained coherence time by 
+\begin{equation*}
+    \Delta x_\text{c} = c \Delta t_\text{c}
+\end{equation*}
+with the speed of light $c$. According to the Fresnel-Arago laws \cite{hecht}, two coherent light beams need to have equal linear polarization in order for interference patterns to appear.
+Lasers produce polarized light in only a few narrow frequencies, meaning they have a large coherence length and are applicable in big experiments. For example, LIGO uses Nd:YAG lasers \cite{LIGO} which ordinarily already have a coherence length of over \SI{1}{\kilo\meter} \cite{mephisto}.
+Further stabilization measures are said to increase the coherence length to over \SI{10e7}{\kilo\meter} \cite{LIGO}. Normal lab experiments do not require such immense coherence lengths since the setup is much smaller.
+
+
+\begin{wrapfigure}{r}{0.50\textwidth}
+    \vspace{-20pt}
+    \centering
+    \includegraphics[width=0.50\textwidth]{bilder/contrast.png}
+    \caption{Two interference patterns with different contrast $C$. On the left, $C$ is high. On the right $C$ is low.}
+    \label{fig:contrast}
+\end{wrapfigure}
+
+The contrast $C$ or visibility of an interference pattern is defined as
+
+\begin{equation}
+    C = \left| \frac{I_+ - I_-}{I_+ + I_-} \right|
+    \label{eq:contrast}
+\end{equation}
+
+where $I_+$ and $I_-$ are the maximum and minimum intensity of the fringes, respectively, demonstrated in \autoref{fig:contrast} \cite{gretarsson}.
+
+Generally, the intensity in an interference pattern created by two equally polarized, coherent beams with intensities $I_1$ and $I_2$ is given by
+\begin{equation*}
+    I = I_1 + I_2 + 2\sqrt{I_1 I_2} \cos(\delta)
+\end{equation*}
+with the path difference $\delta$. $\delta$ thus determines whether or not there is destructive or constructive interference. It corresponds to the earlier discussed $\gamma$ in \autoref{eq:gamma} \cite{hecht}.
+The maximum intensity $I_+$ and minimum intensity $I_-$ are then given by
+\begin{equation}
+    I_\pm = I_1 + I_2 \pm 2\sqrt{I_1 I_2}.
+    \label{eq:I_interference}
+\end{equation}
+
+Assuming that a single beam is split under a polarization angle $\phi$, i. e., $E_1 = E_0 \cos(\phi)$ and $E_2 = E_0 \sin(\phi)$, it can be shown that \autoref{eq:I_interference} simplifies to
+\begin{equation}
+    I_\pm \propto I_0 (1 \pm sin(2\phi)),
+    \label{eq:I_phi}
+\end{equation}
+
+which can be inserted into \autoref{eq:contrast}, yielding
+ \begin{equation}
+    C = \left| \sin(2\phi) \right|.
+    \label{eq:contrast_phi}
+ \end{equation}
+
+
+
+\subsection{Index of refraction}
+
+The refractive index determines the angle of refraction of light in a medium.
+Interferometry experiments can be used to determine the index of refraction of different materials like glass or gases. This is generally done by counting the number of interference fringes $M$.
+After a phase shift $\delta$ of $2\pi$, one fringe occurs, meaning
+\begin{equation}
+    M = \frac{\delta}{2\pi}
+    \label{eq:M}
+\end{equation}
+
+\subsubsection{Refractive index of glass}
+
+If light beams with the vacuum wavelength $\lambda_0$ are sent through two glass plates of thickness $T$ rotated by $\Theta_0 = \pm\SI{10}{\degree}$, they experience phase shifts $\Delta\Phi$ due to the index of refraction.
+The phase shift for a given rotation angle $\Theta$ of the glass can be approximated as
+\begin{equation*}
+    \Delta\Phi(\Theta) = \frac{2\pi}{\lambda_\text{0}} T \frac{n-1}{2n} \left( (\Theta + \Theta_0)^2 - (\Theta + \Theta_0)^2 \right).
+\end{equation*}
+
+Using \autoref{eq:M}, the index of refraction can be written as 
+\begin{equation}
+    n = \frac{1}{1- \frac{M\lambda_0}{2T\Theta\Theta_0}}.
+    \label{eq:glass}
+\end{equation}
+
+\subsubsection{Refractive index of air}
+
+If light passes through a gas cell of length $L$, it undergoes a phase shift given by 
+\begin{equation*}
+    \Delta\Phi = \frac{2\pi}{\lambda_0}\Delta n L
+\end{equation*}
+where $\Delta n$ is the difference of indices of refraction of the investigated media, $\Delta n = n - 1$ for a difference between a medium and the vacuum.
+Using \autoref{eq:M}, one can write 
+\begin{equation}
+    n = \frac{M\lambda_0}{L} + 1
+    \label{eq:n_M}
+\end{equation}
+for the refractive index at different pressures $p$ since $M$ changes with $p$.
+The Lorentz-Lorenz law \cite{lorentzlorenz} can be approximated for $n \approx 1$ to
+
+\begin{equation}
+    n = \frac{3}{2} \frac{Ap}{RT} + 1
+    \label{eq:lorentzlorenz}
+\end{equation}
+
+with the pressure $p$, molar refraction $A$, universal gas constant $R$ and the temperature of measurement $T$. Using \autoref{eq:lorentzlorenz}, the indices of refraction at different pressures
+can be fitted to obtain $n$ at standard conditions. 
