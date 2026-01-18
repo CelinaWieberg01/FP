@@ -30,7 +30,7 @@ Lastly, if the superimposed waves do not have the same magnitude, the resulting 
 \subsubsection{Coherence}
 Coherence describes the correlation of points in a wave at different points in space or time. For this purpose, one differentiates between \textbf{temporal coherence} and \textbf{spatial coherence}.
 A temporally coherent wave has a set phase relation at one point in space at different points in time. This means it is possible to predict the phase of a wave for all times $t$. This is only true for ideally monochromatic light
-that has only one wavelength $\lambda$ or frequencs $\nu$. Real sources, however, emit in a small spectrum causing the frequency of around $\SI{10e15}{\hertz}$ to fluctuate slowly. The time in which it is possible to predict the phase is called the \textbf{coherence time} $\Delta t_\text{c}$ for which it holds that
+that has only one wavelength $\lambda$ or frequency $\nu$. Real sources, however, emit in a small spectrum causing the frequency of around $\SI{10e15}{\hertz}$ to fluctuate slowly. The time in which it is possible to predict the phase is called the \textbf{coherence time} $\Delta t_\text{c}$ for which it holds that
 \begin{equation*}
     \Delta t_\text{c} = \frac{1}{\Delta \nu}
 \end{equation*}
@@ -74,7 +74,7 @@ Further stabilization measures are said to increase the coherence length to over
     \vspace{-20pt}
     \centering
     \includegraphics[width=0.50\textwidth]{bilder/contrast.png}
-    \caption{Two interference patterns with different contrast $C$. On the left, $C$ is high. On the right $C$ is low.}
+    \caption{Two interference patterns with different contrast $C$. On the left, $C$ is high. On the right $C$ is low \cite{gretarsson}.}
     \label{fig:contrast}
 \end{wrapfigure}
 
@@ -100,7 +100,7 @@ The maximum intensity $I_+$ and minimum intensity $I_-$ are then given by
 
 Assuming that a single beam is split under a polarization angle $\phi$, i. e., $E_1 = E_0 \cos(\phi)$ and $E_2 = E_0 \sin(\phi)$, it can be shown that \autoref{eq:I_interference} simplifies to
 \begin{equation}
-    I_\pm \propto I_0 (1 \pm sin(2\phi)),
+    I_\pm \propto I_0 (1 \pm \sin(2\phi)),
     \label{eq:I_phi}
 \end{equation}
 
@@ -136,6 +136,8 @@ Using \autoref{eq:M}, the index of refraction can be written as
     \label{eq:glass}
 \end{equation}
 
+According to literature, the index of refraction of air for a wavelength of \SI{632.99}{\nano\meter} is $n = \num{1.5151}$ \cite{indices}.
+
 \subsubsection{Refractive index of air}
 
 If light passes through a gas cell of length $L$, it undergoes a phase shift given by 
@@ -157,4 +159,4 @@ The Lorentz-Lorenz law \cite{lorentzlorenz} can be approximated for $n \approx 1
 \end{equation}
 
 with the pressure $p$, molar refraction $A$, universal gas constant $R$ and the temperature of measurement $T$. Using \autoref{eq:lorentzlorenz}, the indices of refraction at different pressures
-can be fitted to obtain $n$ at standard conditions. 
+can be fitted to obtain $n$ at standard conditions. According to literature, the index of refraction of air for a wavelength of \SI{632.99}{\nano\meter} is $n = \num{1.00027653}$ \cite{indices}.
