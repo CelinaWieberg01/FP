@@ -4,17 +4,85 @@
 The experimental setup and working principles of core components like the laser and polarizer used here are outlined.
 
 \subsection{Sagnac interferometer}
+There are many types of interferometers. A lot of setups require mirrors and beam splitters in order to measure interference. The Michelson interferometer is one of the best known
+types of interferometers, having been used to disprove the aether theory in 1881 \cite{tum} or in LIGO to find gravitational waves in 2016 \cite{grav}.
+
+In this experiment, a Sagnac interferometer is used, the topology of which is depicted in \autoref{fig:sagnac_skizze}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{bilder/sagnac.png}
+    \caption{Plan of the Sagnac interferometer used in the experiment. The light source, a HeNe laser, as well as the mirrors and the beam splitter are labeled \cite{manual}.}
+    \label{fig:sagnac_skizze}
+\end{figure}
+
+A Sagnac interferometer works by splitting a coherent polarized beam into two seperate beams which follow the same path but in different directions \cite{hecht}.
+This causes any disturbance of the positioning of the mirrors, for example, to affect both beams equally, cancelling out, making the interference pattern highly stable against outside disturbances.
 
 \subsection{HeNe-Laser}
+The light source in this experiment is a helium-neon laser. This laser contains a low pressure gas mixture consisting of about 1 part neon and 4 parts helium, the neon being the laser active medium.
+A laser usually consists of a pump applying a large electric field to excite the medium and a resonator, consisting of two mirrors at either end. One mirror is semi transparent for the light the exit through.
+
+The electric field excites the helium atoms in the container, causing the electrons to gain about \SI{20.61}{\electronvolt} relative to the ground state. Via collisions,
+this energy is transferred to the neon atoms at about \SI{20.66}{\electronvolt}. These two states are meta stable. Via stimulated emission, the neon emits photons of about \SI{1.96}{\electronvolt}.
+The excited state of about \SI{18.70}{\electronvolt} is short lived and relaxes under spontaneous emission or collisions with the  container. This system is called a 4 level system since four excitation states are involved.
+
+Only the photons emitted by stimulation that are perpendicular to the resonator mirrors are coupled back into the laser, causing more stimulated emission of very coherent, uniformly polarized light.
+The rest exits the container. The wavelength corresponding to the stimulated photons is about \SI{632.990}{\nano\meter} \cite{manual}.
+
+Lasers cannot work in 2 level systems because population inversion, i. e., more excited states than ground states, is not possible. Population inversion is important for spontaneous emission to domiante over absorption \cite{leifi}.
 
 \subsection{PBSC}
 
+A \textbf{p}olarizing \textbf{b}eam \textbf{s}plitter \textbf{c}ube is a device to split one beam into two perpendicular beams with different but orthogonally linear polarization.
+It consists of two prisms attached to one another with dielectric layers. An incoming, incoherent, unpolarized light wave hits these media, but only one polarization, namely the one perpendicular to the plane of incidence,
+causes electrons to oscillate, creating a reflected beam with only one but strong polarization, though weak in intensity, also perpendicular to the plane of incidence. The transmitted beam is strong in intensity but merely partially polarized.
+With several layers of such dielectric media, it is possible to further split the transmitted beam, increasing the intensity of the reflected beam and further polarizing the transmitted beam \cite{hecht}. Sketches of the mentioned concepts are depicted in \autoref{fig:polarisatoren}.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=0.7\textwidth]{bilder/polarisator1.png}
+      \caption{Depiction of a single reflection of an unpolarized beam of light on a dielectric surface.}
+      \label{fig:pol1}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/polarisator2.png}
+      \caption{Sketch of multiple glass plates, abusing the effect depicted in \ref{fig:pol1}.}
+      \label{fig:pol2}
+    \end{subfigure}
+    \begin{subfigure}{0.3\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/polarisator3.png}
+      \caption{Sketch of a PBSC. Two beams exit orthogonal to one another with (almost) perfect polarization.}
+      \label{fig:pol3}
+    \end{subfigure}
+    \caption{Concepts and sketches of polarization and polarizers \cite{hecht}.}
+    \label{fig:polarisatoren}
+  \end{figure}
+
 \subsection{Experiment}
+The entire experiment relies on proper alignment which is done before any measurements are taken.
 
 \subsubsection{Alignment}
+The emitted light from the HeNe laser is linearly polarized. The polarization is to be tilted by \SI{45}{\degree} with respect to the vertical. Using the two mirrors M1 and M2,
+the beam is coupled into the PBSC and the interferometer by central reflection on the mirrors under \SI{45}{\degree} each. The beam deflected by the PBSC is blocked and using adjustment plates,
+the beam passing through the PBSC is centered onto the mirror Ma. This porcedure is repeated for the deflected beam onto mirror Mc for which the base plate of the PBSC can be adjusted directly. The height is controlled via metal plates that can be placed under the base.
+
+Then, the path onto mirror Mb is adjusted by moving the back plates of Ma and Mc and using the screw at the back of the mirrors for fine tuning until a dot appears on Mb.
+Mb is adjusted so that the beam from Ma and Mc pass centrally onto Mc and Ma respectively, recombining at one point on the PBSC.
+
+Because of their orthogonal polarization, there is no interference pattern to be seen. Using a polarisation filter at \SI{45}{\degree}, a pattern can be made visible, indicating the beams are not perfectly parallel along their entire length.
+To eliminate this interference pattern, M2 is adjusted so that the incoming beam is parallel to the surface of the PBSC, causing the overlapping beams to have a horizontal offset. 
 
 \subsubsection{Contrast}
+Using a diode, the contrast of the interference pattern at maximum and minimum can be measured for different angles of polarization $\Theta$. 
 
 \subsubsection{Refractive index of glass}
+Using the double glass holder, the number of interference maxima and minima is measured as a function of the rotation angle $\Theta$. Two diodes are used for a differential voltage method,
+which produces a higher signal to noise ratio.
 
 \subsubsection{Refractive index of air}
+A gas cell is installed in one of the beams and evacuated. The number of minima and maxima of the interference pattern is measured while the pressure is increased. 
