@@ -18,7 +18,8 @@ In order to measure interference, the light needs to be coherent and polarized. 
     \label{fig:polarization}
 \end{wrapfigure}
 
-Light is an electromagnetic wave, meaning it has two perpendicular oscillating components, an electric field $\vec{E}$ and a magnetic field $\vec{B}$. By convention, the direction polarization is determined by the direction of oscillation of the electric wave component \cite{edmund}.
+Light is an electromagnetic wave, meaning it has two perpendicular oscillating components with respect to its direction of propagation $\vec{k}$, an electric field $\vec{E}$ and a magnetic field $\vec{B}$.
+By convention, the direction polarization is determined by the direction of oscillation of the electric wave component \cite{edmund}.
 Usually, light from most sources is \textbf{unpolarized} or rather \textbf{randomly polarized}, meaning the direction of oscillation of the electric field changes rapidly.
 Using a polarizing effect, it is possible to extract a preferred mode of oscillation. These effects can be found in birefringent polarizers like calcite, reflection polarizers using the Brewster's angle, or dichroistic absorbers like polyvinil alcohol \cite{API}.
 The light is then \textbf{linearly polarized}, meaning the electric field only oscillates in one direction. If two linearly polarized beams are superimposed perpendicular to one another with the same magnitude in their respective $\vec{E}$,
@@ -30,7 +31,7 @@ Lastly, if the superimposed waves do not have the same magnitude, the resulting 
 \subsubsection{Coherence}
 Coherence describes the correlation of points in a wave at different points in space or time. For this purpose, one differentiates between \textbf{temporal coherence} and \textbf{spatial coherence}.
 A temporally coherent wave has a set phase relation at one point in space at different points in time. This means it is possible to predict the phase of a wave for all times $t$, i. e., it has a fixed period $T$. This is only true for ideally monochromatic light
-that has only one wavelength $\lambda$ or frequency $\nu$. Real sources, however, emit in a small spectrum causing the frequency of around $\SI{10e15}{\hertz}$ to fluctuate slowly. The time in which it is possible to predict the phase is called the \textbf{coherence time} $\Delta t_\text{c}$ for which it holds that
+that has only one wavelength $\lambda$ or frequency $\nu$. Real sources, however, emit in a small spectrum causing the frequency of around \SI{1e15}{\hertz} to fluctuate slowly. The time in which it is possible to predict the phase is called the \textbf{coherence time} $\Delta t_\text{c}$ for which it holds that
 \begin{equation*}
     \Delta t_\text{c} = \frac{1}{\Delta \nu}
 \end{equation*}
@@ -59,7 +60,7 @@ Coherence as well as well as determined polarization are key in lab interferomet
     \caption{Close up of a water-lipid boundary, showcasing thin-film interference of incoherent, unpolarized light \cite{thinfilm}.}
     \label{fig:thinfilm}
 \end{wrapfigure}
-Coherent and polarized light is not necessary for interference to take place. E. g., water lipid boundaries are able to produce interference patterns in sunlight, see \autoref{fig:thinfilm}.
+Coherent and polarized light is not necessary for interference to take place. E. g., water lipid boundaries are able to produce colorful interference patterns in sunlight, see \autoref{fig:thinfilm}.
 The reason for this are small path lengths in the film along with the splitting of light in different polarizations according to the Fresnel equations. 
 In lab experiments relying on interference, dimensions are much larger, requiring coherent light with sufficient coherence lengths. The coherence length is related to the previously explained coherence time by 
 \begin{equation*}
@@ -67,7 +68,7 @@ In lab experiments relying on interference, dimensions are much larger, requirin
 \end{equation*}
 with the speed of light $c$. According to the Fresnel-Arago laws \cite{hecht}, two coherent light beams need to have equal linear polarization in order for interference patterns to appear.
 Lasers produce polarized light in only a few narrow frequencies, meaning they have a large coherence length and are applicable in big experiments. For example, LIGO uses Nd:YAG lasers \cite{LIGO} which ordinarily already have a coherence length of over \SI{1}{\kilo\meter} \cite{mephisto}.
-Further stabilization measures are said to increase the coherence length to over \SI{10e7}{\kilo\meter} \cite{LIGO}. Normal lab experiments do not require such immense coherence lengths since the setup is much smaller.
+Further stabilization measures are said to increase the coherence length to over \SI{1e7}{\kilo\meter} \cite{LIGO}. Normal lab experiments do not require such immense coherence lengths since the setup is much smaller.
 
 
 \begin{wrapfigure}{r}{0.50\textwidth}
@@ -116,7 +117,7 @@ which can be inserted into \autoref{eq:contrast}, yielding
 
 The refractive index determines the angle of refraction of light in a medium.
 Interferometry experiments can be used to determine the index of refraction of different materials like glass or gases. This is generally done by counting the number of interference fringes $M$.
-After a phase shift $\delta$ of $2\pi$, one fringe occurs, meaning
+After a phase shift $\delta = 2\pi$, one fringe occurs, meaning 
 \begin{equation}
     M = \frac{\delta}{2\pi}
     \label{eq:M}
@@ -124,15 +125,21 @@ After a phase shift $\delta$ of $2\pi$, one fringe occurs, meaning
 
 \subsubsection{Refractive index of glass}
 
-If light beams with the vacuum wavelength $\lambda_0$ are sent through two glass plates of thickness $T$ rotated by $\Theta_0 = \pm\SI{10}{\degree}$, they experience phase shifts $\Delta\Phi$ due to the index of refraction.
-The phase shift for a given rotation angle $\Theta$ of the glass can be approximated as
+If light beams with the vacuum wavelength $\lambda_0$ are sent through two glass plates of thickness $d$ rotated by $\Theta_0 = \SI{10}{\degree}$, they experience phase shifts $\Delta\Phi$ due to the index of refraction.
+The phase shift in a beam for a given rotation angle $\Theta$ of the glass through only one plate at no angle is given as
 \begin{equation*}
-    \Delta\Phi(\Theta) = \frac{2\pi}{\lambda_\text{0}} T \frac{n-1}{2n} \left( (\Theta + \Theta_0)^2 - (\Theta + \Theta_0)^2 \right).
+    \Delta\Phi(\Theta) \approx \frac{2\pi}{\lambda_\text{0}} d \frac{n-1}{2n} \left( \Theta \right).
 \end{equation*}
 
-Using \autoref{eq:M}, the index of refraction can be written as 
+A beam that passes through two plates already rotated by $\Theta_0$ experiences a phase shift of 
+\begin{equation*}
+    \Delta\Phi(\Theta) \approx \frac{2\pi}{\lambda_\text{0}} d \frac{n-1}{2n} \left( (\Theta + \Theta_0)^2 - (\Theta + \Theta_0)^2 \right).
+\end{equation*}
+
+The term $(\Theta + \Theta_0)^2 - (\Theta + \Theta_0)^2$ can be linearized in $\Theta$ around $\Theta_0$ for small angles, yielding $2\Theta\Theta_0$.
+Then, using \autoref{eq:M}, the index of refraction can be written as 
 \begin{equation}
-    n = \frac{1}{1- \frac{M\lambda_0}{2T\Theta\Theta_0}}.
+    n = \frac{1}{1- \frac{M\lambda_0}{2d\Theta\Theta_0}}.
     \label{eq:glass}
 \end{equation}
 

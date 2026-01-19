@@ -11,10 +11,22 @@ In this experiment, a Sagnac interferometer is used, the topology of which is de
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{bilder/sagnac.png}
-    \caption{Plan of the Sagnac interferometer used in the experiment. The light source, a HeNe laser, as well as the mirrors and the beam splitter are labeled \cite{manual}.}
-    \label{fig:sagnac_skizze}
-\end{figure}
+    \begin{subfigure}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/sagnac.png}
+      \caption{Plan of the Sagnac interferometer used in the experiment.}
+      \label{fig:sagnac_skizze}
+    \end{subfigure}\hfill
+    \begin{subfigure}{0.48\textwidth}
+      \centering
+      \includegraphics[width=\textwidth]{bilder/aufbau.png}
+      \caption{Realized setup including gas cell, glas panels and polarization filters.}
+      \label{fig:aufbau}
+    \end{subfigure}
+    \caption{Sketch and realized setup of the Sagnac interferometer used in the experiment.}
+    \label{fig:sagnac_setup}
+  \end{figure}
+
 
 A Sagnac interferometer works by splitting a coherent polarized beam into two seperate beams which follow the same path but in different directions \cite{hecht}.
 This causes any disturbance of the positioning of the mirrors, for example, to affect both beams equally, cancelling out, making the interference pattern highly stable against outside disturbances.
@@ -69,20 +81,21 @@ The entire experiment relies on proper alignment which is done before any measur
 \subsubsection{Alignment}
 The emitted light from the HeNe laser is linearly polarized. The polarization is to be tilted by \SI{45}{\degree} with respect to the vertical. Using the two mirrors M1 and M2,
 the beam is coupled into the PBSC and the interferometer by central reflection on the mirrors under \SI{45}{\degree} each. The beam deflected by the PBSC is blocked and using adjustment plates,
-the beam passing through the PBSC is centered onto the mirror Ma. This porcedure is repeated for the deflected beam onto mirror Mc for which the base plate of the PBSC can be adjusted directly. The height is controlled via metal plates that can be placed under the base.
-
-Then, the path onto mirror Mb is adjusted by moving the back plates of Ma and Mc and using the screw at the back of the mirrors for fine tuning until a dot appears on Mb.
-Mb is adjusted so that the beam from Ma and Mc pass centrally onto Mc and Ma respectively, recombining at one point on the PBSC.
-
-Because of their orthogonal polarization, there is no interference pattern to be seen. Using a polarisation filter at \SI{45}{\degree}, a pattern can be made visible, indicating the beams are not perfectly parallel along their entire length.
-To eliminate this interference pattern, M2 is adjusted so that the incoming beam is parallel to the surface of the PBSC, causing the overlapping beams to have a horizontal offset. 
+the beam passing through the PBSC is centered onto the mirrors Ma and Mc. Then, by adjusting Ma and Mc directly, the beams are centered onto Mb and the PBSC again. Without another polarization filter in front of the detector,
+no interference pattern can be seen. A filter is inserted to observe the interference pattern on a testing screen. The size and orientation of the fringes can be manipulated by adjusting the mirrors slightly.
+The interference pattern is to be eliminated by placing the glass plates into the beam and splitting the beams. The mirrors Ma and Mc are adjusted again to create effectively only one big fringe. 
 
 \subsubsection{Contrast}
-Using a diode, the contrast of the interference pattern at maximum and minimum can be measured for different angles of polarization $\Theta$. 
+Using a diode, the contrast of the interference pattern at maximum and minimal intensity can be measured for different angles of polarization $\Theta$. The final polarization filter is removed and the dot on the testing screen or photodetector
+is set to a maximum intensity. The first polarization filter is rotated in \SI{15}{\degree} steps from \SI{0}{\degree} to \SI{180}{\degree} and the voltage on the photodiode is recorded. This is repeated two more times.
+Then, the intensity is minimized by adjusting the screws on the mirror and the same measurement is repeated. 
 
 \subsubsection{Refractive index of glass}
-Using the double glass holder, the number of interference maxima and minima is measured as a function of the rotation angle $\Theta$. Two diodes are used for a differential voltage method,
-which produces a higher signal to noise ratio.
+Using the double glass holder, the number of interference maxima and minima is measured. Two diodes are used for a differential voltage method, which produces a higher signal to noise ratio.
+The glass plates have a holder with a rotational element set at \SI{30}{\degree}. The counter is reset and the rotational element is manually slowly rotated to \SI{40}{\degree}. The number of maxima and minima is counted.
+This is repeated several times to ensure good statistics because of instabilities in the setup, causing the interference pattern to shift and the counts to increase rapidly at any slight movements.
 
 \subsubsection{Refractive index of air}
-A gas cell is installed in one of the beams and evacuated. The number of minima and maxima of the interference pattern is measured while the pressure is increased.
+A gas cell is installed in one of the beams and evacuated. The number of minima and maxima of the interference pattern is measured while the pressure is increased. For this, the ventilation valve is slowly opened.
+The increase in pressure and counts are recorded with a camera, enabling a simple reading of the data.
+
