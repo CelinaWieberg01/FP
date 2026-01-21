@@ -4,3 +4,214 @@
 For the analysis, the \texttt{Python} library \texttt{numpy} \cite{numpy} is used. Fits are done using \texttt{curve\_fit} from \texttt{scipy.optimize} \cite{scipy}.
 Error analysis is done using \texttt{uncertainties} \cite{uncertainties}. Plots are created using \texttt{matplotlib.pyplot} \cite{matplotlib}.
 
+\subsection{Determination of the Contrast as a Function of the Polarization Angle}
+
+For each selected polarization angle~$\phi$, three measurements of the maximum and 
+minimum intensities, $I_{\mathrm{max}}(\phi)$ and $I_{\mathrm{min}}(\phi)$, were recorded. 
+From these values, the arithmetic mean and the standard deviation were calculated. 
+Using Gaussian error propagation, the uncertainties of the derived quantities were 
+determined consistently.
+
+The contrast is defined as
+\begin{equation}
+    V(\phi) =
+    \frac{I_{\mathrm{max}}(\phi) - I_{\mathrm{min}}(\phi)}
+         {I_{\mathrm{max}}(\phi) + I_{\mathrm{min}}(\phi)} ,
+    \label{eq:contrast_definition}
+\end{equation}
+and the corresponding uncertainty $\Delta V(\phi)$ follows from the uncertainties of 
+$I_{\mathrm{max}}$ and $I_{\mathrm{min}}$. 
+The resulting contrast values, including their error bars, are shown in 
+Fig.~\ref{fig:contrast_plot}.
+
+\begin{figure}[h!]
+    \includegraphics[width=0.9\textwidth]{M_v64/plots/contrast.png}
+    \caption{Measured contrast $V(\phi)$ as a function of the polarization angle, 
+    together with the fitted model.}
+    \label{fig:contrast_plot}
+\end{figure}
+
+The angular dependence of the contrast is described by the model
+\begin{equation}
+    V_{\mathrm{model}}(\phi)
+    = V_{\mathrm{off}} + V_0 \, \left| \sin(2\phi) \right| ,
+    \label{eq:contrast_model}
+\end{equation}
+where $V_0$ denotes the modulation amplitude of the interferometer and 
+$V_{\mathrm{off}}$ accounts for a residual background contrast caused by optical 
+imperfections or slight misalignments in the setup.
+
+The parameters $V_0$ and $V_{\mathrm{off}}$ were obtained from a weighted 
+least-squares fit, where each data point was weighted by $1/\Delta V(\phi_i)^2$. 
+The uncertainties of the fitted parameters correspond to the square roots of the 
+diagonal elements of the covariance matrix.
+
+The fit yields the following parameter values:
+\begin{align}
+    V_0 &= 0.8848 \pm 0.0095 , \\
+    V_{\mathrm{off}} &= 0.0199 \pm 0.0083 .
+\end{align}
+
+The fitted curve is shown together with the experimental data in 
+Fig.~\ref{fig:contrast_plot}. 
+All subsequent measurements in this experiment were performed at a fixed polarization 
+angle of $\phi = 135^\circ$, where the contrast is close to its maximum. 
+This choice ensures a high sensitivity of the interferometer to small phase changes 
+in the following measurement steps.
+
+\subsection{Refractive Index of Glass}
+
+To determine the refractive index of glass, a pair of parallel glass plates was inserted
+into the two interferometer arms. Rotating the glass plates introduces an additional
+optical path difference between the beams, which leads to a measurable number of
+interference fringes passing through the detector. In the experimental configuration,
+the vacuum wavelength of the laser is 
+
+
+\[
+\lambda_{\mathrm{vac}} = 632.99\,\mathrm{nm},
+\]
+
+
+the initial rotation angle of the glass plates is 
+
+
+\[
+\Theta_0 = 10^\circ,
+\]
+
+
+and the thickness of each glass plate is 
+
+
+\[
+d = 1\,\mathrm{mm}.
+\]
+
+
+
+By combining Eq.~(10) and Eq.~(12), the following relation between the measured
+number of fringes $M$ and the refractive index $n$ of the glass is obtained:
+\begin{equation}
+    n = 
+    \frac{1}{
+    1 - 
+    \dfrac{\lambda_{\mathrm{vac}}\, M}{
+    2 d\, \Theta_0\, \Theta}},
+    \label{eq:glass_index_formula}
+\end{equation}
+where $\Theta$ denotes the rotation angle of the glass plates during the measurement.
+
+For each rotation step, the number of passing fringes was recorded.
+A counting uncertainty of one fringe was assumed for $M$, and the angular precision
+of the rotation stage was taken as 
+
+
+\[
+\Delta \Theta \approx 1^\circ.
+\]
+
+
+Using these uncertainties, the refractive index was calculated for each measurement,
+and the corresponding errors were obtained via Gaussian error propagation.
+
+From the full dataset, the following statistical quantities were determined:
+\begin{align}
+    n_{\mathrm{mean}} &= 1.4799 , \\
+    n_{\mathrm{std}}  &= 0.0682 , \\
+    \Delta n_{\mathrm{mean}} &= 0.0220 .
+\end{align}
+
+The final result for the refractive index of the glass sample is therefore
+\begin{equation}
+    n_{\mathrm{glass}} = 1.4799 \pm 0.0220 .
+\end{equation}
+
+
+\subsection{Refractive Index of Air}
+
+The refractive index of air depends on its density and therefore varies with pressure.
+To quantify this dependence, the number of interference fringes passing through the
+centre of the interference pattern was recorded for each pressure value between
+50\,mbar and 996\,mbar. For every pressure point, three measurements 
+$M_1(p)$, $M_2(p)$, and $M_3(p)$ were taken and subsequently averaged. 
+The corresponding data are listed in Table~3.
+
+
+A change in the refractive index of the air cell leads to a change in the optical path
+length, which manifests as a shift of the interference fringes.  
+Combining Eq.~(10) and Eq.~(13) yields the relation
+\begin{equation}
+    \Delta n(p) 
+    = \frac{M(p)\,\lambda_{\mathrm{vac}}}{L}
+    = n(p) - 1 ,
+    \label{eq:deltan_definition}
+\end{equation}
+where $\lambda_{\mathrm{vac}} = 632.996\,\mathrm{nm}$ is the laser wavelength and 
+$L = (100.0 \pm 0.1)\,\mathrm{mm}$ is the length of the air cell.  
+The calculated values of $\Delta n$ are listed in Table~3.
+
+
+According to Eq.~(15), the refractive index of an ideal gas at pressure $p$ and temperature $T$
+is expected to follow the linear relation
+\begin{equation}
+    \Delta n(p, T) 
+    = A \, \frac{3p}{2RT} ,
+    \label{eq:deltan_theory}
+\end{equation}
+where $R = 8.3144\,\mathrm{J/(mol\,K)}$ is the universal gas constant and $A$ is the molar
+refractivity of air.  
+Thus, $\Delta n$ should increase linearly with pressure.
+
+Figure~\ref{fig:air_plot} shows the experimentally determined values of $\Delta n(p)$ together
+with a linear fit of the form
+\begin{equation}
+    f(p) = c\,p + b .
+    \label{eq:linear_fit}
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{plots/air.png}
+    \caption{Measured values of $\Delta n$ as a function of pressure, together with a
+    linear fit according to Eq.~\eqref{eq:linear_fit}.}
+    \label{fig:air_plot}
+\end{figure}
+
+\subsection*{Fit results and determination of the molar refractivity}
+
+From the weighted least-squares fit, the parameters were obtained as
+\begin{align}
+    c &= (2.560 \pm 0.018)\times 10^{-9}\,\mathrm{Pa^{-1}}, \\
+    b &= (1.682 \pm 0.120)\times 10^{-5}.
+\end{align}
+
+The slope $c$ is directly related to the molar refractivity $A$ via
+\begin{equation}
+    c = A\,\frac{3}{2RT}.
+\end{equation}
+Solving for $A$ and inserting the measurement temperature 
+$T = 22.0^\circ\mathrm{C}$ yields
+\begin{equation}
+    A = (4.191 \pm 0.030)\times 10^{-6}\,\mathrm{m^3/mol}.
+\end{equation}
+
+
+Using the obtained value of $A$, the refractive index of air at arbitrary temperature
+$T_0$ and pressure $p_0$ follows from
+\begin{equation}
+    n_{\mathrm{air}}(T_0, p_0)
+    = 1 + A\,\frac{3p_0}{2RT_0} + b .
+\end{equation}
+
+For the reference conditions $T_0 = 15.0^\circ\mathrm{C}$ and 
+$p_0 = 1013.0\,\mathrm{hPa}$, this yields
+\begin{align}
+    \Delta n_{\mathrm{air}}(T_0, p_0) &= (2.835 \pm 0.022)\times 10^{-4}, \\
+    n_{\mathrm{air}}(T_0, p_0) &= 1.0002826 \pm 0.0000022 .
+\end{align}
+
+Here, $\Delta n = n - 1$ denotes the deviation of the refractive index from that of
+vacuum ($n_0 = 1$).  
+The obtained value agrees well with literature values for the refractive index of air
+under similar environmental conditions.
