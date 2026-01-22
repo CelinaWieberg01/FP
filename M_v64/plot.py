@@ -1,12 +1,13 @@
 import matplotlib
-matplotlib.use("MacOSX")
+#matplotlib.use("MacOSX")
 
-matplotlib.rcParams['text.usetex'] = True
+#matplotlib.rcParams['text.usetex'] = True
 import matplotlib.pyplot as plt
 import numpy as np
-from uncertainties import unumpy as unp
+import uncertainties.unumpy as unp
+from uncertainties import ufloat
 from scipy.optimize import curve_fit
-
+from scipy.stats import sem
 
 # Dateien laden
 
@@ -21,10 +22,10 @@ Imin_all = np.vstack([file1[:, 2], file2[:, 2], file3[:, 2]])
 #  Mittelwerte und Standardabweichungen
 
 Imax_mean = np.mean(Imax_all, axis=0)
-Imax_std = np.std(Imax_all, axis=0, ddof=1)
+Imax_std = sem(Imax_all, axis=0)
 
 Imin_mean = np.mean(Imin_all, axis=0)
-Imin_std = np.std(Imin_all, axis=0, ddof=1)
+Imin_std = sem(Imin_all, axis=0)
 
 
 
@@ -71,7 +72,7 @@ plt.figure(figsize=(8, 5))
 plt.errorbar(
     angles, V, yerr=V_err,
     fmt='o', markersize=6, capsize=4,
-    label=r"Data ($|V(\phi)|$)", color="black"
+    label=r"calculated contrast $C$", color="black"
 )
 
 # Fitkurve
@@ -83,14 +84,15 @@ plt.plot(
     label=r"Fit"
 )
 
-plt.xlabel(r"Polarization angle $\phi$ ", fontsize=14)
+plt.xlabel(r"Polarization angle $\phi$ in $\si{\degree}$", fontsize=14)
 
-plt.ylabel(r"$V(\phi)$", fontsize=14)
+plt.ylabel(r"$C(\phi)$", fontsize=14)
 
 plt.grid(True, alpha=0.3)
-plt.legend(fontsize=12)
-
-plt.show()
+plt.legend()
+plt.title(r"Contrast at different polarization angles")
+plt.savefig("plots/contrast.pdf")
+plt.figure()
 
 ########################################################## Glas ########################################################
 
@@ -102,37 +104,31 @@ theta0_deg = 10
 theta0 = np.deg2rad(theta0_deg) 
 
 # Unsicherheiten
-dM = 1 # Zählunsicherheit
-dtheta_deg = 1 # Winkelunsicherheit 
+dM = 2 # Zählunsicherheit
+dtheta_deg = 2 # Winkelunsicherheit 
 dtheta = np.deg2rad(dtheta_deg)
 
+theta = ufloat(theta0, dtheta)
 # Tabelle der gemessenen Maxima
 
-M_values = np.array([29, 36, 32, 25, 32, 34, 27, 32, 32, 33, 32, 29]) 
+M_values = np.array([29, 36, 32, 25, 32, 34, 27, 32, 32, 33, 32, 29])
+M_errs = 2*np.ones(len(M_values))
+M_u = unp.uarray(M_values, M_errs)
 
 # Formel für n(M)
 def refractive_index(M, theta): return 1 / (1 - (lambda_vac * M) / (2 * d * theta0 * theta))
 
-theta = theta0
+
 
 # n für jede Messung 
 
 n_values = refractive_index(M_values, theta)
 
+
 # Mittelwert und Standardabweichung
 
 n_mean = np.mean(n_values) 
-n_std = np.std(n_values, ddof=1) 
 
-
-dn_dM = (lambda_vac / (2 * d * theta0 * theta)) / (1 - (lambda_vac * M_values) / (2 * d * theta0 * theta))**2 
-dn_dtheta = (lambda_vac * M_values / (2 * d * theta0 * theta**2)) / (1 - (lambda_vac * M_values) / (2 * d * theta0 * theta))**2
-
-# Gesamtfehler pro Messung
-n_errors = np.sqrt((dn_dM * dM)**2 + (dn_dtheta * dtheta)**2)
-
-# Gemittelter Fehler
-n_error_mean = np.sqrt(np.sum(n_errors**2)) / len(n_errors)
 
 print("Einzelne n-Werte:")
 print(n_values) 
@@ -140,103 +136,151 @@ print(n_values)
 print("\nMittelwert des Brechungsindex:")
 print(f"n_mean = {n_mean:.4f}") 
 
-print("\nStandardabweichung:") 
-print(f"n_std = {n_std:.4f}") 
-
-print("\nFehler des Mittelwerts (inkl. Fehlerfortpflanzung):") 
-print(f"n_error = {n_error_mean:.4f}")
-
-print("\nErgebnis:") 
-print(f"n_glass = {n_mean:.4f} ± {n_error_mean:.4f}")
-
 ######################################################################################################################
+# 
+# # 1. Konstanten
+# 
+# lambda_vac = 632.996e-9        
+# L = 100.0e-3                   
+# dL = 0.1e-3                    
+# 
+# R = 8.3144                     
+# T = 22.0 + 273.15              
+# 
+# # Zielwerte
+# T0 = 15.0 + 273.15             
+# p0 = 1013.0 * 100              
+# 
+# # 2. Drei Messreihen laden
+# 
+# file1 = np.genfromtxt("data/air1.txt")
+# file2 = np.genfromtxt("data/air2.txt")
+# file3 = np.genfromtxt("data/air3.txt")
+# 
+# # Jede Datei: p[mbar], counts
+# p1, M1 = file1[:,0], file1[:,1]
+# p2, M2 = file2[:,0], file2[:,1]
+# p3, M3 = file3[:,0], file3[:,1]
+# 
+# 
+# # 3. Mittelwerte bilden
+# 
+# p_mbar = p1   #
+# p = p_mbar * 100   
+# 
+# M_mean = (M1 + M2 + M3) / 3.0
+# 
+# 
+# # 4. Δn(p) berechnen
+# 
+# delta_n = M_mean * lambda_vac / L
+# 
+# # 5. Linearer Fit Δn(p) 
+# 
+# def linear(p, c, b):
+#     return c*p + b
+# 
+# popt, pcov = curve_fit(linear, p, delta_n)
+# c_fit, b_fit = popt
+# c_err, b_err = np.sqrt(np.diag(pcov))
+# 
+# print("\nFit-Ergebnisse:")
+# print(f"c = {c_fit:.3e} ± {c_err:.3e}   Pa^-1")
+# print(f"b = {b_fit:.3e} ± {b_err:.3e}")
+# 
+# 
+# # 6. Molar refractivity 
+# 
+# A = c_fit * (2 * R * T) / 3
+# A_err = c_err * (2 * R * T) / 3
+# 
+# print("\nMolar refractivity A:")
+# print(f"A = {A:.3e} ± {A_err:.3e}   m^3/mol")
+# 
+# # 7. Refractive index 
+# 
+# delta_n_T0_p0 = (A * 3 / (2 * R * T0)) * p0 + b_fit
+# delta_n_T0_p0_err = np.sqrt(
+#     (A_err * 3/(2*R*T0) * p0)**2 +
+#     b_err**2
+# )
+# 
+# n_air = 1 + delta_n_T0_p0
+# n_air_err = delta_n_T0_p0_err
+# 
+# print("\nRefractive index at T0, p0:")
+# print(f"Δn_air = {delta_n_T0_p0:.7f} ± {delta_n_T0_p0_err:.7f}")
+# print(f"n_air  = {n_air:.7f} ± {n_air_err:.7f}")
+# 
+# 
+# # 8. Plot
+# 
+# p_plot = np.linspace(min(p), max(p), 500)
+# 
+# plt.figure(figsize=(8,5))
+# plt.plot(p_plot, linear(p_plot, *popt), 'g-', label="Fit")
+# plt.scatter(p, delta_n, color='black', label="Data")
+# 
+# plt.xlabel("p [pa]")
+# plt.ylabel(r"$\Delta n$")
+# plt.grid(True)
+# plt.legend()
+# plt.tight_layout()
+# plt.show()
 
-# 1. Konstanten
 
-lambda_vac = 632.996e-9        
+Lambda_vac = 632.996e-9 
 L = 100.0e-3                   
-dL = 0.1e-3                    
+dL = 0.1e-3
+L_u = ufloat(L, dL)
 
-R = 8.3144                     
-T = 22.2 + 273.15              
+def linfit(x, m, b):
+    return m*x+b
 
-# Zielwerte
-T0 = 15.0 + 273.15             
-p0 = 1013.0 * 100              
+def delta_n_func(M):
+    return M*Lambda_vac/L_u 
 
-# 2. Drei Messreihen laden
+p1, M1 = np.genfromtxt("data/air1.txt", unpack=True)
+p2, M2 = np.genfromtxt("data/air2.txt", unpack=True)
+p3, M3 = np.genfromtxt("data/air3.txt", unpack=True)
 
-file1 = np.genfromtxt("data/air1.txt")
-file2 = np.genfromtxt("data/air2.txt")
-file3 = np.genfromtxt("data/air3.txt")
+p1 *= 100
+p2 *= 100
+p3 *= 100
 
-# Jede Datei: p[mbar], counts
-p1, M1 = file1[:,0], file1[:,1]
-p2, M2 = file2[:,0], file2[:,1]
-p3, M3 = file3[:,0], file3[:,1]
+delta_n1 = delta_n_func(M1)
+delta_n2 = delta_n_func(M2)
+delta_n3 = delta_n_func(M3)
 
+p = np.concatenate((p1, p2, p3))
+delta_n = np.concatenate((delta_n1, delta_n2, delta_n3))
 
-# 3. Mittelwerte bilden
+params, cov = curve_fit(linfit, p, unp.nominal_values(delta_n))
+m = ufloat(params[0], np.sqrt(np.diag(cov))[0])
+b = ufloat(params[1], np.sqrt(np.diag(cov))[1])
 
-p_mbar = p1   #
-p = p_mbar * 100   
+print("fit m*x+b für delta n in p in mbar:")
+print(f"m = {m:.4}")
+print(f"b = {b:.4}")
 
-M_mean = (M1 + M2 + M3) / 3.0
+T = 22.0 + 273 # K
+R = 8.3144 # J/molK
+A = m*2*R*T/3
+print(f"A = {A}")
 
+n_standard = A * 3/2/R * (101300)/(15+273) + b + 1
+print(n_standard)
 
-# 4. Δn(p) berechnen
+plt.errorbar(p1, unp.nominal_values(delta_n1), yerr=unp.std_devs(delta_n1), fmt=".", label=r"Measurement 1")
+plt.errorbar(p2, unp.nominal_values(delta_n2), yerr=unp.std_devs(delta_n2), fmt=".", label=r"Measurement 2")
+plt.errorbar(p3, unp.nominal_values(delta_n3), yerr=unp.std_devs(delta_n3), fmt=".", label=r"Measurement 3")
 
-delta_n = M_mean * lambda_vac / L
+xx = np.linspace(0, 102000)
+plt.plot(xx, linfit(xx, *params), label="Fit")
 
-# 5. Linearer Fit Δn(p) 
-
-def linear(p, c, b):
-    return c*p + b
-
-popt, pcov = curve_fit(linear, p, delta_n)
-c_fit, b_fit = popt
-c_err, b_err = np.sqrt(np.diag(pcov))
-
-print("\nFit-Ergebnisse:")
-print(f"c = {c_fit:.3e} ± {c_err:.3e}   Pa^-1")
-print(f"b = {b_fit:.3e} ± {b_err:.3e}")
-
-
-# 6. Molar refractivity 
-
-A = c_fit * (2 * R * T) / 3
-A_err = c_err * (2 * R * T) / 3
-
-print("\nMolar refractivity A:")
-print(f"A = {A:.3e} ± {A_err:.3e}   m^3/mol")
-
-# 7. Refractive index 
-
-delta_n_T0_p0 = (A * 3 / (2 * R * T0)) * p0 + b_fit
-delta_n_T0_p0_err = np.sqrt(
-    (A_err * 3/(2*R*T0) * p0)**2 +
-    b_err**2
-)
-
-n_air = 1 + delta_n_T0_p0
-n_air_err = delta_n_T0_p0_err
-
-print("\nRefractive index at T0, p0:")
-print(f"Δn_air = {delta_n_T0_p0:.7f} ± {delta_n_T0_p0_err:.7f}")
-print(f"n_air  = {n_air:.7f} ± {n_air_err:.7f}")
-
-
-# 8. Plot
-
-p_plot = np.linspace(min(p), max(p), 500)
-
-plt.figure(figsize=(8,5))
-plt.plot(p_plot, linear(p_plot, *popt), 'g-', label="Fit")
-plt.scatter(p, delta_n, color='black', label="Data")
-
-plt.xlabel("p [pa]")
-plt.ylabel(r"$\Delta n$")
-plt.grid(True)
 plt.legend()
-plt.tight_layout()
-plt.show()
+plt.xlabel(r"$p$ in $\si{\pascal}$")
+plt.ylabel(r"$\Delta n$")
+plt.title(r"Refractive index difference between vacuum and air")
+
+plt.savefig("plots/air.pdf")
