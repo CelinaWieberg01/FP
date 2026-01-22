@@ -252,6 +252,18 @@ delta_n1 = delta_n_func(M1)
 delta_n2 = delta_n_func(M2)
 delta_n3 = delta_n_func(M3)
 
+print("DELTA N 1")
+for element in delta_n1:
+    print(f"{element:.4}")
+print("\n")
+print("DELTA N 2")
+for element in delta_n2:
+    print(f"{element:.4}")
+print("\n")
+print("DELTA N 3")
+for element in delta_n3:
+    print(f"{element:.4}")
+print("\n")
 p = np.concatenate((p1, p2, p3))
 delta_n = np.concatenate((delta_n1, delta_n2, delta_n3))
 
@@ -284,3 +296,106 @@ plt.ylabel(r"$\Delta n$")
 plt.title(r"Refractive index difference between vacuum and air")
 
 plt.savefig("plots/air.pdf")
+
+
+"""
+DELTA N 1
+\num{0.2532(3)}
+\num{0.7596(8)}
+\num{1.013(1)}
+\num{1.139(1)}
+\num{1.329(1)}
+\num{1.456(1)}
+\num{1.709(2)}
+\num{1.772(2)}
+\num{1.899(2)}
+\num{2.089(2)}
+\num{2.215(2)}
+\num{2.279(2)}
+\num{2.405(2)}
+\num{2.469(2)}
+\num{2.595(3)}
+\num{2.785(3)}
+\num{2.848(3)}
+\num{2.912(3)}
+\num{2.975(3)}
+\num{3.038(3)}
+\num{3.102(3)}
+\num{3.165(3)}
+\num{3.228(3)}
+\num{3.292(3)}
+\num{3.355(3)}
+\num{3.418(3)}
+
+
+DELTA N 2
+\num{0.2532(3)}
+\num{0.3165(3)}
+\num{0.3798(4)}
+\num{0.4431(4)}
+\num{0.6330(6)}
+\num{0.8229(8)}
+\num{1.013(1)}
+\num{1.203(1)}
+\num{1.329(1)}
+\num{1.519(2)}
+\num{1.646(2)}
+\num{1.772(2)}
+\num{1.899(2)}
+\num{2.026(2)}
+\num{2.089(2)}
+\num{2.215(2)}
+\num{2.279(2)}
+\num{2.342(2)}
+\num{2.405(2)}
+\num{2.469(2)}
+\num{2.532(3)}
+\num{2.595(3)}
+\num{2.659(3)}
+\num{2.722(3)}
+\num{2.785(3)}
+\num{2.848(3)}
+\num{2.912(3)}
+
+
+DELTA N 3
+\num{0.000(0)}
+\num{0.6330(6)}
+\num{0.1266(1)}
+\num{0.1899(2)}
+\num{0.3165(3)}
+\num{0.4431(4)}
+\num{0.5697(6)}
+\num{0.6963(7)}
+\num{0.8229(8)}
+\num{0.9495(9)}
+\num{1.013(1)}
+\num{1.076(1)}
+\num{1.139(1)}
+\num{1.203(1)}
+\num{1.266(1)}
+\num{1.329(1)}
+\num{1.393(1)}
+\num{1.456(1)}
+\num{1.519(2)}
+\num{1.582(2)}
+\num{1.646(2)}
+\num{1.709(2)}
+\num{1.772(2)}
+\num{1.899(2)}
+\num{1.962(2)}
+\num{2.026(2)}
+\num{2.089(2)}
+\num{2.152(2)}
+\num{2.215(2)}
+\num{2.279(2)}
+\num{2.342(2)}
+\num{2.405(2)}
+\num{2.469(2)}
+\num{2.532(3)}
+\num{2.595(3)}
+\num{2.659(3)}
+\num{2.785(3)}
+\num{2.848(3)}
+\num{2.912(3)}
+"""

@@ -32,7 +32,7 @@
 \recalctypearea{}
 
 % deutsche Spracheinstellungen
-%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
 
 
 \usepackage[
@@ -61,6 +61,7 @@
   locale=DE,                   % deutsche Einstellungen
   separate-uncertainty=true,   % immer Unsicherheit mit \pm
   per-mode=symbol-or-fraction, % / in inline math, fraction in display math
+  output-decimal-marker = {.},
 ]{siunitx}
 
 
@@ -128,7 +129,7 @@
 
 % Hyperlinks im Dokument
 \usepackage[
-  german,
+  english,
   unicode,        % Unicode in PDF-Attributen erlauben
   pdfusetitle,    % Titel, Autoren und Datum als PDF-Attribute
   pdfcreator={},  % ┐ PDF-Attribute säubern
