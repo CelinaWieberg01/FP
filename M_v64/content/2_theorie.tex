@@ -22,7 +22,7 @@ Light is an electromagnetic wave, meaning it has two perpendicular oscillating c
 By convention, the direction polarization is determined by the direction of oscillation of the electric wave component \cite{edmund}.
 Usually, light from most sources is \textbf{unpolarized} or rather \textbf{randomly polarized}, meaning the direction of oscillation of the electric field changes rapidly.
 Using a polarizing effect, it is possible to extract a preferred mode of oscillation. These effects can be found in birefringent polarizers like calcite, reflection polarizers using the Brewster's angle, or dichroistic absorbers like polyvinil alcohol \cite{API}.
-The light is then \textbf{linearly polarized}, meaning the electric field only oscillates in one direction. If two linearly polarized beams are superimposed perpendicular to one another with the same magnitude in their respective $\vec{E}$,
+The light is then \textbf{linearly polarized}, meaning the electric field only oscillates in one direction. If two linearly polarized beams are superimposed perpendicular to one another with the same magnitude in their respective $\vec{E}$ and a phase difference of $\left|\frac{\pi}{2}\right|$,
 the result is \textbf{circularly polarized} light where the sum of the electric field vectors follows a circle. Depending on the phase of the linearly polarized waves, one differentiates between right circular and left circular polarization.
 Lastly, if the superimposed waves do not have the same magnitude, the resulting light has \textbf{elliptical polarization}. Linear, circular and elliptical polarization are shown in \autoref{fig:polarization}.
 
@@ -76,7 +76,7 @@ Further stabilization measures are said to increase the coherence length to over
     \centering
     \includegraphics[width=0.50\textwidth]{bilder/contrast.png}
     \caption{Two interference patterns with different contrast $C$. On the left, $C$ is high. On the right $C$ is low \cite{gretarsson}.}
-    \label{fig:contrast}
+    \label{fig:contrast1}
 \end{wrapfigure}
 
 The contrast $C$ or visibility of an interference pattern is defined as
@@ -86,7 +86,7 @@ The contrast $C$ or visibility of an interference pattern is defined as
     \label{eq:contrast}
 \end{equation}
 
-where $I_+$ and $I_-$ are the maximum and minimum intensity of the fringes, respectively, demonstrated in \autoref{fig:contrast} \cite{gretarsson}.
+where $I_+$ and $I_-$ are the maximum and minimum intensity of the fringes, respectively, demonstrated in \autoref{fig:contrast1} \cite{gretarsson}.
 
 Generally, the intensity in an interference pattern created by two equally polarized, coherent beams with intensities $I_1$ and $I_2$ is given by
 \begin{equation*}
@@ -119,7 +119,7 @@ The refractive index determines the angle of refraction of light in a medium.
 Interferometry experiments can be used to determine the index of refraction of different materials like glass or gases. This is generally done by counting the number of interference fringes $M$.
 After a phase shift $\delta = 2\pi$, one fringe occurs, meaning 
 \begin{equation}
-    M = \frac{\delta}{2\pi}
+    M = \frac{\Delta\Phi}{2\pi}
     \label{eq:M}
 \end{equation}
 
@@ -133,10 +133,10 @@ The phase shift in a beam for a given rotation angle $\Theta$ of the glass throu
 
 A beam that passes through two plates already rotated by $\Theta_0$ experiences a phase shift of 
 \begin{equation*}
-    \Delta\Phi(\Theta) \approx \frac{2\pi}{\lambda_\text{0}} d \frac{n-1}{2n} \left( (\Theta + \Theta_0)^2 - (\Theta + \Theta_0)^2 \right).
+    \Delta\Phi(\Theta) \approx \frac{2\pi}{\lambda_\text{0}} d \frac{n-1}{2n} \left( (\Theta + \Theta_0)^2 - (\Theta - \Theta_0)^2 \right).
 \end{equation*}
 
-The term $(\Theta + \Theta_0)^2 - (\Theta + \Theta_0)^2$ can be linearized in $\Theta$ around $\Theta_0$ for small angles, yielding $2\Theta\Theta_0$.
+The term $(\Theta + \Theta_0)^2 - (\Theta - \Theta_0)^2$ can expanded, yielding $4\Theta\Theta_0$.
 Then, using \autoref{eq:M}, the index of refraction can be written as 
 \begin{equation}
     n = \frac{1}{1- \frac{M\lambda_0}{2d\Theta\Theta_0}}.
